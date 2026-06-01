@@ -1,0 +1,43 @@
+---
+description: WorldCup Atlas global project rules
+globs:
+  - "src/**/*"
+  - "prisma/**/*"
+  - "scripts/**/*"
+  - "docs/**/*"
+alwaysApply: true
+---
+
+# WorldCup Atlas Rules
+
+Read `AGENTS.md` before making changes.
+
+## Stack
+
+- Next.js App Router
+- TypeScript
+- MUI
+- Prisma
+- PostgreSQL
+- Meilisearch
+- pnpm
+
+## Critical rules
+
+- Do not add Tailwind CSS.
+- Do not hardcode real World Cup stats.
+- Do not use official FIFA logos.
+- Do not present the site as officially affiliated with FIFA.
+- Prefer reusable components.
+- Prefer server components unless interactivity requires a client component.
+- Use the project MUI theme.
+- Update docs when changing architecture, schema, routes, or data import behavior.
+
+## Validation
+
+Before finishing:
+
+- Run `pnpm typecheck`
+- Run `pnpm lint`
+- Run `pnpm build` for page/layout/config changes
+- Run data verification scripts for import/stat changes

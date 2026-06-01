@@ -1,0 +1,38 @@
+# WorldCup Atlas Tech Stack
+
+## App
+
+- Framework: Next.js App Router
+- Language: TypeScript
+- UI system: MUI
+- Styling: MUI theme, sx prop, styled API
+- Tables: MUI X Data Grid Community
+- Icons: MUI Icons
+- Package manager: pnpm
+
+## Backend
+
+- Backend layer: Next.js Route Handlers and server-side services
+- ORM: Prisma
+- Database: PostgreSQL
+- Search: Meilisearch
+- Validation: Zod
+- Exports: custom CSV/JSON API routes
+
+## Local Infrastructure
+
+- Docker Compose
+- PostgreSQL container
+- Meilisearch container
+
+## Testing
+
+- TypeScript
+- ESLint
+- Prettier
+- Vitest
+- Playwright
+
+## Product Rule
+
+WorldCup Atlas is an independent historical archive. Do not use official FIFA logos or present the product as officially affiliated with FIFA.
