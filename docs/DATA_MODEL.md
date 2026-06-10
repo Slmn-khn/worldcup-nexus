@@ -183,6 +183,17 @@ Verified by `pnpm data:verify:queries` (`scripts/verify/verify-page-queries.ts`)
 
 ---
 
+## Search index (Checkpoint 6A)
+
+The Meilisearch index `worldcup_atlas_search` is derived from normalized
+application tables (and the query layer for records/aggregates) — never from
+`RawSourceRecord`. Rebuild with `pnpm search:index`; verify with
+`pnpm search:verify`. Document types: tournament, country, player, match,
+record, event (goals, shootout penalty kicks, awards only — bookings and
+substitutions are browsable in the data explorer instead).
+
+---
+
 ## Data verification strategy
 
 ### At import time

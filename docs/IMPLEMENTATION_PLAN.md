@@ -270,8 +270,25 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
 - Deferred: full-text search (Meilisearch checkpoint), country/player
   filters, CSV/JSON export.
 
-- Remaining for 5H+: Meilisearch-backed global search; then Checkpoint 7
-  polish (about/data attribution pages, deployment).
+### Checkpoint 6A — Meilisearch indexing + global search (complete)
+
+- Single index `worldcup_atlas_search` (typed documents grouped client-side):
+  tournaments, countries, players, matches, record leaderboards, and a
+  curated event set (goals, shootout penalty kicks, awards — bookings and
+  substitutions stay in the explorer to keep the index focused). Documents
+  are built from normalized tables/the query layer only — RawSourceRecord
+  is never indexed.
+- `pnpm search:index` (re)builds settings + documents and waits for tasks;
+  `pnpm search:verify` checks common queries. Both are ESM `.mts` scripts
+  (meilisearch v0.58 is ESM-only).
+- `/api/search?q=…` returns grouped JSON (503 with a clear message when
+  Meilisearch is down — pages never depend on search availability).
+- `GlobalSearch` is now live: debounced (300ms, min 2 chars) grouped
+  dropdown with loading/empty/error states; Enter opens the first result,
+  Escape closes.
+
+- Remaining: Checkpoint 7 polish (about/data/sources attribution pages,
+  deployment, streaming-404 status fix).
 
 ### Deliverables
 

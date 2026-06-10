@@ -18,7 +18,8 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "search:index": "tsx scripts/search/build-index.ts"
+    "search:index": "tsx scripts/search/build-index.mts",
+    "search:verify": "tsx scripts/verify/verify-search.mts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
