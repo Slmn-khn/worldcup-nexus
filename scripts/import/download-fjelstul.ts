@@ -1,7 +1,7 @@
-// Downloads the selected Fjelstul World Cup Database CSV files into the
+﻿// Downloads the selected Fjelstul World Cup Database CSV files into the
 // local cache (data/sources/fjelstul/raw). Acquisition only — this script
 // never writes to the database.
-// Source: jfjelstul/worldcup (GitHub), CC BY 4.0 — see docs/DATA_SOURCES.md.
+// Source: jfjelstul/worldcup (GitHub), CC-BY-SA 4.0 — see docs/DATA_SOURCES.md.
 //
 // Usage:
 //   pnpm data:download           # skips files already in the cache

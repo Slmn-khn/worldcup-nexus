@@ -12,7 +12,7 @@ import { getTournamentCards } from "@/server/queries/tournaments";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Tournaments — WorldCup Atlas",
+  title: "World Cup Tournaments",
   description:
     "Browse every FIFA World Cup tournament in the WorldCup Atlas archive.",
 };

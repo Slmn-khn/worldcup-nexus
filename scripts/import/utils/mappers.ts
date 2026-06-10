@@ -1,7 +1,7 @@
-// Explicit column mappings from Fjelstul CSV rows to Prisma inputs.
+﻿// Explicit column mappings from Fjelstul CSV rows to Prisma inputs.
 // Raw columns are never spread into models — every field is mapped by hand
 // against the actual headers (data/sources/fjelstul/reports/headers.json).
-// Source: jfjelstul/worldcup (GitHub), CC BY 4.0 — see docs/DATA_SOURCES.md.
+// Source: jfjelstul/worldcup (GitHub), CC-BY-SA 4.0 — see docs/DATA_SOURCES.md.
 
 import type { Prisma } from "../../../src/generated/prisma/client";
 import type { RawRow } from "./csv";

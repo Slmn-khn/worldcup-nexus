@@ -12,7 +12,7 @@ import { getCountryCards } from "@/server/queries/countries";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Countries — WorldCup Atlas",
+  title: "World Cup Nations",
   description: "Explore every World Cup nation in the WorldCup Atlas archive.",
 };
 

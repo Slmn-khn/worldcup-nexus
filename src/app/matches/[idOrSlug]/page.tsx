@@ -1,4 +1,4 @@
-// Match detail page (Checkpoint 5C) — database-backed via the query layer.
+﻿// Match detail page (Checkpoint 5C) — database-backed via the query layer.
 
 import { cache } from "react";
 import type { Metadata } from "next";
@@ -28,10 +28,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { idOrSlug } = await params;
   const match = await getMatch(decodeURIComponent(idOrSlug));
   if (match === null) {
-    return { title: "WorldCup Atlas — Match not found" };
+    return { title: "Match not found" };
   }
   return {
-    title: `WorldCup Atlas — ${match.homeTeam.name} vs ${match.awayTeam.name}, ${match.tournamentYear}`,
+    title: `${match.homeTeam.name} vs ${match.awayTeam.name}, ${match.tournamentYear}`,
     description:
       `Explore ${match.homeTeam.name} vs ${match.awayTeam.name} from the ${match.tournamentYear} World Cup, ` +
       "including score, goals, cards, substitutions, penalties, venue, and referee.",

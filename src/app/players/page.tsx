@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 const PREVIEW_LIMIT = 60;
 
 export const metadata: Metadata = {
-  title: "Players — WorldCup Atlas",
+  title: "World Cup Players",
   description: "Explore World Cup players in the WorldCup Atlas archive.",
 };
 

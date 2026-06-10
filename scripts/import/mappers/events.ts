@@ -1,7 +1,7 @@
-// Explicit column mappings for event-level Fjelstul datasets (Checkpoint 4C):
+﻿// Explicit column mappings for event-level Fjelstul datasets (Checkpoint 4C):
 // goals, bookings, substitutions, penalty_kicks, award_winners.
 // Mapped by hand against the actual headers — raw rows are never spread into
-// Prisma models. Source: jfjelstul/worldcup (GitHub), CC BY 4.0.
+// Prisma models. Source: jfjelstul/worldcup (GitHub), CC-BY-SA 4.0.
 
 import type { Prisma } from "../../../src/generated/prisma/client";
 import type { RawRow } from "../utils/csv";

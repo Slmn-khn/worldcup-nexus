@@ -15,7 +15,7 @@ import type { MatchIndexItemDto } from "@/server/queries/types";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Matches — WorldCup Atlas",
+  title: "World Cup Matches",
   description: "Browse World Cup match records in the WorldCup Atlas archive.",
 };
 

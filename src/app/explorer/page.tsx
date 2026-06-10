@@ -20,7 +20,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Data Explorer — WorldCup Atlas",
+  title: "Data Explorer",
   description:
     "Browse imported World Cup records and events across tournaments, matches, players, and teams.",
 };

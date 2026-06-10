@@ -1,4 +1,4 @@
-# WorldCup Atlas — Data Sources
+﻿# WorldCup Atlas — Data Sources
 
 ## Rule: no invented data
 
@@ -16,7 +16,7 @@ Temporary mock data is permitted only during UI development (Checkpoints 2–3) 
 
 **Repository:** `jfjelstul/worldcup` (GitHub)
 **Maintainer:** Joshua Fjelstul
-**License:** CC BY 4.0
+**License:** CC-BY-SA 4.0
 
 ### Coverage
 
@@ -62,7 +62,7 @@ normalize or import anything into the database — that happens in Checkpoint 4.
   writes `data/sources/fjelstul/reports/headers.json`.
 - Downloaded CSVs and generated reports are git-ignored; only the cache folder
   structure is committed.
-- Fjelstul remains the primary source and its CC BY 4.0 attribution
+- Fjelstul remains the primary source and its CC-BY-SA 4.0 attribution
   requirements must be preserved end to end. OpenFootball remains secondary /
   reference only (see below).
 - Any transformation applied to source data in later checkpoints must be
@@ -104,7 +104,7 @@ The following are acceptable as reference for verification only. They must not b
 
 ### In the product
 
-- `/about` and `/data` pages must credit the Fjelstul World Cup Database with a link to the source repository and the CC BY 4.0 license
+- `/about` and `/data` pages must credit the Fjelstul World Cup Database with a link to the source repository and the CC-BY-SA 4.0 license
 - OpenFootball must be credited if any of its data appears in production
 - Attribution must be visible without requiring a user to navigate deep into the site
 

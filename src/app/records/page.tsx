@@ -18,7 +18,7 @@ import type {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "WorldCup Atlas — Records",
+  title: "Book of Records",
   description:
     "Explore World Cup records and leaderboards for teams, players, matches, tournaments, penalties, and discipline.",
 };

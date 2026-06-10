@@ -1,7 +1,7 @@
-// Inspects the headers of the cached Fjelstul World Cup Database CSV files
+﻿// Inspects the headers of the cached Fjelstul World Cup Database CSV files
 // and writes a JSON report to data/sources/fjelstul/reports/headers.json.
 // Inspection only — this script never writes to the database.
-// Source: jfjelstul/worldcup (GitHub), CC BY 4.0 — see docs/DATA_SOURCES.md.
+// Source: jfjelstul/worldcup (GitHub), CC-BY-SA 4.0 — see docs/DATA_SOURCES.md.
 //
 // Usage:
 //   pnpm data:inspect   (run pnpm data:download first)

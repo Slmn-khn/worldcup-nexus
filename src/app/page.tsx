@@ -2,6 +2,7 @@
 // server query layer (getHomePageData) — nothing is hardcoded or mocked.
 // Sections without data render an honest empty state.
 
+import type { Metadata } from "next";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
@@ -24,6 +25,12 @@ import type { MatchCardDto } from "@/server/queries/types";
 
 // Live archive data — always render from the current database state.
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: { absolute: "WorldCup Atlas — Independent World Cup Archive" },
+  description:
+    "Explore every World Cup tournament, nation, player, match, goal, and penalty in one independent historical archive.",
+};
 
 const SECTION_PADDING = { py: { xs: 6, md: 8 } };
 const CARD_GRID_3 = {

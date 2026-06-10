@@ -1,4 +1,4 @@
-# WorldCup Atlas — Implementation Plan
+﻿# WorldCup Atlas — Implementation Plan
 
 ## Rule: one checkpoint at a time
 
@@ -103,7 +103,7 @@ Component library under `src/components/`:
 ### Acceptance criteria
 
 - Selected Fjelstul CSV files are downloaded into the local cache folder
-- Source manifest lists every downloaded file with origin and license (CC BY 4.0)
+- Source manifest lists every downloaded file with origin and license (CC-BY-SA 4.0)
 - CSV headers are inspected and documented
 - No database writes occur
 - Attribution and source notes are documented
@@ -303,8 +303,27 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
   Verified by `pnpm export:verify` plus 7 new explorer checks in
   `pnpm data:verify:queries`. RawSourceRecord is never exposed.
 
-- Remaining: Checkpoint 7 polish (about/data/sources attribution pages,
-  deployment, streaming-404 status fix).
+### Checkpoint 7A — SEO, attribution, and production polish (complete)
+
+- Central site config (`src/lib/site.ts`); root metadata with title
+  template, metadataBase, Open Graph/Twitter defaults; standardized
+  human-readable titles on every index and detail page.
+- `/sources` (full CC-BY-SA 4.0 attribution per the source license: author,
+  © 2023 notice, license link, repository link, modification notice, plus
+  transformations and known limitations) and `/about` pages; footer now
+  carries all nav links, the independence disclaimer, and an attribution
+  pointer.
+- **License correction**: the Fjelstul World Cup Database is CC-BY-SA 4.0
+  (verified against the source repository) — docs, manifest constant, and
+  script headers previously said CC BY 4.0 and were corrected.
+- `sitemap.xml` (static + all tournament/match/country/player detail URLs
+  from the database), `robots.txt` (API routes disallowed), web app
+  manifest, app-level not-found and error pages.
+- `docs/DEPLOYMENT.md`, rewritten `README.md`, and `pnpm public:verify`
+  (route files, site config, robots policy, sitemap sanity).
+
+- Remaining: standings/bracket views, source reconciliation, deployment
+  itself (and the streaming-404 status code nuance if SEO requires it).
 
 ### Deliverables
 

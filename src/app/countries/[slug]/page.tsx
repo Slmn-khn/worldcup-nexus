@@ -1,4 +1,4 @@
-// Country profile page (Checkpoint 5D) — database-backed via the query layer.
+﻿// Country profile page (Checkpoint 5D) — database-backed via the query layer.
 
 import { cache } from "react";
 import type { Metadata } from "next";
@@ -25,10 +25,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const country = await getProfile(decodeURIComponent(slug));
   if (country === null) {
-    return { title: "WorldCup Atlas — Country not found" };
+    return { title: "Country not found" };
   }
   return {
-    title: `WorldCup Atlas — ${country.name}`,
+    title: country.name,
     description: `Explore ${country.name}'s World Cup history, including tournaments, matches, goals, finals, and top scorers.`,
   };
 }

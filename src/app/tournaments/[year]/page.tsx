@@ -1,4 +1,4 @@
-// Tournament detail page (Checkpoint 5B) — database-backed via the query layer.
+﻿// Tournament detail page (Checkpoint 5B) — database-backed via the query layer.
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -30,10 +30,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { year: rawYear } = await params;
   const year = parseYear(rawYear);
   if (year === null) {
-    return { title: "WorldCup Atlas — Tournament not found" };
+    return { title: "Tournament not found" };
   }
   return {
-    title: `WorldCup Atlas — ${year} World Cup`,
+    title: `${year} World Cup`,
     description: `Explore the ${year} World Cup tournament, including teams, matches, goals, awards, and records.`,
   };
 }

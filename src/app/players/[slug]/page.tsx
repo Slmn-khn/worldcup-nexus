@@ -1,4 +1,4 @@
-// Player profile page (Checkpoint 5E) — database-backed via the query layer.
+﻿// Player profile page (Checkpoint 5E) — database-backed via the query layer.
 // Squad data is presented as selections ("World Cup Squads"), never as
 // match appearances — appearance/lineup data is not imported.
 
@@ -29,10 +29,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const player = await getProfile(decodeURIComponent(slug));
   if (player === null) {
-    return { title: "WorldCup Atlas — Player not found" };
+    return { title: "Player not found" };
   }
   return {
-    title: `WorldCup Atlas — ${player.name}`,
+    title: player.name,
     description: `Explore ${player.name}'s World Cup record, including selected tournaments, goals, bookings, penalties, substitutions, and awards.`,
   };
 }

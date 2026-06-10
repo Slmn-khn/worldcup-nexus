@@ -1,5 +1,5 @@
-// Fjelstul import pipeline — core data (Checkpoint 4B) + events (Checkpoint 4C).
-// Source: Fjelstul World Cup Database, jfjelstul/worldcup (GitHub), CC BY 4.0.
+﻿// Fjelstul import pipeline — core data (Checkpoint 4B) + events (Checkpoint 4C).
+// Source: Fjelstul World Cup Database, jfjelstul/worldcup (GitHub), CC-BY-SA 4.0.
 // See docs/DATA_SOURCES.md for attribution and docs/DATA_MODEL.md for design.
 //
 // Imports: RawSourceRecord, Tournament, Country, Team, Stadium, Referee,

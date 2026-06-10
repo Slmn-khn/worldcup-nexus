@@ -3,13 +3,7 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
-
-const FOOTER_LINKS = [
-  { label: "Sources", href: "/sources" },
-  { label: "About", href: "/about" },
-  { label: "Records", href: "/records" },
-  { label: "Explorer", href: "/explorer" },
-];
+import { siteConfig } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -28,10 +22,10 @@ export default function Footer() {
           spacing={3}
           sx={{
             justifyContent: "space-between",
-            alignItems: { xs: "flex-start", md: "center" },
+            alignItems: { xs: "flex-start", md: "flex-start" },
           }}
         >
-          <Box>
+          <Box sx={{ maxWidth: 360 }}>
             <Typography
               variant="h6"
               component="p"
@@ -49,11 +43,20 @@ export default function Footer() {
               variant="body2"
               sx={{ color: "text.secondary", mt: 0.5 }}
             >
-              An independent historical archive of the FIFA World Cup.
+              {siteConfig.description}
             </Typography>
           </Box>
-          <Stack direction="row" spacing={3}>
-            {FOOTER_LINKS.map(({ label, href }) => (
+          <Box
+            component="nav"
+            aria-label="Footer"
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr 1fr", sm: "repeat(4, auto)" },
+              columnGap: { xs: 3, sm: 4 },
+              rowGap: 1,
+            }}
+          >
+            {siteConfig.navLinks.map(({ label, href }) => (
               <Typography
                 key={href}
                 component={Link}
@@ -68,13 +71,28 @@ export default function Footer() {
                 {label}
               </Typography>
             ))}
-          </Stack>
+          </Box>
         </Stack>
         <Typography
           variant="caption"
           sx={{ color: "text.secondary", display: "block", mt: 4 }}
         >
-          WorldCup Atlas is not affiliated with FIFA.
+          {siteConfig.disclaimer}
+        </Typography>
+        <Typography
+          variant="caption"
+          sx={{ color: "text.secondary", display: "block", mt: 0.5 }}
+        >
+          Data attribution and license details are available on the{" "}
+          <Typography
+            component={Link}
+            href="/sources"
+            variant="caption"
+            sx={{ color: "primary.main" }}
+          >
+            Sources
+          </Typography>{" "}
+          page.
         </Typography>
       </Container>
     </Box>

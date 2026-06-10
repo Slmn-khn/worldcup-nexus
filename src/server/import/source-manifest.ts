@@ -1,10 +1,10 @@
-// Source manifest for the Fjelstul World Cup Database.
-// Source: jfjelstul/worldcup (GitHub), CC BY 4.0 — see docs/DATA_SOURCES.md.
+﻿// Source manifest for the Fjelstul World Cup Database.
+// Source: jfjelstul/worldcup (GitHub), CC-BY-SA 4.0 — see docs/DATA_SOURCES.md.
 // Checkpoint 4A covers acquisition and inspection only; no normalization yet.
 
 export const FJELSTUL_SOURCE_NAME = "Fjelstul World Cup Database";
 export const FJELSTUL_REPO_URL = "https://github.com/jfjelstul/worldcup";
-export const FJELSTUL_LICENSE = "CC BY 4.0";
+export const FJELSTUL_LICENSE = "CC-BY-SA 4.0";
 
 /**
  * Base URL for raw CSV files in the `data-csv` folder of the source
