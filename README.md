@@ -50,6 +50,15 @@ Open http://localhost:3000.
 
 See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for production notes.
 
+## Recommended local validation
+
+```bash
+pnpm public:verify && pnpm export:verify && pnpm search:verify
+pnpm data:verify:queries && pnpm data:verify
+pnpm typecheck && pnpm lint && pnpm build
+pnpm test:e2e
+```
+
 ## Status
 
 Checkpoints 1–7A complete: app shell, data pipeline (download → import →

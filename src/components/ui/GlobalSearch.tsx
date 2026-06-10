@@ -151,6 +151,9 @@ export default function GlobalSearch() {
         {showDropdown ? (
           <Paper
             elevation={8}
+            role="region"
+            aria-label="Search results"
+            aria-live="polite"
             sx={{
               position: "absolute",
               top: "calc(100% + 8px)",

@@ -9,16 +9,9 @@ import Typography from "@mui/material/Typography";
 import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import { usePathname } from "next/navigation";
 import Link from "@/components/Link";
+import { siteConfig } from "@/lib/site";
 
-const NAV_LINKS = [
-  { label: "Tournaments", href: "/tournaments" },
-  { label: "Countries", href: "/countries" },
-  { label: "Players", href: "/players" },
-  { label: "Matches", href: "/matches" },
-  { label: "Records", href: "/records" },
-  { label: "Explorer", href: "/explorer" },
-  { label: "Sources", href: "/sources" },
-];
+const NAV_LINKS = siteConfig.navLinks;
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -47,6 +40,7 @@ export default function Navbar() {
           <Stack
             component={Link}
             href="/"
+            aria-label="WorldCup Atlas home"
             direction="row"
             spacing={1}
             sx={{
@@ -96,6 +90,7 @@ export default function Navbar() {
                   key={href}
                   component={Link}
                   href={href}
+                  aria-current={active ? "page" : undefined}
                   sx={{
                     px: 1.5,
                     py: 0.75,

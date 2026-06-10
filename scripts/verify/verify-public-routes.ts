@@ -45,6 +45,51 @@ async function main() {
     check(`file exists: ${file}`, existsSync(path.resolve(file)), file);
   }
 
+  // Every nav/footer link target must have a route file — no 404 links.
+  for (const link of siteConfig.navLinks) {
+    const pageFile = path.resolve(`src/app${link.href}/page.tsx`);
+    check(`nav target exists: ${link.href}`, existsSync(pageFile), link.label);
+  }
+
+  // Data-backed route segments need loading + error states.
+  const STATE_FILES = [
+    "src/app/loading.tsx",
+    "src/app/tournaments/loading.tsx",
+    "src/app/tournaments/error.tsx",
+    "src/app/tournaments/[year]/loading.tsx",
+    "src/app/tournaments/[year]/error.tsx",
+    "src/app/tournaments/[year]/not-found.tsx",
+    "src/app/matches/loading.tsx",
+    "src/app/matches/error.tsx",
+    "src/app/matches/[idOrSlug]/loading.tsx",
+    "src/app/matches/[idOrSlug]/error.tsx",
+    "src/app/matches/[idOrSlug]/not-found.tsx",
+    "src/app/countries/loading.tsx",
+    "src/app/countries/error.tsx",
+    "src/app/countries/[slug]/loading.tsx",
+    "src/app/countries/[slug]/error.tsx",
+    "src/app/countries/[slug]/not-found.tsx",
+    "src/app/players/loading.tsx",
+    "src/app/players/error.tsx",
+    "src/app/players/[slug]/loading.tsx",
+    "src/app/players/[slug]/error.tsx",
+    "src/app/players/[slug]/not-found.tsx",
+    "src/app/records/loading.tsx",
+    "src/app/records/error.tsx",
+    "src/app/explorer/loading.tsx",
+    "src/app/explorer/error.tsx",
+  ];
+  const missingStateFiles = STATE_FILES.filter(
+    (file) => !existsSync(path.resolve(file)),
+  );
+  check(
+    "loading/error/not-found coverage",
+    missingStateFiles.length === 0,
+    missingStateFiles.length === 0
+      ? `${STATE_FILES.length} state files present`
+      : `missing: ${missingStateFiles.join(", ")}`,
+  );
+
   check(
     "site config has required values",
     siteConfig.siteName === "WorldCup Atlas" &&

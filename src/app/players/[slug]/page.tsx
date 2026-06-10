@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const player = await getProfile(decodeURIComponent(slug));
   if (player === null) {
-    return { title: "Player not found" };
+    return { title: "Player not found", robots: { index: false } };
   }
   return {
     title: player.name,

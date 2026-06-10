@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { year: rawYear } = await params;
   const year = parseYear(rawYear);
   if (year === null) {
-    return { title: "Tournament not found" };
+    return { title: "Tournament not found", robots: { index: false } };
   }
   return {
     title: `${year} World Cup`,

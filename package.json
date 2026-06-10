@@ -21,7 +21,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "search:index": "tsx scripts/search/build-index.mts",
-    "search:verify": "tsx scripts/verify/verify-search.mts"
+    "search:verify": "tsx scripts/verify/verify-search.mts",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

@@ -322,8 +322,28 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
 - `docs/DEPLOYMENT.md`, rewritten `README.md`, and `pnpm public:verify`
   (route files, site config, robots policy, sitemap sanity).
 
+### Checkpoint 7B — UI polish, accessibility, and smoke tests (complete)
+
+- Accessibility: theme-level visible keyboard focus (gold outline) for all
+  links/buttons/card actions; navbar uses the shared site config (adds the
+  previously missing About link), `aria-current` on the active link, and a
+  labeled brand link; search dropdown announced via `aria-live`. Card-type
+  meaning was already text-labeled (not color-only) — verified.
+- Streaming not-found caveat investigated: detail routes still return 200
+  with correct not-found UI (loading boundary streams the shell first).
+  Mitigated with `robots: noindex` on the fallback metadata of all four
+  dynamic detail routes; documented in `docs/DEPLOYMENT.md`. The global
+  catch-all returns a true 404.
+- Playwright smoke suite (`pnpm test:e2e`): all 9 static routes (heading +
+  footer disclaimer), `/api/health`, four representative detail pages
+  (1986, the 1986 final, Argentina, Maradona), explorer URL filters, global
+  404 status, sitemap/robots content. `webServer` reuses a running dev
+  server locally.
+- `pnpm public:verify` extended: every nav/footer link target must have a
+  route file; 26 loading/error/not-found state files audited.
+
 - Remaining: standings/bracket views, source reconciliation, deployment
-  itself (and the streaming-404 status code nuance if SEO requires it).
+  itself.
 
 ### Deliverables
 

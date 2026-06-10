@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { idOrSlug } = await params;
   const match = await getMatch(decodeURIComponent(idOrSlug));
   if (match === null) {
-    return { title: "Match not found" };
+    return { title: "Match not found", robots: { index: false } };
   }
   return {
     title: `${match.homeTeam.name} vs ${match.awayTeam.name}, ${match.tournamentYear}`,

@@ -25,7 +25,7 @@ pnpm search:index             # build the Meilisearch index
 pnpm dev                      # http://localhost:3000
 ```
 
-Verification suite:
+Verification suite (recommended before any deploy):
 
 ```bash
 pnpm data:verify
@@ -34,7 +34,20 @@ pnpm search:verify
 pnpm export:verify
 pnpm public:verify
 pnpm typecheck && pnpm lint && pnpm build
+pnpm test:e2e          # Playwright smoke tests (needs DB + app running or webServer)
 ```
+
+## Known caveats
+
+- **Detail-route not-found pages return HTTP 200.** Dynamic detail routes
+  (`/tournaments/[year]`, `/matches/[idOrSlug]`, `/countries/[slug]`,
+  `/players/[slug]`) stream through a `loading.tsx` boundary, so when an
+  entity is missing the not-found UI renders correctly but the HTTP status
+  is 200 (the shell was already sent). Mitigation in place: the fallback
+  metadata for those pages sets `robots: noindex`, so crawlers will not
+  index them. The global catch-all not-found returns a true 404. A full fix
+  would mean removing the skeleton loading states from those routes —
+  deliberately not done; revisit only if SEO audits demand it.
 
 ## Production notes
 

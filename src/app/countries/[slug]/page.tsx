@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const country = await getProfile(decodeURIComponent(slug));
   if (country === null) {
-    return { title: "Country not found" };
+    return { title: "Country not found", robots: { index: false } };
   }
   return {
     title: country.name,
