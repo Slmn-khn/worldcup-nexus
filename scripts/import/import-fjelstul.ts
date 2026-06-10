@@ -104,6 +104,7 @@ const counts: Record<string, number> = {
   players: 0,
   matches: 0,
   squadPlayers: 0,
+  playerNationalities: 0,
   goals: 0,
   bookings: 0,
   substitutions: 0,
@@ -134,7 +135,9 @@ function dedupe(
 }
 
 async function main() {
-  console.log(`WorldCup Atlas — Fjelstul import, core + events (source: ${SOURCE})`);
+  console.log(
+    `WorldCup Atlas — Fjelstul import, core + events (source: ${SOURCE})`,
+  );
   console.log(
     RESET
       ? "Mode: --reset (clear normalized data, then import)\n"
@@ -437,6 +440,51 @@ async function main() {
       counts.squadPlayers += 1;
     });
 
+    // ---- 9b. Player nationality (players.csv has no country column).
+    // Derived from squad membership: the most-frequent squad team's country,
+    // per the "primary team" design in docs/DATA_MODEL.md. Players with
+    // squads for two nations (rare, e.g. Argentina→Italy in the 1930s) get
+    // their first-listed nation; the full history stays in SquadPlayer.
+    console.log("Resolving player nationalities from squad data...");
+    const teamCountries = await prisma.team.findMany({
+      select: { id: true, countryId: true },
+    });
+    const countryByTeam = new Map(
+      teamCountries.map((t) => [t.id, t.countryId]),
+    );
+    const countryCountsByPlayer = new Map<string, Map<string, number>>();
+    for (const squad of squadInputs) {
+      const countryId = countryByTeam.get(squad.teamId) ?? null;
+      if (countryId === null) continue;
+      const playerCounts =
+        countryCountsByPlayer.get(squad.playerId) ?? new Map<string, number>();
+      playerCounts.set(countryId, (playerCounts.get(countryId) ?? 0) + 1);
+      countryCountsByPlayer.set(squad.playerId, playerCounts);
+    }
+    const playerIdsByCountry = new Map<string, string[]>();
+    for (const [playerId, playerCounts] of countryCountsByPlayer) {
+      let bestCountry: string | null = null;
+      let bestCount = 0;
+      for (const [countryId, count] of playerCounts) {
+        if (count > bestCount) {
+          bestCountry = countryId;
+          bestCount = count;
+        }
+      }
+      if (bestCountry !== null) {
+        const list = playerIdsByCountry.get(bestCountry) ?? [];
+        list.push(playerId);
+        playerIdsByCountry.set(bestCountry, list);
+      }
+    }
+    for (const [countryId, playerIds] of playerIdsByCountry) {
+      const updated = await prisma.player.updateMany({
+        where: { id: { in: playerIds } },
+        data: { countryId },
+      });
+      counts.playerNationalities += updated.count;
+    }
+
     // ---- 10–14. Events (Checkpoint 4C): goals, bookings, substitutions,
     // penalty kicks, awards. ----
     const eventCtx: EventResolveContext = {
@@ -550,6 +598,7 @@ async function main() {
     console.log(`  players imported:      ${counts.players}`);
     console.log(`  matches imported:      ${counts.matches}`);
     console.log(`  squad players:         ${counts.squadPlayers}`);
+    console.log(`  player nationalities:  ${counts.playerNationalities}`);
     console.log(`  goals imported:        ${counts.goals}`);
     console.log(`  bookings imported:     ${counts.bookings}`);
     console.log(`  substitutions:         ${counts.substitutions}`);

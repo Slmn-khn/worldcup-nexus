@@ -1,10 +1,19 @@
-// Player queries for DB-backed pages (Checkpoint 4D).
-// SquadPlayer rows are squad selections, not match appearances — DTOs use
-// "squad tournaments" wording, never "appearances".
+// Player queries for DB-backed pages (Checkpoints 4D/5E).
+// Data honesty: SquadPlayer rows are squad selections, not match appearances
+// — DTOs and labels use "selected tournaments"/"squads", never "appearances".
+// No assists, caps, minutes played, or lineups are derived (not in source).
 
 import { prisma } from "@/server/db/prisma";
 import { matchLabel, toIso } from "./helpers";
-import type { PlayerCardDto, PlayerProfileDto } from "./types";
+import type {
+  PlayerCardDto,
+  PlayerProfileDto,
+  PlayerSubstitutionDto,
+} from "./types";
+
+export async function getPlayerCount(): Promise<number> {
+  return prisma.player.count();
+}
 
 export async function getPlayerCards(
   options: { take?: number; skip?: number; search?: string } = {},
@@ -15,7 +24,17 @@ export async function getPlayerCards(
       search !== undefined && search.trim() !== ""
         ? { name: { contains: search.trim(), mode: "insensitive" } }
         : undefined,
-    include: { country: { select: { name: true, slug: true } } },
+    include: {
+      country: { select: { name: true, slug: true, flagEmoji: true } },
+      _count: {
+        select: {
+          squadPlayers: true,
+          goals: { where: { isOwnGoal: false } },
+          bookings: true,
+          awards: true,
+        },
+      },
+    },
     orderBy: { name: "asc" },
     take,
     skip,
@@ -26,18 +45,57 @@ export async function getPlayerCards(
     slug: player.slug,
     countryName: player.country?.name ?? null,
     countrySlug: player.country?.slug ?? null,
+    countryFlagEmoji: player.country?.flagEmoji ?? null,
     position: player.position,
+    selectedTournamentsCount: player._count.squadPlayers,
+    goalsCount: player._count.goals,
+    bookingsCount: player._count.bookings,
+    awardsCount: player._count.awards,
   }));
 }
 
 const eventMatchSelect = {
   select: {
     slug: true,
+    stage: true,
+    matchDate: true,
     homeTeam: { select: { name: true } },
     awayTeam: { select: { name: true } },
     tournament: { select: { year: true } },
   },
 } as const;
+
+type EventMatch = {
+  slug: string;
+  stage: string;
+  matchDate: Date | null;
+  homeTeam: { name: string };
+  awayTeam: { name: string };
+  tournament: { year: number };
+};
+
+/** The other team in the match relative to `teamName`; null when ambiguous. */
+function opponentOf(match: EventMatch, teamName: string): string | null {
+  if (match.homeTeam.name === teamName) return match.awayTeam.name;
+  if (match.awayTeam.name === teamName) return match.homeTeam.name;
+  return null;
+}
+
+function eventContext(
+  match: EventMatch,
+  teamName: string,
+  opponent: string | null,
+) {
+  return {
+    matchSlug: match.slug,
+    matchLabel: matchLabel(match),
+    tournamentYear: match.tournament.year,
+    stage: match.stage,
+    matchDate: toIso(match.matchDate),
+    teamName,
+    opponent,
+  };
+}
 
 export async function getPlayerProfile(
   slug: string,
@@ -45,7 +103,7 @@ export async function getPlayerProfile(
   const player = await prisma.player.findUnique({
     where: { slug },
     include: {
-      country: { select: { name: true, slug: true } },
+      country: { select: { name: true, slug: true, flagEmoji: true } },
       squadPlayers: {
         include: {
           tournament: { select: { year: true, slug: true } },
@@ -54,37 +112,76 @@ export async function getPlayerProfile(
         orderBy: { tournament: { year: "asc" } },
       },
       goals: {
-        include: { match: eventMatchSelect },
+        include: { match: eventMatchSelect, team: { select: { name: true } } },
         orderBy: [{ match: { matchDate: "asc" } }, { minute: "asc" }],
       },
       bookings: {
-        include: { match: eventMatchSelect },
+        include: { match: eventMatchSelect, team: { select: { name: true } } },
         orderBy: [{ match: { matchDate: "asc" } }, { minute: "asc" }],
       },
       penaltyKicks: {
-        include: { match: eventMatchSelect },
+        include: { match: eventMatchSelect, team: { select: { name: true } } },
         orderBy: { sourceId: "asc" },
       },
+      substitutionsIn: {
+        include: { match: eventMatchSelect, team: { select: { name: true } } },
+        orderBy: [{ match: { matchDate: "asc" } }, { minute: "asc" }],
+      },
+      substitutionsOut: {
+        include: { match: eventMatchSelect, team: { select: { name: true } } },
+        orderBy: [{ match: { matchDate: "asc" } }, { minute: "asc" }],
+      },
       awards: {
-        include: { tournament: { select: { year: true, slug: true } } },
+        include: {
+          tournament: { select: { year: true, slug: true } },
+          team: { select: { name: true } },
+        },
         orderBy: { tournament: { year: "asc" } },
       },
-      _count: { select: { substitutionsIn: true, substitutionsOut: true } },
     },
   });
   if (player === null) return null;
 
   const goals = player.goals.map((goal) => ({
-    matchSlug: goal.match.slug,
-    matchLabel: matchLabel(goal.match),
-    tournamentYear: goal.match.tournament.year,
+    // For own goals the credited team is the opposition, so an "opponent"
+    // relative to the scorer is ambiguous — returned as null.
+    ...eventContext(
+      goal.match,
+      goal.team.name,
+      goal.isOwnGoal ? null : opponentOf(goal.match, goal.team.name),
+    ),
     minute: goal.minute,
     stoppageMinute: goal.stoppageMinute,
     isOwnGoal: goal.isOwnGoal,
     isPenalty: goal.isPenalty,
   }));
-  const shootoutKicks = player.penaltyKicks.filter(
-    (kick) => kick.type === "SHOOTOUT",
+
+  const substitutions: PlayerSubstitutionDto[] = [
+    ...player.substitutionsIn.map((sub) => ({
+      ...eventContext(
+        sub.match,
+        sub.team.name,
+        opponentOf(sub.match, sub.team.name),
+      ),
+      direction: "IN" as const,
+      minute: sub.minute,
+      stoppageMinute: sub.stoppageMinute,
+    })),
+    ...player.substitutionsOut.map((sub) => ({
+      ...eventContext(
+        sub.match,
+        sub.team.name,
+        opponentOf(sub.match, sub.team.name),
+      ),
+      direction: "OUT" as const,
+      minute: sub.minute,
+      stoppageMinute: sub.stoppageMinute,
+    })),
+  ].sort(
+    (a, b) =>
+      a.tournamentYear - b.tournamentYear ||
+      (a.matchDate ?? "").localeCompare(b.matchDate ?? "") ||
+      (a.minute ?? 0) - (b.minute ?? 0),
   );
 
   return {
@@ -95,7 +192,11 @@ export async function getPlayerProfile(
     dateOfBirth: toIso(player.dateOfBirth),
     country:
       player.country !== null
-        ? { name: player.country.name, slug: player.country.slug }
+        ? {
+            name: player.country.name,
+            slug: player.country.slug,
+            flagEmoji: player.country.flagEmoji,
+          }
         : null,
     squadTournaments: player.squadPlayers.map((entry) => ({
       tournamentYear: entry.tournament.year,
@@ -103,36 +204,52 @@ export async function getPlayerProfile(
       teamName: entry.team.name,
       shirtNumber: entry.shirtNumber,
       position: entry.position,
+      isCaptain: entry.isCaptain,
     })),
     goals,
     bookings: player.bookings.map((booking) => ({
-      matchSlug: booking.match.slug,
-      matchLabel: matchLabel(booking.match),
-      tournamentYear: booking.match.tournament.year,
+      ...eventContext(
+        booking.match,
+        booking.team.name,
+        opponentOf(booking.match, booking.team.name),
+      ),
       cardType: booking.cardType,
       minute: booking.minute,
+      stoppageMinute: booking.stoppageMinute,
     })),
     penaltyKicks: player.penaltyKicks.map((kick) => ({
-      matchSlug: kick.match.slug,
-      matchLabel: matchLabel(kick.match),
-      tournamentYear: kick.match.tournament.year,
+      ...eventContext(
+        kick.match,
+        kick.team.name,
+        opponentOf(kick.match, kick.team.name),
+      ),
       type: kick.type,
       converted: kick.converted,
+      order: kick.order,
+      minute: kick.minute,
+      stoppageMinute: kick.stoppageMinute,
+      isSaved: kick.isSaved,
+      isMissed: kick.isMissed,
     })),
+    substitutions,
     awards: player.awards.map((award) => ({
       name: award.name,
       tournamentYear: award.tournament.year,
       tournamentSlug: award.tournament.slug,
+      teamName: award.team?.name ?? null,
+      description: award.description,
     })),
     totals: {
+      selectedTournaments: player.squadPlayers.length,
       goals: goals.filter((goal) => !goal.isOwnGoal).length,
       ownGoals: goals.filter((goal) => goal.isOwnGoal).length,
+      penaltyKicksTotal: player.penaltyKicks.length,
+      penaltyKicksConverted: player.penaltyKicks.filter(
+        (kick) => kick.converted,
+      ).length,
       bookings: player.bookings.length,
-      substitutionsIn: player._count.substitutionsIn,
-      substitutionsOut: player._count.substitutionsOut,
-      shootoutPenaltiesTaken: shootoutKicks.length,
-      shootoutPenaltiesConverted: shootoutKicks.filter((kick) => kick.converted)
-        .length,
+      substitutionsIn: player.substitutionsIn.length,
+      substitutionsOut: player.substitutionsOut.length,
       awards: player.awards.length,
     },
   };

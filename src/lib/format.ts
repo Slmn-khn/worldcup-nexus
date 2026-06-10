@@ -40,6 +40,22 @@ export function formatMinute(
   return `${minute}'`;
 }
 
+/** Display label for a booking card type. */
+export function formatCardType(
+  cardType: "YELLOW" | "SECOND_YELLOW" | "RED",
+): string {
+  return cardType === "RED"
+    ? "Red card"
+    : cardType === "SECOND_YELLOW"
+      ? "Second yellow"
+      : "Yellow card";
+}
+
+/** Display label for a penalty kick type. */
+export function formatPenaltyType(type: "IN_MATCH" | "SHOOTOUT"): string {
+  return type === "SHOOTOUT" ? "Shootout" : "In match";
+}
+
 /** Long label for a W/D/L result code. */
 export function formatResult(result: "W" | "D" | "L"): string {
   return result === "W" ? "Win" : result === "D" ? "Draw" : "Loss";

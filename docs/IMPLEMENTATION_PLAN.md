@@ -218,8 +218,21 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
   labeled "appearances".
 - Country links from match pages and the homepage now resolve.
 
-- Remaining for 5E+: player profile, records page, and Meilisearch-backed
-  search.
+### Checkpoint 5E — Players index and player profile (complete)
+
+- `/players` renders from `getPlayerCards()` + `getPlayerCount()`: first 60
+  players alphabetically with squads/goals/awards counts and an honest
+  "showing N of total" note (search/filters arrive with global search).
+- `/players/[slug]` renders from `getPlayerProfile(slug)`: hero (country
+  link, position, date of birth, squads/goals/cards/penalties/awards
+  chips), World Cup Record stat grid, **World Cup Squads** (squad
+  selections — explicitly NOT appearances), goals, cards, penalty kicks,
+  substitutions (in/out), and awards — every event row links to its match.
+- Data honesty: no appearances, caps, minutes, assists, or lineups are
+  derived (not in source). Opponent is omitted for own goals (ambiguous).
+- Player links from tournament/country/match pages now resolve.
+
+- Remaining for 5F+: records page and Meilisearch-backed search.
 
 ### Deliverables
 

@@ -11,7 +11,7 @@ import {
   getFinalMatchForTournament,
   getMatchByIdOrSlug,
 } from "@/server/queries/matches";
-import { getPlayerProfile } from "@/server/queries/players";
+import { getPlayerCards, getPlayerProfile } from "@/server/queries/players";
 import { getRecordsOverview } from "@/server/queries/records";
 import {
   getTournamentByYear,
@@ -134,6 +134,14 @@ async function main() {
     }
   }
 
+  // ---- Player cards (critical). ----
+  const playerCards = await getPlayerCards({ take: 5 });
+  check(
+    "getPlayerCards returns players",
+    playerCards.length > 0,
+    `${playerCards.length} players (take 5)`,
+  );
+
   // ---- Player profile (find Maradona by name, then use real slug). ----
   const maradona = await prisma.player.findFirst({
     where: { name: { contains: "Maradona", mode: "insensitive" } },
@@ -151,11 +159,66 @@ async function main() {
     const profile = await getPlayerProfile(maradona.slug);
     check(
       "getPlayerProfile(Maradona)",
-      profile !== null && profile.squadTournaments.length > 0,
+      profile !== null &&
+        profile.squadTournaments.length > 0 &&
+        profile.goals.length > 0,
       profile !== null
-        ? `${profile.name} (${maradona.slug}): ${profile.squadTournaments.length} squad tournaments, ` +
-            `${profile.totals.goals} goals, ${profile.totals.bookings} cards, ${profile.totals.awards} awards`
+        ? `${profile.name} (${maradona.slug}): ${profile.totals.selectedTournaments} squad tournaments, ` +
+            `${profile.totals.goals} goals, ${profile.totals.bookings} cards, ` +
+            `${profile.substitutions.length} substitutions, ${profile.totals.awards} awards`
         : "returned null",
+    );
+  }
+
+  // ---- Players with each record type resolve with that data (critical if such a player exists). ----
+  const playerDataChecks: {
+    name: string;
+    where: object;
+    count: (
+      profile: NonNullable<Awaited<ReturnType<typeof getPlayerProfile>>>,
+    ) => number;
+  }[] = [
+    {
+      name: "goals",
+      where: { goals: { some: {} } },
+      count: (p) => p.goals.length,
+    },
+    {
+      name: "bookings",
+      where: { bookings: { some: {} } },
+      count: (p) => p.bookings.length,
+    },
+    {
+      name: "penalty kicks",
+      where: { penaltyKicks: { some: {} } },
+      count: (p) => p.penaltyKicks.length,
+    },
+    {
+      name: "awards",
+      where: { awards: { some: {} } },
+      count: (p) => p.awards.length,
+    },
+  ];
+  for (const playerCheck of playerDataChecks) {
+    const sample = await prisma.player.findFirst({
+      where: playerCheck.where,
+      select: { slug: true },
+    });
+    if (sample === null) {
+      check(
+        `player with ${playerCheck.name} resolves`,
+        false,
+        "no such player in database",
+        false,
+      );
+      continue;
+    }
+    const profile = await getPlayerProfile(sample.slug);
+    const count = profile !== null ? playerCheck.count(profile) : 0;
+    check(
+      `player with ${playerCheck.name} resolves with data`,
+      profile !== null && count > 0,
+      `${sample.slug}: ${count} ${playerCheck.name}`,
     );
   }
 

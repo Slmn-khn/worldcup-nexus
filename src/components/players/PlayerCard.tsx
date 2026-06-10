@@ -5,20 +5,42 @@ import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import { formatNumber } from "@/lib/format";
 
 type PlayerCardProps = {
   name: string;
   country: string;
+  flagEmoji?: string | null;
+  position?: string | null;
   summary?: string;
+  /** Squad selections — NOT match appearances. */
+  selectedTournamentsCount?: number | null;
+  goalsCount?: number | null;
+  awardsCount?: number | null;
   href?: string;
 };
 
 export default function PlayerCard({
   name,
   country,
+  flagEmoji,
+  position,
   summary,
+  selectedTournamentsCount,
+  goalsCount,
+  awardsCount,
   href = "/players",
 }: PlayerCardProps) {
+  const counts = [
+    selectedTournamentsCount != null
+      ? `${formatNumber(selectedTournamentsCount)} ${selectedTournamentsCount === 1 ? "squad" : "squads"}`
+      : null,
+    goalsCount != null ? `${formatNumber(goalsCount)} goals` : null,
+    awardsCount != null && awardsCount > 0
+      ? `${formatNumber(awardsCount)} awards`
+      : null,
+  ].filter((part): part is string => part !== null);
+
   return (
     <Card
       sx={{
@@ -61,12 +83,25 @@ export default function PlayerCard({
                 {name}
               </Typography>
               <Typography variant="caption" sx={{ color: "text.secondary" }}>
+                {flagEmoji ? `${flagEmoji} ` : ""}
                 {country}
+                {position ? ` · ${position}` : ""}
               </Typography>
             </Stack>
           </Stack>
+          {counts.length > 0 ? (
+            <Typography
+              variant="caption"
+              sx={{ color: "text.secondary", display: "block" }}
+            >
+              {counts.join(" · ")}
+            </Typography>
+          ) : null}
           {summary ? (
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", mt: counts.length > 0 ? 1 : 0 }}
+            >
               {summary}
             </Typography>
           ) : null}

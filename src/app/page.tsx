@@ -288,11 +288,7 @@ export default async function Home() {
                 key={player.id}
                 name={player.name}
                 country={player.countryName ?? "Nation unknown"}
-                summary={
-                  player.position !== null
-                    ? `Position: ${player.position}`
-                    : undefined
-                }
+                position={player.position}
                 href={`/players/${player.slug}`}
               />
             ))}

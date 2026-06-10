@@ -24,6 +24,16 @@ See `docs/DATA_SOURCES.md` for source definitions and conflict resolution policy
 
 <!-- Log issues below this line. Newest first. -->
 
+### ISSUE-009: Player nationality is derived from squad membership
+
+- **Date logged:** 2026-06-10
+- **Entity:** player
+- **Identifier:** all players
+- **Source A:** Fjelstul `players.csv` — has no nationality/team column
+- **Source B:** Fjelstul `squads.csv` — squad entries link players to national teams
+- **Resolution:** Fjelstul default (derived)
+- **Notes:** `Player.countryId` is set during import to the country of the player's most-frequent squad team, per the "primary team" design in `docs/DATA_MODEL.md`. Players who represented two nations (rare, e.g. 1930s Argentina→Italy transfers) get their first-listed nation; full per-tournament history remains in `SquadPlayer`. Before Checkpoint 5E this field was never populated — a 4B import gap fixed alongside the player pages.
+
 ### ISSUE-008: Penalty kick dataset covers shootouts only, without kick order
 
 - **Date logged:** 2026-06-10

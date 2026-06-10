@@ -227,7 +227,14 @@ export type PlayerCardDto = {
   slug: string;
   countryName: string | null;
   countrySlug: string | null;
+  countryFlagEmoji: string | null;
   position: string | null;
+  /** Squad selections — NOT match appearances. Null when not computed (e.g. homepage preview). */
+  selectedTournamentsCount: number | null;
+  /** Goals excluding own goals. Null when not computed. */
+  goalsCount: number | null;
+  bookingsCount: number | null;
+  awardsCount: number | null;
 };
 
 export type PlayerSquadTournamentDto = {
@@ -236,38 +243,58 @@ export type PlayerSquadTournamentDto = {
   teamName: string;
   shirtNumber: number | null;
   position: string | null;
+  isCaptain: boolean;
 };
 
-export type PlayerGoalDto = {
+/** Shared match context for player event rows. */
+type PlayerEventMatchContext = {
   matchSlug: string;
   matchLabel: string;
   tournamentYear: number;
+  stage: string;
+  matchDate: string | null;
+  teamName: string;
+  /** The other team in the match; null when not safely derivable (e.g. own goals). */
+  opponent: string | null;
+};
+
+export type PlayerGoalDto = PlayerEventMatchContext & {
   minute: number | null;
   stoppageMinute: number | null;
   isOwnGoal: boolean;
   isPenalty: boolean;
 };
 
-export type PlayerBookingDto = {
-  matchSlug: string;
-  matchLabel: string;
-  tournamentYear: number;
+export type PlayerBookingDto = PlayerEventMatchContext & {
   cardType: "YELLOW" | "SECOND_YELLOW" | "RED";
   minute: number | null;
+  stoppageMinute: number | null;
 };
 
-export type PlayerPenaltyKickDto = {
-  matchSlug: string;
-  matchLabel: string;
-  tournamentYear: number;
+export type PlayerPenaltyKickDto = PlayerEventMatchContext & {
   type: "IN_MATCH" | "SHOOTOUT";
   converted: boolean;
+  /** Null — kick order/minute are not in the imported source (ISSUE-008). */
+  order: number | null;
+  minute: number | null;
+  stoppageMinute: number | null;
+  isSaved: boolean | null;
+  isMissed: boolean | null;
+};
+
+export type PlayerSubstitutionDto = PlayerEventMatchContext & {
+  direction: "IN" | "OUT";
+  minute: number | null;
+  stoppageMinute: number | null;
 };
 
 export type PlayerAwardDto = {
   name: string;
   tournamentYear: number;
   tournamentSlug: string;
+  teamName: string | null;
+  /** Always null — the source has no award description column. */
+  description: string | null;
 };
 
 export type PlayerProfileDto = {
@@ -276,21 +303,24 @@ export type PlayerProfileDto = {
   slug: string;
   position: string | null;
   dateOfBirth: string | null;
-  country: { name: string; slug: string } | null;
+  country: { name: string; slug: string; flagEmoji: string | null } | null;
   /** Squad selections per tournament — NOT match appearances. */
   squadTournaments: PlayerSquadTournamentDto[];
   goals: PlayerGoalDto[];
   bookings: PlayerBookingDto[];
   penaltyKicks: PlayerPenaltyKickDto[];
+  substitutions: PlayerSubstitutionDto[];
   awards: PlayerAwardDto[];
   totals: {
+    /** Squad selections — NOT match appearances. */
+    selectedTournaments: number;
     goals: number;
     ownGoals: number;
+    penaltyKicksTotal: number;
+    penaltyKicksConverted: number;
     bookings: number;
     substitutionsIn: number;
     substitutionsOut: number;
-    shootoutPenaltiesTaken: number;
-    shootoutPenaltiesConverted: number;
     awards: number;
   };
 };

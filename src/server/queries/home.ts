@@ -84,7 +84,9 @@ async function featuredPlayers(take: number): Promise<PlayerCardDto[]> {
   });
   const players = await prisma.player.findMany({
     where: { id: { in: grouped.map((g) => g.playerId) } },
-    include: { country: { select: { name: true, slug: true } } },
+    include: {
+      country: { select: { name: true, slug: true, flagEmoji: true } },
+    },
   });
   const byId = new Map(players.map((p) => [p.id, p]));
   return grouped.flatMap((g) => {
@@ -97,7 +99,13 @@ async function featuredPlayers(take: number): Promise<PlayerCardDto[]> {
         slug: player.slug,
         countryName: player.country?.name ?? null,
         countrySlug: player.country?.slug ?? null,
+        countryFlagEmoji: player.country?.flagEmoji ?? null,
         position: player.position,
+        // Aggregates are not computed for the homepage preview.
+        selectedTournamentsCount: null,
+        goalsCount: null,
+        bookingsCount: null,
+        awardsCount: null,
       },
     ];
   });
