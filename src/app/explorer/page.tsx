@@ -11,11 +11,11 @@ import EmptyState from "@/components/ui/EmptyState";
 import ExplorerFilters from "@/components/explorer/ExplorerFilters";
 import ExplorerTable from "@/components/explorer/ExplorerTable";
 import ExplorerSummary from "@/components/explorer/ExplorerSummary";
+import { getExplorerData } from "@/server/queries/explorer";
 import {
-  getExplorerData,
-  EXPLORER_EVENT_TYPES,
-} from "@/server/queries/explorer";
-import type { ExplorerEventType } from "@/server/queries/types";
+  parseExplorerOptions,
+  searchParamsGetter,
+} from "@/server/queries/parseExplorerParams";
 
 export const dynamic = "force-dynamic";
 
@@ -29,33 +29,11 @@ type Props = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-function firstParam(value: string | string[] | undefined): string | null {
-  if (value === undefined) return null;
-  return Array.isArray(value) ? (value[0] ?? null) : value;
-}
-
-function toInt(value: string | null): number | undefined {
-  if (value === null) return undefined;
-  const parsed = Number(value);
-  return Number.isInteger(parsed) && parsed > 0 ? parsed : undefined;
-}
-
 export default async function ExplorerPage({ searchParams }: Props) {
   const params = await searchParams;
-  const rawEventType = firstParam(params.eventType);
-  const eventType = EXPLORER_EVENT_TYPES.includes(
-    rawEventType as ExplorerEventType,
-  )
-    ? (rawEventType as ExplorerEventType)
-    : null;
-  const tournamentYear = toInt(firstParam(params.tournamentYear));
-
-  const data = await getExplorerData({
-    eventType: eventType ?? undefined,
-    tournamentYear,
-    page: toInt(firstParam(params.page)),
-    pageSize: toInt(firstParam(params.pageSize)),
-  });
+  const data = await getExplorerData(
+    parseExplorerOptions(searchParamsGetter(params)),
+  );
 
   return (
     <Box>
@@ -104,18 +82,15 @@ export default async function ExplorerPage({ searchParams }: Props) {
       <PageContainer sx={{ py: { xs: 4, md: 5 } }}>
         <Stack spacing={2.5}>
           <ExplorerFilters
-            eventTypes={data.filters.eventTypes}
-            tournamentYears={data.filters.tournamentYears}
-            currentEventType={eventType}
-            currentYear={tournamentYear ?? null}
+            filters={data.filters}
+            active={data.activeFilters}
             currentPageSize={data.pageSize}
           />
           <ExplorerSummary
             total={data.total}
             page={data.page}
             pageSize={data.pageSize}
-            eventType={eventType}
-            tournamentYear={tournamentYear ?? null}
+            active={data.activeFilters}
           />
           {data.rows.length > 0 ? (
             <ExplorerTable

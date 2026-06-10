@@ -449,6 +449,88 @@ async function main() {
     cards.some((card) => card.year === 1986),
   );
 
+  // ---- Explorer filters (Checkpoint 6B). ----
+  check(
+    "explorer filters metadata populated",
+    explorer.filters.eventTypes.length === 6 &&
+      explorer.filters.tournamentYears.length > 0 &&
+      explorer.filters.countries.length > 0 &&
+      explorer.filters.stages.length > 0,
+    `${explorer.filters.countries.length} countries, ${explorer.filters.players.length} players (capped), ` +
+      `${explorer.filters.stages.length} stages`,
+  );
+
+  const argentinaCountry = await prisma.country.findFirst({
+    where: {
+      OR: [
+        { slug: "argentina" },
+        { name: { equals: "Argentina", mode: "insensitive" } },
+      ],
+    },
+    select: { slug: true, name: true },
+  });
+  if (argentinaCountry === null) {
+    check("explorer countrySlug filter", false, "Argentina not found", false);
+  } else {
+    const filtered = await getExplorerData({
+      countrySlug: argentinaCountry.slug,
+      pageSize: 10,
+    });
+    check(
+      "explorer countrySlug filter (Argentina)",
+      filtered.rows.length > 0 &&
+        filtered.rows.every(
+          (row) =>
+            row.teamName === argentinaCountry.name ||
+            (row.matchLabel?.includes(argentinaCountry.name) ?? false) ||
+            row.playerName !== null,
+        ),
+      `${filtered.rows.length} rows, total ${filtered.total}`,
+    );
+  }
+
+  if (maradona !== null) {
+    const filtered = await getExplorerData({
+      playerSlug: maradona.slug,
+      pageSize: 50,
+    });
+    check(
+      "explorer playerSlug filter (Maradona)",
+      filtered.rows.length > 0 &&
+        filtered.rows.every(
+          (row) =>
+            row.playerName === maradona.name && row.eventType !== "Match",
+        ),
+      `${filtered.rows.length} rows, total ${filtered.total}, types: ${[...new Set(filtered.rows.map((r) => r.eventType))].join("/")}`,
+    );
+  } else {
+    check("explorer playerSlug filter", false, "Maradona not found", false);
+  }
+
+  const stageFiltered = await getExplorerData({ stage: "final", pageSize: 10 });
+  check(
+    "explorer stage filter (final)",
+    stageFiltered.rows.length > 0 &&
+      stageFiltered.rows.every((row) => row.stage?.toLowerCase() === "final"),
+    `${stageFiltered.rows.length} rows, total ${stageFiltered.total}`,
+    explorer.filters.stages.some((stage) => stage.toLowerCase() === "final"),
+  );
+
+  const qFiltered = await getExplorerData({ q: "maradona", pageSize: 10 });
+  check(
+    "explorer q filter (maradona)",
+    qFiltered.rows.length > 0,
+    `${qFiltered.rows.length} rows, total ${qFiltered.total}`,
+    maradona !== null,
+  );
+
+  const cappedPage = await getExplorerData({ pageSize: 500 });
+  check(
+    "explorer pageSize cap enforced",
+    cappedPage.pageSize <= 100 && cappedPage.rows.length <= 100,
+    `requested 500 → pageSize ${cappedPage.pageSize}, ${cappedPage.rows.length} rows`,
+  );
+
   // ---- Records overview (Checkpoint 5F shape). ----
   const records = await getRecordsOverview();
   check(

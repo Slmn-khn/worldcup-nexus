@@ -108,7 +108,21 @@ const COLUMNS: GridColDef<ExplorerRowDto>[] = [
     headerName: "Team",
     width: 150,
     sortable: false,
-    valueGetter: (_value, row) => row.teamName ?? "—",
+    renderCell: (params) =>
+      params.row.teamName !== null && params.row.teamCountrySlug !== null ? (
+        <Typography
+          component={Link}
+          href={`/countries/${params.row.teamCountrySlug}`}
+          variant="body2"
+          sx={{ color: "text.primary", "&:hover": { color: "primary.main" } }}
+        >
+          {params.row.teamName}
+        </Typography>
+      ) : (
+        <Typography variant="body2" sx={{ color: "text.secondary" }}>
+          {params.row.teamName ?? "—"}
+        </Typography>
+      ),
   },
   {
     field: "playerName",

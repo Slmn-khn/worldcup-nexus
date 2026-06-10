@@ -388,6 +388,8 @@ export type ExplorerRowDto = {
   stage: string | null;
   date: string | null;
   teamName: string | null;
+  /** Country slug of the event's team — null for Match rows (two teams). */
+  teamCountrySlug: string | null;
   playerName: string | null;
   playerSlug: string | null;
   minute: number | null;
@@ -402,8 +404,21 @@ export type ExplorerRowDto = {
 export type ExplorerQueryOptions = {
   eventType?: string;
   tournamentYear?: number;
+  countrySlug?: string;
+  playerSlug?: string;
+  stage?: string;
+  q?: string;
   page?: number;
   pageSize?: number;
+};
+
+export type ExplorerActiveFilters = {
+  eventType: string | null;
+  tournamentYear: number | null;
+  countrySlug: string | null;
+  playerSlug: string | null;
+  stage: string | null;
+  q: string | null;
 };
 
 export type ExplorerDataDto = {
@@ -414,7 +429,12 @@ export type ExplorerDataDto = {
   filters: {
     eventTypes: ExplorerEventType[];
     tournamentYears: number[];
+    countries: { name: string; slug: string; flagEmoji: string | null }[];
+    /** Capped option list — see explorer.ts for the selection rule. */
+    players: { name: string; slug: string; countryName: string | null }[];
+    stages: string[];
   };
+  activeFilters: ExplorerActiveFilters;
 };
 
 export type HomePageDataDto = {

@@ -8,6 +8,7 @@
     "data:inspect": "tsx scripts/import/inspect-fjelstul.ts",
     "data:verify": "tsx scripts/verify/verify-counts.ts",
     "data:verify:queries": "tsx scripts/verify/verify-page-queries.ts",
+    "export:verify": "tsx scripts/verify/verify-export.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",

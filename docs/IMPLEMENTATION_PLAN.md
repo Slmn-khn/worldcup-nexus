@@ -287,6 +287,22 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
   dropdown with loading/empty/error states; Enter opens the first result,
   Escape closes.
 
+### Checkpoint 6B — Data Explorer enhancements + exports (complete)
+
+- `/explorer` filters extended to: event type, tournament year, country,
+  player (capped option list — players with recorded events, max 200),
+  stage, and a text query — all URL-driven and bookmarkable. Filtering is
+  DB-side per event type (shared where-builders for fetch + count), keeping
+  the windowed merge-pagination correct. Structural rules: playerSlug
+  excludes Match rows; stage excludes Award rows.
+- `/api/explorer` returns the same filtered JSON. `/api/export/explorer`
+  exports CSV (default, with proper escaping and attachment headers) or
+  JSON, respecting filters, capped at 5,000 rows with an
+  `X-Export-Truncated` header when clipped.
+- Export buttons on the explorer summary carry the current filters.
+  Verified by `pnpm export:verify` plus 7 new explorer checks in
+  `pnpm data:verify:queries`. RawSourceRecord is never exposed.
+
 - Remaining: Checkpoint 7 polish (about/data/sources attribution pages,
   deployment, streaming-404 status fix).
 

@@ -1,13 +1,20 @@
 "use client";
 
+import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
-import type { ExplorerEventType } from "@/server/queries/types";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import type {
+  ExplorerDataDto,
+  ExplorerEventType,
+} from "@/server/queries/types";
 
 const EVENT_TYPE_LABELS: Record<ExplorerEventType, string> = {
   Match: "Matches",
@@ -18,22 +25,21 @@ const EVENT_TYPE_LABELS: Record<ExplorerEventType, string> = {
   Award: "Awards",
 };
 
-export default function ExplorerFilters({
-  eventTypes,
-  tournamentYears,
-  currentEventType,
-  currentYear,
-  currentPageSize,
-}: {
-  eventTypes: ExplorerEventType[];
-  tournamentYears: number[];
-  currentEventType: string | null;
-  currentYear: number | null;
+type Props = {
+  filters: ExplorerDataDto["filters"];
+  active: ExplorerDataDto["activeFilters"];
   currentPageSize: number;
-}) {
+};
+
+export default function ExplorerFilters({
+  filters,
+  active,
+  currentPageSize,
+}: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [qInput, setQInput] = React.useState(active.q ?? "");
 
   function updateParams(updates: Record<string, string | null>) {
     const params = new URLSearchParams(searchParams.toString());
@@ -50,79 +56,192 @@ export default function ExplorerFilters({
     router.push(query === "" ? pathname : `${pathname}?${query}`);
   }
 
-  const hasFilters = currentEventType !== null || currentYear !== null;
+  function applyTextQuery() {
+    updateParams({ q: qInput.trim() === "" ? null : qInput.trim() });
+  }
+
+  const hasFilters =
+    active.eventType !== null ||
+    active.tournamentYear !== null ||
+    active.countrySlug !== null ||
+    active.playerSlug !== null ||
+    active.stage !== null ||
+    active.q !== null;
 
   return (
-    <Stack
-      direction={{ xs: "column", sm: "row" }}
-      spacing={2}
-      sx={{ alignItems: { sm: "center" }, flexWrap: "wrap", rowGap: 2 }}
-    >
-      <FormControl size="small" sx={{ minWidth: 180 }}>
-        <InputLabel id="explorer-event-type">Event type</InputLabel>
-        <Select
-          labelId="explorer-event-type"
-          label="Event type"
-          value={currentEventType ?? ""}
-          onChange={(event) =>
-            updateParams({ eventType: event.target.value || null })
-          }
-        >
-          <MenuItem value="">All event types</MenuItem>
-          {eventTypes.map((eventType) => (
-            <MenuItem key={eventType} value={eventType}>
-              {EVENT_TYPE_LABELS[eventType]}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+    <Box>
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{ alignItems: "center", flexWrap: "wrap", rowGap: 2 }}
+      >
+        <FormControl size="small" sx={{ minWidth: 170 }}>
+          <InputLabel id="explorer-event-type">Event type</InputLabel>
+          <Select
+            labelId="explorer-event-type"
+            label="Event type"
+            value={active.eventType ?? ""}
+            onChange={(event) =>
+              updateParams({ eventType: event.target.value || null })
+            }
+          >
+            <MenuItem value="">All event types</MenuItem>
+            {filters.eventTypes.map((eventType) => (
+              <MenuItem key={eventType} value={eventType}>
+                {EVENT_TYPE_LABELS[eventType]}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
-      <FormControl size="small" sx={{ minWidth: 170 }}>
-        <InputLabel id="explorer-year">Tournament</InputLabel>
-        <Select
-          labelId="explorer-year"
-          label="Tournament"
-          value={currentYear !== null ? String(currentYear) : ""}
-          onChange={(event) =>
-            updateParams({ tournamentYear: event.target.value || null })
-          }
-        >
-          <MenuItem value="">All tournaments</MenuItem>
-          {tournamentYears.map((year) => (
-            <MenuItem key={year} value={String(year)}>
-              {year}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+        <FormControl size="small" sx={{ minWidth: 150 }}>
+          <InputLabel id="explorer-year">Tournament</InputLabel>
+          <Select
+            labelId="explorer-year"
+            label="Tournament"
+            value={
+              active.tournamentYear !== null
+                ? String(active.tournamentYear)
+                : ""
+            }
+            onChange={(event) =>
+              updateParams({ tournamentYear: event.target.value || null })
+            }
+          >
+            <MenuItem value="">All tournaments</MenuItem>
+            {filters.tournamentYears.map((year) => (
+              <MenuItem key={year} value={String(year)}>
+                {year}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
-      <FormControl size="small" sx={{ minWidth: 130 }}>
-        <InputLabel id="explorer-page-size">Rows</InputLabel>
-        <Select
-          labelId="explorer-page-size"
-          label="Rows"
-          value={String(currentPageSize)}
-          onChange={(event) => updateParams({ pageSize: event.target.value })}
-        >
-          {[25, 50, 100].map((size) => (
-            <MenuItem key={size} value={String(size)}>
-              {size} rows
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+        <FormControl size="small" sx={{ minWidth: 180 }}>
+          <InputLabel id="explorer-country">Country</InputLabel>
+          <Select
+            labelId="explorer-country"
+            label="Country"
+            value={active.countrySlug ?? ""}
+            onChange={(event) =>
+              updateParams({ countrySlug: event.target.value || null })
+            }
+          >
+            <MenuItem value="">All countries</MenuItem>
+            {filters.countries.map((country) => (
+              <MenuItem key={country.slug} value={country.slug}>
+                {country.flagEmoji ? `${country.flagEmoji} ` : ""}
+                {country.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
-      {hasFilters ? (
-        <Button
+        <FormControl size="small" sx={{ minWidth: 200 }}>
+          <InputLabel id="explorer-player">Player</InputLabel>
+          <Select
+            labelId="explorer-player"
+            label="Player"
+            value={active.playerSlug ?? ""}
+            onChange={(event) =>
+              updateParams({ playerSlug: event.target.value || null })
+            }
+          >
+            <MenuItem value="">All players</MenuItem>
+            {filters.players.map((player) => (
+              <MenuItem key={player.slug} value={player.slug}>
+                {player.name}
+                {player.countryName !== null ? ` (${player.countryName})` : ""}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl size="small" sx={{ minWidth: 170 }}>
+          <InputLabel id="explorer-stage">Stage</InputLabel>
+          <Select
+            labelId="explorer-stage"
+            label="Stage"
+            value={active.stage ?? ""}
+            onChange={(event) =>
+              updateParams({ stage: event.target.value || null })
+            }
+          >
+            <MenuItem value="">All stages</MenuItem>
+            {filters.stages.map((stage) => (
+              <MenuItem key={stage} value={stage}>
+                {stage}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl size="small" sx={{ minWidth: 120 }}>
+          <InputLabel id="explorer-page-size">Rows</InputLabel>
+          <Select
+            labelId="explorer-page-size"
+            label="Rows"
+            value={String(currentPageSize)}
+            onChange={(event) => updateParams({ pageSize: event.target.value })}
+          >
+            {[25, 50, 100].map((size) => (
+              <MenuItem key={size} value={String(size)}>
+                {size} rows
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing={1.5}
+        sx={{ alignItems: "center", flexWrap: "wrap", rowGap: 1.5, mt: 2 }}
+      >
+        <TextField
           size="small"
-          onClick={() =>
-            updateParams({ eventType: null, tournamentYear: null })
-          }
-          sx={{ color: "text.secondary", "&:hover": { color: "primary.main" } }}
-        >
-          Clear filters
+          label="Text search"
+          placeholder="e.g. maradona, azteca, semi-finals"
+          value={qInput}
+          onChange={(event) => setQInput(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") applyTextQuery();
+          }}
+          sx={{ minWidth: 280 }}
+        />
+        <Button variant="outlined" size="small" onClick={applyTextQuery}>
+          Apply
         </Button>
-      ) : null}
-    </Stack>
+        {hasFilters ? (
+          <Button
+            size="small"
+            onClick={() => {
+              setQInput("");
+              updateParams({
+                eventType: null,
+                tournamentYear: null,
+                countrySlug: null,
+                playerSlug: null,
+                stage: null,
+                q: null,
+              });
+            }}
+            sx={{
+              color: "text.secondary",
+              "&:hover": { color: "primary.main" },
+            }}
+          >
+            Clear filters
+          </Button>
+        ) : null}
+      </Stack>
+      <Typography
+        variant="caption"
+        sx={{ color: "text.secondary", display: "block", mt: 1 }}
+      >
+        Player filter options are limited in v1 (players with recorded events,
+        capped at 200).
+      </Typography>
+    </Box>
   );
 }
