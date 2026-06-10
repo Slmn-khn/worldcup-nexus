@@ -128,8 +128,17 @@ penalty kicks (shootouts), and awards. Also resolves source-backed
 final). Raw source records now cover all 13 selected datasets. Source quirks
 are logged in `docs/DATA_ISSUES.md` (ISSUE-006…008).
 
-**Next:** Checkpoint 5 starts DB-backed pages now that the event import
-passes verification.
+**Checkpoint 4D — query layer and stats foundation (complete):** typed
+server-side query layer under `src/server/queries/` (home, tournaments,
+matches, countries, players, records) returning frontend-friendly DTOs
+(`types.ts`) — no raw Prisma models or `RawSourceRecord` payloads reach
+pages. Includes a records/leaderboard foundation computed strictly from
+imported data, a dev-only `/api/dev/data-summary` route, and a page-query
+verification script (`pnpm data:verify:queries`).
+
+**Next:** Checkpoint 5 builds DB-backed pages on top of these query
+functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
+`getCountryProfile`, `getPlayerProfile`, `getRecordsOverview`).
 
 ### Deliverables
 

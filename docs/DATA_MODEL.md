@@ -155,6 +155,34 @@ penalty kicks are shootout kicks without order/minute data.
 
 ---
 
+## Query layer (Checkpoint 4D)
+
+Pages never query Prisma directly. `src/server/queries/` exposes typed
+functions returning JSON-serializable DTOs (`src/server/queries/types.ts`):
+
+- `home.ts` — `getArchiveStats`, `getHomePageData`
+- `tournaments.ts` — `getTournamentCards`, `getTournamentByYear`, `getTournamentMatches`
+- `matches.ts` — `getMatchByIdOrSlug`, `getFinalMatchForTournament`
+- `countries.ts` — `getCountryCards`, `getCountryProfile`
+- `players.ts` — `getPlayerCards`, `getPlayerProfile`
+- `records.ts` — `getRecordsOverview`
+
+Conventions:
+
+- Raw Prisma models and `RawSourceRecord` payloads are never exposed to pages.
+- Dates are ISO strings in DTOs.
+- Deciding finals are matched by stage `"final"` (case-insensitive, exact) —
+  verified against imported stage values; `"final round"` (1950) does not
+  qualify, so 1950 has no final/runner-up.
+- Squad data is labeled "squad tournaments"/selections, never "appearances" —
+  match appearance data is not imported.
+- Leaderboards are computed only from imported events and labeled with their
+  exact scope (all imported tournaments, men's and women's editions).
+
+Verified by `pnpm data:verify:queries` (`scripts/verify/verify-page-queries.ts`).
+
+---
+
 ## Data verification strategy
 
 ### At import time
