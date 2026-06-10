@@ -82,7 +82,9 @@ Component library under `src/components/`:
 
 ## Checkpoint 4A — Data source audit and downloader
 
-**Status: not started — next checkpoint**
+**Status: complete**
+
+**Summary:** Source manifest (`src/server/import/source-manifest.ts`), downloader (`pnpm data:download`), header inspection (`pnpm data:inspect`), local cache under `data/sources/fjelstul/`, and attribution notes in `docs/DATA_SOURCES.md`.
 
 ### Deliverables
 
@@ -110,7 +112,18 @@ Component library under `src/components/`:
 
 ## Checkpoint 4 — First database seed and import
 
-**Status: not started — blocked on Checkpoint 4A**
+**Status: split into 4B (complete) and 4C (not started)**
+
+### Scope split
+
+**Checkpoint 4B — core normalized import (complete):** imports only the core
+foundation data from cached Fjelstul CSVs: raw source records, tournaments,
+countries, teams, players, stadiums, referees, matches, and squads
+(`pnpm data:import`, verified by `pnpm data:verify`).
+
+**Checkpoint 4C — event import (not started):** intentionally deferred event
+data: goals, bookings (cards), substitutions, penalty kicks, and awards.
+Tournament `goalsCount` / `runnerUpTeamId` resolution also lands here.
 
 ### Deliverables
 
