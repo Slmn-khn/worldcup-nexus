@@ -1,0 +1,350 @@
+// WorldCup Atlas — initial schema.
+// Prisma 7: the connection URL lives in prisma.config.ts (datasource.url),
+// and the client is generated into src/generated/prisma via the
+// `prisma-client` generator (prisma-client-js was removed in Prisma 7).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum CardType {
+  YELLOW
+  SECOND_YELLOW
+  RED
+}
+
+enum PenaltyKickType {
+  IN_MATCH
+  SHOOTOUT
+}
+
+model Tournament {
+  id           String    @id @default(cuid())
+  sourceId     String?   @unique
+  year         Int       @unique
+  name         String
+  slug         String    @unique
+  hostName     String?
+  startDate    DateTime?
+  endDate      DateTime?
+  teamsCount   Int?
+  matchesCount Int?
+  goalsCount   Int?
+
+  // Resolved after import; plain scalars to avoid circular relation setup.
+  winnerTeamId   String?
+  runnerUpTeamId String?
+
+  teams        Team[]
+  matches      Match[]
+  squadPlayers SquadPlayer[]
+  awards       Award[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([year])
+}
+
+model Country {
+  id        String  @id @default(cuid())
+  sourceId  String? @unique
+  name      String
+  slug      String  @unique
+  code      String?
+  fifaCode  String?
+  flagEmoji String?
+
+  teams   Team[]
+  players Player[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Team {
+  id           String  @id @default(cuid())
+  sourceId     String? @unique
+  tournamentId String
+  countryId    String?
+  name         String
+  slug         String
+  code         String?
+
+  tournament Tournament @relation(fields: [tournamentId], references: [id])
+  country    Country?   @relation(fields: [countryId], references: [id])
+
+  homeMatches    Match[] @relation("MatchHomeTeam")
+  awayMatches    Match[] @relation("MatchAwayTeam")
+  winningMatches Match[] @relation("MatchWinningTeam")
+
+  goals         Goal[]
+  bookings      Booking[]
+  substitutions Substitution[]
+  penaltyKicks  PenaltyKick[]
+  squadPlayers  SquadPlayer[]
+  awards        Award[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([tournamentId, slug])
+  @@index([countryId])
+}
+
+model Player {
+  id          String    @id @default(cuid())
+  sourceId    String?   @unique
+  name        String
+  slug        String    @unique
+  countryId   String?
+  position    String?
+  dateOfBirth DateTime?
+
+  country Country? @relation(fields: [countryId], references: [id])
+
+  squadPlayers     SquadPlayer[]
+  goals            Goal[]         @relation("GoalScorer")
+  assists          Goal[]         @relation("GoalAssist")
+  bookings         Booking[]
+  substitutionsIn  Substitution[] @relation("SubstitutionPlayerIn")
+  substitutionsOut Substitution[] @relation("SubstitutionPlayerOut")
+  penaltyKicks     PenaltyKick[]
+  awards           Award[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([countryId])
+}
+
+model Stadium {
+  id       String  @id @default(cuid())
+  sourceId String? @unique
+  name     String
+  slug     String  @unique
+  city     String?
+  country  String?
+
+  matches Match[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Referee {
+  id       String  @id @default(cuid())
+  sourceId String? @unique
+  name     String
+  slug     String  @unique
+  country  String?
+
+  matches Match[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Match {
+  id            String    @id @default(cuid())
+  sourceId      String?   @unique
+  tournamentId  String
+  homeTeamId    String
+  awayTeamId    String
+  winningTeamId String?
+  slug          String    @unique
+  stage         String
+  matchDate     DateTime?
+  matchNumber   Int?
+  stadiumId     String?
+  refereeId     String?
+  attendance    Int?
+
+  homeScore          Int     @default(0)
+  awayScore          Int     @default(0)
+  homeScorePenalties Int?
+  awayScorePenalties Int?
+  decidedByPenalties Boolean @default(false)
+
+  tournament  Tournament @relation(fields: [tournamentId], references: [id])
+  homeTeam    Team       @relation("MatchHomeTeam", fields: [homeTeamId], references: [id])
+  awayTeam    Team       @relation("MatchAwayTeam", fields: [awayTeamId], references: [id])
+  winningTeam Team?      @relation("MatchWinningTeam", fields: [winningTeamId], references: [id])
+  stadium     Stadium?   @relation(fields: [stadiumId], references: [id])
+  referee     Referee?   @relation(fields: [refereeId], references: [id])
+
+  goals         Goal[]
+  bookings      Booking[]
+  substitutions Substitution[]
+  penaltyKicks  PenaltyKick[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([tournamentId])
+  @@index([homeTeamId])
+  @@index([awayTeamId])
+  @@index([stage])
+  @@index([matchDate])
+}
+
+model SquadPlayer {
+  id           String  @id @default(cuid())
+  tournamentId String
+  teamId       String
+  playerId     String
+  shirtNumber  Int?
+  position     String?
+  isCaptain    Boolean @default(false)
+
+  tournament Tournament @relation(fields: [tournamentId], references: [id])
+  team       Team       @relation(fields: [teamId], references: [id])
+  player     Player     @relation(fields: [playerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([tournamentId, teamId, playerId])
+  @@index([teamId])
+  @@index([playerId])
+}
+
+model Goal {
+  id             String  @id @default(cuid())
+  sourceId       String? @unique
+  matchId        String
+  teamId         String
+  playerId       String
+  assistPlayerId String?
+  minute         Int?
+  stoppageMinute Int?
+  isOwnGoal      Boolean @default(false)
+  isPenalty      Boolean @default(false)
+
+  match        Match   @relation(fields: [matchId], references: [id])
+  team         Team    @relation(fields: [teamId], references: [id])
+  player       Player  @relation("GoalScorer", fields: [playerId], references: [id])
+  assistPlayer Player? @relation("GoalAssist", fields: [assistPlayerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([matchId])
+  @@index([teamId])
+  @@index([playerId])
+  @@index([assistPlayerId])
+}
+
+model Booking {
+  id             String   @id @default(cuid())
+  sourceId       String?  @unique
+  matchId        String
+  teamId         String
+  playerId       String
+  cardType       CardType
+  minute         Int?
+  stoppageMinute Int?
+
+  match  Match  @relation(fields: [matchId], references: [id])
+  team   Team   @relation(fields: [teamId], references: [id])
+  player Player @relation(fields: [playerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([matchId])
+  @@index([teamId])
+  @@index([playerId])
+  @@index([cardType])
+}
+
+model Substitution {
+  id             String  @id @default(cuid())
+  sourceId       String? @unique
+  matchId        String
+  teamId         String
+  playerInId     String?
+  playerOutId    String?
+  minute         Int?
+  stoppageMinute Int?
+
+  match     Match   @relation(fields: [matchId], references: [id])
+  team      Team    @relation(fields: [teamId], references: [id])
+  playerIn  Player? @relation("SubstitutionPlayerIn", fields: [playerInId], references: [id])
+  playerOut Player? @relation("SubstitutionPlayerOut", fields: [playerOutId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([matchId])
+  @@index([teamId])
+  @@index([playerInId])
+  @@index([playerOutId])
+}
+
+model PenaltyKick {
+  id             String          @id @default(cuid())
+  sourceId       String?         @unique
+  matchId        String
+  teamId         String
+  playerId       String?
+  type           PenaltyKickType
+  order          Int?
+  minute         Int?
+  stoppageMinute Int?
+  converted      Boolean
+  isSaved        Boolean?
+  isMissed       Boolean?
+
+  match  Match   @relation(fields: [matchId], references: [id])
+  team   Team    @relation(fields: [teamId], references: [id])
+  player Player? @relation(fields: [playerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([matchId])
+  @@index([teamId])
+  @@index([playerId])
+  @@index([type])
+}
+
+model Award {
+  id           String  @id @default(cuid())
+  sourceId     String? @unique
+  tournamentId String
+  playerId     String?
+  teamId       String?
+  name         String
+  description  String?
+
+  tournament Tournament @relation(fields: [tournamentId], references: [id])
+  player     Player?    @relation(fields: [playerId], references: [id])
+  team       Team?      @relation(fields: [teamId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([tournamentId])
+  @@index([playerId])
+  @@index([teamId])
+}
+
+// Verbatim copy of every imported source row, kept for auditing and
+// re-normalization without re-downloading source data.
+model RawSourceRecord {
+  id         String   @id @default(cuid())
+  source     String
+  entityType String
+  sourceId   String?
+  payload    Json
+  importedAt DateTime @default(now())
+
+  @@index([source, entityType])
+  @@index([sourceId])
+}
