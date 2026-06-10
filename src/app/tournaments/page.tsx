@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import PageContainer from "@/components/layout/PageContainer";
 import EmptyState from "@/components/ui/EmptyState";
 import TournamentCard from "@/components/tournaments/TournamentCard";
+import StaggerContainer from "@/components/motion/StaggerContainer";
 import { formatNumber } from "@/lib/format";
 import { getTournamentCards } from "@/server/queries/tournaments";
 
@@ -65,7 +66,8 @@ export default async function TournamentsPage() {
 
       <PageContainer sx={{ py: { xs: 5, md: 7 } }}>
         {tournaments.length > 0 ? (
-          <Box
+          <StaggerContainer
+            stagger={0.04}
             sx={{
               display: "grid",
               gap: 2.5,
@@ -91,7 +93,7 @@ export default async function TournamentsPage() {
                 href={`/tournaments/${tournament.year}`}
               />
             ))}
-          </Box>
+          </StaggerContainer>
         ) : (
           <EmptyState
             title="No tournaments yet"

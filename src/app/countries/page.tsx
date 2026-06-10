@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import PageContainer from "@/components/layout/PageContainer";
 import EmptyState from "@/components/ui/EmptyState";
 import CountryCard from "@/components/countries/CountryCard";
+import StaggerContainer from "@/components/motion/StaggerContainer";
 import { formatNumber } from "@/lib/format";
 import { getCountryCards } from "@/server/queries/countries";
 
@@ -64,7 +65,8 @@ export default async function CountriesPage() {
 
       <PageContainer sx={{ py: { xs: 5, md: 7 } }}>
         {countries.length > 0 ? (
-          <Box
+          <StaggerContainer
+            stagger={0.03}
             sx={{
               display: "grid",
               gap: 2.5,
@@ -89,7 +91,7 @@ export default async function CountriesPage() {
                 href={`/countries/${country.slug}`}
               />
             ))}
-          </Box>
+          </StaggerContainer>
         ) : (
           <EmptyState
             title="No countries yet"

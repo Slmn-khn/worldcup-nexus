@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import PageContainer from "@/components/layout/PageContainer";
 import EmptyState from "@/components/ui/EmptyState";
 import MatchCard from "@/components/matches/MatchCard";
+import StaggerContainer from "@/components/motion/StaggerContainer";
 import { formatDate, formatNumber } from "@/lib/format";
 import { getMatchCards } from "@/server/queries/matches";
 import type { MatchIndexItemDto } from "@/server/queries/types";
@@ -74,7 +75,8 @@ export default async function MatchesPage() {
       <PageContainer sx={{ py: { xs: 5, md: 7 } }}>
         {matches.length > 0 ? (
           <>
-            <Box
+            <StaggerContainer
+              stagger={0.04}
               sx={{
                 display: "grid",
                 gap: 2.5,
@@ -100,7 +102,7 @@ export default async function MatchesPage() {
                   href={match.href}
                 />
               ))}
-            </Box>
+            </StaggerContainer>
             {totalCount > matches.length ? (
               <Typography
                 variant="caption"

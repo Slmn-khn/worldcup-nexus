@@ -24,6 +24,26 @@ It should not look like:
 - Red Card: #EF4444
 - Yellow Card: #FACC15
 
+## Motion Principles (Checkpoint 7C)
+
+- Cinematic but restrained: motion supports the archive feel, never steals
+  attention. Section reveals and card lifts, not spectacle.
+- Use the `motion` package (`motion/react`) for JS animation; MUI `sx`
+  transitions for simple hover states. Primitives live in
+  `src/components/motion/` (FadeIn, StaggerContainer, ParallaxLayer,
+  MotionCard, PageTransition) and `src/components/visual/` (AtlasBackground,
+  HeroOrb, PitchLines).
+- Animate transform and opacity only — never width/height/top/left.
+- Reduced motion is respected everywhere: `MotionConfig reducedMotion="user"`
+  app-wide, `useReducedMotion` guards in scroll/loop-driven components, and a
+  CSS `prefers-reduced-motion` fallback for scroll behavior.
+- Parallax and floating decoration belong in heroes/major feature areas
+  only — never on tables, lists, or data-dense views.
+- Tables and the Data Grid remain stable and readable: container-level
+  reveals at most, no per-row animation.
+- No official FIFA visuals; decorative language is generic trophy gold,
+  pitch green, and stadium atmosphere.
+
 ## UI Rules
 
 - Use MUI only.

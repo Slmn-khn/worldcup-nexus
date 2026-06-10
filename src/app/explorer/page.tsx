@@ -11,6 +11,7 @@ import EmptyState from "@/components/ui/EmptyState";
 import ExplorerFilters from "@/components/explorer/ExplorerFilters";
 import ExplorerTable from "@/components/explorer/ExplorerTable";
 import ExplorerSummary from "@/components/explorer/ExplorerSummary";
+import FadeIn from "@/components/motion/FadeIn";
 import { getExplorerData } from "@/server/queries/explorer";
 import {
   parseExplorerOptions,
@@ -80,32 +81,34 @@ export default async function ExplorerPage({ searchParams }: Props) {
       </Box>
 
       <PageContainer sx={{ py: { xs: 4, md: 5 } }}>
-        <Stack spacing={2.5}>
-          <ExplorerFilters
-            filters={data.filters}
-            active={data.activeFilters}
-            currentPageSize={data.pageSize}
-          />
-          <ExplorerSummary
-            total={data.total}
-            page={data.page}
-            pageSize={data.pageSize}
-            active={data.activeFilters}
-          />
-          {data.rows.length > 0 ? (
-            <ExplorerTable
-              rows={data.rows}
+        <FadeIn y={12}>
+          <Stack spacing={2.5}>
+            <ExplorerFilters
+              filters={data.filters}
+              active={data.activeFilters}
+              currentPageSize={data.pageSize}
+            />
+            <ExplorerSummary
               total={data.total}
               page={data.page}
               pageSize={data.pageSize}
+              active={data.activeFilters}
             />
-          ) : (
-            <EmptyState
-              title="No rows match these filters"
-              description="Try a different event type or tournament, or clear the filters."
-            />
-          )}
-        </Stack>
+            {data.rows.length > 0 ? (
+              <ExplorerTable
+                rows={data.rows}
+                total={data.total}
+                page={data.page}
+                pageSize={data.pageSize}
+              />
+            ) : (
+              <EmptyState
+                title="No rows match these filters"
+                description="Try a different event type or tournament, or clear the filters."
+              />
+            )}
+          </Stack>
+        </FadeIn>
       </PageContainer>
     </Box>
   );

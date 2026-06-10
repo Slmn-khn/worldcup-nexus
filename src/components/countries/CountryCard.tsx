@@ -1,4 +1,4 @@
-import Card from "@mui/material/Card";
+﻿import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
@@ -41,10 +41,16 @@ export default function CountryCard({
     <Card
       sx={{
         height: "100%",
-        transition: "border-color 150ms ease, transform 150ms ease",
+        transition:
+          "border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease",
+        "&:focus-within": {
+          borderColor: "primary.main",
+          boxShadow: "0 10px 32px rgba(244, 201, 93, 0.14)",
+        },
         "&:hover": {
           borderColor: "primary.main",
-          transform: "translateY(-2px)",
+          transform: "translateY(-3px)",
+          boxShadow: "0 10px 32px rgba(244, 201, 93, 0.14)",
         },
       }}
     >

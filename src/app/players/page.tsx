@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import PageContainer from "@/components/layout/PageContainer";
 import EmptyState from "@/components/ui/EmptyState";
 import PlayerCard from "@/components/players/PlayerCard";
+import StaggerContainer from "@/components/motion/StaggerContainer";
 import { formatNumber } from "@/lib/format";
 import { getPlayerCards, getPlayerCount } from "@/server/queries/players";
 
@@ -71,7 +72,8 @@ export default async function PlayersPage() {
       <PageContainer sx={{ py: { xs: 5, md: 7 } }}>
         {players.length > 0 ? (
           <>
-            <Box
+            <StaggerContainer
+              stagger={0.03}
               sx={{
                 display: "grid",
                 gap: 2.5,
@@ -96,7 +98,7 @@ export default async function PlayersPage() {
                   href={`/players/${player.slug}`}
                 />
               ))}
-            </Box>
+            </StaggerContainer>
             {totalCount > players.length ? (
               <Typography
                 variant="caption"

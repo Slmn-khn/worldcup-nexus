@@ -14,7 +14,16 @@ export default function RecordCard({
   description,
 }: RecordCardProps) {
   return (
-    <Card sx={{ height: "100%" }}>
+    <Card
+      sx={{
+        height: "100%",
+        transition: "border-color 200ms ease, box-shadow 200ms ease",
+        "&:hover": {
+          borderColor: "rgba(244, 201, 93, 0.4)",
+          boxShadow: "0 6px 24px rgba(6, 17, 31, 0.5)",
+        },
+      }}
+    >
       <CardContent sx={{ p: 3 }}>
         <Typography
           variant="overline"

@@ -79,6 +79,13 @@ const theme = createTheme({
           outlineOffset: "2px",
           borderRadius: "4px",
         },
+        // Reduced-motion fallback for CSS-driven motion. JS animations are
+        // handled by MotionConfig reducedMotion="user".
+        "@media (prefers-reduced-motion: reduce)": {
+          "*": {
+            scrollBehavior: "auto !important",
+          },
+        },
       },
     },
     MuiCard: {
@@ -95,6 +102,11 @@ const theme = createTheme({
         root: {
           borderRadius: 8,
           fontWeight: 700,
+          transition:
+            "background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease",
+          "&.MuiButton-containedPrimary:hover": {
+            boxShadow: "0 6px 24px rgba(244, 201, 93, 0.28)",
+          },
         },
       },
     },

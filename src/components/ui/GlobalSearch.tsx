@@ -16,7 +16,10 @@ import ListSubheader from "@mui/material/ListSubheader";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import SearchIcon from "@mui/icons-material/Search";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "@/components/Link";
+
+const MotionPaper = motion.create(Paper);
 import type { SearchResponseDto, SearchResultDto } from "@/server/search/types";
 
 const MIN_QUERY_LENGTH = 2;
@@ -148,101 +151,108 @@ export default function GlobalSearch() {
           ) : null}
         </Paper>
 
-        {showDropdown ? (
-          <Paper
-            elevation={8}
-            role="region"
-            aria-label="Search results"
-            aria-live="polite"
-            sx={{
-              position: "absolute",
-              top: "calc(100% + 8px)",
-              left: 0,
-              right: 0,
-              zIndex: (theme) => theme.zIndex.modal,
-              bgcolor: "#0E1A2A",
-              border: "1px solid",
-              borderColor: "divider",
-              borderRadius: 2,
-              maxHeight: 480,
-              overflowY: "auto",
-            }}
-          >
-            {error !== null ? (
-              <Typography
-                variant="body2"
-                sx={{ color: "text.secondary", px: 2.5, py: 2 }}
-              >
-                {error}
-              </Typography>
-            ) : response !== null && response.total === 0 ? (
-              <Typography
-                variant="body2"
-                sx={{ color: "text.secondary", px: 2.5, py: 2 }}
-              >
-                No results for “{response.query}”.
-              </Typography>
-            ) : response !== null ? (
-              <List dense disablePadding>
-                {GROUPS.flatMap((group) => {
-                  const items = response.groups[group.key];
-                  if (items.length === 0) return [];
-                  return [
-                    <ListSubheader
-                      key={`${group.key}-header`}
-                      sx={{
-                        bgcolor: "#142338",
-                        color: "primary.main",
-                        fontWeight: 700,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                        fontSize: "0.7rem",
-                        lineHeight: 2.6,
-                      }}
-                    >
-                      {group.label}
-                    </ListSubheader>,
-                    ...items.map((item) => (
-                      <ListItemButton
-                        key={item.id}
-                        component={Link}
-                        href={item.href}
-                        onClick={() => setOpen(false)}
+        <AnimatePresence>
+          {showDropdown ? (
+            <MotionPaper
+              key="search-results"
+              initial={{ opacity: 0, y: -8, scale: 0.99 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -6, scale: 0.99 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              elevation={8}
+              role="region"
+              aria-label="Search results"
+              aria-live="polite"
+              sx={{
+                position: "absolute",
+                top: "calc(100% + 8px)",
+                left: 0,
+                right: 0,
+                zIndex: (theme) => theme.zIndex.modal,
+                bgcolor: "#0E1A2A",
+                border: "1px solid",
+                borderColor: "divider",
+                borderRadius: 2,
+                maxHeight: 480,
+                overflowY: "auto",
+              }}
+            >
+              {error !== null ? (
+                <Typography
+                  variant="body2"
+                  sx={{ color: "text.secondary", px: 2.5, py: 2 }}
+                >
+                  {error}
+                </Typography>
+              ) : response !== null && response.total === 0 ? (
+                <Typography
+                  variant="body2"
+                  sx={{ color: "text.secondary", px: 2.5, py: 2 }}
+                >
+                  No results for “{response.query}”.
+                </Typography>
+              ) : response !== null ? (
+                <List dense disablePadding>
+                  {GROUPS.flatMap((group) => {
+                    const items = response.groups[group.key];
+                    if (items.length === 0) return [];
+                    return [
+                      <ListSubheader
+                        key={`${group.key}-header`}
                         sx={{
-                          alignItems: "baseline",
-                          flexWrap: "wrap",
-                          columnGap: 1,
+                          bgcolor: "#142338",
+                          color: "primary.main",
+                          fontWeight: 700,
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          fontSize: "0.7rem",
+                          lineHeight: 2.6,
                         }}
                       >
-                        <Typography
-                          variant="body2"
-                          sx={{ color: "text.primary", fontWeight: 600 }}
+                        {group.label}
+                      </ListSubheader>,
+                      ...items.map((item) => (
+                        <ListItemButton
+                          key={item.id}
+                          component={Link}
+                          href={item.href}
+                          onClick={() => setOpen(false)}
+                          sx={{
+                            alignItems: "baseline",
+                            flexWrap: "wrap",
+                            columnGap: 1,
+                          }}
                         >
-                          {item.title}
-                        </Typography>
-                        {item.subtitle ? (
                           <Typography
-                            variant="caption"
-                            sx={{ color: "text.secondary" }}
+                            variant="body2"
+                            sx={{ color: "text.primary", fontWeight: 600 }}
                           >
-                            {item.subtitle}
+                            {item.title}
                           </Typography>
-                        ) : null}
-                      </ListItemButton>
-                    )),
-                  ];
-                })}
-              </List>
-            ) : (
-              <Typography
-                variant="body2"
-                sx={{ color: "text.secondary", px: 2.5, py: 2 }}
-              >
-                Searching…
-              </Typography>
-            )}
-          </Paper>
-        ) : null}
+                          {item.subtitle ? (
+                            <Typography
+                              variant="caption"
+                              sx={{ color: "text.secondary" }}
+                            >
+                              {item.subtitle}
+                            </Typography>
+                          ) : null}
+                        </ListItemButton>
+                      )),
+                    ];
+                  })}
+                </List>
+              ) : (
+                <Typography
+                  variant="body2"
+                  sx={{ color: "text.secondary", px: 2.5, py: 2 }}
+                >
+                  Searching…
+                </Typography>
+              )}
+            </MotionPaper>
+          ) : null}
+        </AnimatePresence>
 
         <Typography
           variant="caption"

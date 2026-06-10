@@ -342,6 +342,26 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
 - `pnpm public:verify` extended: every nav/footer link target must have a
   route file; 26 loading/error/not-found state files audited.
 
+### Checkpoint 7C — Cinematic motion system + visual upgrade (complete)
+
+- `motion` package with app-wide `MotionConfig reducedMotion="user"`;
+  reusable primitives (`FadeIn`, `StaggerContainer`, `ParallaxLayer`,
+  `MotionCard`, `PageTransition`) and visual atmosphere components
+  (`AtlasBackground`, `HeroOrb`, `PitchLines`).
+- Homepage hero rebuilt as a cinematic client component: layered gradient
+  atmosphere, pitch lines, parallax floating glow orbs, staggered headline/
+  CTA/search entrance. Route content gets a light keyed entrance via
+  `PageTransition` in the app shell.
+- Section reveals everywhere via `SectionHeading` (one wrap covers the whole
+  app); card grids and stat grids stagger in on home, index, records, and
+  detail pages; timelines reveal at container level (rows stay stable).
+- Card hover system upgraded: gold border, lift, glow shadow, and
+  `focus-within` parity across all clickable cards; search dropdown animates
+  in/out with `AnimatePresence`; buttons get a gold glow hover.
+- Performance/a11y guardrails: transform/opacity only, parallax limited to
+  the hero, no per-row table animation, reduced-motion honored at three
+  levels (MotionConfig, `useReducedMotion` guards, CSS fallback).
+
 - Remaining: standings/bracket views, source reconciliation, deployment
   itself.
 
