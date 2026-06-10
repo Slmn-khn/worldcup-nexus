@@ -6,6 +6,21 @@ import type { MatchCardDto, MatchDetailDto } from "./types";
 
 const matchDetailInclude = {
   ...matchCardInclude,
+  homeTeam: {
+    select: {
+      name: true,
+      slug: true,
+      country: { select: { name: true, slug: true } },
+    },
+  },
+  awayTeam: {
+    select: {
+      name: true,
+      slug: true,
+      country: { select: { name: true, slug: true } },
+    },
+  },
+  winningTeam: { select: { name: true } },
   stadium: { select: { name: true, city: true, country: true } },
   referee: { select: { name: true, country: true } },
   goals: {
@@ -54,6 +69,24 @@ export async function getMatchByIdOrSlug(
 
   return {
     ...toMatchCardDto(match),
+    matchNumber: match.matchNumber,
+    winnerName: match.winningTeam?.name ?? null,
+    homeScorePenalties: match.homeScorePenalties,
+    awayScorePenalties: match.awayScorePenalties,
+    homeCountry:
+      match.homeTeam.country !== null
+        ? {
+            name: match.homeTeam.country.name,
+            slug: match.homeTeam.country.slug,
+          }
+        : null,
+    awayCountry:
+      match.awayTeam.country !== null
+        ? {
+            name: match.awayTeam.country.name,
+            slug: match.awayTeam.country.slug,
+          }
+        : null,
     stadium:
       match.stadium !== null
         ? {
@@ -99,6 +132,11 @@ export async function getMatchByIdOrSlug(
       teamName: kick.team.name,
       type: kick.type,
       converted: kick.converted,
+      order: kick.order,
+      minute: kick.minute,
+      stoppageMinute: kick.stoppageMinute,
+      isSaved: kick.isSaved,
+      isMissed: kick.isMissed,
     })),
   };
 }

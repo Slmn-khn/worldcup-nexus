@@ -24,6 +24,22 @@ export function formatDate(
   }).format(date);
 }
 
+/** Football minute label, e.g. "23'" or "90+3'". */
+export function formatMinute(
+  minute: number | null | undefined,
+  stoppageMinute?: number | null,
+): string | null {
+  if (minute === null || minute === undefined) return null;
+  if (
+    stoppageMinute !== null &&
+    stoppageMinute !== undefined &&
+    stoppageMinute > 0
+  ) {
+    return `${minute}+${stoppageMinute}'`;
+  }
+  return `${minute}'`;
+}
+
 export function formatNullable(
   value: string | number | null | undefined,
   fallback = "—",

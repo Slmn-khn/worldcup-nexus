@@ -187,8 +187,22 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
   standings/bracket queries exist (honest placeholder text, no invented
   standings).
 
-- Remaining for 5C+: match detail, country profile, player profile, records
-  page, and Meilisearch-backed search.
+### Checkpoint 5C — Match detail page (complete)
+
+- `/matches/[idOrSlug]` renders from `getMatchByIdOrSlug` (accepts database
+  id, slug, or source id): hero with scoreline, penalty score, winner/draw
+  chips and breadcrumb; match info grid (date, stage, stadium, location,
+  match number — referee/attendance render only when imported data exists);
+  chronological event timeline (goals, own goals, penalty goals, cards,
+  one-sided substitution records); per-category event breakdown; penalty
+  shootout view grouped by team (✓/✕ per kick, honest note when shootout
+  rows are missing); related links to the tournament and both nations.
+- Lineups/formations deliberately deferred (honest placeholder note — no
+  invented lineups). Route has skeleton loading, client error boundary, and
+  a not-found state.
+
+- Remaining for 5D+: country profile, player profile, records page, and
+  Meilisearch-backed search.
 
 ### Deliverables
 

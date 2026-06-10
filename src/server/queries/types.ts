@@ -128,9 +128,22 @@ export type MatchPenaltyKickDto = {
   teamName: string;
   type: "IN_MATCH" | "SHOOTOUT";
   converted: boolean;
+  /** Always null for now — kick order is not in the imported source (ISSUE-008). */
+  order: number | null;
+  minute: number | null;
+  stoppageMinute: number | null;
+  isSaved: boolean | null;
+  isMissed: boolean | null;
 };
 
 export type MatchDetailDto = MatchCardDto & {
+  matchNumber: number | null;
+  /** Name of the winning team, null for draws (and shootout draws resolve to the shootout winner). */
+  winnerName: string | null;
+  homeScorePenalties: number | null;
+  awayScorePenalties: number | null;
+  homeCountry: { name: string; slug: string } | null;
+  awayCountry: { name: string; slug: string } | null;
   stadium: { name: string; city: string | null; country: string | null } | null;
   /** Always null for now — referee–match links are not in the imported subset (ISSUE-005). */
   referee: { name: string; country: string | null } | null;

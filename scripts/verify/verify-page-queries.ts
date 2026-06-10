@@ -171,6 +171,106 @@ async function main() {
     }
   }
 
+  // ---- Generic match resolution (critical). ----
+  const anyMatch = await prisma.match.findFirst({
+    select: { slug: true, id: true },
+  });
+  if (anyMatch === null) {
+    check(
+      "getMatchByIdOrSlug resolves a match",
+      false,
+      "no matches in database",
+    );
+  } else {
+    const bySlug = await getMatchByIdOrSlug(anyMatch.slug);
+    const byId = await getMatchByIdOrSlug(anyMatch.id);
+    check(
+      "getMatchByIdOrSlug resolves a match",
+      bySlug !== null && byId !== null,
+      `slug ${anyMatch.slug}: ${bySlug !== null ? "ok" : "null"}, id lookup: ${byId !== null ? "ok" : "null"}`,
+    );
+  }
+
+  // ---- Matches with each event type resolve with their events (critical). ----
+  const eventChecks: {
+    name: string;
+    where: object;
+    count: (
+      detail: NonNullable<Awaited<ReturnType<typeof getMatchByIdOrSlug>>>,
+    ) => number;
+  }[] = [
+    {
+      name: "goals",
+      where: { goals: { some: {} } },
+      count: (d) => d.goals.length,
+    },
+    {
+      name: "bookings",
+      where: { bookings: { some: {} } },
+      count: (d) => d.bookings.length,
+    },
+    {
+      name: "substitutions",
+      where: { substitutions: { some: {} } },
+      count: (d) => d.substitutions.length,
+    },
+    {
+      name: "penalty kicks",
+      where: { penaltyKicks: { some: {} } },
+      count: (d) => d.penaltyKicks.length,
+    },
+  ];
+  for (const eventCheck of eventChecks) {
+    const sample = await prisma.match.findFirst({
+      where: eventCheck.where,
+      select: { slug: true },
+    });
+    if (sample === null) {
+      check(
+        `match with ${eventCheck.name} resolves`,
+        false,
+        "no such match in database",
+        false,
+      );
+      continue;
+    }
+    const detail = await getMatchByIdOrSlug(sample.slug);
+    const count = detail !== null ? eventCheck.count(detail) : 0;
+    check(
+      `match with ${eventCheck.name} resolves with events`,
+      detail !== null && count > 0,
+      `${sample.slug}: ${count} ${eventCheck.name}`,
+    );
+  }
+
+  // ---- 2022 final (soft — depends on source stage naming). ----
+  const t2022 = await prisma.tournament.findUnique({
+    where: { year: 2022 },
+    select: { id: true },
+  });
+  if (t2022 !== null) {
+    const final2022 = await getFinalMatchForTournament(t2022.id);
+    if (final2022 === null) {
+      check(
+        "2022 final resolves",
+        false,
+        "no 'final' stage match found for 2022",
+        false,
+      );
+    } else {
+      const detail = await getMatchByIdOrSlug(final2022.slug);
+      check(
+        "getMatchByIdOrSlug(2022 final)",
+        detail !== null,
+        detail !== null
+          ? `${detail.homeTeam.name} ${detail.score} ${detail.awayTeam.name} — ` +
+              `${detail.penaltyKicks.length} penalty kicks, shootout: ${detail.decidedByPenalties}`
+          : "returned null",
+        false,
+      );
+    }
+  }
+
   // ---- Records overview. ----
   const records = await getRecordsOverview();
   const nonEmpty = records.filter((board) => board.items.length > 0);
