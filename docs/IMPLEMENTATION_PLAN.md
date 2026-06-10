@@ -1,4 +1,4 @@
-# WorldCup Atlas — Implementation Plan
+﻿# WorldCup Atlas — Implementation Plan
 
 ## Rule: one checkpoint at a time
 
@@ -10,7 +10,10 @@ Do not start the next checkpoint until the current one's acceptance criteria are
 
 **Status: complete**
 
+**Summary:** Next.js + MUI frontend app runs.
+
 ### Acceptance criteria
+
 - `pnpm dev` starts without errors
 - App renders at `localhost:3000`
 - MUI theme provider is wired up (`src/theme/theme.ts`)
@@ -22,9 +25,12 @@ Do not start the next checkpoint until the current one's acceptance criteria are
 
 ## Checkpoint 2 — Local data backbone
 
-**Status: not started**
+**Status: complete**
+
+**Summary:** Docker Compose, PostgreSQL, Meilisearch, Prisma 7 config, initial schema, Prisma client helper, placeholder scripts, and `/api/health` are set up.
 
 ### Deliverables
+
 - `docker-compose.yml` with PostgreSQL and Meilisearch services
 - `.env.example` with all required env vars documented
 - Prisma initial schema (`prisma/schema.prisma`)
@@ -32,6 +38,7 @@ Do not start the next checkpoint until the current one's acceptance criteria are
 - `/api/health` route handler returning DB and search service status
 
 ### Acceptance criteria
+
 - `docker compose up` starts PostgreSQL and Meilisearch without errors
 - `pnpm prisma migrate dev` applies schema to local DB without errors
 - `GET /api/health` returns `200` with `{ db: "ok", search: "ok" }`
@@ -42,10 +49,14 @@ Do not start the next checkpoint until the current one's acceptance criteria are
 
 ## Checkpoint 3 — Static app shell
 
-**Status: not started**
+**Status: complete**
+
+**Summary:** Static WorldCup Atlas app shell is built with `AppShell`, `Navbar`, `Footer`, `PageContainer`, `SectionHeading`, `StatCard`, `GlobalSearch` placeholder, entity cards (tournament, match, country, player, record), a clearly labeled mock-data file, and the homepage shell.
 
 ### Deliverables
+
 Component library under `src/components/`:
+
 - `AppShell` — wraps all pages with Navbar + Footer + main content area
 - `Navbar` — site-wide navigation with logo and links
 - `Footer` — data attribution, legal disclaimer, links
@@ -59,6 +70,7 @@ Component library under `src/components/`:
 - `GlobalSearch` — search input placeholder (not wired to data yet)
 
 ### Acceptance criteria
+
 - All components render in a Storybook story or a `/dev/components` page (mock data allowed, must be clearly labeled)
 - No real historical data hardcoded in component defaults
 - TypeScript passes
@@ -68,17 +80,75 @@ Component library under `src/components/`:
 
 ---
 
-## Checkpoint 4 — First database seed and import
+## Checkpoint 4A — Data source audit and downloader
 
-**Status: not started**
+**Status: complete**
+
+**Summary:** Source manifest (`src/server/import/source-manifest.ts`), downloader (`pnpm data:download`), header inspection (`pnpm data:inspect`), local cache under `data/sources/fjelstul/`, and attribution notes in `docs/DATA_SOURCES.md`.
 
 ### Deliverables
+
+- Inspection notes on the Fjelstul World Cup Database structure (files, entities, relationships)
+- Source manifest documenting each selected source file: origin URL, entity, license
+- Data download/cache folder for source files (kept out of version control as appropriate)
+- Downloader that fetches the selected source CSV files into the cache folder
+- Header inspection of each downloaded CSV, documented
+- Attribution and source notes recorded per `docs/DATA_SOURCES.md`
+
+### Constraints
+
+- Do not normalize or import into the database yet
+- Do not invent data
+
+### Acceptance criteria
+
+- Selected Fjelstul CSV files are downloaded into the local cache folder
+- Source manifest lists every downloaded file with origin and license (CC-BY-SA 4.0)
+- CSV headers are inspected and documented
+- No database writes occur
+- Attribution and source notes are documented
+
+---
+
+## Checkpoint 4 — First database seed and import
+
+**Status: split into 4B (complete) and 4C (complete)**
+
+### Scope split
+
+**Checkpoint 4B — core normalized import (complete):** imports the core
+foundation data from cached Fjelstul CSVs: raw source records, tournaments,
+countries, teams, players, stadiums, referees, matches, and squads
+(`pnpm data:import`, verified by `pnpm data:verify`).
+
+**Checkpoint 4C — event and awards import (complete):** imports event-level
+data from cached Fjelstul CSVs: goals, bookings (cards), substitutions,
+penalty kicks (shootouts), and awards. Also resolves source-backed
+`Tournament.goalsCount` and `runnerUpTeamId` (losing finalist of the decided
+final). Raw source records now cover all 13 selected datasets. Source quirks
+are logged in `docs/DATA_ISSUES.md` (ISSUE-006…008).
+
+**Checkpoint 4D — query layer and stats foundation (complete):** typed
+server-side query layer under `src/server/queries/` (home, tournaments,
+matches, countries, players, records) returning frontend-friendly DTOs
+(`types.ts`) — no raw Prisma models or `RawSourceRecord` payloads reach
+pages. Includes a records/leaderboard foundation computed strictly from
+imported data, a dev-only `/api/dev/data-summary` route, and a page-query
+verification script (`pnpm data:verify:queries`).
+
+**Next:** Checkpoint 5 builds DB-backed pages on top of these query
+functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
+`getCountryProfile`, `getPlayerProfile`, `getRecordsOverview`).
+
+### Deliverables
+
 - Import scripts under `scripts/import/`
 - Source data downloaded or documented for download from Fjelstul World Cup Database
 - Prisma seed script (`prisma/seed.ts`) that runs the import pipeline
 - Basic data verification scripts under `scripts/verify/`
 
 ### Acceptance criteria
+
 - `pnpm prisma db seed` completes without errors
 - All tournaments (1930–present) have records in the database
 - At least one tournament (1986) has full match, goal, card, and squad data
@@ -90,10 +160,195 @@ Component library under `src/components/`:
 
 ## Checkpoint 5 — First real vertical slice
 
-**Status: not started**
+**Status: in progress — 5A complete**
+
+### Checkpoint 5A — DB-backed home and tournaments list (complete)
+
+- `/` now renders from `getHomePageData()`: real archive stats, latest
+  tournaments, recent finals, top nations, top scorers, and record
+  leaderboard previews. Empty sections render an honest `EmptyState`
+  instead of fake data.
+- `/tournaments` renders from `getTournamentCards()` with loading and error
+  states.
+- `src/lib/mock-data.ts` deleted — no mock or hardcoded historical values
+  remain in production pages.
+
+### Checkpoint 5B — Tournament detail page (complete)
+
+- `/tournaments/[year]` renders from `getTournamentByYear(year)`: hero
+  (name, host, dates, champions/runners-up/final chips, breadcrumb), stat
+  grid (teams, matches, goals, cards, substitutions, shootouts, shootout
+  kicks, awards), anchor section nav, teams grid, stage-grouped match list
+  (linking to future `/matches/[slug]` routes), top scorers, awards, and
+  penalty shootout section.
+- Invalid or missing years render a `not-found` state; route has skeleton
+  loading and a client error boundary.
+- Group standings / knockout bracket views are deliberately deferred until
+  standings/bracket queries exist (honest placeholder text, no invented
+  standings).
+
+### Checkpoint 5C — Match detail page (complete)
+
+- `/matches/[idOrSlug]` renders from `getMatchByIdOrSlug` (accepts database
+  id, slug, or source id): hero with scoreline, penalty score, winner/draw
+  chips and breadcrumb; match info grid (date, stage, stadium, location,
+  match number — referee/attendance render only when imported data exists);
+  chronological event timeline (goals, own goals, penalty goals, cards,
+  one-sided substitution records); per-category event breakdown; penalty
+  shootout view grouped by team (✓/✕ per kick, honest note when shootout
+  rows are missing); related links to the tournament and both nations.
+- Lineups/formations deliberately deferred (honest placeholder note — no
+  invented lineups). Route has skeleton loading, client error boundary, and
+  a not-found state.
+
+### Checkpoint 5D — Countries index and country profile (complete)
+
+- `/countries` renders from `getCountryCards()`: nation grid with
+  tournaments/matches/goals/titles counts.
+- `/countries/[slug]` renders from `getCountryProfile(slug)`: hero (titles,
+  finals, W/D/L chips), all-time record stat grid (tournaments, titles,
+  finals, matches, W/D/L, goals for/against, goal difference), tournament
+  timeline (Champions/Runners-up from tournament fields only — no invented
+  finishes), finals list (won/lost from the match winner), top scorers, and
+  a recent-matches list with W/D/L chips linking to match pages.
+- Derivations: titles via `Tournament.winnerTeamId` (counts 1950 correctly,
+  which had no final); W/D/L via match winner (shootout wins count as wins);
+  per-tournament finish beyond champions/runners-up is NOT derived (the
+  source `performance` column is not normalized). Squad data is never
+  labeled "appearances".
+- Country links from match pages and the homepage now resolve.
+
+### Checkpoint 5E — Players index and player profile (complete)
+
+- `/players` renders from `getPlayerCards()` + `getPlayerCount()`: first 60
+  players alphabetically with squads/goals/awards counts and an honest
+  "showing N of total" note (search/filters arrive with global search).
+- `/players/[slug]` renders from `getPlayerProfile(slug)`: hero (country
+  link, position, date of birth, squads/goals/cards/penalties/awards
+  chips), World Cup Record stat grid, **World Cup Squads** (squad
+  selections — explicitly NOT appearances), goals, cards, penalty kicks,
+  substitutions (in/out), and awards — every event row links to its match.
+- Data honesty: no appearances, caps, minutes, assists, or lineups are
+  derived (not in source). Opponent is omitted for own goals (ambiguous).
+- Player links from tournament/country/match pages now resolve.
+
+### Checkpoint 5F — Records page (complete)
+
+- `/records` renders from the restructured `getRecordsOverview()`: hero with
+  a data-driven scope note ("All imported tournaments" — counts of men's and
+  women's editions computed from actual tournament names), four highlight
+  record cards, and six categories: Team (titles, goals, wins, matches by
+  nation), Player (top scorers, most awards), Match (highest-scoring,
+  biggest wins, most goals by one team), Tournament (goals/matches/teams),
+  Penalty (longest shootouts, most converted, most missed-or-saved), and
+  Discipline (cards by player/nation/match).
+- Every record item links to its real player/country/match/tournament page
+  via an explicit `href` (null when no slug exists). Not implemented because
+  the data is absent: appearances/caps, minutes, assists, clean sheets.
+- Homepage records preview adapted to the new categorized shape.
+
+### Checkpoint 5F.1 — Matches index page (complete)
+
+- `/matches` (previously an unrouted navbar link) renders from the new
+  `getMatchCards()` query: newest tournaments first, 60 most recent match
+  cards with an honest "showing N of total" note, loading/error states.
+  Query supports page/pageSize/tournamentYear for later use; advanced
+  filters arrive with the data explorer.
+
+### Checkpoint 5G — Data Explorer shell (complete)
+
+- `/explorer` renders from the new `getExplorerData()` query: matches,
+  goals, bookings, substitutions, penalty kicks, and awards normalized into
+  one `ExplorerRowDto` shape, browsable in an MUI X Data Grid (Community)
+  with server-side pagination. Event-type and tournament-year filters and
+  page size are URL query params (shareable links); rows link to match,
+  player, and tournament pages.
+- Combined-view pagination merges identically-sorted windows from each
+  event table (year desc, date desc, minute asc — matches sort before their
+  own events). Raw source rows are not exposed (stated on the page and
+  checked by the verify script).
+- Deferred: full-text search (Meilisearch checkpoint), country/player
+  filters, CSV/JSON export.
+
+### Checkpoint 6A — Meilisearch indexing + global search (complete)
+
+- Single index `worldcup_atlas_search` (typed documents grouped client-side):
+  tournaments, countries, players, matches, record leaderboards, and a
+  curated event set (goals, shootout penalty kicks, awards — bookings and
+  substitutions stay in the explorer to keep the index focused). Documents
+  are built from normalized tables/the query layer only — RawSourceRecord
+  is never indexed.
+- `pnpm search:index` (re)builds settings + documents and waits for tasks;
+  `pnpm search:verify` checks common queries. Both are ESM `.mts` scripts
+  (meilisearch v0.58 is ESM-only).
+- `/api/search?q=…` returns grouped JSON (503 with a clear message when
+  Meilisearch is down — pages never depend on search availability).
+- `GlobalSearch` is now live: debounced (300ms, min 2 chars) grouped
+  dropdown with loading/empty/error states; Enter opens the first result,
+  Escape closes.
+
+### Checkpoint 6B — Data Explorer enhancements + exports (complete)
+
+- `/explorer` filters extended to: event type, tournament year, country,
+  player (capped option list — players with recorded events, max 200),
+  stage, and a text query — all URL-driven and bookmarkable. Filtering is
+  DB-side per event type (shared where-builders for fetch + count), keeping
+  the windowed merge-pagination correct. Structural rules: playerSlug
+  excludes Match rows; stage excludes Award rows.
+- `/api/explorer` returns the same filtered JSON. `/api/export/explorer`
+  exports CSV (default, with proper escaping and attachment headers) or
+  JSON, respecting filters, capped at 5,000 rows with an
+  `X-Export-Truncated` header when clipped.
+- Export buttons on the explorer summary carry the current filters.
+  Verified by `pnpm export:verify` plus 7 new explorer checks in
+  `pnpm data:verify:queries`. RawSourceRecord is never exposed.
+
+### Checkpoint 7A — SEO, attribution, and production polish (complete)
+
+- Central site config (`src/lib/site.ts`); root metadata with title
+  template, metadataBase, Open Graph/Twitter defaults; standardized
+  human-readable titles on every index and detail page.
+- `/sources` (full CC-BY-SA 4.0 attribution per the source license: author,
+  © 2023 notice, license link, repository link, modification notice, plus
+  transformations and known limitations) and `/about` pages; footer now
+  carries all nav links, the independence disclaimer, and an attribution
+  pointer.
+- **License correction**: the Fjelstul World Cup Database is CC-BY-SA 4.0
+  (verified against the source repository) — docs, manifest constant, and
+  script headers previously said CC BY 4.0 and were corrected.
+- `sitemap.xml` (static + all tournament/match/country/player detail URLs
+  from the database), `robots.txt` (API routes disallowed), web app
+  manifest, app-level not-found and error pages.
+- `docs/DEPLOYMENT.md`, rewritten `README.md`, and `pnpm public:verify`
+  (route files, site config, robots policy, sitemap sanity).
+
+### Checkpoint 7B — UI polish, accessibility, and smoke tests (complete)
+
+- Accessibility: theme-level visible keyboard focus (gold outline) for all
+  links/buttons/card actions; navbar uses the shared site config (adds the
+  previously missing About link), `aria-current` on the active link, and a
+  labeled brand link; search dropdown announced via `aria-live`. Card-type
+  meaning was already text-labeled (not color-only) — verified.
+- Streaming not-found caveat investigated: detail routes still return 200
+  with correct not-found UI (loading boundary streams the shell first).
+  Mitigated with `robots: noindex` on the fallback metadata of all four
+  dynamic detail routes; documented in `docs/DEPLOYMENT.md`. The global
+  catch-all returns a true 404.
+- Playwright smoke suite (`pnpm test:e2e`): all 9 static routes (heading +
+  footer disclaimer), `/api/health`, four representative detail pages
+  (1986, the 1986 final, Argentina, Maradona), explorer URL filters, global
+  404 status, sitemap/robots content. `webServer` reuses a running dev
+  server locally.
+- `pnpm public:verify` extended: every nav/footer link target must have a
+  route file; 26 loading/error/not-found state files audited.
+
+- Remaining: standings/bracket views, source reconciliation, deployment
+  itself.
 
 ### Deliverables
+
 Pages wired to live database:
+
 - `/` — Home with real stats and featured tournament
 - `/tournaments` — All tournaments list from DB
 - `/tournaments/1986` — 1986 tournament detail
@@ -102,6 +357,7 @@ Pages wired to live database:
 - `/players/diego-maradona` — Diego Maradona player page
 
 ### Acceptance criteria
+
 - All six pages render without errors using real DB data
 - No mock data labels visible in production paths
 - Meilisearch index populated; search returns results for "Maradona" and "Brazil"
@@ -117,12 +373,14 @@ Pages wired to live database:
 **Status: not started**
 
 ### Deliverables
+
 - `/search` — Full global search page with Meilisearch integration
 - `/explorer` — Data explorer with MUI X Data Grid, filters, and pagination
 - Search index covers: tournaments, matches, countries, players
 - Explorer covers: matches, goals, cards
 
 ### Acceptance criteria
+
 - Search returns relevant results across all indexed entities
 - Explorer renders large datasets without performance degradation
 - Filters work correctly with URL state (shareable URLs)
@@ -137,6 +395,7 @@ Pages wired to live database:
 **Status: not started**
 
 ### Deliverables
+
 - All MVP pages from `docs/MVP_SCOPE.md` complete
 - `/about` and `/data` pages with attribution and legal copy
 - Performance audit (Core Web Vitals acceptable)
@@ -145,6 +404,7 @@ Pages wired to live database:
 - Environment variable documentation complete
 
 ### Acceptance criteria
+
 - All MVP pages listed in `docs/MVP_SCOPE.md` render without errors
 - Lighthouse performance score ≥ 80 on key pages
 - No TypeScript errors
