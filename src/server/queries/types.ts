@@ -328,8 +328,10 @@ export type PlayerProfileDto = {
 export type RecordItemDto = {
   rank: number;
   label: string;
-  slug: string | null;
+  /** Full route to the entity's page (e.g. /players/x), or null when no real slug exists. */
+  href: string | null;
   value: number;
+  /** Display value, e.g. "13" or a score string context; falls back to the number. */
   detail: string | null;
 };
 
@@ -339,6 +341,19 @@ export type RecordLeaderboardDto = {
   /** Clarifies exactly what the imported data supports (no invented metrics). */
   description: string;
   items: RecordItemDto[];
+};
+
+export type RecordsOverviewDto = {
+  /** e.g. "All imported tournaments" — scope is never silently mislabeled. */
+  scopeLabel: string;
+  /** Data-driven explanation of what the leaderboards cover. */
+  scopeNote: string;
+  teamRecords: RecordLeaderboardDto[];
+  playerRecords: RecordLeaderboardDto[];
+  matchRecords: RecordLeaderboardDto[];
+  tournamentRecords: RecordLeaderboardDto[];
+  penaltyRecords: RecordLeaderboardDto[];
+  disciplineRecords: RecordLeaderboardDto[];
 };
 
 export type HomePageDataDto = {

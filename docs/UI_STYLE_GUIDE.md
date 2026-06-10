@@ -5,6 +5,7 @@
 WorldCup Atlas should feel like a premium digital football museum and historical sports archive.
 
 It should not look like:
+
 - a betting site
 - a generic admin dashboard
 - an official FIFA product

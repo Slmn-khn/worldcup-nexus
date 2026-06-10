@@ -232,7 +232,22 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
   derived (not in source). Opponent is omitted for own goals (ambiguous).
 - Player links from tournament/country/match pages now resolve.
 
-- Remaining for 5F+: records page and Meilisearch-backed search.
+### Checkpoint 5F — Records page (complete)
+
+- `/records` renders from the restructured `getRecordsOverview()`: hero with
+  a data-driven scope note ("All imported tournaments" — counts of men's and
+  women's editions computed from actual tournament names), four highlight
+  record cards, and six categories: Team (titles, goals, wins, matches by
+  nation), Player (top scorers, most awards), Match (highest-scoring,
+  biggest wins, most goals by one team), Tournament (goals/matches/teams),
+  Penalty (longest shootouts, most converted, most missed-or-saved), and
+  Discipline (cards by player/nation/match).
+- Every record item links to its real player/country/match/tournament page
+  via an explicit `href` (null when no slug exists). Not implemented because
+  the data is absent: appearances/caps, minutes, assists, clean sheets.
+- Homepage records preview adapted to the new categorized shape.
+
+- Remaining for 5G+: Meilisearch-backed search and the data explorer.
 
 ### Deliverables
 

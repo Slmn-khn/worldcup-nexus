@@ -127,13 +127,23 @@ export async function getHomePageData(): Promise<HomePageDataDto> {
       getRecordsOverview(),
     ]);
 
+  // One marquee leaderboard from each of three record categories.
+  const previewBoards = [
+    records.playerRecords[0],
+    records.teamRecords[0],
+    records.matchRecords[0],
+  ].filter(
+    (leaderboard): leaderboard is NonNullable<typeof leaderboard> =>
+      leaderboard !== undefined && leaderboard.items.length > 0,
+  );
+
   return {
     archiveStats,
     featuredTournaments: tournamentCards.slice(0, 3),
     iconicMatches: finals.map(toMatchCardDto),
     featuredCountries: countries,
     featuredPlayers: players,
-    recordsPreview: records.slice(0, 3).map((leaderboard) => ({
+    recordsPreview: previewBoards.map((leaderboard) => ({
       ...leaderboard,
       items: leaderboard.items.slice(0, 3),
     })),

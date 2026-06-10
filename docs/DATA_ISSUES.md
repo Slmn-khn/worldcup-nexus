@@ -112,4 +112,4 @@ See `docs/DATA_SOURCES.md` for source definitions and conflict resolution policy
 - **Source A:** Fjelstul `tournaments.csv` — 30 tournaments, names distinguish "FIFA Men's World Cup" / "FIFA Women's World Cup"
 - **Source B:** —
 - **Resolution:** Fjelstul default
-- **Notes:** All 30 tournaments are imported; nothing is filtered out. Men's and women's editions never share a year, so `Tournament.year` stays unique and year-based slugs hold. Whether the product surfaces both is a UI/scope decision for a later checkpoint — the tournament `name` preserves the distinction.
+- **Notes:** All 30 tournaments are imported; nothing is filtered out. Men's and women's editions never share a year, so `Tournament.year` stays unique and year-based slugs hold. Whether the product surfaces both is a UI/scope decision for a later checkpoint — the tournament `name` preserves the distinction. **Records/leaderboards (Checkpoint 5F) combine all imported tournaments and are explicitly labeled "All imported tournaments" with a data-driven scope note**; per-scope (men's/women's) record views can be added later by filtering on tournament names.

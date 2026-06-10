@@ -357,22 +357,80 @@ async function main() {
     }
   }
 
-  // ---- Records overview. ----
+  // ---- Records overview (Checkpoint 5F shape). ----
   const records = await getRecordsOverview();
-  const nonEmpty = records.filter((board) => board.items.length > 0);
   check(
-    "getRecordsOverview has non-empty leaderboards",
-    nonEmpty.length > 0,
-    `${nonEmpty.length}/${records.length} leaderboards populated`,
+    "getRecordsOverview scopeLabel exists",
+    records.scopeLabel.length > 0 && records.scopeNote.length > 0,
+    `"${records.scopeLabel}"`,
   );
-  for (const board of records) {
-    const top = board.items[0];
-    console.log(
-      `  leaderboard ${board.key}: ${board.items.length} items` +
-        (top !== undefined ? ` (top: ${top.label} — ${top.value})` : ""),
+
+  const categories: {
+    name: string;
+    boards: typeof records.teamRecords;
+    requiredIf: number;
+  }[] = [
+    {
+      name: "team records",
+      boards: records.teamRecords,
+      requiredIf: stats.goals,
+    },
+    {
+      name: "player records",
+      boards: records.playerRecords,
+      requiredIf: stats.goals,
+    },
+    {
+      name: "match records",
+      boards: records.matchRecords,
+      requiredIf: stats.matches,
+    },
+    {
+      name: "tournament records",
+      boards: records.tournamentRecords,
+      requiredIf: stats.tournaments,
+    },
+    {
+      name: "penalty records",
+      boards: records.penaltyRecords,
+      requiredIf: stats.penaltyKicks,
+    },
+    {
+      name: "discipline records",
+      boards: records.disciplineRecords,
+      requiredIf: stats.bookings,
+    },
+  ];
+  for (const category of categories) {
+    const populated = category.boards.filter((board) => board.items.length > 0);
+    check(
+      `records: ${category.name} populated`,
+      populated.length > 0,
+      `${populated.length}/${category.boards.length} leaderboards`,
+      category.requiredIf > 0, // critical only when the underlying data exists
     );
+    for (const board of populated) {
+      const top = board.items[0];
+      console.log(
+        `  ${category.name} / ${board.key}: ${board.items.length} items (top: ${top.label} — ${top.value})`,
+      );
+    }
   }
   console.log("");
+
+  const allItems = categories.flatMap((c) => c.boards.flatMap((b) => b.items));
+  check(
+    "at least one record item has a valid link",
+    allItems.some((item) => item.href !== null && item.href.startsWith("/")),
+    `${allItems.filter((item) => item.href !== null).length}/${allItems.length} items linked`,
+  );
+  const serialized = JSON.stringify(records);
+  check(
+    "records do not expose RawSourceRecord data",
+    !serialized.includes('"payload"') &&
+      !serialized.toLowerCase().includes("rawsourcerecord"),
+    `${serialized.length} chars serialized, no payload fields`,
+  );
 
   // ---- Home page bundle. ----
   const home = await getHomePageData();
