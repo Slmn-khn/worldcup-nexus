@@ -10,7 +10,10 @@ Do not start the next checkpoint until the current one's acceptance criteria are
 
 **Status: complete**
 
+**Summary:** Next.js + MUI frontend app runs.
+
 ### Acceptance criteria
+
 - `pnpm dev` starts without errors
 - App renders at `localhost:3000`
 - MUI theme provider is wired up (`src/theme/theme.ts`)
@@ -22,9 +25,12 @@ Do not start the next checkpoint until the current one's acceptance criteria are
 
 ## Checkpoint 2 — Local data backbone
 
-**Status: not started**
+**Status: complete**
+
+**Summary:** Docker Compose, PostgreSQL, Meilisearch, Prisma 7 config, initial schema, Prisma client helper, placeholder scripts, and `/api/health` are set up.
 
 ### Deliverables
+
 - `docker-compose.yml` with PostgreSQL and Meilisearch services
 - `.env.example` with all required env vars documented
 - Prisma initial schema (`prisma/schema.prisma`)
@@ -32,6 +38,7 @@ Do not start the next checkpoint until the current one's acceptance criteria are
 - `/api/health` route handler returning DB and search service status
 
 ### Acceptance criteria
+
 - `docker compose up` starts PostgreSQL and Meilisearch without errors
 - `pnpm prisma migrate dev` applies schema to local DB without errors
 - `GET /api/health` returns `200` with `{ db: "ok", search: "ok" }`
@@ -42,10 +49,14 @@ Do not start the next checkpoint until the current one's acceptance criteria are
 
 ## Checkpoint 3 — Static app shell
 
-**Status: not started**
+**Status: complete**
+
+**Summary:** Static WorldCup Atlas app shell is built with `AppShell`, `Navbar`, `Footer`, `PageContainer`, `SectionHeading`, `StatCard`, `GlobalSearch` placeholder, entity cards (tournament, match, country, player, record), a clearly labeled mock-data file, and the homepage shell.
 
 ### Deliverables
+
 Component library under `src/components/`:
+
 - `AppShell` — wraps all pages with Navbar + Footer + main content area
 - `Navbar` — site-wide navigation with logo and links
 - `Footer` — data attribution, legal disclaimer, links
@@ -59,6 +70,7 @@ Component library under `src/components/`:
 - `GlobalSearch` — search input placeholder (not wired to data yet)
 
 ### Acceptance criteria
+
 - All components render in a Storybook story or a `/dev/components` page (mock data allowed, must be clearly labeled)
 - No real historical data hardcoded in component defaults
 - TypeScript passes
@@ -68,17 +80,47 @@ Component library under `src/components/`:
 
 ---
 
-## Checkpoint 4 — First database seed and import
+## Checkpoint 4A — Data source audit and downloader
 
-**Status: not started**
+**Status: not started — next checkpoint**
 
 ### Deliverables
+
+- Inspection notes on the Fjelstul World Cup Database structure (files, entities, relationships)
+- Source manifest documenting each selected source file: origin URL, entity, license
+- Data download/cache folder for source files (kept out of version control as appropriate)
+- Downloader that fetches the selected source CSV files into the cache folder
+- Header inspection of each downloaded CSV, documented
+- Attribution and source notes recorded per `docs/DATA_SOURCES.md`
+
+### Constraints
+
+- Do not normalize or import into the database yet
+- Do not invent data
+
+### Acceptance criteria
+
+- Selected Fjelstul CSV files are downloaded into the local cache folder
+- Source manifest lists every downloaded file with origin and license (CC BY 4.0)
+- CSV headers are inspected and documented
+- No database writes occur
+- Attribution and source notes are documented
+
+---
+
+## Checkpoint 4 — First database seed and import
+
+**Status: not started — blocked on Checkpoint 4A**
+
+### Deliverables
+
 - Import scripts under `scripts/import/`
 - Source data downloaded or documented for download from Fjelstul World Cup Database
 - Prisma seed script (`prisma/seed.ts`) that runs the import pipeline
 - Basic data verification scripts under `scripts/verify/`
 
 ### Acceptance criteria
+
 - `pnpm prisma db seed` completes without errors
 - All tournaments (1930–present) have records in the database
 - At least one tournament (1986) has full match, goal, card, and squad data
@@ -93,7 +135,9 @@ Component library under `src/components/`:
 **Status: not started**
 
 ### Deliverables
+
 Pages wired to live database:
+
 - `/` — Home with real stats and featured tournament
 - `/tournaments` — All tournaments list from DB
 - `/tournaments/1986` — 1986 tournament detail
@@ -102,6 +146,7 @@ Pages wired to live database:
 - `/players/diego-maradona` — Diego Maradona player page
 
 ### Acceptance criteria
+
 - All six pages render without errors using real DB data
 - No mock data labels visible in production paths
 - Meilisearch index populated; search returns results for "Maradona" and "Brazil"
@@ -117,12 +162,14 @@ Pages wired to live database:
 **Status: not started**
 
 ### Deliverables
+
 - `/search` — Full global search page with Meilisearch integration
 - `/explorer` — Data explorer with MUI X Data Grid, filters, and pagination
 - Search index covers: tournaments, matches, countries, players
 - Explorer covers: matches, goals, cards
 
 ### Acceptance criteria
+
 - Search returns relevant results across all indexed entities
 - Explorer renders large datasets without performance degradation
 - Filters work correctly with URL state (shareable URLs)
@@ -137,6 +184,7 @@ Pages wired to live database:
 **Status: not started**
 
 ### Deliverables
+
 - All MVP pages from `docs/MVP_SCOPE.md` complete
 - `/about` and `/data` pages with attribution and legal copy
 - Performance audit (Core Web Vitals acceptable)
@@ -145,6 +193,7 @@ Pages wired to live database:
 - Environment variable documentation complete
 
 ### Acceptance criteria
+
 - All MVP pages listed in `docs/MVP_SCOPE.md` render without errors
 - Lighthouse performance score ≥ 80 on key pages
 - No TypeScript errors
