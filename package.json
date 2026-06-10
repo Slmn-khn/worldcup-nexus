@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "data:download": "tsx scripts/import/download-fjelstul.ts",
     "data:import": "tsx scripts/import/import-fjelstul.ts",
+    "data:inspect": "tsx scripts/import/inspect-fjelstul.ts",
     "data:verify": "tsx scripts/verify/verify-counts.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
@@ -27,6 +29,7 @@
     "@mui/x-data-grid": "^9.3.0",
     "@prisma/adapter-pg": "7.8.0",
     "@prisma/client": "^7.8.0",
+    "csv-parse": "^6.2.1",
     "dotenv": "^17.4.2",
     "meilisearch": "^0.58.0",
     "next": "16.2.6",

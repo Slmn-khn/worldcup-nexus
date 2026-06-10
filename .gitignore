@@ -73,6 +73,10 @@ web_modules/
 # Prisma generated client (regenerate with `pnpm db:generate`)
 /src/generated/
 
+# Downloaded source data and inspection reports (re-fetch with `pnpm data:download`)
+data/sources/fjelstul/raw/*.csv
+data/sources/fjelstul/reports/*.json
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
