@@ -93,6 +93,18 @@ export type MatchCardDto = {
   stadiumName: string | null;
 };
 
+/** A match card plus its resolved route, for index/list pages. */
+export type MatchIndexItemDto = MatchCardDto & {
+  href: string;
+};
+
+export type MatchIndexDto = {
+  matches: MatchIndexItemDto[];
+  totalCount: number;
+  page: number;
+  pageSize: number;
+};
+
 export type MatchGoalDto = {
   playerName: string;
   playerSlug: string;

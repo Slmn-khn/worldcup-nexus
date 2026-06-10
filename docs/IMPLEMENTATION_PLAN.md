@@ -247,6 +247,14 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
   the data is absent: appearances/caps, minutes, assists, clean sheets.
 - Homepage records preview adapted to the new categorized shape.
 
+### Checkpoint 5F.1 — Matches index page (complete)
+
+- `/matches` (previously an unrouted navbar link) renders from the new
+  `getMatchCards()` query: newest tournaments first, 60 most recent match
+  cards with an honest "showing N of total" note, loading/error states.
+  Query supports page/pageSize/tournamentYear for later use; advanced
+  filters arrive with the data explorer.
+
 - Remaining for 5G+: Meilisearch-backed search and the data explorer.
 
 ### Deliverables

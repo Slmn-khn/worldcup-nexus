@@ -2,7 +2,51 @@
 
 import { prisma } from "@/server/db/prisma";
 import { finalStageFilter, matchCardInclude, toMatchCardDto } from "./helpers";
-import type { MatchCardDto, MatchDetailDto } from "./types";
+import type { MatchCardDto, MatchDetailDto, MatchIndexDto } from "./types";
+
+/**
+ * Paged match cards for the /matches index. Newest tournaments first, then
+ * latest matches within each tournament. No advanced filtering yet — that
+ * arrives with the data explorer.
+ */
+export async function getMatchCards(
+  options: { page?: number; pageSize?: number; tournamentYear?: number } = {},
+): Promise<MatchIndexDto> {
+  const { page = 1, pageSize = 60, tournamentYear } = options;
+  const where =
+    tournamentYear !== undefined
+      ? { tournament: { year: tournamentYear } }
+      : undefined;
+
+  const [matches, totalCount] = await Promise.all([
+    prisma.match.findMany({
+      where,
+      include: matchCardInclude,
+      orderBy: [
+        { tournament: { year: "desc" } },
+        { matchDate: "desc" },
+        { matchNumber: "desc" },
+      ],
+      skip: Math.max(0, page - 1) * pageSize,
+      take: pageSize,
+    }),
+    prisma.match.count({ where }),
+  ]);
+
+  return {
+    matches: matches.map((match) => {
+      const card = toMatchCardDto(match);
+      // slug is unique and always set by the import; id is the fallback.
+      return {
+        ...card,
+        href: `/matches/${card.slug !== "" ? card.slug : card.id}`,
+      };
+    }),
+    totalCount,
+    page,
+    pageSize,
+  };
+}
 
 const matchDetailInclude = {
   ...matchCardInclude,

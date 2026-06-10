@@ -10,6 +10,7 @@ import { getCountryCards, getCountryProfile } from "@/server/queries/countries";
 import {
   getFinalMatchForTournament,
   getMatchByIdOrSlug,
+  getMatchCards,
 } from "@/server/queries/matches";
 import { getPlayerCards, getPlayerProfile } from "@/server/queries/players";
 import { getRecordsOverview } from "@/server/queries/records";
@@ -255,6 +256,34 @@ async function main() {
           : "returned null",
       );
     }
+  }
+
+  // ---- Match cards for the /matches index (critical). ----
+  const matchIndex = await getMatchCards({ pageSize: 5 });
+  const firstCard = matchIndex.matches[0];
+  check(
+    "getMatchCards returns matches",
+    matchIndex.matches.length > 0 && matchIndex.totalCount > 0,
+    `${matchIndex.matches.length} cards (of ${matchIndex.totalCount} total)`,
+  );
+  if (firstCard !== undefined) {
+    check(
+      "first match card is complete",
+      firstCard.id !== "" &&
+        firstCard.slug !== "" &&
+        firstCard.homeTeam.name !== "" &&
+        firstCard.awayTeam.name !== "" &&
+        firstCard.href.startsWith("/matches/"),
+      `${firstCard.tournamentYear}: ${firstCard.homeTeam.name} ${firstCard.score} ${firstCard.awayTeam.name} → ${firstCard.href}`,
+    );
+    const resolved = await getMatchByIdOrSlug(
+      firstCard.href.replace("/matches/", ""),
+    );
+    check(
+      "first match card href resolves",
+      resolved !== null && resolved.id === firstCard.id,
+      resolved !== null ? `resolved ${resolved.slug}` : "returned null",
+    );
   }
 
   // ---- Generic match resolution (critical). ----
