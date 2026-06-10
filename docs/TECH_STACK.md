@@ -35,4 +35,4 @@
 
 ## Product Rule
 
-WorldCup Atlas is an independent historical archive. Do not use official FIFA logos or present the product as officially affiliated with FIFA.
+WorldCup Atlas is an independent historical archive. Do not use official FIFA logos or present the product as officially affiliated with FIFA.UI_STYLE_GUIDE.md
