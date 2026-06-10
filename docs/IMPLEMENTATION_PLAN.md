@@ -160,7 +160,20 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
 
 ## Checkpoint 5 — First real vertical slice
 
-**Status: not started**
+**Status: in progress — 5A complete**
+
+### Checkpoint 5A — DB-backed home and tournaments list (complete)
+
+- `/` now renders from `getHomePageData()`: real archive stats, latest
+  tournaments, recent finals, top nations, top scorers, and record
+  leaderboard previews. Empty sections render an honest `EmptyState`
+  instead of fake data.
+- `/tournaments` renders from `getTournamentCards()` with loading and error
+  states.
+- `src/lib/mock-data.ts` deleted — no mock or hardcoded historical values
+  remain in production pages.
+- Remaining for 5B+: detail pages (`/tournaments/[year]`, match, country,
+  player pages) and Meilisearch-backed search.
 
 ### Deliverables
 

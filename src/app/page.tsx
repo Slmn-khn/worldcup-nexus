@@ -1,3 +1,7 @@
+// DB-backed home page (Checkpoint 5A). All numbers and lists come from the
+// server query layer (getHomePageData) — nothing is hardcoded or mocked.
+// Sections without data render an honest empty state.
+
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
@@ -8,19 +12,30 @@ import PageContainer from "@/components/layout/PageContainer";
 import SectionHeading from "@/components/ui/SectionHeading";
 import StatCard from "@/components/ui/StatCard";
 import GlobalSearch from "@/components/ui/GlobalSearch";
+import EmptyState from "@/components/ui/EmptyState";
 import TournamentCard from "@/components/tournaments/TournamentCard";
 import MatchCard from "@/components/matches/MatchCard";
 import CountryCard from "@/components/countries/CountryCard";
 import PlayerCard from "@/components/players/PlayerCard";
 import RecordCard from "@/components/records/RecordCard";
-import {
-  MOCK_ARCHIVE_STATS,
-  MOCK_TOURNAMENTS,
-  MOCK_MATCHES,
-  MOCK_COUNTRIES,
-  MOCK_PLAYERS,
-  MOCK_RECORDS,
-} from "@/lib/mock-data";
+import { formatDate, formatNumber } from "@/lib/format";
+import { getHomePageData } from "@/server/queries/home";
+import type { MatchCardDto } from "@/server/queries/types";
+
+// Live archive data — always render from the current database state.
+export const dynamic = "force-dynamic";
+
+const SECTION_PADDING = { py: { xs: 6, md: 8 } };
+const CARD_GRID_3 = {
+  display: "grid",
+  gap: 2.5,
+  gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(3, 1fr)" },
+};
+const CARD_GRID_4 = {
+  display: "grid",
+  gap: 2.5,
+  gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" },
+};
 
 function ViewAllLink({ href, label }: { href: string; label: string }) {
   return (
@@ -36,7 +51,19 @@ function ViewAllLink({ href, label }: { href: string; label: string }) {
   );
 }
 
-export default function Home() {
+function matchSummary(match: MatchCardDto): string | undefined {
+  const date = formatDate(match.matchDate);
+  const parts = [
+    date,
+    match.decidedByPenalties ? "Decided on penalties" : null,
+  ].filter((part): part is string => part !== null);
+  return parts.length > 0 ? parts.join(" — ") : undefined;
+}
+
+export default async function Home() {
+  const data = await getHomePageData();
+  const { archiveStats } = data;
+
   return (
     <Box>
       {/* Hero */}
@@ -119,10 +146,10 @@ export default function Home() {
       </Box>
 
       {/* Archive at a Glance */}
-      <PageContainer sx={{ py: { xs: 6, md: 8 } }}>
+      <PageContainer sx={SECTION_PADDING}>
         <SectionHeading
           title="Archive at a Glance"
-          subtitle="Placeholder figures shown while the data import pipeline is under construction."
+          subtitle="Live counts from the imported archive."
         />
         <Box
           sx={{
@@ -131,34 +158,52 @@ export default function Home() {
             gridTemplateColumns: { xs: "1fr 1fr", md: "repeat(4, 1fr)" },
           }}
         >
-          {MOCK_ARCHIVE_STATS.map((stat) => (
-            <StatCard key={stat.label} {...stat} />
-          ))}
+          <StatCard
+            label="Tournaments"
+            value={formatNumber(archiveStats.tournaments)}
+          />
+          <StatCard
+            label="Nations"
+            value={formatNumber(archiveStats.countries)}
+          />
+          <StatCard
+            label="Matches"
+            value={formatNumber(archiveStats.matches)}
+          />
+          <StatCard label="Goals" value={formatNumber(archiveStats.goals)} />
         </Box>
       </PageContainer>
 
       {/* Featured Tournaments */}
-      <PageContainer sx={{ py: { xs: 6, md: 8 } }}>
+      <PageContainer sx={SECTION_PADDING}>
         <SectionHeading
           title="Featured Tournaments"
-          subtitle="Landmark editions from nearly a century of World Cup football."
+          subtitle="The latest editions in the archive."
           action={<ViewAllLink href="/tournaments" label="All tournaments" />}
         />
-        <Box
-          sx={{
-            display: "grid",
-            gap: 2.5,
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "1fr 1fr",
-              md: "repeat(3, 1fr)",
-            },
-          }}
-        >
-          {MOCK_TOURNAMENTS.map((tournament) => (
-            <TournamentCard key={tournament.year} {...tournament} />
-          ))}
-        </Box>
+        {data.featuredTournaments.length > 0 ? (
+          <Box sx={CARD_GRID_3}>
+            {data.featuredTournaments.map((tournament) => (
+              <TournamentCard
+                key={tournament.id}
+                year={tournament.year}
+                name={tournament.name}
+                host={tournament.hostName}
+                winner={tournament.winner}
+                runnerUp={tournament.runnerUp}
+                finalScore={tournament.finalScore}
+                teamsCount={tournament.teamsCount}
+                matchesCount={tournament.matchesCount}
+                goalsCount={tournament.goalsCount}
+              />
+            ))}
+          </Box>
+        ) : (
+          <EmptyState
+            title="Tournaments coming soon"
+            description="Tournament data has not been imported yet."
+          />
+        )}
       </PageContainer>
 
       {/* Iconic Matches */}
@@ -170,76 +215,94 @@ export default function Home() {
           borderColor: "divider",
         }}
       >
-        <PageContainer sx={{ py: { xs: 6, md: 8 } }}>
+        <PageContainer sx={SECTION_PADDING}>
           <SectionHeading
             title="Iconic Matches"
-            subtitle="The games that defined eras — replayed through data."
+            subtitle="The most recent finals in the archive."
             action={<ViewAllLink href="/matches" label="All matches" />}
           />
-          <Box
-            sx={{
-              display: "grid",
-              gap: 2.5,
-              gridTemplateColumns: {
-                xs: "1fr",
-                sm: "1fr 1fr",
-                md: "repeat(3, 1fr)",
-              },
-            }}
-          >
-            {MOCK_MATCHES.map((match) => (
-              <MatchCard key={match.title} {...match} />
-            ))}
-          </Box>
+          {data.iconicMatches.length > 0 ? (
+            <Box sx={CARD_GRID_3}>
+              {data.iconicMatches.map((match) => (
+                <MatchCard
+                  key={match.id}
+                  title={`${match.homeTeam.name} v ${match.awayTeam.name}`}
+                  tournament={match.tournamentName}
+                  score={
+                    match.penaltyScore !== null
+                      ? `${match.score} (${match.penaltyScore} pens)`
+                      : match.score
+                  }
+                  stage={match.stage}
+                  summary={matchSummary(match)}
+                  href={`/matches/${match.slug}`}
+                />
+              ))}
+            </Box>
+          ) : (
+            <EmptyState
+              title="Matches coming soon"
+              description="Match data has not been imported yet."
+            />
+          )}
         </PageContainer>
       </Box>
 
       {/* Explore by Country */}
-      <PageContainer sx={{ py: { xs: 6, md: 8 } }}>
+      <PageContainer sx={SECTION_PADDING}>
         <SectionHeading
           title="Explore by Country"
-          subtitle="Follow a nation through every qualification, squad, and final."
+          subtitle="Nations with the most tournament entries."
           action={<ViewAllLink href="/countries" label="All countries" />}
         />
-        <Box
-          sx={{
-            display: "grid",
-            gap: 2.5,
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "1fr 1fr",
-              md: "repeat(4, 1fr)",
-            },
-          }}
-        >
-          {MOCK_COUNTRIES.map((country) => (
-            <CountryCard key={country.name} {...country} />
-          ))}
-        </Box>
+        {data.featuredCountries.length > 0 ? (
+          <Box sx={CARD_GRID_4}>
+            {data.featuredCountries.map((country) => (
+              <CountryCard
+                key={country.id}
+                name={country.name}
+                summary={`${formatNumber(country.tournamentsEntered)} tournament entries · ${formatNumber(country.playersCount)} players in the archive`}
+                href={`/countries/${country.slug}`}
+              />
+            ))}
+          </Box>
+        ) : (
+          <EmptyState
+            title="Countries coming soon"
+            description="Country data has not been imported yet."
+          />
+        )}
       </PageContainer>
 
       {/* Legendary Players */}
-      <PageContainer sx={{ py: { xs: 6, md: 8 } }}>
+      <PageContainer sx={SECTION_PADDING}>
         <SectionHeading
           title="Legendary Players"
-          subtitle="Careers measured in goals, minutes, and moments."
+          subtitle="The archive's all-time leading scorers."
           action={<ViewAllLink href="/players" label="All players" />}
         />
-        <Box
-          sx={{
-            display: "grid",
-            gap: 2.5,
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "1fr 1fr",
-              md: "repeat(4, 1fr)",
-            },
-          }}
-        >
-          {MOCK_PLAYERS.map((player) => (
-            <PlayerCard key={player.name} {...player} />
-          ))}
-        </Box>
+        {data.featuredPlayers.length > 0 ? (
+          <Box sx={CARD_GRID_4}>
+            {data.featuredPlayers.map((player) => (
+              <PlayerCard
+                key={player.id}
+                name={player.name}
+                country={player.countryName ?? "Nation unknown"}
+                summary={
+                  player.position !== null
+                    ? `Position: ${player.position}`
+                    : undefined
+                }
+                href={`/players/${player.slug}`}
+              />
+            ))}
+          </Box>
+        ) : (
+          <EmptyState
+            title="Players coming soon"
+            description="Player data has not been imported yet."
+          />
+        )}
       </PageContainer>
 
       {/* Records Preview */}
@@ -250,23 +313,34 @@ export default function Home() {
           borderColor: "divider",
         }}
       >
-        <PageContainer sx={{ py: { xs: 6, md: 8 } }}>
+        <PageContainer sx={SECTION_PADDING}>
           <SectionHeading
             title="Records"
-            subtitle="The numbers behind the history — preview values shown until real data lands."
+            subtitle="Database-backed leaderboards computed from imported events."
             action={<ViewAllLink href="/records" label="All records" />}
           />
-          <Box
-            sx={{
-              display: "grid",
-              gap: 2.5,
-              gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
-            }}
-          >
-            {MOCK_RECORDS.map((record) => (
-              <RecordCard key={record.title} {...record} />
-            ))}
-          </Box>
+          {data.recordsPreview.some((board) => board.items.length > 0) ? (
+            <Box sx={CARD_GRID_3}>
+              {data.recordsPreview
+                .filter((board) => board.items.length > 0)
+                .map((board) => {
+                  const top = board.items[0];
+                  return (
+                    <RecordCard
+                      key={board.key}
+                      title={board.title}
+                      value={`${top.label} — ${formatNumber(top.value)}`}
+                      description={board.description}
+                    />
+                  );
+                })}
+            </Box>
+          ) : (
+            <EmptyState
+              title="Records coming soon"
+              description="Leaderboards appear once event data is imported."
+            />
+          )}
         </PageContainer>
       </Box>
     </Box>

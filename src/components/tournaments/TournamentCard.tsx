@@ -5,26 +5,41 @@ import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import { formatNumber } from "@/lib/format";
 
 type TournamentCardProps = {
   year: number;
-  host: string;
-  winner: string;
-  runnerUp: string;
-  finalScore: string;
-  summary: string;
+  name?: string | null;
+  host?: string | null;
+  winner?: string | null;
+  runnerUp?: string | null;
+  finalScore?: string | null;
+  teamsCount?: number | null;
+  matchesCount?: number | null;
+  goalsCount?: number | null;
+  summary?: string | null;
   href?: string;
 };
 
 export default function TournamentCard({
   year,
+  name,
   host,
   winner,
   runnerUp,
   finalScore,
+  teamsCount,
+  matchesCount,
+  goalsCount,
   summary,
-  href = "/tournaments",
+  href,
 }: TournamentCardProps) {
+  const counts = [
+    teamsCount != null ? `${formatNumber(teamsCount)} teams` : null,
+    matchesCount != null ? `${formatNumber(matchesCount)} matches` : null,
+    goalsCount != null ? `${formatNumber(goalsCount)} goals` : null,
+  ].filter((part): part is string => part !== null);
+
   return (
     <Card
       sx={{
@@ -38,14 +53,21 @@ export default function TournamentCard({
     >
       <CardActionArea
         component={Link}
-        href={href}
+        href={href ?? `/tournaments/${year}`}
         sx={{ height: "100%", alignItems: "stretch" }}
       >
-        <CardContent sx={{ p: 3 }}>
+        <CardContent
+          sx={{
+            p: 3,
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+          }}
+        >
           <Stack
             direction="row"
             sx={{
-              mb: 1.5,
+              mb: 0.5,
               alignItems: "baseline",
               justifyContent: "space-between",
             }}
@@ -57,10 +79,20 @@ export default function TournamentCard({
             >
               {year}
             </Typography>
-            <Typography variant="caption" sx={{ color: "text.secondary" }}>
-              Host: {host}
-            </Typography>
+            {host ? (
+              <Typography variant="caption" sx={{ color: "text.secondary" }}>
+                Host: {host}
+              </Typography>
+            ) : null}
           </Stack>
+          {name ? (
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", mb: 1.5 }}
+            >
+              {name}
+            </Typography>
+          ) : null}
           <Box
             sx={{
               bgcolor: "#142338",
@@ -72,18 +104,41 @@ export default function TournamentCard({
               mb: 1.5,
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{ color: "text.primary", fontWeight: 700 }}
-            >
-              {winner} {finalScore} {runnerUp}
-            </Typography>
-            <Typography variant="caption" sx={{ color: "text.secondary" }}>
-              Final
-            </Typography>
+            {winner ? (
+              <>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "text.primary", fontWeight: 700 }}
+                >
+                  {finalScore && runnerUp
+                    ? `${winner} ${finalScore} ${runnerUp}`
+                    : winner}
+                </Typography>
+                <Typography variant="caption" sx={{ color: "text.secondary" }}>
+                  {finalScore && runnerUp ? "Final" : "Champions"}
+                </Typography>
+              </>
+            ) : (
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                Result not yet in the archive
+              </Typography>
+            )}
           </Box>
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            {summary}
+          {counts.length > 0 ? (
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              {counts.join(" · ")}
+            </Typography>
+          ) : null}
+          {summary ? (
+            <Typography variant="body2" sx={{ color: "text.secondary", mt: 1 }}>
+              {summary}
+            </Typography>
+          ) : null}
+          <Typography
+            variant="caption"
+            sx={{ color: "primary.main", fontWeight: 700, mt: "auto", pt: 1.5 }}
+          >
+            View tournament →
           </Typography>
         </CardContent>
       </CardActionArea>

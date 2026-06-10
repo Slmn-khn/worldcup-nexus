@@ -11,7 +11,7 @@ type MatchCardProps = {
   tournament: string;
   score: string;
   stage: string;
-  summary: string;
+  summary?: string;
   href?: string;
 };
 
@@ -71,9 +71,11 @@ export default function MatchCard({
           >
             {score}
           </Typography>
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            {summary}
-          </Typography>
+          {summary ? (
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              {summary}
+            </Typography>
+          ) : null}
         </CardContent>
       </CardActionArea>
     </Card>

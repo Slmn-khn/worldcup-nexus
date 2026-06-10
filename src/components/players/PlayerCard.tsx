@@ -9,7 +9,7 @@ import Link from "@/components/Link";
 type PlayerCardProps = {
   name: string;
   country: string;
-  summary: string;
+  summary?: string;
   href?: string;
 };
 
@@ -65,9 +65,11 @@ export default function PlayerCard({
               </Typography>
             </Stack>
           </Stack>
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            {summary}
-          </Typography>
+          {summary ? (
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              {summary}
+            </Typography>
+          ) : null}
         </CardContent>
       </CardActionArea>
     </Card>
