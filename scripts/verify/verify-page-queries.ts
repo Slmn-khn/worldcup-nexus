@@ -6,7 +6,7 @@ import "dotenv/config";
 
 import { prisma } from "@/server/db/prisma";
 import { getArchiveStats, getHomePageData } from "@/server/queries/home";
-import { getCountryProfile } from "@/server/queries/countries";
+import { getCountryCards, getCountryProfile } from "@/server/queries/countries";
 import {
   getFinalMatchForTournament,
   getMatchByIdOrSlug,
@@ -79,36 +79,59 @@ async function main() {
     );
   }
 
-  // ---- Country profile (find Brazil by slug, then name). ----
-  const brazil = await prisma.country.findFirst({
-    where: {
-      OR: [
-        { slug: "brazil" },
-        { name: { equals: "Brazil", mode: "insensitive" } },
-      ],
-    },
-    select: { slug: true, name: true },
-  });
-  if (brazil === null) {
+  // ---- Country cards (critical). ----
+  const countryCards = await getCountryCards();
+  check(
+    "getCountryCards returns countries",
+    countryCards.length > 0,
+    `${countryCards.length} countries`,
+  );
+
+  // ---- Country profiles (find by slug, then name — soft on naming). ----
+  for (const countryName of ["Brazil", "Argentina"]) {
+    const found = await prisma.country.findFirst({
+      where: {
+        OR: [
+          { slug: countryName.toLowerCase() },
+          { name: { equals: countryName, mode: "insensitive" } },
+        ],
+      },
+      select: { slug: true },
+    });
+    if (found === null) {
+      check(
+        `getCountryProfile(${countryName})`,
+        false,
+        `${countryName} not found by slug or name`,
+        false,
+      );
+      continue;
+    }
+    const profile = await getCountryProfile(found.slug);
     check(
-      "getCountryProfile(Brazil)",
-      false,
-      "Brazil not found by slug or name",
-      false,
-    );
-  } else {
-    const profile = await getCountryProfile(brazil.slug);
-    check(
-      "getCountryProfile(Brazil)",
+      `getCountryProfile(${countryName})`,
       profile !== null &&
+        profile.participations.length > 0 &&
+        profile.matches.length > 0 &&
         profile.totals.matchesPlayed > 0 &&
         profile.totals.goalsFor > 0,
       profile !== null
-        ? `${profile.name} (${brazil.slug}): ${profile.totals.tournamentsEntered} tournaments, ` +
-            `${profile.totals.matchesPlayed} matches, ${profile.totals.goalsFor} goals for, ` +
-            `${profile.totals.goalsAgainst} against, ${profile.totals.finalsPlayed} finals`
+        ? `${profile.name} (${found.slug}): ${profile.totals.tournamentsEntered} tournaments, ` +
+            `${profile.totals.titles} titles, ${profile.totals.finalsPlayed} finals ` +
+            `(${profile.totals.finalsWon} won), ${profile.totals.matchesPlayed} matches ` +
+            `(${profile.totals.wins}W ${profile.totals.draws}D ${profile.totals.losses}L), ` +
+            `${profile.totals.goalsFor}:${profile.totals.goalsAgainst} goals, ` +
+            `${profile.topScorers.length} top scorers`
         : "returned null",
     );
+    if (profile !== null && profile.topScorers.length === 0) {
+      check(
+        `${countryName} has top scorers`,
+        false,
+        "no goal data resolved",
+        false,
+      );
+    }
   }
 
   // ---- Player profile (find Maradona by name, then use real slug). ----

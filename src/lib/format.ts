@@ -40,6 +40,11 @@ export function formatMinute(
   return `${minute}'`;
 }
 
+/** Long label for a W/D/L result code. */
+export function formatResult(result: "W" | "D" | "L"): string {
+  return result === "W" ? "Win" : result === "D" ? "Draw" : "Loss";
+}
+
 export function formatNullable(
   value: string | number | null | undefined,
   fallback = "—",

@@ -160,9 +160,14 @@ export type CountryCardDto = {
   name: string;
   slug: string;
   code: string | null;
+  flagEmoji: string | null;
   /** Number of tournament participations (Team rows are per tournament). */
   tournamentsEntered: number;
   playersCount: number;
+  /** Null when the caller did not compute the aggregate (e.g. homepage). */
+  matchesCount: number | null;
+  goalsFor: number | null;
+  titlesCount: number | null;
 };
 
 export type CountryParticipationDto = {
@@ -170,6 +175,15 @@ export type CountryParticipationDto = {
   tournamentSlug: string;
   tournamentName: string;
   teamId: string;
+  /** "Champions" / "Runners-up" from tournament winner fields, else null — never an invented finish. */
+  result: "Champions" | "Runners-up" | null;
+};
+
+/** A match from one country's perspective. */
+export type CountryMatchDto = MatchCardDto & {
+  opponent: string;
+  /** Win/draw/loss from the match winner field (shootout wins count as wins). */
+  result: "W" | "D" | "L";
 };
 
 export type SquadTournamentsLeaderDto = {
@@ -185,17 +199,26 @@ export type CountryProfileDto = {
   name: string;
   slug: string;
   code: string | null;
+  flagEmoji: string | null;
   participations: CountryParticipationDto[];
   totals: {
     tournamentsEntered: number;
+    /** Tournaments won (via Tournament.winnerTeamId — includes 1950, which had no final). */
+    titles: number;
+    finalsPlayed: number;
+    finalsWon: number;
     matchesPlayed: number;
+    wins: number;
+    draws: number;
+    losses: number;
     goalsFor: number;
     goalsAgainst: number;
-    finalsPlayed: number;
+    goalDifference: number;
   };
+  matches: CountryMatchDto[];
   topScorers: TopScorerDto[];
   mostSquadTournaments: SquadTournamentsLeaderDto[];
-  finals: MatchCardDto[];
+  finals: CountryMatchDto[];
 };
 
 export type PlayerCardDto = {

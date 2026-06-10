@@ -201,8 +201,25 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
   invented lineups). Route has skeleton loading, client error boundary, and
   a not-found state.
 
-- Remaining for 5D+: country profile, player profile, records page, and
-  Meilisearch-backed search.
+### Checkpoint 5D — Countries index and country profile (complete)
+
+- `/countries` renders from `getCountryCards()`: nation grid with
+  tournaments/matches/goals/titles counts.
+- `/countries/[slug]` renders from `getCountryProfile(slug)`: hero (titles,
+  finals, W/D/L chips), all-time record stat grid (tournaments, titles,
+  finals, matches, W/D/L, goals for/against, goal difference), tournament
+  timeline (Champions/Runners-up from tournament fields only — no invented
+  finishes), finals list (won/lost from the match winner), top scorers, and
+  a recent-matches list with W/D/L chips linking to match pages.
+- Derivations: titles via `Tournament.winnerTeamId` (counts 1950 correctly,
+  which had no final); W/D/L via match winner (shootout wins count as wins);
+  per-tournament finish beyond champions/runners-up is NOT derived (the
+  source `performance` column is not normalized). Squad data is never
+  labeled "appearances".
+- Country links from match pages and the homepage now resolve.
+
+- Remaining for 5E+: player profile, records page, and Meilisearch-backed
+  search.
 
 ### Deliverables
 

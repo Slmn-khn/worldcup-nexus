@@ -63,8 +63,13 @@ async function featuredCountries(take: number): Promise<CountryCardDto[]> {
     name: country.name,
     slug: country.slug,
     code: country.code,
+    flagEmoji: country.flagEmoji,
     tournamentsEntered: country._count.teams,
     playersCount: country._count.players,
+    // Aggregates are not computed for the homepage preview.
+    matchesCount: null,
+    goalsFor: null,
+    titlesCount: null,
   }));
 }
 
