@@ -1,10 +1,10 @@
-// Checkpoint 4B — first normalized import of core foundation data.
+// Fjelstul import pipeline — core data (Checkpoint 4B) + events (Checkpoint 4C).
 // Source: Fjelstul World Cup Database, jfjelstul/worldcup (GitHub), CC BY 4.0.
 // See docs/DATA_SOURCES.md for attribution and docs/DATA_MODEL.md for design.
 //
 // Imports: RawSourceRecord, Tournament, Country, Team, Stadium, Referee,
-// Player, Match, SquadPlayer. Event data (goals, bookings, substitutions,
-// penalty kicks, awards) is intentionally deferred to Checkpoint 4C.
+// Player, Match, SquadPlayer, then events: Goal, Booking, Substitution,
+// PenaltyKick, Award.
 //
 // Reads ONLY cached CSVs from data/sources/fjelstul/raw — never downloads.
 // Never drops tables, never runs migrations.
@@ -16,8 +16,21 @@
 import "dotenv/config";
 
 import { FJELSTUL_DATASETS } from "../../src/server/import/source-manifest";
+import {
+  importAwards,
+  importBookings,
+  importGoals,
+  importPenaltyKicks,
+  importSubstitutions,
+  type ImportReporter,
+} from "./loaders/events";
+import {
+  EVENT_REQUIRED_COLUMNS,
+  type EventResolveContext,
+} from "./mappers/events";
 import { chunk, forEachLimit, readDataset, type RawRow } from "./utils/csv";
 import { createScriptPrismaClient } from "./utils/db";
+import { dedupeRows } from "./utils/dedupe";
 import {
   REQUIRED_COLUMNS,
   mapCountry,
@@ -39,7 +52,7 @@ const RESET = process.argv.includes("--reset");
 const UPSERT_CONCURRENCY = 8;
 const CREATE_MANY_CHUNK = 500;
 
-/** Datasets normalized in this checkpoint, in import order. */
+/** Datasets normalized by this pipeline, in import order. */
 const SELECTED_KEYS = [
   "tournaments",
   "teams",
@@ -49,9 +62,19 @@ const SELECTED_KEYS = [
   "qualified_teams",
   "matches",
   "squads",
+  "goals",
+  "bookings",
+  "substitutions",
+  "penalty_kicks",
+  "award_winners",
 ] as const;
 
 type DatasetKey = (typeof SELECTED_KEYS)[number];
+
+const ALL_REQUIRED_COLUMNS: Record<string, string[]> = {
+  ...REQUIRED_COLUMNS,
+  ...EVENT_REQUIRED_COLUMNS,
+};
 
 /** sourceId stored on each RawSourceRecord, per dataset. */
 const RAW_SOURCE_ID: Record<DatasetKey, (row: RawRow) => string | null> = {
@@ -63,6 +86,12 @@ const RAW_SOURCE_ID: Record<DatasetKey, (row: RawRow) => string | null> = {
   qualified_teams: (row) => `${row.tournament_id}:${row.team_id}`,
   matches: (row) => cleanString(row.match_id),
   squads: (row) => `${row.tournament_id}:${row.team_id}:${row.player_id}`,
+  goals: (row) => cleanString(row.goal_id),
+  bookings: (row) => cleanString(row.booking_id),
+  substitutions: (row) => cleanString(row.substitution_id),
+  penalty_kicks: (row) => cleanString(row.penalty_kick_id),
+  award_winners: (row) =>
+    `${row.tournament_id}:${row.award_id}:${row.player_id}`,
 };
 
 const counts: Record<string, number> = {
@@ -75,6 +104,11 @@ const counts: Record<string, number> = {
   players: 0,
   matches: 0,
   squadPlayers: 0,
+  goals: 0,
+  bookings: 0,
+  substitutions: 0,
+  penaltyKicks: 0,
+  awards: 0,
 };
 const skippedByDataset: Record<string, number> = {};
 const warnings: string[] = [];
@@ -91,30 +125,16 @@ function skipRow(dataset: string, reason: string): void {
   warn(`${dataset}: skipped row — ${reason}`);
 }
 
-/** Deduplicates rows by a key, warning on duplicates. */
 function dedupe(
   dataset: string,
   rows: RawRow[],
   keyOf: (row: RawRow) => string | null,
 ): RawRow[] {
-  const byKey = new Map<string, RawRow>();
-  for (const row of rows) {
-    const key = keyOf(row);
-    if (key === null) {
-      skipRow(dataset, "missing source identifier");
-      continue;
-    }
-    if (byKey.has(key)) {
-      skipRow(dataset, `duplicate source id ${key}`);
-      continue;
-    }
-    byKey.set(key, row);
-  }
-  return [...byKey.values()];
+  return dedupeRows(dataset, rows, keyOf, skipRow);
 }
 
 async function main() {
-  console.log(`WorldCup Atlas — Checkpoint 4B import (source: ${SOURCE})`);
+  console.log(`WorldCup Atlas — Fjelstul import, core + events (source: ${SOURCE})`);
   console.log(
     RESET
       ? "Mode: --reset (clear normalized data, then import)\n"
@@ -128,7 +148,7 @@ async function main() {
     const dataset = datasetsByKey.get(key);
     if (dataset === undefined)
       throw new Error(`Dataset ${key} missing from source manifest.`);
-    rowsByKey[key] = readDataset(dataset, REQUIRED_COLUMNS[key]);
+    rowsByKey[key] = readDataset(dataset, ALL_REQUIRED_COLUMNS[key]);
     console.log(`  loaded ${key}: ${rowsByKey[key].length} rows`);
   }
   console.log("");
@@ -139,7 +159,7 @@ async function main() {
       console.log(
         "Resetting normalized data (dependency order, no table drops)...",
       );
-      await resetNormalizedData(prisma);
+      await resetNormalizedData(prisma, { rawRecordSource: SOURCE });
     }
 
     // ---- 1. RawSourceRecord (verbatim copies, repeatable per entityType). ----
@@ -323,16 +343,24 @@ async function main() {
       stadiumIdBySource,
     };
     const matchCountByTournament = new Map<string, number>();
+    const matchBySource = new Map<
+      string,
+      { id: string; decidedByPenalties: boolean }
+    >();
     for (const row of matchRows) {
       const result = mapMatch(row, matchCtx);
       if (!result.ok) {
         skipRow("matches", result.reason);
         continue;
       }
-      await prisma.match.upsert({
+      const record = await prisma.match.upsert({
         where: { sourceId: result.data.sourceId ?? undefined },
         update: result.data,
         create: result.data,
+      });
+      matchBySource.set(result.data.sourceId as string, {
+        id: record.id,
+        decidedByPenalties: result.data.decidedByPenalties === true,
       });
       counts.matches += 1;
       matchCountByTournament.set(
@@ -409,6 +437,88 @@ async function main() {
       counts.squadPlayers += 1;
     });
 
+    // ---- 10–14. Events (Checkpoint 4C): goals, bookings, substitutions,
+    // penalty kicks, awards. ----
+    const eventCtx: EventResolveContext = {
+      tournamentIdBySource,
+      teamIdBySource,
+      playerIdBySource,
+      matchBySource,
+    };
+    const reporter: ImportReporter = { warn, skipRow };
+
+    console.log("Importing goals...");
+    counts.goals = await importGoals(
+      prisma,
+      rowsByKey.goals,
+      eventCtx,
+      reporter,
+    );
+    console.log("Importing bookings...");
+    counts.bookings = await importBookings(
+      prisma,
+      rowsByKey.bookings,
+      eventCtx,
+      reporter,
+    );
+    console.log("Importing substitutions...");
+    counts.substitutions = await importSubstitutions(
+      prisma,
+      rowsByKey.substitutions,
+      eventCtx,
+      reporter,
+    );
+    console.log("Importing penalty kicks...");
+    counts.penaltyKicks = await importPenaltyKicks(
+      prisma,
+      rowsByKey.penalty_kicks,
+      eventCtx,
+      reporter,
+    );
+    console.log("Importing awards...");
+    counts.awards = await importAwards(
+      prisma,
+      rowsByKey.award_winners,
+      eventCtx,
+      reporter,
+    );
+
+    // ---- 14b. Tournament goals count + runner-up (source-backed resolution). ----
+    console.log("Resolving tournament goal counts and runners-up...");
+    for (const tournamentDbId of tournamentIdBySource.values()) {
+      const goalsCount = await prisma.goal.count({
+        where: { match: { tournamentId: tournamentDbId } },
+      });
+
+      // Runner-up = the losing finalist of the deciding "final" stage match.
+      // Tournaments without a decided final (e.g. 1950's final round group)
+      // keep null — derived only, never invented.
+      const finals = await prisma.match.findMany({
+        where: {
+          tournamentId: tournamentDbId,
+          stage: "final",
+          winningTeamId: { not: null },
+        },
+        select: { homeTeamId: true, awayTeamId: true, winningTeamId: true },
+      });
+      let runnerUpTeamId: string | null = null;
+      if (finals.length === 1) {
+        const final = finals[0];
+        runnerUpTeamId =
+          final.winningTeamId === final.homeTeamId
+            ? final.awayTeamId
+            : final.homeTeamId;
+      } else if (finals.length > 1) {
+        warn(
+          `tournaments: ${finals.length} decided finals found for tournament ${tournamentDbId} — runner-up left null`,
+        );
+      }
+      await prisma.tournament.update({
+        where: { id: tournamentDbId },
+        data: { goalsCount, runnerUpTeamId },
+      });
+    }
+
     // ---- Summary. ----
     const totalSkipped = Object.values(skippedByDataset).reduce(
       (sum, n) => sum + n,
@@ -418,6 +528,13 @@ async function main() {
       importedAt: new Date().toISOString(),
       source: SOURCE,
       counts,
+      eventCounts: {
+        goals: counts.goals,
+        bookings: counts.bookings,
+        substitutions: counts.substitutions,
+        penaltyKicks: counts.penaltyKicks,
+        awards: counts.awards,
+      },
       skippedByDataset,
       warnings,
     };
@@ -433,6 +550,11 @@ async function main() {
     console.log(`  players imported:      ${counts.players}`);
     console.log(`  matches imported:      ${counts.matches}`);
     console.log(`  squad players:         ${counts.squadPlayers}`);
+    console.log(`  goals imported:        ${counts.goals}`);
+    console.log(`  bookings imported:     ${counts.bookings}`);
+    console.log(`  substitutions:         ${counts.substitutions}`);
+    console.log(`  penalty kicks:         ${counts.penaltyKicks}`);
+    console.log(`  awards imported:       ${counts.awards}`);
     console.log(`  skipped rows:          ${totalSkipped}`);
     console.log(`  warnings:              ${warnings.length}`);
     console.log(`\nReport written to ${reportPath}`);

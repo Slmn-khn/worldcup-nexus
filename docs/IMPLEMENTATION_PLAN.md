@@ -112,18 +112,24 @@ Component library under `src/components/`:
 
 ## Checkpoint 4 — First database seed and import
 
-**Status: split into 4B (complete) and 4C (not started)**
+**Status: split into 4B (complete) and 4C (complete)**
 
 ### Scope split
 
-**Checkpoint 4B — core normalized import (complete):** imports only the core
+**Checkpoint 4B — core normalized import (complete):** imports the core
 foundation data from cached Fjelstul CSVs: raw source records, tournaments,
 countries, teams, players, stadiums, referees, matches, and squads
 (`pnpm data:import`, verified by `pnpm data:verify`).
 
-**Checkpoint 4C — event import (not started):** intentionally deferred event
-data: goals, bookings (cards), substitutions, penalty kicks, and awards.
-Tournament `goalsCount` / `runnerUpTeamId` resolution also lands here.
+**Checkpoint 4C — event and awards import (complete):** imports event-level
+data from cached Fjelstul CSVs: goals, bookings (cards), substitutions,
+penalty kicks (shootouts), and awards. Also resolves source-backed
+`Tournament.goalsCount` and `runnerUpTeamId` (losing finalist of the decided
+final). Raw source records now cover all 13 selected datasets. Source quirks
+are logged in `docs/DATA_ISSUES.md` (ISSUE-006…008).
+
+**Next:** Checkpoint 5 starts DB-backed pages now that the event import
+passes verification.
 
 ### Deliverables
 

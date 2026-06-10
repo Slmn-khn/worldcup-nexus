@@ -134,16 +134,24 @@ Computed from normalized production tables. Must never be treated as authoritati
 
 ## Import phasing (Checkpoints 4B / 4C)
 
-Checkpoint 4B imports only core normalized data: tournaments, countries,
-teams, players, stadiums, referees, matches, and squads — plus a verbatim
+Checkpoint 4B imports core normalized data: tournaments, countries, teams,
+players, stadiums, referees, matches, and squads — plus a verbatim
 `RawSourceRecord` copy of every imported source row.
 
-Event data is intentionally deferred to Checkpoint 4C: goals, bookings
-(cards), substitutions, penalty kicks, and awards. Derived fields that depend
-on events (`Tournament.goalsCount`, `runnerUpTeamId`) stay null until then.
+Checkpoint 4C imports event-level data: goals, bookings (cards),
+substitutions, penalty kicks (shootout kicks), and awards. Derived fields
+resolved from events: `Tournament.goalsCount` (count of imported goals) and
+`Tournament.runnerUpTeamId` (losing finalist of the single decided "final"
+stage match; tournaments without one, e.g. 1950's final round group, stay
+null).
 
 Import order (dependencies first): raw records → tournaments → countries →
-teams → stadiums → referees → players → matches → squad players.
+teams → stadiums → referees → players → matches → squad players → goals →
+bookings → substitutions → penalty kicks → awards.
+
+Event-source caveats (see `docs/DATA_ISSUES.md`): goals carry no assist data;
+substitution rows are one-sided (off and on are separate source rows);
+penalty kicks are shootout kicks without order/minute data.
 
 ---
 

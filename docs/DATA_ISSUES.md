@@ -24,6 +24,36 @@ See `docs/DATA_SOURCES.md` for source definitions and conflict resolution policy
 
 <!-- Log issues below this line. Newest first. -->
 
+### ISSUE-008: Penalty kick dataset covers shootouts only, without kick order
+
+- **Date logged:** 2026-06-10
+- **Entity:** penalty kick
+- **Identifier:** all `penalty_kicks.csv` rows
+- **Source A:** Fjelstul `penalty_kicks.csv` — no minute, order, saved, or missed columns; rows correspond to shootout matches
+- **Source B:** —
+- **Resolution:** Fjelstul default
+- **Notes:** Imported with `type = SHOOTOUT` when the match is marked `penalty_shootout = 1` (all rows in practice; anything else would be flagged and imported as `IN_MATCH` with a warning). `order`, `minute`, `isSaved`, `isMissed` stay null. In-match penalties exist only as goals with the `penalty` flag (missed in-match penalties are not in the source).
+
+### ISSUE-007: Substitution rows are one-sided
+
+- **Date logged:** 2026-06-10
+- **Entity:** substitution
+- **Identifier:** all `substitutions.csv` rows
+- **Source A:** Fjelstul `substitutions.csv` — each row is a single player movement (`going_off` or `coming_on`) with its own `substitution_id`; no pairing key links the player off to the player on
+- **Source B:** —
+- **Resolution:** Fjelstul default
+- **Notes:** Each source row is imported as its own `Substitution` record with only `playerOutId` (going off) or `playerInId` (coming on) set. Pairing by match/team/minute would be guesswork for simultaneous substitutions, so it is not done. UI should aggregate by match + minute for display.
+
+### ISSUE-006: No assist data in the goals dataset
+
+- **Date logged:** 2026-06-10
+- **Entity:** goal
+- **Identifier:** all `goals.csv` rows
+- **Source A:** Fjelstul `goals.csv` — no assist column
+- **Source B:** —
+- **Resolution:** Fjelstul default
+- **Notes:** `Goal.assistPlayerId` stays null for the entire import. For own goals, `team_id` (team credited) differs from `player_team_id` (scorer's team); the credited team is imported and the scorer's team is preserved in `RawSourceRecord`.
+
 ### ISSUE-005: Referee–match links not available in selected subset
 
 - **Date logged:** 2026-06-10

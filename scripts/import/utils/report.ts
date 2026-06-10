@@ -8,6 +8,13 @@ export type ImportSummary = {
   importedAt: string;
   source: string;
   counts: Record<string, number>;
+  eventCounts: {
+    goals: number;
+    bookings: number;
+    substitutions: number;
+    penaltyKicks: number;
+    awards: number;
+  };
   skippedByDataset: Record<string, number>;
   warnings: string[];
 };
