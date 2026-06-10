@@ -13,6 +13,7 @@ import {
   getMatchCards,
 } from "@/server/queries/matches";
 import { getPlayerCards, getPlayerProfile } from "@/server/queries/players";
+import { getExplorerData } from "@/server/queries/explorer";
 import { getRecordsOverview } from "@/server/queries/records";
 import {
   getTournamentByYear,
@@ -385,6 +386,68 @@ async function main() {
       );
     }
   }
+
+  // ---- Data explorer (Checkpoint 5G). ----
+  const explorer = await getExplorerData({ pageSize: 25 });
+  const underlyingDataExists = stats.matches > 0 || stats.goals > 0;
+  check(
+    "getExplorerData returns rows",
+    explorer.rows.length > 0,
+    `${explorer.rows.length} rows (of ${explorer.total} total, ` +
+      `${explorer.filters.eventTypes.length} event types, ${explorer.filters.tournamentYears.length} years)`,
+    underlyingDataExists,
+  );
+  const firstExplorerRow = explorer.rows[0];
+  if (firstExplorerRow !== undefined) {
+    check(
+      "first explorer row has eventType",
+      firstExplorerRow.eventType.length > 0,
+      `${firstExplorerRow.eventType}: ${firstExplorerRow.tournamentYear} ${firstExplorerRow.matchLabel ?? firstExplorerRow.outcome ?? ""}`,
+    );
+  }
+  const firstLinkable = explorer.rows.find((row) => row.href !== null);
+  check(
+    "first linkable explorer row has href",
+    firstLinkable !== undefined &&
+      firstLinkable.href !== null &&
+      firstLinkable.href.startsWith("/"),
+    firstLinkable?.href ?? "no linkable rows",
+  );
+  check(
+    "explorer rows do not expose RawSourceRecord data",
+    !JSON.stringify(explorer.rows).includes('"payload"'),
+    "no payload fields in serialized rows",
+  );
+  const explorerTypeChecks: { eventType: string; dataCount: number }[] = [
+    { eventType: "Goal", dataCount: stats.goals },
+    { eventType: "Booking", dataCount: stats.bookings },
+    { eventType: "PenaltyKick", dataCount: stats.penaltyKicks },
+  ];
+  for (const typeCheck of explorerTypeChecks) {
+    const filtered = await getExplorerData({
+      eventType: typeCheck.eventType,
+      pageSize: 5,
+    });
+    check(
+      `getExplorerData(${typeCheck.eventType}) returns matching rows`,
+      filtered.rows.length > 0 &&
+        filtered.rows.every((row) => row.eventType === typeCheck.eventType) &&
+        filtered.total === typeCheck.dataCount,
+      `${filtered.rows.length} rows, total ${filtered.total} (expected ${typeCheck.dataCount})`,
+      typeCheck.dataCount > 0, // soft when the source has no such events
+    );
+  }
+  const explorer1986 = await getExplorerData({
+    tournamentYear: 1986,
+    pageSize: 5,
+  });
+  check(
+    "getExplorerData(1986) returns rows",
+    explorer1986.rows.length > 0 &&
+      explorer1986.rows.every((row) => row.tournamentYear === 1986),
+    `${explorer1986.rows.length} rows, total ${explorer1986.total}`,
+    cards.some((card) => card.year === 1986),
+  );
 
   // ---- Records overview (Checkpoint 5F shape). ----
   const records = await getRecordsOverview();

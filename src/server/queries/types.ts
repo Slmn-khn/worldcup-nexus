@@ -368,6 +368,55 @@ export type RecordsOverviewDto = {
   disciplineRecords: RecordLeaderboardDto[];
 };
 
+export type ExplorerEventType =
+  | "Match"
+  | "Goal"
+  | "Booking"
+  | "Substitution"
+  | "PenaltyKick"
+  | "Award";
+
+/** One normalized row in the data explorer — never a raw Prisma model. */
+export type ExplorerRowDto = {
+  /** Unique across event types, e.g. "goal-<dbId>". */
+  id: string;
+  eventType: ExplorerEventType;
+  tournamentYear: number;
+  tournamentName: string;
+  matchLabel: string | null;
+  matchSlug: string | null;
+  stage: string | null;
+  date: string | null;
+  teamName: string | null;
+  playerName: string | null;
+  playerSlug: string | null;
+  minute: number | null;
+  stoppageMinute: number | null;
+  /** Extra context (e.g. stadium for matches); null when nothing meaningful. */
+  detail: string | null;
+  /** Outcome/value, e.g. scoreline, card type, "Converted". */
+  outcome: string | null;
+  href: string | null;
+};
+
+export type ExplorerQueryOptions = {
+  eventType?: string;
+  tournamentYear?: number;
+  page?: number;
+  pageSize?: number;
+};
+
+export type ExplorerDataDto = {
+  rows: ExplorerRowDto[];
+  total: number;
+  page: number;
+  pageSize: number;
+  filters: {
+    eventTypes: ExplorerEventType[];
+    tournamentYears: number[];
+  };
+};
+
 export type HomePageDataDto = {
   archiveStats: ArchiveStatsDto;
   featuredTournaments: TournamentCardDto[];

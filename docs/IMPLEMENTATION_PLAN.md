@@ -255,7 +255,23 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
   Query supports page/pageSize/tournamentYear for later use; advanced
   filters arrive with the data explorer.
 
-- Remaining for 5G+: Meilisearch-backed search and the data explorer.
+### Checkpoint 5G — Data Explorer shell (complete)
+
+- `/explorer` renders from the new `getExplorerData()` query: matches,
+  goals, bookings, substitutions, penalty kicks, and awards normalized into
+  one `ExplorerRowDto` shape, browsable in an MUI X Data Grid (Community)
+  with server-side pagination. Event-type and tournament-year filters and
+  page size are URL query params (shareable links); rows link to match,
+  player, and tournament pages.
+- Combined-view pagination merges identically-sorted windows from each
+  event table (year desc, date desc, minute asc — matches sort before their
+  own events). Raw source rows are not exposed (stated on the page and
+  checked by the verify script).
+- Deferred: full-text search (Meilisearch checkpoint), country/player
+  filters, CSV/JSON export.
+
+- Remaining for 5H+: Meilisearch-backed global search; then Checkpoint 7
+  polish (about/data attribution pages, deployment).
 
 ### Deliverables
 
