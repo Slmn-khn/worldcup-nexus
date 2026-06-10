@@ -172,8 +172,23 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
   states.
 - `src/lib/mock-data.ts` deleted — no mock or hardcoded historical values
   remain in production pages.
-- Remaining for 5B+: detail pages (`/tournaments/[year]`, match, country,
-  player pages) and Meilisearch-backed search.
+
+### Checkpoint 5B — Tournament detail page (complete)
+
+- `/tournaments/[year]` renders from `getTournamentByYear(year)`: hero
+  (name, host, dates, champions/runners-up/final chips, breadcrumb), stat
+  grid (teams, matches, goals, cards, substitutions, shootouts, shootout
+  kicks, awards), anchor section nav, teams grid, stage-grouped match list
+  (linking to future `/matches/[slug]` routes), top scorers, awards, and
+  penalty shootout section.
+- Invalid or missing years render a `not-found` state; route has skeleton
+  loading and a client error boundary.
+- Group standings / knockout bracket views are deliberately deferred until
+  standings/bracket queries exist (honest placeholder text, no invented
+  standings).
+
+- Remaining for 5C+: match detail, country profile, player profile, records
+  page, and Meilisearch-backed search.
 
 ### Deliverables
 

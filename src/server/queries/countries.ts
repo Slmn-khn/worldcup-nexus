@@ -35,7 +35,12 @@ async function topScorersForTeams(
   });
   const players = await prisma.player.findMany({
     where: { id: { in: grouped.map((g) => g.playerId) } },
-    select: { id: true, name: true, slug: true },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      country: { select: { name: true } },
+    },
   });
   const byId = new Map(players.map((p) => [p.id, p]));
   return grouped.flatMap((g) => {
@@ -46,6 +51,7 @@ async function topScorersForTeams(
         playerId: player.id,
         name: player.name,
         slug: player.slug,
+        countryName: player.country?.name ?? null,
         goals: g._count._all,
       },
     ];

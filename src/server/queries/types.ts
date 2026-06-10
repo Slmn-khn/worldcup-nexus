@@ -47,6 +47,7 @@ export type TopScorerDto = {
   playerId: string;
   name: string;
   slug: string;
+  countryName: string | null;
   goals: number;
 };
 
@@ -66,6 +67,7 @@ export type TournamentDetailDto = TournamentCardDto & {
   awards: AwardDto[];
   stats: {
     penaltyShootouts: number;
+    penaltyKicks: number;
     bookings: number;
     substitutions: number;
   };
@@ -88,6 +90,7 @@ export type MatchCardDto = {
   /** e.g. "4–2" — only set when the match was decided by penalties. */
   penaltyScore: string | null;
   decidedByPenalties: boolean;
+  stadiumName: string | null;
 };
 
 export type MatchGoalDto = {

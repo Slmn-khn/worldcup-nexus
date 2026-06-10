@@ -85,7 +85,12 @@ async function topScorersForTournament(
   });
   const players = await prisma.player.findMany({
     where: { id: { in: grouped.map((g) => g.playerId) } },
-    select: { id: true, name: true, slug: true },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      country: { select: { name: true } },
+    },
   });
   const byId = new Map(players.map((p) => [p.id, p]));
   return grouped.flatMap((g) => {
@@ -96,6 +101,7 @@ async function topScorersForTournament(
         playerId: player.id,
         name: player.name,
         slug: player.slug,
+        countryName: player.country?.name ?? null,
         goals: g._count._all,
       },
     ];
@@ -121,6 +127,7 @@ export async function getTournamentByYear(
     topScorers,
     awards,
     penaltyShootouts,
+    penaltyKicks,
     bookings,
     substitutions,
     names,
@@ -142,6 +149,9 @@ export async function getTournamentByYear(
     }),
     prisma.match.count({
       where: { tournamentId: tournament.id, decidedByPenalties: true },
+    }),
+    prisma.penaltyKick.count({
+      where: { match: { tournamentId: tournament.id } },
     }),
     prisma.booking.count({ where: { match: { tournamentId: tournament.id } } }),
     prisma.substitution.count({
@@ -180,7 +190,7 @@ export async function getTournamentByYear(
       playerSlug: award.player?.slug ?? null,
       teamName: award.team?.name ?? null,
     })),
-    stats: { penaltyShootouts, bookings, substitutions },
+    stats: { penaltyShootouts, penaltyKicks, bookings, substitutions },
   };
 }
 

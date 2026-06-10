@@ -48,6 +48,7 @@ export const matchCardInclude = {
   tournament: { select: { year: true, slug: true, name: true } },
   homeTeam: { select: { name: true, slug: true } },
   awayTeam: { select: { name: true, slug: true } },
+  stadium: { select: { name: true } },
 } satisfies Prisma.MatchInclude;
 
 export type MatchWithCardRelations = Prisma.MatchGetPayload<{
@@ -75,6 +76,7 @@ export function toMatchCardDto(match: MatchWithCardRelations): MatchCardDto {
         ? formatScore(match.homeScorePenalties, match.awayScorePenalties)
         : null,
     decidedByPenalties: match.decidedByPenalties,
+    stadiumName: match.stadium?.name ?? null,
   };
 }
 
