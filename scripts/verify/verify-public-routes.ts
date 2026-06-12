@@ -35,7 +35,9 @@ const REQUIRED_FILES = [
   "src/app/players/page.tsx",
   "src/app/records/page.tsx",
   "src/app/explorer/page.tsx",
+  "src/app/privacy/page.tsx",
   "docs/DEPLOYMENT.md",
+  "SECURITY.md",
 ];
 
 async function main() {

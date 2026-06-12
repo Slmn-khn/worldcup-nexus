@@ -12,9 +12,14 @@ const ARCHIVE_LINKS = siteConfig.navLinks.filter(({ href }) =>
 const DATA_LINKS = siteConfig.navLinks.filter(({ href }) =>
   ["/records", "/explorer"].includes(href),
 );
-const ABOUT_LINKS = siteConfig.navLinks.filter(({ href }) =>
-  ["/sources", "/about"].includes(href),
-);
+// Privacy is footer-only (not in the top nav), so it is appended here
+// rather than added to siteConfig.navLinks.
+const ABOUT_LINKS = [
+  ...siteConfig.navLinks.filter(({ href }) =>
+    ["/sources", "/about"].includes(href),
+  ),
+  { label: "Privacy", href: "/privacy" },
+];
 
 function FooterColumn({
   heading,

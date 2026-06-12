@@ -47,13 +47,14 @@ Open http://localhost:3000.
 | `pnpm search:verify`       | Search checks                         |
 | `pnpm export:verify`       | Export (CSV/JSON) checks              |
 | `pnpm public:verify`       | Public route / SEO file checks        |
+| `pnpm security:verify`     | Security hardening checks             |
 
 See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for production notes.
 
 ## Recommended local validation
 
 ```bash
-pnpm public:verify && pnpm export:verify && pnpm search:verify
+pnpm security:verify && pnpm public:verify && pnpm export:verify && pnpm search:verify
 pnpm data:verify:queries && pnpm data:verify
 pnpm typecheck && pnpm lint && pnpm build
 pnpm test:e2e

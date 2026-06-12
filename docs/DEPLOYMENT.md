@@ -33,6 +33,8 @@ pnpm data:verify:queries
 pnpm search:verify
 pnpm export:verify
 pnpm public:verify
+pnpm security:verify
+pnpm audit
 pnpm typecheck && pnpm lint && pnpm build
 pnpm test:e2e          # Playwright smoke tests (needs DB + app running or webServer)
 ```
@@ -67,7 +69,53 @@ pnpm test:e2e          # Playwright smoke tests (needs DB + app running or webSe
    git-ignored: run `pnpm db:generate` before `pnpm build` in CI/CD.
 7. **Pages are dynamic** — all data pages render server-side per request
    (`force-dynamic`), so the app server needs database connectivity at
-   runtime, not just at build time.
+   runtime, not just at build time. Exception: the sitemap revalidates
+   daily (`revalidate = 86400`, Checkpoint 8B) and is generated at build
+   time — the build environment also needs database connectivity.
+
+## Security hardening (Checkpoint 8B)
+
+The application ships with the following baked in (see
+`docs/SECURITY_HARDENING_PLAN.md` for the full status table):
+
+- **Security headers** on every route via `next.config.ts`: nosniff,
+  Referrer-Policy, X-Frame-Options DENY, Permissions-Policy, COOP/CORP,
+  and a **Report-Only** CSP. **HSTS**
+  (`max-age=63072000; includeSubDomains; preload`) is emitted only when
+  `NODE_ENV=production` — confirm the deployed site is HTTPS-only before
+  go-live, since HSTS pins browsers to HTTPS for two years.
+- **Report-Only CSP**: observe violation reports in browser consoles /
+  platform tooling for 1–2 weeks, then switch to enforcement (plan P2.1).
+- **API rate limiting** (in-memory, fixed-window, per IP):
+  search/explorer 60 req/min, export 6 req/min, health 120 req/min,
+  returning 429 + `Retry-After`. **This is per process/instance** —
+  counters reset on redeploy and are not shared across instances. For
+  serious traffic, add platform/WAF or shared-store rate limiting and
+  treat the in-app limiter as defense-in-depth. Client identity comes
+  from `x-forwarded-for` / `x-real-ip` / `cf-connecting-ip`; ensure the
+  platform/proxy sets one of these (otherwise all clients share one
+  "unknown" bucket).
+- **Production-safe API errors**: routes log full errors server-side and
+  return only stable public messages; the `detail` field exists in
+  development only.
+- **CSV export** neutralizes spreadsheet formula injection and is capped
+  at 5,000 rows; the download is `worldcup-nexus-explorer.csv`.
+
+### Deployment-time guarantees (plan P0.4 — not code)
+
+- [ ] `NODE_ENV=production` on the platform (gates the dev endpoint,
+      enables HSTS).
+- [ ] Scoped **search-only** Meilisearch key for the app; master key
+      vaulted; Meilisearch on a private network, port 7700 not public;
+      `MEILI_ENV=production`.
+- [ ] Least-privilege Postgres **runtime role (SELECT-only)**; separate
+      role for migrations/import.
+- [ ] All env vars set in the platform: `DATABASE_URL`,
+      `MEILISEARCH_HOST`, `MEILISEARCH_API_KEY`, `NEXT_PUBLIC_SITE_URL`.
+- [ ] HTTPS enforced; verify HSTS header appears after deploy.
+- [ ] Automated DB backups with tested restore.
+- [ ] Logs/alerts wired: monitor 5xx and 429 rates and `/api/export`
+      volume.
 
 ## Non-negotiables
 

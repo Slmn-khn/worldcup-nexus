@@ -1,8 +1,12 @@
 // Explorer export API (Checkpoint 6B). CSV (default) or JSON, respecting
 // the same filters as /explorer, capped at EXPLORER_EXPORT_CAP rows.
 // Never exposes RawSourceRecord or environment values.
+// Hardened in Checkpoint 8B: strictest rate limit (export materializes up
+// to 5,000 DB rows per call), production-safe errors.
 
 import { NextResponse } from "next/server";
+import { createApiErrorResponse } from "@/server/security/api-errors";
+import { enforceRateLimit } from "@/server/security/rate-limit";
 import { toCsv } from "@/server/exports/csv";
 import {
   EXPLORER_EXPORT_CAP,
@@ -12,6 +16,8 @@ import { parseExplorerOptions } from "@/server/queries/parseExplorerParams";
 import type { ExplorerRowDto } from "@/server/queries/types";
 
 export const dynamic = "force-dynamic";
+
+const EXPORT_FILENAME = "worldcup-nexus-explorer.csv";
 
 const CSV_HEADERS: { key: string; label: string }[] = [
   { key: "eventType", label: "eventType" },
@@ -46,6 +52,9 @@ function toExportRow(row: ExplorerRowDto): Record<string, unknown> {
 }
 
 export async function GET(request: Request) {
+  const limited = enforceRateLimit("export", request);
+  if (limited !== null) return limited;
+
   const url = new URL(request.url);
   const format = url.searchParams.get("format") === "json" ? "json" : "csv";
 
@@ -76,8 +85,7 @@ export async function GET(request: Request) {
     return new NextResponse(csv, {
       headers: {
         "Content-Type": "text/csv; charset=utf-8",
-        "Content-Disposition":
-          'attachment; filename="worldcup-atlas-explorer.csv"',
+        "Content-Disposition": `attachment; filename="${EXPORT_FILENAME}"`,
         ...(truncated
           ? {
               "X-Export-Truncated": "true",
@@ -87,12 +95,10 @@ export async function GET(request: Request) {
       },
     });
   } catch (error) {
-    return NextResponse.json(
-      {
-        error: "Export is unavailable. Check that the database is running.",
-        detail: error instanceof Error ? error.message : String(error),
-      },
-      { status: 500 },
-    );
+    return createApiErrorResponse({
+      message: "Export is temporarily unavailable.",
+      status: 500,
+      error,
+    });
   }
 }

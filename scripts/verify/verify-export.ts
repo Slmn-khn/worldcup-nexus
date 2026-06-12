@@ -6,7 +6,7 @@
 import "dotenv/config";
 
 import { prisma } from "@/server/db/prisma";
-import { toCsv } from "@/server/exports/csv";
+import { toCsv, toCsvValue } from "@/server/exports/csv";
 import {
   EXPLORER_EXPORT_CAP,
   getExplorerExport,
@@ -84,6 +84,35 @@ async function main() {
       '"a,""b""\nc"',
     ),
     "quotes/commas/newlines escaped",
+  );
+
+  // Spreadsheet formula injection is neutralized (Checkpoint 8B, P0.3):
+  // synthetic hostile cells must gain a leading single quote.
+  const HOSTILE_CELLS: { input: string; expected: string }[] = [
+    { input: "=cmd()", expected: "'=cmd()" },
+    { input: "+SUM(A1:A2)", expected: "'+SUM(A1:A2)" },
+    { input: "-10+20", expected: "'-10+20" },
+    { input: "@evil", expected: "'@evil" },
+  ];
+  const hostileFailures = HOSTILE_CELLS.filter(
+    ({ input, expected }) => toCsvValue(input) !== expected,
+  );
+  check(
+    "formula-injection cells are neutralized",
+    hostileFailures.length === 0 &&
+      toCsvValue("\ttab-start").startsWith("'") &&
+      toCsv([{ key: "v", label: "v" }], [{ v: "=cmd()" }]).includes("'=cmd()"),
+    hostileFailures.length === 0
+      ? `${HOSTILE_CELLS.length} hostile cells prefixed with ' (plus tab/CR starts)`
+      : `unneutralized: ${hostileFailures.map(({ input }) => input).join(", ")}`,
+  );
+  check(
+    "normal cells are unaffected by formula guard",
+    toCsvValue("Diego Maradona") === "Diego Maradona" &&
+      toCsvValue("3–2") === "3–2" &&
+      toCsvValue(52) === "52" &&
+      toCsvValue("") === "",
+    "plain text, en-dash scores, and numbers unchanged",
   );
 
   const jsonExport = {

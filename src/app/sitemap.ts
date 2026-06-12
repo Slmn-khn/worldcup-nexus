@@ -1,12 +1,15 @@
 // Sitemap generated from the live database (Checkpoint 7A). Historical data
 // is stable, so detail pages use low-frequency entries. A query failure
 // throws — failing the build loudly beats shipping a bad sitemap.
+// Revalidated daily (Checkpoint 8B, P1.3) instead of force-dynamic — the
+// content only changes on data import, and the four findMany queries were a
+// free database-load amplifier when run per request.
 
 import type { MetadataRoute } from "next";
 import { prisma } from "@/server/db/prisma";
 import { siteConfig } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.siteUrl.replace(/\/$/, "");

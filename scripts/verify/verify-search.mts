@@ -6,7 +6,7 @@
 
 import "dotenv/config";
 
-import { searchWorldCupAtlas } from "@/server/search/search";
+import { searchWorldCupAtlas, MAX_QUERY_LENGTH } from "@/server/search/search";
 
 const EXPECTED_QUERIES = ["maradona", "brazil", "1986", "argentina france"];
 
@@ -30,6 +30,24 @@ async function main() {
         response.total > 0
           ? `${response.total} results (${groupSummary}); top: ${top?.title ?? "?"}`
           : "no results",
+    });
+  }
+
+  // Hardening (Checkpoint 8B, P1.2): a very long query must be truncated
+  // server-side and return normally — never crash or error.
+  const longQuery = "maradona ".repeat(1200); // ~10,800 chars
+  try {
+    const longResponse = await searchWorldCupAtlas(longQuery, { limit: 5 });
+    checks.push({
+      query: `<${longQuery.length}-char query>`,
+      passed: typeof longResponse.total === "number",
+      detail: `handled without throwing (cap ${MAX_QUERY_LENGTH} chars, ${longResponse.total} results)`,
+    });
+  } catch (error) {
+    checks.push({
+      query: `<${longQuery.length}-char query>`,
+      passed: false,
+      detail: `threw: ${error instanceof Error ? error.message : String(error)}`,
     });
   }
 

@@ -1,8 +1,37 @@
 # Security Hardening Plan — WORLDCUP Nexus
 
 Companion to `docs/SECURITY_AUDIT.md` (Checkpoint 8A). Items are sequenced
-by deployment priority. No item in this plan has been implemented yet —
-this checkpoint is audit-only.
+by deployment priority.
+
+## Implementation status (Checkpoint 8B, 2026-06-12)
+
+| Item | Status |
+| --- | --- |
+| P0.1 — Production-safe API errors | ✅ Implemented (`src/server/security/api-errors.ts`) |
+| P0.2 — Security headers + Report-Only CSP | ✅ Implemented (`next.config.ts`; HSTS production-only) |
+| P0.3 — CSV formula-injection neutralization | ✅ Implemented (`src/server/exports/csv.ts`) |
+| P0.4 — Production environment guarantees | ⏳ Deployment-time (see checklist below) |
+| P1.1 — API rate limiting | ✅ Implemented (in-memory baseline, `src/server/security/rate-limit.ts`) |
+| P1.2 — Search query length cap | ✅ Implemented (200 chars, `src/server/search/search.ts`) |
+| P1.3 — Sitemap caching | ✅ Implemented (`revalidate = 86400`) |
+| P1.4 — Dependency advisories | ✅ Resolved (`pnpm.overrides`; `pnpm audit` clean) |
+| P1.5 — Privacy page | ✅ Implemented (`/privacy` + footer link) |
+| P2.x | ⏳ Post-launch (CSP enforcement, CI, observability, Docker hygiene) |
+
+Known limitations of the implemented baseline:
+
+- **Rate limiting is in-memory and per-process/instance.** Counters reset
+  on restart/redeploy and are not shared across instances. Adequate at
+  launch scale; serious traffic should add platform/WAF or shared-store
+  (e.g. Redis) rate limiting on top.
+- **CSP is Report-Only.** Enforcement is a later checkpoint (P2.1) after
+  observing violations in the wild. MUI/Emotion and the Next App Router
+  require `'unsafe-inline'` until a nonce-based CSP is intentionally
+  designed.
+- **HSTS is emitted only when `NODE_ENV=production`** and presumes the
+  deployed site is HTTPS-only — confirm at deploy time before announcing.
+- **Sitemap now revalidates daily** (ISR) — it is generated at build time,
+  so the build environment needs database connectivity.
 
 ---
 
@@ -209,9 +238,10 @@ this checkpoint is audit-only.
 ### P2.5 — Housekeeping
 
 - Remove or adopt the unused `zod` dependency (decide one way).
-- Rename the export file `worldcup-atlas-explorer.csv` →
-  `worldcup-nexus-explorer.csv` (cosmetic branding).
-- Add a `SECURITY.md` with a vulnerability-report contact.
+- ~~Rename the export file `worldcup-atlas-explorer.csv` →
+  `worldcup-nexus-explorer.csv`~~ — **done in Checkpoint 8B**.
+- ~~Add a `SECURITY.md` with a vulnerability-report contact~~ — **done in
+  Checkpoint 8B** (private GitHub security advisory / maintainer contact).
 - Schedule quarterly `pnpm audit` + dependency review.
 - Validation for all: full command suite green.
 

@@ -3,6 +3,15 @@
 Checkpoint 8A. Code/configuration audit performed 2026-06-12 against the
 local repository. No code was modified as part of this audit.
 
+> **Update (Checkpoint 8B, 2026-06-12):** the hardening items derived from
+> this audit have been implemented — findings 1 (headers + Report-Only
+> CSP), 2 (rate limiting), 3 (production-safe error responses), 4 (CSV
+> formula neutralization), 5 (sitemap revalidation), 6 (dependency
+> overrides; `pnpm audit` clean), 7 (200-char query cap), 12 (export
+> filename rename), and 14 (privacy page) are resolved in code. P0.4
+> (production environment guarantees) remains deployment-time. See the
+> implementation-status table in `docs/SECURITY_HARDENING_PLAN.md`.
+
 ## Scope
 
 Audited surfaces:

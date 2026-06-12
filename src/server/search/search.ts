@@ -14,6 +14,9 @@ import {
 
 const DEFAULT_LIMIT = 18;
 const MAX_LIMIT = 50;
+// Server-side query length cap (Checkpoint 8B, P1.2) — applied here so every
+// caller is covered; long queries are truncated, never rejected.
+export const MAX_QUERY_LENGTH = 200;
 
 const GROUP_BY_TYPE: Record<
   SearchDocumentType,
@@ -31,7 +34,7 @@ export async function searchWorldCupAtlas(
   query: string,
   options: { limit?: number; types?: SearchDocumentType[] } = {},
 ): Promise<SearchResponseDto> {
-  const trimmed = query.trim();
+  const trimmed = query.trim().slice(0, MAX_QUERY_LENGTH);
   if (trimmed === "") return emptySearchResponse("");
 
   const limit = Math.min(

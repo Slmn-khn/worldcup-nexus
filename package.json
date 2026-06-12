@@ -10,6 +10,7 @@
     "data:verify:queries": "tsx scripts/verify/verify-page-queries.ts",
     "export:verify": "tsx scripts/verify/verify-export.ts",
     "public:verify": "tsx scripts/verify/verify-public-routes.ts",
+    "security:verify": "tsx scripts/verify/verify-security.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
@@ -43,6 +44,12 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "zod": "^4.4.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "postcss@<8.5.10": ">=8.5.10",
+      "@hono/node-server@<1.19.13": ">=1.19.13"
+    }
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
