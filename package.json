@@ -2,6 +2,7 @@
   "name": "worldcup-atlas",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@8.15.1",
   "scripts": {
     "data:download": "tsx scripts/import/download-fjelstul.ts",
     "data:import": "tsx scripts/import/import-fjelstul.ts",
@@ -13,7 +14,10 @@
     "security:verify": "tsx scripts/verify/verify-security.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
+    "prod:preflight": "tsx scripts/verify/verify-production-readiness.ts",
+    "prod:validate": "pnpm security:verify && pnpm public:verify && pnpm export:verify && pnpm search:verify && pnpm data:verify:queries && pnpm data:verify && pnpm typecheck && pnpm lint && pnpm build && pnpm test:e2e",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

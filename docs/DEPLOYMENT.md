@@ -1,16 +1,209 @@
 # WORLDCUP Nexus — Deployment
 
-## Required environment variables
+Production deployment guide (Checkpoint 8C). Companion documents:
 
-| Variable               | Purpose                                              |
-| ---------------------- | ---------------------------------------------------- |
-| `DATABASE_URL`         | PostgreSQL connection string (Prisma driver adapter) |
-| `MEILISEARCH_HOST`     | Meilisearch server URL                               |
-| `MEILISEARCH_API_KEY`  | Meilisearch API/master key                           |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (metadata, sitemap, robots)       |
+- [docs/PRODUCTION_RUNBOOK.md](PRODUCTION_RUNBOOK.md) — step-by-step launch runbook
+- [docs/VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md) — Vercel-specific notes
+- [docs/DATABASE_PRODUCTION.md](DATABASE_PRODUCTION.md) — PostgreSQL production notes
+- [docs/MEILISEARCH_PRODUCTION.md](MEILISEARCH_PRODUCTION.md) — Meilisearch production notes
+- [docs/SECURITY_AUDIT.md](SECURITY_AUDIT.md) / [docs/SECURITY_HARDENING_PLAN.md](SECURITY_HARDENING_PLAN.md)
 
-Copy `.env.example` to `.env` for local development. Never commit secrets —
-`.env` is git-ignored.
+## 1. Overview
+
+WORLDCUP Nexus deploys as a **read-only public web app**: the runtime
+serves pages and search/export APIs only. All write operations —
+migrations, data import, search indexing — run **out of band from a
+trusted admin environment** (a maintainer machine or a CI job), never
+through public APIs. There is no admin dashboard and there are no user
+accounts in v1.
+
+**Recommended v1 architecture** (recommended path, not a hard vendor
+lock — any equivalent works):
+
+| Concern | Recommended | Acceptable alternatives |
+| --- | --- | --- |
+| App hosting | Vercel | Any Node 20+ host that runs `next start` |
+| Database | Supabase PostgreSQL | Neon, RDS, any hosted PostgreSQL 16+ |
+| Search | Meilisearch Cloud | Self-hosted private Meilisearch ≥ v1.15 |
+| Import/indexing | Trusted local/admin machine | Private CI job with scoped secrets |
+
+Internal identifiers kept from early development (allowed, cosmetic):
+the package name `worldcup-atlas`, the local database name
+`worldcup_atlas`, local Docker container names, and the Meilisearch
+index uid `worldcup_atlas_search`. None of these are user-facing.
+
+## 2. Required services
+
+1. **Hosted PostgreSQL** (16+ recommended, matching local Docker).
+2. **Meilisearch** (v1.15+, HTTPS, private or key-protected — never an
+   open public instance).
+3. **App hosting** with Node 20+, environment variable support, and
+   HTTPS (Vercel recommended).
+4. Optional: platform WAF / rate limiting in front of `/api/*`
+   (reinforces the built-in per-instance limiter).
+
+## 3. Required environment variables
+
+Templates: `.env.example` (local), `.env.production.example`
+(production placeholders — never commit real values).
+
+| Variable | Required | Used by | Local example | Production guidance | Secret? |
+| --- | --- | --- | --- | --- | --- |
+| `DATABASE_URL` | Yes | App runtime, `db:deploy`, import/verify scripts | `postgresql://worldcup:worldcup@localhost:5432/worldcup_atlas` | Hosted PostgreSQL connection string; use the **pooled** endpoint if the provider offers one | **Secret, server-only** |
+| `DIRECT_URL` | Optional | Reserved for pooled setups (migrations/import direct connection) | same as `DATABASE_URL` | Direct (non-pooled) endpoint; same as `DATABASE_URL` if no pooler. Note: current code reads only `DATABASE_URL` — see DATABASE_PRODUCTION.md | **Secret, server-only** |
+| `MEILISEARCH_HOST` | Yes | `/api/search` service, `search:index` | `http://localhost:7700` | HTTPS endpoint of the production instance | Server-only (host URL itself is sensitive-ish; treat as private) |
+| `MEILISEARCH_API_KEY` | Yes | `/api/search` service, `search:index` | local docker master key | **Scoped search-only key** for the app runtime; admin/indexing key is used only when running `search:index` from an admin environment | **Secret, server-only** |
+| `NEXT_PUBLIC_SITE_URL` | Yes | Metadata, Open Graph, sitemap, robots | `http://localhost:3000` | The canonical production URL (`https://…`); set **before building** | Public (inlined into the client bundle by design) |
+| `NODE_ENV` | Yes (platform-set) | Error detail gating, HSTS, dev endpoint gate, Prisma logging | `development` | Must be `production` (Vercel sets it automatically) | Public |
+
+Rules:
+
+- `DATABASE_URL` and `MEILISEARCH_API_KEY` are **server-only** — they are
+  read exclusively in server modules and must never appear in
+  `NEXT_PUBLIC_*` variables or client code.
+- The app runtime should hold a **scoped/search-only Meilisearch key**
+  whenever the deployment supports it; the admin key exists only in the
+  admin environment that runs indexing.
+- Never commit real values; set them in the platform's env settings.
+
+## 4. Production database setup
+
+See [DATABASE_PRODUCTION.md](DATABASE_PRODUCTION.md). Summary: create a
+hosted PostgreSQL database with strong unique credentials, restrict
+network access to the app platform and the admin environment, enable
+automated backups, and (recommended) split roles: a write-capable
+migration/import role and a read-only runtime role.
+
+## 5. Production Meilisearch setup
+
+See [MEILISEARCH_PRODUCTION.md](MEILISEARCH_PRODUCTION.md). Summary:
+HTTPS endpoint, `MEILI_ENV=production`, master key vaulted, scoped
+search-only key for the app, port never publicly reachable without keys.
+
+## 6. Production migration workflow
+
+From the admin environment, with production `DATABASE_URL` exported for
+the command only:
+
+```bash
+pnpm db:deploy        # prisma migrate deploy
+```
+
+- `prisma migrate deploy` applies committed migrations exactly — it never
+  generates new ones, never resets, and is the **only** migration command
+  for production/staging.
+- `pnpm db:migrate` (`prisma migrate dev`) is **local development only**;
+  never run it against a production database.
+- Migrations are deliberate, manual steps — nothing applies them
+  automatically on boot or deploy.
+
+## 7. Production data import workflow
+
+From the admin environment (never via public API — no API route can
+trigger imports, verified by `pnpm prod:preflight`):
+
+```bash
+pnpm data:download            # fetch + cache source CSVs (Fjelstul World Cup Database)
+pnpm data:inspect             # optional: verify CSV headers/shape
+pnpm data:import -- --reset   # normalize into PostgreSQL (full reseed)
+pnpm data:verify              # integrity checks against the imported data
+```
+
+`--reset` clears and reimports — on production this is the supported
+path (the dataset is historical and changes only when re-imported).
+Take a DB backup/snapshot before a production re-import.
+
+## 8. Search indexing workflow
+
+From the admin environment, using the **admin/indexing key** (not the
+app's runtime key):
+
+```bash
+pnpm search:index             # rebuild settings + documents, waits for tasks
+pnpm search:verify            # common-query checks through the app's service
+```
+
+Re-run after **every** data import — the index is a snapshot of the
+database. Index documents are built only from normalized tables;
+RawSourceRecord is never indexed.
+
+## 9. Vercel deployment workflow
+
+See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md). Summary: connect the
+repo, framework Next.js, install `pnpm install --frozen-lockfile`, build
+`pnpm build` (run `pnpm db:generate` first — the Prisma client in
+`src/generated/` is git-ignored), set the env vars from section 3, and
+note the build needs database connectivity (the sitemap is generated at
+build time with daily revalidation).
+
+## 10. Security checklist
+
+Code-level hardening shipped in Checkpoint 8B (headers + Report-Only
+CSP, production-safe API errors, rate limiting, CSV formula
+neutralization, query caps — details in SECURITY_HARDENING_PLAN.md).
+Deployment-time items:
+
+- [ ] `NODE_ENV=production` confirmed (gates `/api/dev/data-summary`,
+      enables HSTS, hides error detail).
+- [ ] HTTPS enforced; HSTS header verified after deploy
+      (`max-age=63072000; includeSubDomains; preload` — only enable when
+      HTTPS-only is certain).
+- [ ] Scoped search-only Meilisearch key in the app; master key vaulted;
+      `MEILI_ENV=production`; port 7700 not publicly reachable.
+- [ ] Least-privilege Postgres runtime role (SELECT-only) — if deferred,
+      track as launch follow-up (see DATABASE_PRODUCTION.md).
+- [ ] All env vars set in the platform; nothing committed.
+- [ ] Automated DB backups enabled; restore tested once.
+- [ ] Logs/alerts: monitor 5xx rate, 429 rate, `/api/export` volume.
+- [ ] Optional platform WAF/rate limits on `/api/*` (the built-in
+      limiter is per-instance only).
+- [ ] `pnpm audit` clean at deploy time.
+
+## 11. Rollback plan
+
+- **App:** redeploy the previous build (on Vercel: promote the previous
+  deployment — instant).
+- **Database:** migrations are forward-only; if a bad import corrupted
+  data, restore the pre-import backup/snapshot, then re-run
+  `pnpm search:index` so the index matches the restored data.
+- **Search:** the index can always be rebuilt from the database
+  (`pnpm search:index`); if possible keep the previous index until the
+  new one passes `pnpm search:verify`.
+- Order matters: restore DB first, then reindex, then verify
+  (`pnpm data:verify && pnpm search:verify`).
+
+## 12. Post-deploy smoke tests
+
+Run through the list in [PRODUCTION_RUNBOOK.md](PRODUCTION_RUNBOOK.md)
+§7–8: all public pages (`/`, `/tournaments`, `/matches`, `/countries`,
+`/players`, `/records`, `/explorer`, `/sources`, `/about`, `/privacy`),
+`/api/health`, a search query, a CSV export, `/sitemap.xml`,
+`/robots.txt`, the security headers, and confirm
+`/api/dev/data-summary` returns 404.
+
+## 13. Known limitations
+
+- **Detail-route not-found pages return HTTP 200.** Dynamic detail routes
+  (`/tournaments/[year]`, `/matches/[idOrSlug]`, `/countries/[slug]`,
+  `/players/[slug]`) stream through a `loading.tsx` boundary, so when an
+  entity is missing the not-found UI renders correctly but the HTTP
+  status is 200. Mitigated with `robots: noindex` fallback metadata; the
+  global catch-all returns a true 404.
+- **Rate limiting is per-instance and in-memory** — resets on redeploy,
+  not shared across instances/regions. Reinforce with platform/WAF
+  limits for serious traffic.
+- **CSP is Report-Only** — enforcement is a post-launch checkpoint after
+  observing violations (hardening plan P2.1).
+- **Build needs database connectivity** — the sitemap (revalidate 24h)
+  is generated at build time; all other data pages are fully dynamic and
+  need DB connectivity at runtime.
+- **CI runs static checks only** (typecheck, lint, security checks, and
+  a build against an empty migrated database). Data-dependent suites
+  (`data:verify`, `search:verify`, `test:e2e`, `public:verify`,
+  `export:verify`) need imported data and run locally/admin-side via
+  `pnpm prod:validate` — see `.github/workflows/ci.yml`.
+- In-app search degrades gracefully: if Meilisearch is down the API
+  returns 503 and pages keep working.
 
 ## Local development
 
@@ -18,104 +211,20 @@ Copy `.env.example` to `.env` for local development. Never commit secrets —
 docker compose up -d          # PostgreSQL + Meilisearch
 pnpm install
 pnpm db:generate              # generate the Prisma client (src/generated/)
-pnpm prisma migrate dev       # apply schema migrations
+pnpm db:migrate               # prisma migrate dev — LOCAL ONLY
 pnpm data:download            # cache source CSVs (Fjelstul World Cup Database)
 pnpm data:import -- --reset   # normalize into PostgreSQL
 pnpm search:index             # build the Meilisearch index
 pnpm dev                      # http://localhost:3000
 ```
 
-Verification suite (recommended before any deploy):
+Full local validation before any deploy:
 
 ```bash
-pnpm data:verify
-pnpm data:verify:queries
-pnpm search:verify
-pnpm export:verify
-pnpm public:verify
-pnpm security:verify
+pnpm prod:preflight           # static deployment-readiness checks
+pnpm prod:validate            # all verify suites + typecheck + lint + build + e2e
 pnpm audit
-pnpm typecheck && pnpm lint && pnpm build
-pnpm test:e2e          # Playwright smoke tests (needs DB + app running or webServer)
 ```
-
-## Known caveats
-
-- **Detail-route not-found pages return HTTP 200.** Dynamic detail routes
-  (`/tournaments/[year]`, `/matches/[idOrSlug]`, `/countries/[slug]`,
-  `/players/[slug]`) stream through a `loading.tsx` boundary, so when an
-  entity is missing the not-found UI renders correctly but the HTTP status
-  is 200 (the shell was already sent). Mitigation in place: the fallback
-  metadata for those pages sets `robots: noindex`, so crawlers will not
-  index them. The global catch-all not-found returns a true 404. A full fix
-  would mean removing the skeleton loading states from those routes —
-  deliberately not done; revisit only if SEO audits demand it.
-
-## Production notes
-
-1. **Database** — a hosted PostgreSQL provider is required. Set
-   `DATABASE_URL`, then run migrations: `pnpm prisma migrate deploy`.
-2. **Search** — a hosted or self-hosted Meilisearch instance is required.
-   Set `MEILISEARCH_HOST` / `MEILISEARCH_API_KEY` (use a scoped API key in
-   production, not the master key, if the host supports it).
-3. **Data pipeline** — run once against the production database:
-   `pnpm data:download && pnpm data:import -- --reset && pnpm data:verify`.
-4. **Search index** — run `pnpm search:index` after every data import
-   (the index is a snapshot of the database).
-5. **Site URL** — set `NEXT_PUBLIC_SITE_URL` to the production URL before
-   building; metadata, Open Graph URLs, sitemap, and robots all derive from
-   it.
-6. **Build** — the generated Prisma client lives in `src/generated/` and is
-   git-ignored: run `pnpm db:generate` before `pnpm build` in CI/CD.
-7. **Pages are dynamic** — all data pages render server-side per request
-   (`force-dynamic`), so the app server needs database connectivity at
-   runtime, not just at build time. Exception: the sitemap revalidates
-   daily (`revalidate = 86400`, Checkpoint 8B) and is generated at build
-   time — the build environment also needs database connectivity.
-
-## Security hardening (Checkpoint 8B)
-
-The application ships with the following baked in (see
-`docs/SECURITY_HARDENING_PLAN.md` for the full status table):
-
-- **Security headers** on every route via `next.config.ts`: nosniff,
-  Referrer-Policy, X-Frame-Options DENY, Permissions-Policy, COOP/CORP,
-  and a **Report-Only** CSP. **HSTS**
-  (`max-age=63072000; includeSubDomains; preload`) is emitted only when
-  `NODE_ENV=production` — confirm the deployed site is HTTPS-only before
-  go-live, since HSTS pins browsers to HTTPS for two years.
-- **Report-Only CSP**: observe violation reports in browser consoles /
-  platform tooling for 1–2 weeks, then switch to enforcement (plan P2.1).
-- **API rate limiting** (in-memory, fixed-window, per IP):
-  search/explorer 60 req/min, export 6 req/min, health 120 req/min,
-  returning 429 + `Retry-After`. **This is per process/instance** —
-  counters reset on redeploy and are not shared across instances. For
-  serious traffic, add platform/WAF or shared-store rate limiting and
-  treat the in-app limiter as defense-in-depth. Client identity comes
-  from `x-forwarded-for` / `x-real-ip` / `cf-connecting-ip`; ensure the
-  platform/proxy sets one of these (otherwise all clients share one
-  "unknown" bucket).
-- **Production-safe API errors**: routes log full errors server-side and
-  return only stable public messages; the `detail` field exists in
-  development only.
-- **CSV export** neutralizes spreadsheet formula injection and is capped
-  at 5,000 rows; the download is `worldcup-nexus-explorer.csv`.
-
-### Deployment-time guarantees (plan P0.4 — not code)
-
-- [ ] `NODE_ENV=production` on the platform (gates the dev endpoint,
-      enables HSTS).
-- [ ] Scoped **search-only** Meilisearch key for the app; master key
-      vaulted; Meilisearch on a private network, port 7700 not public;
-      `MEILI_ENV=production`.
-- [ ] Least-privilege Postgres **runtime role (SELECT-only)**; separate
-      role for migrations/import.
-- [ ] All env vars set in the platform: `DATABASE_URL`,
-      `MEILISEARCH_HOST`, `MEILISEARCH_API_KEY`, `NEXT_PUBLIC_SITE_URL`.
-- [ ] HTTPS enforced; verify HSTS header appears after deploy.
-- [ ] Automated DB backups with tested restore.
-- [ ] Logs/alerts wired: monitor 5xx and 429 rates and `/api/export`
-      volume.
 
 ## Non-negotiables
 
@@ -125,3 +234,4 @@ The application ships with the following baked in (see
   Cup Database license. Removing it would violate the data license.
 - The independent-project disclaimer ("not affiliated with FIFA") must
   remain visible in the footer and on `/sources` and `/about`.
+- The `/privacy` page and `SECURITY.md` remain part of the public surface.

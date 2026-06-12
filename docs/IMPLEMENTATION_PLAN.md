@@ -450,6 +450,54 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
 - Remaining: standings/bracket views, source reconciliation, deployment
   itself.
 
+### Checkpoint 8A — Security audit (complete)
+
+- Static code/configuration audit of the full public surface: API
+  routes, server layer, input parsing, rendering, configuration,
+  scripts, dependency tree. No code changes — findings and remediation
+  sequencing only.
+- Deliverables: `docs/SECURITY_AUDIT.md` (no critical findings; overall
+  risk Medium pre-hardening) and `docs/SECURITY_HARDENING_PLAN.md`
+  (P0/P1/P2 sequenced plan).
+
+### Checkpoint 8B — Security hardening implementation (complete)
+
+- P0.1 production-safe API errors (`src/server/security/api-errors.ts`;
+  `detail` is development-only, full errors logged server-side).
+- P0.2 baseline security headers + Report-Only CSP in `next.config.ts`
+  (HSTS emitted only in production).
+- P0.3 CSV formula-injection neutralization in
+  `src/server/exports/csv.ts`.
+- P1.1 in-memory fixed-window API rate limiting
+  (`src/server/security/rate-limit.ts`: search/explorer 60/min, export
+  6/min, health 120/min; 429 + Retry-After).
+- P1.2 search query cap (200 chars, service-level); P1.3 sitemap
+  `revalidate = 86400`; P1.4 dependency advisories cleared via
+  `pnpm.overrides` (audit clean); P1.5 `/privacy` page + footer link.
+- Housekeeping: `SECURITY.md`, export renamed to
+  `worldcup-nexus-explorer.csv`, `pnpm security:verify` suite, e2e
+  coverage for headers/privacy/export filename (20 tests).
+
+### Checkpoint 8C — Deployment preparation (complete)
+
+- `docs/DEPLOYMENT.md` rewritten as the production guide (recommended
+  Vercel + hosted PostgreSQL + private Meilisearch architecture, env
+  var table, migration/import/index workflows, security checklist,
+  rollback, smoke tests, known limitations).
+- New docs: `docs/PRODUCTION_RUNBOOK.md` (step-by-step launch),
+  `docs/VERCEL_DEPLOYMENT.md`, `docs/DATABASE_PRODUCTION.md`,
+  `docs/MEILISEARCH_PRODUCTION.md`.
+- `.env.production.example` (placeholders only) + annotated
+  `.env.example`; `.gitignore` keeps both templates tracked.
+- Scripts: `db:deploy` (prisma migrate deploy), `prod:preflight`
+  (`scripts/verify/verify-production-readiness.ts` — static
+  deployment-readiness checks, no live services), `prod:validate`
+  (full verification gate).
+- `.github/workflows/ci.yml`: static CI (typecheck, lint,
+  security:verify, preflight, audit, build against an empty migrated
+  Postgres service). Data-dependent suites stay local by design.
+- Deployment itself is deliberately NOT performed in this checkpoint.
+
 ### Checkpoint 7C Revised — World Cup Vault Editorial Redesign (complete)
 
 The UI follows the uploaded World Cup Vault references and the design.md
