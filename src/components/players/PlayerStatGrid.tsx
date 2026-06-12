@@ -1,5 +1,5 @@
-import Box from "@mui/material/Box";
 import StatCard from "@/components/ui/StatCard";
+import StaggerContainer from "@/components/motion/StaggerContainer";
 import { formatNumber } from "@/lib/format";
 import type { PlayerProfileDto } from "@/server/queries/types";
 
@@ -31,7 +31,7 @@ export default function PlayerStatGrid({
   ];
 
   return (
-    <Box
+    <StaggerContainer
       sx={{
         display: "grid",
         gap: 2,
@@ -41,6 +41,6 @@ export default function PlayerStatGrid({
       {stats.map((stat) => (
         <StatCard key={stat.label} label={stat.label} value={stat.value} />
       ))}
-    </Box>
+    </StaggerContainer>
   );
 }

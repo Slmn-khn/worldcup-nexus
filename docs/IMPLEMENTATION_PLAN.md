@@ -342,6 +342,111 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
 - `pnpm public:verify` extended: every nav/footer link target must have a
   route file; 26 loading/error/not-found state files audited.
 
+### Checkpoint 7C — Professional visual redesign system (complete)
+
+- **Typography**: Playfair serif replaced with Space Grotesk
+  (`--font-display`) for headings, scorelines, and stats; Inter body at
+  15–17px; eyebrow label system (small caps, 0.14em); tabular numerals on
+  all data numbers; raw stage strings now display through `formatStage()`.
+- **Theme/tokens** (`src/theme/tokens.ts` rewritten): restrained palette —
+  base `#050A12`, surfaces `#0D1828/#122238/#172A44`, slate hairline
+  borders, gold `#F4C95D` + soft `#D6A84F`, single cyan data accent
+  `#38BDF8`, semantic green `#22C55E`; purple and neon green removed.
+  De-MUI'd component defaults: cards (gradient panel, 12px radius, soft
+  shadow), buttons, chips (22px small, 7px radius), breadcrumbs, selects,
+  focused inputs (cyan ring), table cells.
+- **Layout system**: shared `HeroSurface` + `PageHeader` (used by all four
+  index pages, explorer, sources, about); navbar rebuilt (brand tile, gold
+  underline active state, mobile overflow fade); editorial three-column
+  footer (disclaimer + attribution intact); `SectionHeading` with eyebrow;
+  `EmptyState` with icon panel instead of dashed placeholder.
+- **Cards**: shared anatomy (eyebrow → title → key stat → metadata → CTA);
+  number-first StatCard/RecordStatCard (record value is now the hero; fixed
+  mid-score line-break bug with word joiners); PlayerCard letter avatar
+  replaced by flag + position tile; CountryCard flags + trophy mark;
+  homepage now passes flags through.
+- **Match center**: scoreboard rebuilt as a composed panel — eyebrow
+  (tournament · stage · date), 3.2–4.5rem tabular score, winner/penalties
+  chips; match info grid stage-formatted.
+- **Tables**: leaderboards became ranked panels with proportional bars
+  (scaled to #1) and gold top-3; explorer chips moved to a tint tier system
+  (penalty kick de-alarmed to cyan tint, substitution to green tint, Award
+  ghost); DataGrid header/footer chrome, uppercase tracked headers, cyan
+  row hover; timeline sub chips tinted (literal card colors kept).
+- **Search**: cyan focus ring + icon accent on the new surfaces; grouped
+  dropdown panel restyled; loading shimmer retained (static under reduced
+  motion).
+- Motion additions intentionally deferred — see Checkpoint 7D.
+
+### Checkpoint 7D — Motion + football constellation (complete)
+
+- `motion` package with app-wide `MotionConfig reducedMotion="user"`
+  (`MotionProvider` in the provider tree); primitives extended to the 7D
+  spec: `FadeIn` (delay/y/once/duration), `StaggerContainer`
+  (staggerChildren + delayChildren), `MotionCard`, `ParallaxLayer`
+  (yRange/xRange/opacityRange with legacy drift alias), `PageTransition`.
+- `FootballConstellation` refined and mounted: content-safe layouts (nodes
+  live in the right half/top/bottom strips/corners — never over
+  headlines; match clusters sit at the far edges since the scoreboard
+  panel owns the center), gold+cyan-only palette per the style guide,
+  line opacity ≤0.11, deterministic seeded jitter (match slug /
+  tournament year), 5–8 mobile nodes via a CSS-hidden desktop group.
+- Applied: homepage hero (`hero` + ball node), records hero (`records`),
+  match detail hero (`match`, low intensity), explorer header
+  (`explorer` via the new PageHeader `decoration` slot), tournament
+  detail hero (`subtle`, low intensity).
+- Parallax hero orbs retained on the homepage; card hover motion via the
+  shared interactive sx (lift + gold border + shadow, reduced-motion
+  safe); search dropdown enter/exit, staggered group reveal, and loading
+  shimmer retained from 7C.
+- Section/timeline reveals deepened: match info grid, penalty shootout,
+  event breakdown, related links, all player profile lists, country
+  finals/top scorers/match list, and tournament teams/matches/scorers/
+  awards now FadeIn at container level (rows never animate
+  individually).
+- Reduced-motion: static constellation at lower opacity, no drift/pulse,
+  no parallax, opacity-only reveals; decorative layers aria-hidden +
+  pointer-events none.
+
+### Checkpoint 7C (superseded) — Cinematic motion system + visual upgrade (complete)
+
+- `motion` package with app-wide `MotionConfig reducedMotion="user"`;
+  reusable primitives (`FadeIn`, `StaggerContainer`, `ParallaxLayer`,
+  `MotionCard`, `PageTransition`) and visual atmosphere components
+  (`AtlasBackground`, `HeroOrb`, `PitchLines`).
+- Homepage hero rebuilt as a cinematic client component: layered gradient
+  atmosphere, pitch lines, parallax floating glow orbs, staggered headline/
+  CTA/search entrance. Route content gets a light keyed entrance via
+  `PageTransition` in the app shell.
+- Section reveals everywhere via `SectionHeading` (one wrap covers the whole
+  app); card grids and stat grids stagger in on home, index, records, and
+  detail pages; timelines reveal at container level (rows stay stable).
+- Card hover system upgraded: gold border, lift, glow shadow, and
+  `focus-within` parity across all clickable cards; search dropdown animates
+  in/out with `AnimatePresence`; buttons get a gold glow hover.
+- Performance/a11y guardrails: transform/opacity only, parallax limited to
+  the hero, no per-row table animation, reduced-motion honored at three
+  levels (MotionConfig, `useReducedMotion` guards, CSS fallback).
+- **Visual upgrade pass — "Cinematic Football Intelligence"**: design token
+  system in `src/theme/tokens.ts` (base `#050B14`, border `#263B56`,
+  electric cyan `#22D3EE` for interaction/search/data, pitch neon green
+  `#A3E635` for positive stats, rare purple `#8B5CF6` glow depth; gold
+  stays the brand color). Theme-level premium card panels (gradient
+  background, gold border, glow shadows), shared `interactiveCardSx`/
+  `glowPanelSx` replacing per-card hover duplication, cyan input focus
+  rings, `AtlasBackground`/`HeroOrb`/`PitchLines` reworked with
+  cyan/green/purple glow layers (cyan + purple orb variants added).
+  GlobalSearch upgraded to a command input: cyan focus glow, animated
+  cyan/gold loading shimmer (static strip under reduced motion), staggered
+  group reveal, cyan row hover light. Records hero gets full atmosphere;
+  leaderboards became premium panels with elevated header strips and
+  top-3 gold ranks. Explorer filters framed as a "Query Console" command
+  panel; cyan active-filter chips, cyan export buttons, DataGrid depth +
+  row hover tint (CSS only). Detail heroes re-lit with gold/cyan/purple
+  gradients on the deeper base; match scoreboard gold glow; sub-on /
+  converted-penalty markers moved to pitch neon green with dark text
+  (labels preserved — meaning never color-only).
+
 - Remaining: standings/bracket views, source reconciliation, deployment
   itself.
 

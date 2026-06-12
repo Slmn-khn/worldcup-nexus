@@ -15,7 +15,10 @@ import {
 const DEFAULT_LIMIT = 18;
 const MAX_LIMIT = 50;
 
-const GROUP_BY_TYPE: Record<SearchDocumentType, keyof SearchResponseDto["groups"]> = {
+const GROUP_BY_TYPE: Record<
+  SearchDocumentType,
+  keyof SearchResponseDto["groups"]
+> = {
   tournament: "tournaments",
   country: "countries",
   player: "players",
@@ -31,7 +34,10 @@ export async function searchWorldCupAtlas(
   const trimmed = query.trim();
   if (trimmed === "") return emptySearchResponse("");
 
-  const limit = Math.min(MAX_LIMIT, Math.max(1, Math.trunc(options.limit ?? DEFAULT_LIMIT)));
+  const limit = Math.min(
+    MAX_LIMIT,
+    Math.max(1, Math.trunc(options.limit ?? DEFAULT_LIMIT)),
+  );
   const types =
     options.types !== undefined && options.types.length > 0
       ? options.types.filter((type) => SEARCH_DOCUMENT_TYPES.includes(type))
@@ -41,7 +47,9 @@ export async function searchWorldCupAtlas(
   const perTypeLimit = Math.max(2, Math.ceil(limit / types.length));
   const client = getSearchClient();
   const { results } = await client.multiSearch<
-    { queries: { indexUid: string; q: string; limit: number; filter: string }[] },
+    {
+      queries: { indexUid: string; q: string; limit: number; filter: string }[];
+    },
     SearchDocument
   >({
     queries: types.map((type) => ({
