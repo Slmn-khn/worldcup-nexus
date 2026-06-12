@@ -1,5 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import SportsSoccerRoundedIcon from "@mui/icons-material/SportsSoccerRounded";
+import { atlas } from "@/theme/tokens";
 
 type EmptyStateProps = {
   title: string;
@@ -15,15 +17,32 @@ export default function EmptyState({
   return (
     <Box
       sx={{
-        border: "1px dashed",
-        borderColor: "divider",
-        borderRadius: 2,
+        border: `1px solid ${atlas.border}`,
+        borderRadius: 3,
         px: 4,
         py: 6,
         textAlign: "center",
-        bgcolor: "background.paper",
+        background: atlas.cardGradient,
       }}
     >
+      <Box
+        aria-hidden
+        sx={{
+          width: 44,
+          height: 44,
+          mx: "auto",
+          mb: 2,
+          borderRadius: "50%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: atlas.surface2,
+          border: `1px solid ${atlas.border}`,
+          color: atlas.textMuted,
+        }}
+      >
+        <SportsSoccerRoundedIcon sx={{ fontSize: 22 }} />
+      </Box>
       <Typography
         variant="h6"
         component="p"

@@ -1,11 +1,13 @@
-import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
+import { atlas, interactiveCardSx, tabularNums } from "@/theme/tokens";
 
 type PlayerCardProps = {
   name: string;
@@ -42,16 +44,7 @@ export default function PlayerCard({
   ].filter((part): part is string => part !== null);
 
   return (
-    <Card
-      sx={{
-        height: "100%",
-        transition: "border-color 150ms ease, transform 150ms ease",
-        "&:hover": {
-          borderColor: "primary.main",
-          transform: "translateY(-2px)",
-        },
-      }}
-    >
+    <Card sx={interactiveCardSx}>
       <CardActionArea
         component={Link}
         href={href}
@@ -61,29 +54,59 @@ export default function PlayerCard({
           <Stack
             direction="row"
             spacing={1.5}
-            sx={{ mb: 1.5, alignItems: "center" }}
+            sx={{ mb: counts.length > 0 || summary ? 1.5 : 0 }}
           >
-            <Avatar
+            {/* Identity tile: nation flag (or a neutral person mark) +
+                position code — replaces the letter avatar. */}
+            <Box
+              aria-hidden
               sx={{
-                bgcolor: "#142338",
-                color: "primary.main",
-                border: "1px solid",
-                borderColor: "divider",
-                fontWeight: 700,
+                width: 44,
+                height: 44,
+                flexShrink: 0,
+                borderRadius: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                bgcolor: atlas.surface2,
+                border: `1px solid ${atlas.border}`,
+                gap: 0.1,
               }}
             >
-              {name.charAt(0)}
-            </Avatar>
-            <Stack>
+              {flagEmoji ? (
+                <Typography component="span" sx={{ fontSize: "1.15rem", lineHeight: 1 }}>
+                  {flagEmoji}
+                </Typography>
+              ) : (
+                <PersonRoundedIcon
+                  sx={{ fontSize: 18, color: atlas.textMuted }}
+                />
+              )}
+              {position ? (
+                <Typography
+                  component="span"
+                  sx={{
+                    fontSize: "0.58rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    color: atlas.textMuted,
+                    lineHeight: 1,
+                  }}
+                >
+                  {position}
+                </Typography>
+              ) : null}
+            </Box>
+            <Stack sx={{ minWidth: 0 }}>
               <Typography
                 variant="h6"
                 component="p"
-                sx={{ color: "text.primary", lineHeight: 1.3 }}
+                sx={{ color: "text.primary", lineHeight: 1.25 }}
               >
                 {name}
               </Typography>
               <Typography variant="caption" sx={{ color: "text.secondary" }}>
-                {flagEmoji ? `${flagEmoji} ` : ""}
                 {country}
                 {position ? ` · ${position}` : ""}
               </Typography>
@@ -92,7 +115,7 @@ export default function PlayerCard({
           {counts.length > 0 ? (
             <Typography
               variant="caption"
-              sx={{ color: "text.secondary", display: "block" }}
+              sx={{ ...tabularNums, color: "text.secondary", display: "block" }}
             >
               {counts.join(" · ")}
             </Typography>

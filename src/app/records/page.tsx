@@ -9,6 +9,7 @@ import PageContainer from "@/components/layout/PageContainer";
 import RecordsHero from "@/components/records/RecordsHero";
 import RecordsCategorySection from "@/components/records/RecordsCategorySection";
 import RecordStatCard from "@/components/records/RecordStatCard";
+import StaggerContainer from "@/components/motion/StaggerContainer";
 import { getRecordsOverview } from "@/server/queries/records";
 import type {
   RecordItemDto,
@@ -57,7 +58,7 @@ export default async function RecordsPage() {
 
       {highlights.length > 0 ? (
         <PageContainer sx={{ pt: { xs: 4, md: 5 } }}>
-          <Box
+          <StaggerContainer
             sx={{
               display: "grid",
               gap: 2,
@@ -71,7 +72,7 @@ export default async function RecordsPage() {
                 item={highlight.item}
               />
             ))}
-          </Box>
+          </StaggerContainer>
         </PageContainer>
       ) : null}
 

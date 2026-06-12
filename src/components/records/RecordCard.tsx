@@ -1,6 +1,7 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { atlas, eyebrowSx, glowPanelSx, tabularNums } from "@/theme/tokens";
 
 type RecordCardProps = {
   title: string;
@@ -14,16 +15,12 @@ export default function RecordCard({
   description,
 }: RecordCardProps) {
   return (
-    <Card sx={{ height: "100%" }}>
+    <Card sx={glowPanelSx}>
       <CardContent sx={{ p: 3 }}>
         <Typography
           variant="overline"
-          sx={{
-            color: "text.secondary",
-            letterSpacing: "0.12em",
-            display: "block",
-            mb: 1,
-          }}
+          component="p"
+          sx={{ ...eyebrowSx, color: atlas.textMuted, mb: 1 }}
         >
           {title}
         </Typography>
@@ -31,8 +28,10 @@ export default function RecordCard({
           variant="h4"
           component="p"
           sx={{
+            ...tabularNums,
             color: "primary.main",
-            fontSize: { xs: "1.6rem", md: "1.9rem" },
+            fontSize: { xs: "1.45rem", md: "1.7rem" },
+            lineHeight: 1.25,
             mb: 1,
           }}
         >

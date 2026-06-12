@@ -3,6 +3,7 @@ import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import EmptyState from "@/components/ui/EmptyState";
+import FadeIn from "@/components/motion/FadeIn";
 import { formatMinute } from "@/lib/format";
 import type { MatchDetailDto } from "@/server/queries/types";
 
@@ -16,23 +17,37 @@ type TimelineEvent = {
   detail: string;
 };
 
+// Goals are solid gold (the headline event); cards keep their literal card
+// colors; substitutions are quiet tints. Labels always carry the meaning.
 const CHIPS = {
-  goal: { label: "Goal", color: "#06111F", background: "#F4C95D" },
-  ownGoal: { label: "Own Goal", color: "#F8FAFC", background: "#7F1D1D" },
+  goal: { label: "Goal", color: "#07111F", background: "#F4C95D" },
+  ownGoal: {
+    label: "Own Goal",
+    color: "#FCA5A5",
+    background: "rgba(239, 68, 68, 0.16)",
+  },
   penaltyGoal: {
     label: "Penalty Goal",
-    color: "#06111F",
-    background: "#C9A13F",
+    color: "#07111F",
+    background: "#D6A84F",
   },
-  yellow: { label: "Yellow Card", color: "#06111F", background: "#FACC15" },
+  yellow: { label: "Yellow Card", color: "#07111F", background: "#FACC15" },
   secondYellow: {
     label: "Second Yellow",
-    color: "#06111F",
+    color: "#07111F",
     background: "#FB923C",
   },
   red: { label: "Red Card", color: "#F8FAFC", background: "#EF4444" },
-  subOn: { label: "Sub On", color: "#F8FAFC", background: "#1F7A4D" },
-  subOff: { label: "Sub Off", color: "#CBD5E1", background: "#253449" },
+  subOn: {
+    label: "Sub On",
+    color: "#4ADE80",
+    background: "rgba(34, 197, 94, 0.14)",
+  },
+  subOff: {
+    label: "Sub Off",
+    color: "#CBD5E1",
+    background: "rgba(148, 163, 184, 0.12)",
+  },
 };
 
 function buildEvents(match: MatchDetailDto): TimelineEvent[] {
@@ -121,92 +136,94 @@ export default function MatchTimeline({ match }: { match: MatchDetailDto }) {
   }
 
   return (
-    <Box
-      sx={{
-        border: "1px solid",
-        borderColor: "divider",
-        borderRadius: 2,
-        bgcolor: "background.paper",
-        overflow: "hidden",
-      }}
-    >
-      {events.map((event) => (
-        <Box
-          key={event.key}
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "48px auto 1fr",
-              md: "64px 140px 1fr auto",
-            },
-            alignItems: "center",
-            gap: { xs: 1.5, md: 2 },
-            px: 2,
-            py: 1.25,
-            borderBottom: "1px solid",
-            borderColor: "divider",
-            "&:last-of-type": { borderBottom: "none" },
-          }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: "primary.main", fontWeight: 700 }}
-          >
-            {formatMinute(event.minute, event.stoppageMinute) ?? "—"}
-          </Typography>
-          <Chip
-            label={event.chip.label}
-            size="small"
+    <FadeIn>
+      <Box
+        sx={{
+          border: "1px solid",
+          borderColor: "divider",
+          borderRadius: 2,
+          bgcolor: "background.paper",
+          overflow: "hidden",
+        }}
+      >
+        {events.map((event) => (
+          <Box
+            key={event.key}
             sx={{
-              bgcolor: event.chip.background,
-              color: event.chip.color,
-              fontWeight: 700,
-              justifySelf: "start",
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "48px auto 1fr",
+                md: "64px 140px 1fr auto",
+              },
+              alignItems: "center",
+              gap: { xs: 1.5, md: 2 },
+              px: 2,
+              py: 1.25,
+              borderBottom: "1px solid",
+              borderColor: "divider",
+              "&:last-of-type": { borderBottom: "none" },
             }}
-          />
-          <Box>
-            {event.primarySlug !== null ? (
+          >
+            <Typography
+              variant="body2"
+              sx={{ color: "primary.main", fontWeight: 700 }}
+            >
+              {formatMinute(event.minute, event.stoppageMinute) ?? "—"}
+            </Typography>
+            <Chip
+              label={event.chip.label}
+              size="small"
+              sx={{
+                bgcolor: event.chip.background,
+                color: event.chip.color,
+                fontWeight: 700,
+                justifySelf: "start",
+              }}
+            />
+            <Box>
+              {event.primarySlug !== null ? (
+                <Typography
+                  component={Link}
+                  href={`/players/${event.primarySlug}`}
+                  variant="body2"
+                  sx={{
+                    color: "text.primary",
+                    fontWeight: 600,
+                    "&:hover": { color: "primary.main" },
+                  }}
+                >
+                  {event.primary}
+                </Typography>
+              ) : (
+                <Typography
+                  variant="body2"
+                  sx={{ color: "text.primary", fontWeight: 600 }}
+                >
+                  {event.primary}
+                </Typography>
+              )}
               <Typography
-                component={Link}
-                href={`/players/${event.primarySlug}`}
-                variant="body2"
+                variant="caption"
                 sx={{
-                  color: "text.primary",
-                  fontWeight: 600,
-                  "&:hover": { color: "primary.main" },
+                  color: "text.secondary",
+                  display: { xs: "block", md: "none" },
                 }}
               >
-                {event.primary}
+                {event.detail}
               </Typography>
-            ) : (
-              <Typography
-                variant="body2"
-                sx={{ color: "text.primary", fontWeight: 600 }}
-              >
-                {event.primary}
-              </Typography>
-            )}
+            </Box>
             <Typography
               variant="caption"
               sx={{
                 color: "text.secondary",
-                display: { xs: "block", md: "none" },
+                display: { xs: "none", md: "block" },
               }}
             >
               {event.detail}
             </Typography>
           </Box>
-          <Typography
-            variant="caption"
-            sx={{
-              color: "text.secondary",
-              display: { xs: "none", md: "block" },
-            }}
-          >
-            {event.detail}
-          </Typography>
-        </Box>
-      ))}
-    </Box>
+        ))}
+      </Box>
+    </FadeIn>
   );
 }

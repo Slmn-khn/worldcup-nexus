@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { Providers } from "./providers";
 import AppShell from "@/components/layout/AppShell";
 import { siteConfig } from "@/lib/site";
@@ -10,9 +10,12 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+// Display face for headings, scorelines, and big numbers — modern,
+// technical, slightly sporty. Replaces the previous serif (Playfair),
+// which read old-fashioned for a sports intelligence product.
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-serif",
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -55,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body>
         <Providers>
           <AppShell>{children}</AppShell>

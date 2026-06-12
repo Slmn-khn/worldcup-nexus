@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import Chip from "@mui/material/Chip";
+import { atlas } from "@/theme/tokens";
 
 const SECTIONS = [
   { label: "Overview", anchor: "#overview" },
@@ -17,28 +17,40 @@ export default function TournamentSectionNav() {
       component="nav"
       aria-label="Tournament sections"
       sx={{
-        display: "flex",
-        gap: 1,
+        display: "inline-flex",
+        gap: 0.5,
+        maxWidth: "100%",
         overflowX: "auto",
-        pb: 0.5,
+        p: 0.5,
+        borderRadius: 2,
+        border: `1px solid ${atlas.border}`,
+        bgcolor: atlas.surface1,
         scrollbarWidth: "none",
         "&::-webkit-scrollbar": { display: "none" },
       }}
     >
       {SECTIONS.map((section) => (
-        <Chip
+        <Box
           key={section.anchor}
-          label={section.label}
           component="a"
           href={section.anchor}
-          clickable
-          variant="outlined"
           sx={{
+            px: 1.5,
+            py: 0.6,
+            borderRadius: 1.5,
+            fontSize: "0.82rem",
+            fontWeight: 600,
+            whiteSpace: "nowrap",
             color: "text.secondary",
-            borderColor: "divider",
-            "&:hover": { color: "primary.main", borderColor: "primary.main" },
+            transition: "color 150ms ease, background-color 150ms ease",
+            "&:hover": {
+              color: "text.primary",
+              bgcolor: atlas.surface2,
+            },
           }}
-        />
+        >
+          {section.label}
+        </Box>
       ))}
     </Box>
   );

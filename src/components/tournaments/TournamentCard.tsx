@@ -4,8 +4,15 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
+import {
+  atlas,
+  eyebrowSx,
+  interactiveCardSx,
+  tabularNums,
+} from "@/theme/tokens";
 
 type TournamentCardProps = {
   year: number;
@@ -41,16 +48,7 @@ export default function TournamentCard({
   ].filter((part): part is string => part !== null);
 
   return (
-    <Card
-      sx={{
-        height: "100%",
-        transition: "border-color 150ms ease, transform 150ms ease",
-        "&:hover": {
-          borderColor: "primary.main",
-          transform: "translateY(-2px)",
-        },
-      }}
-    >
+    <Card sx={interactiveCardSx}>
       <CardActionArea
         component={Link}
         href={href ?? `/tournaments/${year}`}
@@ -64,57 +62,73 @@ export default function TournamentCard({
             height: "100%",
           }}
         >
+          {/* Eyebrow: edition marker + host */}
           <Stack
             direction="row"
-            sx={{
-              mb: 0.5,
-              alignItems: "baseline",
-              justifyContent: "space-between",
-            }}
+            sx={{ mb: 0.75, alignItems: "baseline", gap: 1 }}
           >
             <Typography
-              variant="h3"
+              variant="overline"
               component="p"
-              sx={{ color: "primary.main", fontSize: "2rem" }}
+              sx={{ ...eyebrowSx, color: atlas.textMuted }}
             >
-              {year}
+              Edition
             </Typography>
             {host ? (
-              <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              <Typography
+                variant="caption"
+                sx={{ color: atlas.textMuted, ml: "auto" }}
+              >
                 Host: {host}
               </Typography>
             ) : null}
           </Stack>
+
+          {/* Title: the year carries the card */}
+          <Typography
+            variant="h3"
+            component="p"
+            sx={{
+              ...tabularNums,
+              color: "primary.main",
+              fontSize: "2.3rem",
+              lineHeight: 1,
+              mb: 0.75,
+            }}
+          >
+            {year}
+          </Typography>
           {name ? (
             <Typography
               variant="body2"
-              sx={{ color: "text.secondary", mb: 1.5 }}
+              sx={{ color: "text.secondary", mb: 2 }}
             >
               {name}
             </Typography>
           ) : null}
+
+          {/* Key result */}
           <Box
             sx={{
-              bgcolor: "#142338",
-              border: "1px solid",
-              borderColor: "divider",
-              borderRadius: 1.5,
+              bgcolor: atlas.surface2,
+              border: `1px solid ${atlas.border}`,
+              borderRadius: 2,
               px: 2,
               py: 1.25,
-              mb: 1.5,
+              mb: 2,
             }}
           >
             {winner ? (
               <>
                 <Typography
                   variant="body2"
-                  sx={{ color: "text.primary", fontWeight: 700 }}
+                  sx={{ ...tabularNums, color: "text.primary", fontWeight: 700 }}
                 >
                   {finalScore && runnerUp
                     ? `${winner} ${finalScore} ${runnerUp}`
                     : winner}
                 </Typography>
-                <Typography variant="caption" sx={{ color: "text.secondary" }}>
+                <Typography variant="caption" sx={{ color: atlas.textMuted }}>
                   {finalScore && runnerUp ? "Final" : "Champions"}
                 </Typography>
               </>
@@ -124,8 +138,13 @@ export default function TournamentCard({
               </Typography>
             )}
           </Box>
+
+          {/* Metadata row */}
           {counts.length > 0 ? (
-            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+            <Typography
+              variant="caption"
+              sx={{ ...tabularNums, color: "text.secondary" }}
+            >
               {counts.join(" · ")}
             </Typography>
           ) : null}
@@ -134,11 +153,22 @@ export default function TournamentCard({
               {summary}
             </Typography>
           ) : null}
+
+          {/* CTA affordance */}
           <Typography
             variant="caption"
-            sx={{ color: "primary.main", fontWeight: 700, mt: "auto", pt: 1.5 }}
+            sx={{
+              color: "primary.main",
+              fontWeight: 600,
+              mt: "auto",
+              pt: 2,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 0.5,
+            }}
           >
-            View tournament →
+            View tournament
+            <ArrowForwardRoundedIcon sx={{ fontSize: 14 }} />
           </Typography>
         </CardContent>
       </CardActionArea>

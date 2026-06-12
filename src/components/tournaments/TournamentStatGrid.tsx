@@ -1,5 +1,5 @@
-import Box from "@mui/material/Box";
 import StatCard from "@/components/ui/StatCard";
+import StaggerContainer from "@/components/motion/StaggerContainer";
 import { formatNumber } from "@/lib/format";
 import type { TournamentDetailDto } from "@/server/queries/types";
 
@@ -22,7 +22,7 @@ export default function TournamentStatGrid({
   );
 
   return (
-    <Box
+    <StaggerContainer
       sx={{
         display: "grid",
         gap: 2,
@@ -40,6 +40,6 @@ export default function TournamentStatGrid({
           value={formatNumber(stat.value)}
         />
       ))}
-    </Box>
+    </StaggerContainer>
   );
 }

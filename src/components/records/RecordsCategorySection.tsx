@@ -1,8 +1,8 @@
-import Box from "@mui/material/Box";
 import PageContainer from "@/components/layout/PageContainer";
 import SectionHeading from "@/components/ui/SectionHeading";
 import EmptyState from "@/components/ui/EmptyState";
 import LeaderboardTable from "./LeaderboardTable";
+import StaggerContainer from "@/components/motion/StaggerContainer";
 import type { RecordLeaderboardDto } from "@/server/queries/types";
 
 export default function RecordsCategorySection({
@@ -28,7 +28,7 @@ export default function RecordsCategorySection({
     >
       <SectionHeading title={title} subtitle={description} />
       {populated.length > 0 ? (
-        <Box
+        <StaggerContainer
           sx={{
             display: "grid",
             gap: 2.5,
@@ -39,7 +39,7 @@ export default function RecordsCategorySection({
           {populated.map((leaderboard) => (
             <LeaderboardTable key={leaderboard.key} leaderboard={leaderboard} />
           ))}
-        </Box>
+        </StaggerContainer>
       ) : (
         <EmptyState
           title="No records available"

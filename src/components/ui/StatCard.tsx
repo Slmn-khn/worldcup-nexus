@@ -3,6 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { atlas, eyebrowSx, glowPanelSx, tabularNums } from "@/theme/tokens";
 
 type StatCardProps = {
   label: string;
@@ -11,6 +12,7 @@ type StatCardProps = {
   icon?: React.ReactNode;
 };
 
+/** Number-first data panel: the value is the hero, the label is an eyebrow. */
 export default function StatCard({
   label,
   value,
@@ -18,19 +20,19 @@ export default function StatCard({
   icon,
 }: StatCardProps) {
   return (
-    <Card sx={{ height: "100%", bgcolor: "background.paper" }}>
-      <CardContent sx={{ p: 2.5 }}>
+    <Card sx={glowPanelSx}>
+      <CardContent sx={{ p: 2.5, "&:last-child": { pb: 2.5 } }}>
         <Stack
           direction="row"
           spacing={1}
-          sx={{ mb: 1.5, alignItems: "center" }}
+          sx={{ mb: 1.25, alignItems: "center" }}
         >
           {icon ? (
             <Box
               sx={{
                 display: "inline-flex",
                 color: "primary.main",
-                fontSize: 20,
+                fontSize: 18,
               }}
             >
               {icon}
@@ -38,21 +40,20 @@ export default function StatCard({
           ) : null}
           <Typography
             variant="overline"
-            sx={{
-              color: "text.secondary",
-              letterSpacing: "0.12em",
-              lineHeight: 1.4,
-            }}
+            component="p"
+            sx={{ ...eyebrowSx, color: atlas.textMuted }}
           >
             {label}
           </Typography>
         </Stack>
         <Typography
-          variant="h4"
+          variant="h3"
           component="p"
           sx={{
-            color: "primary.main",
-            fontSize: { xs: "1.75rem", md: "2.1rem" },
+            ...tabularNums,
+            color: "text.primary",
+            fontSize: { xs: "1.9rem", md: "2.4rem" },
+            lineHeight: 1.1,
           }}
         >
           {value}

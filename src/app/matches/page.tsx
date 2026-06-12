@@ -6,8 +6,10 @@ import type { Metadata } from "next";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import PageContainer from "@/components/layout/PageContainer";
+import PageHeader from "@/components/layout/PageHeader";
 import EmptyState from "@/components/ui/EmptyState";
 import MatchCard from "@/components/matches/MatchCard";
+import StaggerContainer from "@/components/motion/StaggerContainer";
 import { formatDate, formatNumber } from "@/lib/format";
 import { getMatchCards } from "@/server/queries/matches";
 import type { MatchIndexItemDto } from "@/server/queries/types";
@@ -31,50 +33,17 @@ export default async function MatchesPage() {
 
   return (
     <Box>
-      <Box
-        sx={{
-          borderBottom: "1px solid",
-          borderColor: "divider",
-          background:
-            "radial-gradient(ellipse 70% 70% at 80% -20%, rgba(244, 201, 93, 0.1), transparent), #06111F",
-        }}
-      >
-        <PageContainer sx={{ py: { xs: 6, md: 9 } }}>
-          <Typography
-            variant="overline"
-            sx={{
-              color: "primary.main",
-              letterSpacing: "0.2em",
-              display: "block",
-              mb: 1.5,
-            }}
-          >
-            The Archive
-          </Typography>
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{ fontSize: { xs: "2rem", md: "2.75rem" }, mb: 1.5 }}
-          >
-            World Cup Matches
-          </Typography>
-          <Typography
-            variant="h6"
-            component="p"
-            sx={{ color: "text.secondary", fontWeight: 400, maxWidth: 640 }}
-          >
-            Browse match records from the imported WorldCup Atlas database.
-          </Typography>
-          <Typography variant="body2" sx={{ color: "text.secondary", mt: 2.5 }}>
-            {formatNumber(totalCount)} matches in the archive
-          </Typography>
-        </PageContainer>
-      </Box>
+      <PageHeader
+        title="World Cup Matches"
+        lede="Browse match records from the imported WorldCup Atlas database."
+        meta={`${formatNumber(totalCount)} matches in the archive`}
+      />
 
       <PageContainer sx={{ py: { xs: 5, md: 7 } }}>
         {matches.length > 0 ? (
           <>
-            <Box
+            <StaggerContainer
+              stagger={0.04}
               sx={{
                 display: "grid",
                 gap: 2.5,
@@ -100,7 +69,7 @@ export default async function MatchesPage() {
                   href={match.href}
                 />
               ))}
-            </Box>
+            </StaggerContainer>
             {totalCount > matches.length ? (
               <Typography
                 variant="caption"

@@ -3,8 +3,10 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
+import { atlas, interactiveCardSx, tabularNums } from "@/theme/tokens";
 
 type CountryCardProps = {
   name: string;
@@ -38,16 +40,7 @@ export default function CountryCard({
   ].filter((part): part is string => part !== null);
 
   return (
-    <Card
-      sx={{
-        height: "100%",
-        transition: "border-color 150ms ease, transform 150ms ease",
-        "&:hover": {
-          borderColor: "primary.main",
-          transform: "translateY(-2px)",
-        },
-      }}
-    >
+    <Card sx={interactiveCardSx}>
       <CardActionArea
         component={Link}
         href={href}
@@ -57,12 +50,12 @@ export default function CountryCard({
           <Stack
             direction="row"
             spacing={1.5}
-            sx={{ mb: 1, alignItems: "center" }}
+            sx={{ mb: 1.25, alignItems: "center" }}
           >
             {flagEmoji ? (
               <Typography
                 component="span"
-                sx={{ fontSize: "1.6rem", lineHeight: 1 }}
+                sx={{ fontSize: "1.7rem", lineHeight: 1 }}
                 aria-hidden
               >
                 {flagEmoji}
@@ -71,14 +64,14 @@ export default function CountryCard({
             <Typography
               variant="h6"
               component="p"
-              sx={{ color: "text.primary" }}
+              sx={{ color: "text.primary", lineHeight: 1.25 }}
             >
               {name}
             </Typography>
             {code ? (
               <Typography
                 variant="caption"
-                sx={{ color: "text.secondary", ml: "auto !important" }}
+                sx={{ color: atlas.textMuted, ml: "auto !important" }}
               >
                 {code}
               </Typography>
@@ -90,10 +83,13 @@ export default function CountryCard({
               sx={{
                 color: "primary.main",
                 fontWeight: 700,
-                display: "block",
-                mb: 0.5,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 0.5,
+                mb: 0.75,
               }}
             >
+              <EmojiEventsRoundedIcon sx={{ fontSize: 14 }} aria-hidden />
               {formatNumber(titlesCount)}{" "}
               {titlesCount === 1 ? "title" : "titles"}
             </Typography>
@@ -102,6 +98,7 @@ export default function CountryCard({
             <Typography
               variant="caption"
               sx={{
+                ...tabularNums,
                 color: "text.secondary",
                 display: "block",
                 mb: summary ? 1 : 0,

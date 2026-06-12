@@ -1,19 +1,18 @@
-// DB-backed home page (Checkpoint 5A). All numbers and lists come from the
+﻿// DB-backed home page (Checkpoint 5A). All numbers and lists come from the
 // server query layer (getHomePageData) — nothing is hardcoded or mocked.
 // Sections without data render an honest empty state.
 
 import type { Metadata } from "next";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
 import SectionHeading from "@/components/ui/SectionHeading";
 import StatCard from "@/components/ui/StatCard";
-import GlobalSearch from "@/components/ui/GlobalSearch";
 import EmptyState from "@/components/ui/EmptyState";
+import HomeHero from "@/components/home/HomeHero";
+import StaggerContainer from "@/components/motion/StaggerContainer";
 import TournamentCard from "@/components/tournaments/TournamentCard";
 import MatchCard from "@/components/matches/MatchCard";
 import CountryCard from "@/components/countries/CountryCard";
@@ -74,91 +73,16 @@ export default async function Home() {
   return (
     <Box>
       {/* Hero */}
-      <Box
-        sx={{
-          borderBottom: "1px solid",
-          borderColor: "divider",
-          background:
-            "radial-gradient(ellipse 80% 60% at 70% -10%, rgba(244, 201, 93, 0.12), transparent), " +
-            "radial-gradient(ellipse 60% 50% at 20% 110%, rgba(31, 122, 77, 0.18), transparent), " +
-            "#06111F",
-        }}
-      >
-        <PageContainer sx={{ py: { xs: 8, md: 12 } }}>
-          <Typography
-            variant="overline"
-            sx={{
-              color: "primary.main",
-              letterSpacing: "0.2em",
-              display: "block",
-              mb: 2,
-            }}
-          >
-            The Football Archive
-          </Typography>
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: { xs: "2.25rem", sm: "3rem", md: "3.75rem" },
-              maxWidth: 820,
-              mb: 2.5,
-            }}
-          >
-            Explore the Complete History of the World Cup
-          </Typography>
-          <Typography
-            variant="h6"
-            component="p"
-            sx={{
-              color: "text.secondary",
-              fontWeight: 400,
-              maxWidth: 640,
-              mb: 4,
-            }}
-          >
-            Every tournament, nation, player, match, goal, and penalty in one
-            independent historical archive.
-          </Typography>
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={2}
-            sx={{ mb: 7 }}
-          >
-            <Button
-              component={Link}
-              href="/tournaments"
-              variant="contained"
-              size="large"
-            >
-              Explore Tournaments
-            </Button>
-            <Button
-              component={Link}
-              href="/records"
-              variant="outlined"
-              size="large"
-              sx={{
-                color: "text.primary",
-                borderColor: "divider",
-                "&:hover": { borderColor: "primary.main" },
-              }}
-            >
-              View Records
-            </Button>
-          </Stack>
-          <Box sx={{ maxWidth: 720 }}>
-            <GlobalSearch />
-          </Box>
-        </PageContainer>
-      </Box>
+      <HomeHero />
 
       {/* Archive at a Glance */}
       <PageContainer sx={SECTION_PADDING}>
         <SectionHeading
+          eyebrow="Live data"
           title="Archive at a Glance"
           subtitle="Live counts from the imported archive."
         />
-        <Box
+        <StaggerContainer
           sx={{
             display: "grid",
             gap: 2.5,
@@ -178,7 +102,7 @@ export default async function Home() {
             value={formatNumber(archiveStats.matches)}
           />
           <StatCard label="Goals" value={formatNumber(archiveStats.goals)} />
-        </Box>
+        </StaggerContainer>
       </PageContainer>
 
       {/* Featured Tournaments */}
@@ -189,7 +113,7 @@ export default async function Home() {
           action={<ViewAllLink href="/tournaments" label="All tournaments" />}
         />
         {data.featuredTournaments.length > 0 ? (
-          <Box sx={CARD_GRID_3}>
+          <StaggerContainer sx={CARD_GRID_3}>
             {data.featuredTournaments.map((tournament) => (
               <TournamentCard
                 key={tournament.id}
@@ -204,7 +128,7 @@ export default async function Home() {
                 goalsCount={tournament.goalsCount}
               />
             ))}
-          </Box>
+          </StaggerContainer>
         ) : (
           <EmptyState
             title="Tournaments coming soon"
@@ -229,7 +153,7 @@ export default async function Home() {
             action={<ViewAllLink href="/matches" label="All matches" />}
           />
           {data.iconicMatches.length > 0 ? (
-            <Box sx={CARD_GRID_3}>
+            <StaggerContainer sx={CARD_GRID_3}>
               {data.iconicMatches.map((match) => (
                 <MatchCard
                   key={match.id}
@@ -245,7 +169,7 @@ export default async function Home() {
                   href={`/matches/${match.slug}`}
                 />
               ))}
-            </Box>
+            </StaggerContainer>
           ) : (
             <EmptyState
               title="Matches coming soon"
@@ -263,16 +187,18 @@ export default async function Home() {
           action={<ViewAllLink href="/countries" label="All countries" />}
         />
         {data.featuredCountries.length > 0 ? (
-          <Box sx={CARD_GRID_4}>
+          <StaggerContainer sx={CARD_GRID_4}>
             {data.featuredCountries.map((country) => (
               <CountryCard
                 key={country.id}
                 name={country.name}
+                flagEmoji={country.flagEmoji}
+                code={country.code}
                 summary={`${formatNumber(country.tournamentsEntered)} tournament entries · ${formatNumber(country.playersCount)} players in the archive`}
                 href={`/countries/${country.slug}`}
               />
             ))}
-          </Box>
+          </StaggerContainer>
         ) : (
           <EmptyState
             title="Countries coming soon"
@@ -289,17 +215,18 @@ export default async function Home() {
           action={<ViewAllLink href="/players" label="All players" />}
         />
         {data.featuredPlayers.length > 0 ? (
-          <Box sx={CARD_GRID_4}>
+          <StaggerContainer sx={CARD_GRID_4}>
             {data.featuredPlayers.map((player) => (
               <PlayerCard
                 key={player.id}
                 name={player.name}
                 country={player.countryName ?? "Nation unknown"}
+                flagEmoji={player.countryFlagEmoji}
                 position={player.position}
                 href={`/players/${player.slug}`}
               />
             ))}
-          </Box>
+          </StaggerContainer>
         ) : (
           <EmptyState
             title="Players coming soon"
@@ -323,7 +250,7 @@ export default async function Home() {
             action={<ViewAllLink href="/records" label="All records" />}
           />
           {data.recordsPreview.some((board) => board.items.length > 0) ? (
-            <Box sx={CARD_GRID_3}>
+            <StaggerContainer sx={CARD_GRID_3}>
               {data.recordsPreview
                 .filter((board) => board.items.length > 0)
                 .map((board) => {
@@ -337,7 +264,7 @@ export default async function Home() {
                     />
                   );
                 })}
-            </Box>
+            </StaggerContainer>
           ) : (
             <EmptyState
               title="Records coming soon"

@@ -69,7 +69,29 @@ export default function ExplorerFilters({
     active.q !== null;
 
   return (
-    <Box>
+    <Box
+      sx={{
+        // Command-panel framing for the filter console.
+        border: "1px solid",
+        borderColor: "divider",
+        borderRadius: 3,
+        background: "linear-gradient(160deg, #122238 0%, #0D1828 100%)",
+        boxShadow: "0 8px 24px rgba(2, 6, 14, 0.45)",
+        p: { xs: 2, md: 2.5 },
+      }}
+    >
+      <Typography
+        variant="overline"
+        component="p"
+        sx={{
+          color: "#38BDF8",
+          fontWeight: 700,
+          letterSpacing: "0.14em",
+          mb: 1.5,
+        }}
+      >
+        Query Console
+      </Typography>
       <Stack
         direction="row"
         spacing={2}

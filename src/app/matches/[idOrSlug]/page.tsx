@@ -13,6 +13,7 @@ import MatchTimeline from "@/components/matches/MatchTimeline";
 import MatchEventList from "@/components/matches/MatchEventList";
 import PenaltyShootout from "@/components/matches/PenaltyShootout";
 import MatchRelatedLinks from "@/components/matches/MatchRelatedLinks";
+import FadeIn from "@/components/motion/FadeIn";
 import { getMatchByIdOrSlug } from "@/server/queries/matches";
 
 export const dynamic = "force-dynamic";
@@ -61,7 +62,9 @@ export default async function MatchDetailPage({ params }: Props) {
           title="Match Information"
           subtitle="Facts recorded in the imported source data."
         />
-        <MatchInfoGrid match={match} />
+        <FadeIn y={14}>
+          <MatchInfoGrid match={match} />
+        </FadeIn>
         <Typography
           variant="caption"
           sx={{ color: "text.secondary", display: "block", mt: 2 }}
@@ -91,7 +94,9 @@ export default async function MatchDetailPage({ params }: Props) {
                 : undefined
             }
           />
-          <PenaltyShootout match={match} />
+          <FadeIn y={14}>
+            <PenaltyShootout match={match} />
+          </FadeIn>
         </PageContainer>
       ) : null}
 
@@ -101,7 +106,9 @@ export default async function MatchDetailPage({ params }: Props) {
           title="Event Breakdown"
           subtitle="The same events grouped by category."
         />
-        <MatchEventList match={match} />
+        <FadeIn y={14}>
+          <MatchEventList match={match} />
+        </FadeIn>
       </PageContainer>
 
       {/* Related */}
@@ -110,7 +117,9 @@ export default async function MatchDetailPage({ params }: Props) {
         sx={{ ...SECTION_SX, pb: { xs: 7, md: 9 } }}
       >
         <SectionHeading title="Explore Related" />
-        <MatchRelatedLinks match={match} />
+        <FadeIn y={14}>
+          <MatchRelatedLinks match={match} />
+        </FadeIn>
       </PageContainer>
     </Box>
   );

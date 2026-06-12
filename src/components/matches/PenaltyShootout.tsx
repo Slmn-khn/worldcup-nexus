@@ -50,7 +50,7 @@ function KickRow({
           bgcolor: kick.converted
             ? "rgba(34, 197, 94, 0.16)"
             : "rgba(239, 68, 68, 0.16)",
-          color: kick.converted ? "#22C55E" : "#EF4444",
+          color: kick.converted ? "#4ADE80" : "#F87171",
         }}
       >
         {kick.converted ? "✓" : "✕"}
