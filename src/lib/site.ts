@@ -9,6 +9,14 @@ export const siteConfig = {
   disclaimer:
     "WORLDCUP Nexus is an independent historical archive and is not affiliated with FIFA.",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  // Brand assets live in public/brand. The icon variants under /brand and the
+  // root /favicon.ico, /icon.png, /apple-icon.png are generated from the
+  // source icon by `pnpm assets:icons`. No official FIFA branding is used.
+  brand: {
+    ogImage: "/brand/worldcup-nexus-banner.png",
+    icon: "/brand/worldcup-nexus-icon.png",
+    banner: "/brand/worldcup-nexus-banner.png",
+  },
   sourceAttribution: {
     name: "Fjelstul World Cup Database",
     author: "Joshua C. Fjelstul, Ph.D.",

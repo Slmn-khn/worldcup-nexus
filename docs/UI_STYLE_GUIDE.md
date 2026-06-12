@@ -133,6 +133,58 @@ columns, bottom hairline row carrying "Historical data: Fjelstul World
 Cup Database (CC-BY-SA 4.0)" and the independence line. The disclaimer
 and /sources attribution must always remain visible.
 
+**Responsive rhythm — stay compact, the canvas is always black.**
+
+- Desktop (`md+`): 4-up grid — brand (`1.6fr`) + Archive / Data / About
+  link columns.
+- Tablet (`sm`): 2-column link grid; the brand block spans the full width.
+- Mobile (`xs`): 2-column link grid (not a single stretched file of
+  links) with the brand block full-width above it. Footer padding stays
+  compact (`pt: 40px` mobile vs `64px` desktop), gaps are tight
+  (`rowGap: 32px` / `columnGap: 24px` mobile), and the attribution row
+  sits `32px` below — no 96px voids, no unfinished blank-black stretch.
+- Link rows keep a ~40px touch target (`minHeight: 40`) while spacing
+  stays tight. All links remain visible at every breakpoint — nothing is
+  hidden or collapsed away.
+
+## Mobile navigation
+
+Below `md` the inline top nav is replaced by a hamburger button
+(`aria-label="Open navigation menu"`) that opens a right-anchored MUI
+`Drawer` — a full-height black sheet:
+
+- Stripe accent at the top, brand wordmark, and a close button
+  (`aria-label="Close navigation menu"`).
+- Links stacked vertically, uppercase, letterspaced, on 1px hairline
+  rows; zero radius; ~52px tap targets.
+- Active route marked with a left gold identity stripe — never a pill
+  background.
+- The drawer closes on navigation (route-change effect) and via the
+  close button / backdrop.
+
+At `md+` the drawer/hamburger are hidden and the inline nav returns with
+its 2px white underline active marker. The old horizontal-scroll nav (which
+cut off "Explorer" behind a fade mask) is gone — no horizontal page
+overflow on mobile.
+
+## Brand assets (Checkpoint 8E)
+
+Brand artwork lives in `public/brand`. Source files: the app icon
+(`worldcup-nexus-icon.png`) and the wide hero / social banner
+(`worldcup-nexus-banner.png`). Favicon / PWA / Apple icon variants are
+generated from the icon with `pnpm assets:icons` — never hand-edited.
+
+- The banner is used **tastefully**, not everywhere: as the homepage hero's
+  right-weighted backdrop behind a dark gradient overlay, and for Open Graph
+  / Twitter social previews. It is decorative support — the real `<h1>` and
+  subtitle remain the source of the title, never the image text alone.
+- The hero image carries a meaningful `alt`; the overlay is `aria-hidden`.
+  Only the homepage hero image uses `priority`.
+- Keep the black-canvas Vault system intact: the banner sits behind type,
+  dimmed enough to preserve contrast. No banner on every page.
+- The marks are WORLDCUP Nexus's own — no official FIFA logos, no implied
+  FIFA affiliation.
+
 ## Data honesty rules
 
 - No invented data; no hardcoded historical totals — the archive span and
