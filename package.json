@@ -19,7 +19,7 @@
     "prod:preflight": "tsx scripts/verify/verify-production-readiness.ts",
     "prod:validate": "pnpm security:verify && pnpm public:verify && pnpm export:verify && pnpm search:verify && pnpm data:verify:queries && pnpm data:verify && pnpm typecheck && pnpm lint && pnpm build && pnpm test:e2e",
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
