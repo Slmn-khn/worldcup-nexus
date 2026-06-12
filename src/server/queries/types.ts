@@ -1,0 +1,596 @@
+// Frontend-friendly DTOs returned by the server query layer.
+// Pages receive only these shapes — never raw Prisma models and never
+// RawSourceRecord payloads. Dates are ISO strings, everything is
+// JSON-serializable.
+
+export type ArchiveStatsDto = {
+  tournaments: number;
+  countries: number;
+  teams: number;
+  players: number;
+  matches: number;
+  goals: number;
+  bookings: number;
+  substitutions: number;
+  penaltyKicks: number;
+  awards: number;
+};
+
+export type TeamRefDto = {
+  name: string;
+  slug: string;
+};
+
+export type TournamentCardDto = {
+  id: string;
+  year: number;
+  name: string;
+  slug: string;
+  hostName: string | null;
+  teamsCount: number | null;
+  matchesCount: number | null;
+  goalsCount: number | null;
+  winner: string | null;
+  runnerUp: string | null;
+  /** e.g. "3–3 (4–2 pens)" — null when the tournament had no "final" stage match. */
+  finalScore: string | null;
+};
+
+export type TournamentTeamDto = {
+  id: string;
+  name: string;
+  slug: string;
+  code: string | null;
+};
+
+export type TopScorerDto = {
+  playerId: string;
+  name: string;
+  slug: string;
+  countryName: string | null;
+  goals: number;
+};
+
+export type AwardDto = {
+  name: string;
+  playerName: string | null;
+  playerSlug: string | null;
+  teamName: string | null;
+};
+
+export type TournamentDetailDto = TournamentCardDto & {
+  startDate: string | null;
+  endDate: string | null;
+  teams: TournamentTeamDto[];
+  matches: MatchCardDto[];
+  topScorers: TopScorerDto[];
+  awards: AwardDto[];
+  stats: {
+    penaltyShootouts: number;
+    penaltyKicks: number;
+    bookings: number;
+    substitutions: number;
+  };
+};
+
+export type MatchCardDto = {
+  id: string;
+  slug: string;
+  stage: string;
+  matchDate: string | null;
+  tournamentYear: number;
+  tournamentSlug: string;
+  tournamentName: string;
+  homeTeam: TeamRefDto;
+  awayTeam: TeamRefDto;
+  homeScore: number;
+  awayScore: number;
+  /** e.g. "3–3" (full-time / after extra time, as recorded by the source). */
+  score: string;
+  /** e.g. "4–2" — only set when the match was decided by penalties. */
+  penaltyScore: string | null;
+  decidedByPenalties: boolean;
+  stadiumName: string | null;
+};
+
+/** A match card plus its resolved route, for index/list pages. */
+export type MatchIndexItemDto = MatchCardDto & {
+  href: string;
+};
+
+export type MatchIndexDto = {
+  matches: MatchIndexItemDto[];
+  totalCount: number;
+  page: number;
+  pageSize: number;
+};
+
+export type MatchGoalDto = {
+  playerName: string;
+  playerSlug: string;
+  teamName: string;
+  minute: number | null;
+  stoppageMinute: number | null;
+  isOwnGoal: boolean;
+  isPenalty: boolean;
+};
+
+export type MatchBookingDto = {
+  playerName: string;
+  playerSlug: string;
+  teamName: string;
+  cardType: "YELLOW" | "SECOND_YELLOW" | "RED";
+  minute: number | null;
+  stoppageMinute: number | null;
+};
+
+export type MatchSubstitutionDto = {
+  teamName: string;
+  playerInName: string | null;
+  playerInSlug: string | null;
+  playerOutName: string | null;
+  playerOutSlug: string | null;
+  minute: number | null;
+  stoppageMinute: number | null;
+};
+
+export type MatchPenaltyKickDto = {
+  playerName: string | null;
+  playerSlug: string | null;
+  teamName: string;
+  type: "IN_MATCH" | "SHOOTOUT";
+  converted: boolean;
+  /** Always null for now — kick order is not in the imported source (ISSUE-008). */
+  order: number | null;
+  minute: number | null;
+  stoppageMinute: number | null;
+  isSaved: boolean | null;
+  isMissed: boolean | null;
+};
+
+export type MatchDetailDto = MatchCardDto & {
+  matchNumber: number | null;
+  /** Name of the winning team, null for draws (and shootout draws resolve to the shootout winner). */
+  winnerName: string | null;
+  homeScorePenalties: number | null;
+  awayScorePenalties: number | null;
+  homeCountry: { name: string; slug: string } | null;
+  awayCountry: { name: string; slug: string } | null;
+  stadium: { name: string; city: string | null; country: string | null } | null;
+  /** Always null for now — referee–match links are not in the imported subset (ISSUE-005). */
+  referee: { name: string; country: string | null } | null;
+  /** Always null for now — attendance is not in the imported source columns. */
+  attendance: number | null;
+  goals: MatchGoalDto[];
+  bookings: MatchBookingDto[];
+  substitutions: MatchSubstitutionDto[];
+  penaltyKicks: MatchPenaltyKickDto[];
+};
+
+export type CountryCardDto = {
+  id: string;
+  name: string;
+  slug: string;
+  code: string | null;
+  flagEmoji: string | null;
+  /** Number of tournament participations (Team rows are per tournament). */
+  tournamentsEntered: number;
+  playersCount: number;
+  /** Null when the caller did not compute the aggregate (e.g. homepage). */
+  matchesCount: number | null;
+  goalsFor: number | null;
+  titlesCount: number | null;
+};
+
+export type CountryParticipationDto = {
+  tournamentYear: number;
+  tournamentSlug: string;
+  tournamentName: string;
+  teamId: string;
+  /** "Champions" / "Runners-up" from tournament winner fields, else null — never an invented finish. */
+  result: "Champions" | "Runners-up" | null;
+};
+
+/** A match from one country's perspective. */
+export type CountryMatchDto = MatchCardDto & {
+  opponent: string;
+  /** Win/draw/loss from the match winner field (shootout wins count as wins). */
+  result: "W" | "D" | "L";
+};
+
+export type SquadTournamentsLeaderDto = {
+  playerId: string;
+  name: string;
+  slug: string;
+  /** Tournaments the player was named in a squad — NOT match appearances. */
+  squadTournaments: number;
+};
+
+export type CountryProfileDto = {
+  id: string;
+  name: string;
+  slug: string;
+  code: string | null;
+  flagEmoji: string | null;
+  participations: CountryParticipationDto[];
+  totals: {
+    tournamentsEntered: number;
+    /** Tournaments won (via Tournament.winnerTeamId — includes 1950, which had no final). */
+    titles: number;
+    finalsPlayed: number;
+    finalsWon: number;
+    matchesPlayed: number;
+    wins: number;
+    draws: number;
+    losses: number;
+    goalsFor: number;
+    goalsAgainst: number;
+    goalDifference: number;
+  };
+  matches: CountryMatchDto[];
+  topScorers: TopScorerDto[];
+  mostSquadTournaments: SquadTournamentsLeaderDto[];
+  finals: CountryMatchDto[];
+};
+
+export type PlayerCardDto = {
+  id: string;
+  name: string;
+  slug: string;
+  countryName: string | null;
+  countrySlug: string | null;
+  countryFlagEmoji: string | null;
+  position: string | null;
+  /** Squad selections — NOT match appearances. Null when not computed (e.g. homepage preview). */
+  selectedTournamentsCount: number | null;
+  /** Goals excluding own goals. Null when not computed. */
+  goalsCount: number | null;
+  bookingsCount: number | null;
+  awardsCount: number | null;
+};
+
+export type PlayerSquadTournamentDto = {
+  tournamentYear: number;
+  tournamentSlug: string;
+  teamName: string;
+  shirtNumber: number | null;
+  position: string | null;
+  isCaptain: boolean;
+};
+
+/** Shared match context for player event rows. */
+type PlayerEventMatchContext = {
+  matchSlug: string;
+  matchLabel: string;
+  tournamentYear: number;
+  stage: string;
+  matchDate: string | null;
+  teamName: string;
+  /** The other team in the match; null when not safely derivable (e.g. own goals). */
+  opponent: string | null;
+};
+
+export type PlayerGoalDto = PlayerEventMatchContext & {
+  minute: number | null;
+  stoppageMinute: number | null;
+  isOwnGoal: boolean;
+  isPenalty: boolean;
+};
+
+export type PlayerBookingDto = PlayerEventMatchContext & {
+  cardType: "YELLOW" | "SECOND_YELLOW" | "RED";
+  minute: number | null;
+  stoppageMinute: number | null;
+};
+
+export type PlayerPenaltyKickDto = PlayerEventMatchContext & {
+  type: "IN_MATCH" | "SHOOTOUT";
+  converted: boolean;
+  /** Null — kick order/minute are not in the imported source (ISSUE-008). */
+  order: number | null;
+  minute: number | null;
+  stoppageMinute: number | null;
+  isSaved: boolean | null;
+  isMissed: boolean | null;
+};
+
+export type PlayerSubstitutionDto = PlayerEventMatchContext & {
+  direction: "IN" | "OUT";
+  minute: number | null;
+  stoppageMinute: number | null;
+};
+
+export type PlayerAwardDto = {
+  name: string;
+  tournamentYear: number;
+  tournamentSlug: string;
+  teamName: string | null;
+  /** Always null — the source has no award description column. */
+  description: string | null;
+};
+
+export type PlayerProfileDto = {
+  id: string;
+  name: string;
+  slug: string;
+  position: string | null;
+  dateOfBirth: string | null;
+  country: { name: string; slug: string; flagEmoji: string | null } | null;
+  /** Squad selections per tournament — NOT match appearances. */
+  squadTournaments: PlayerSquadTournamentDto[];
+  goals: PlayerGoalDto[];
+  bookings: PlayerBookingDto[];
+  penaltyKicks: PlayerPenaltyKickDto[];
+  substitutions: PlayerSubstitutionDto[];
+  awards: PlayerAwardDto[];
+  totals: {
+    /** Squad selections — NOT match appearances. */
+    selectedTournaments: number;
+    goals: number;
+    ownGoals: number;
+    penaltyKicksTotal: number;
+    penaltyKicksConverted: number;
+    bookings: number;
+    substitutionsIn: number;
+    substitutionsOut: number;
+    awards: number;
+  };
+};
+
+export type RecordItemDto = {
+  rank: number;
+  label: string;
+  /** Full route to the entity's page (e.g. /players/x), or null when no real slug exists. */
+  href: string | null;
+  value: number;
+  /** Display value, e.g. "13" or a score string context; falls back to the number. */
+  detail: string | null;
+};
+
+export type RecordLeaderboardDto = {
+  key: string;
+  title: string;
+  /** Clarifies exactly what the imported data supports (no invented metrics). */
+  description: string;
+  items: RecordItemDto[];
+};
+
+export type RecordsOverviewDto = {
+  /** e.g. "All imported tournaments" — scope is never silently mislabeled. */
+  scopeLabel: string;
+  /** Data-driven explanation of what the leaderboards cover. */
+  scopeNote: string;
+  teamRecords: RecordLeaderboardDto[];
+  playerRecords: RecordLeaderboardDto[];
+  matchRecords: RecordLeaderboardDto[];
+  tournamentRecords: RecordLeaderboardDto[];
+  penaltyRecords: RecordLeaderboardDto[];
+  disciplineRecords: RecordLeaderboardDto[];
+};
+
+export type ExplorerEventType =
+  | "Match"
+  | "Goal"
+  | "Booking"
+  | "Substitution"
+  | "PenaltyKick"
+  | "Award";
+
+/** One normalized row in the data explorer — never a raw Prisma model. */
+export type ExplorerRowDto = {
+  /** Unique across event types, e.g. "goal-<dbId>". */
+  id: string;
+  eventType: ExplorerEventType;
+  tournamentYear: number;
+  tournamentName: string;
+  matchLabel: string | null;
+  matchSlug: string | null;
+  stage: string | null;
+  date: string | null;
+  teamName: string | null;
+  /** Country slug of the event's team — null for Match rows (two teams). */
+  teamCountrySlug: string | null;
+  playerName: string | null;
+  playerSlug: string | null;
+  minute: number | null;
+  stoppageMinute: number | null;
+  /** Extra context (e.g. stadium for matches); null when nothing meaningful. */
+  detail: string | null;
+  /** Outcome/value, e.g. scoreline, card type, "Converted". */
+  outcome: string | null;
+  href: string | null;
+};
+
+export type ExplorerQueryOptions = {
+  eventType?: string;
+  tournamentYear?: number;
+  countrySlug?: string;
+  playerSlug?: string;
+  stage?: string;
+  q?: string;
+  page?: number;
+  pageSize?: number;
+};
+
+export type ExplorerActiveFilters = {
+  eventType: string | null;
+  tournamentYear: number | null;
+  countrySlug: string | null;
+  playerSlug: string | null;
+  stage: string | null;
+  q: string | null;
+};
+
+export type ExplorerDataDto = {
+  rows: ExplorerRowDto[];
+  total: number;
+  page: number;
+  pageSize: number;
+  filters: {
+    eventTypes: ExplorerEventType[];
+    tournamentYears: number[];
+    countries: { name: string; slug: string; flagEmoji: string | null }[];
+    /** Capped option list — see explorer.ts for the selection rule. */
+    players: { name: string; slug: string; countryName: string | null }[];
+    stages: string[];
+  };
+  activeFilters: ExplorerActiveFilters;
+};
+
+export type HomePageDataDto = {
+  archiveStats: ArchiveStatsDto;
+  featuredTournaments: TournamentCardDto[];
+  iconicMatches: MatchCardDto[];
+  featuredCountries: CountryCardDto[];
+  featuredPlayers: PlayerCardDto[];
+  recordsPreview: RecordLeaderboardDto[];
+};
+
+// ---------------------------------------------------------------------------
+// Checkpoint 7D — Vault archive controls (page filters)
+// ---------------------------------------------------------------------------
+
+/** One option in a filter select, sourced from actual DB values. */
+export type FilterOptionDto = {
+  label: string;
+  value: string;
+  count?: number;
+};
+
+export type TournamentSort =
+  | "newest"
+  | "oldest"
+  | "most-goals"
+  | "most-matches"
+  | "most-teams";
+
+export type TournamentFilterOptions = {
+  q?: string;
+  yearFrom?: number;
+  yearTo?: number;
+  host?: string;
+  winner?: string;
+  sort?: TournamentSort;
+};
+
+/** Filtered tournament cards plus the metadata the filter bar needs. */
+export type TournamentIndexDto = {
+  tournaments: TournamentCardDto[];
+  total: number;
+  filteredTotal: number;
+  options: {
+    hosts: FilterOptionDto[];
+    winners: FilterOptionDto[];
+    years: FilterOptionDto[];
+  };
+};
+
+export type MatchSort = "newest" | "oldest" | "highest-scoring" | "biggest-margin";
+
+export type MatchFilterOptions = {
+  q?: string;
+  tournamentYear?: number;
+  countrySlug?: string;
+  stage?: string;
+  decidedByPenalties?: boolean;
+  sort?: MatchSort;
+  page?: number;
+  pageSize?: number;
+};
+
+export type MatchIndexFilterMetaDto = {
+  options: {
+    years: FilterOptionDto[];
+    countries: FilterOptionDto[];
+    stages: FilterOptionDto[];
+  };
+};
+
+export type CountrySort =
+  | "name"
+  | "most-tournaments"
+  | "most-matches"
+  | "most-goals"
+  | "most-titles";
+
+export type CountryFilterOptions = {
+  q?: string;
+  hasTitles?: boolean;
+  minTournaments?: number;
+  sort?: CountrySort;
+};
+
+export type PlayerSort =
+  | "name"
+  | "most-goals"
+  | "most-awards"
+  | "most-cards"
+  | "most-squad-tournaments";
+
+export type PlayerFilterOptions = {
+  q?: string;
+  countrySlug?: string;
+  position?: string;
+  hasGoals?: boolean;
+  hasAwards?: boolean;
+  hasCards?: boolean;
+  sort?: PlayerSort;
+  page?: number;
+  pageSize?: number;
+};
+
+export type PlayerIndexDto = {
+  players: PlayerCardDto[];
+  total: number;
+  filteredTotal: number;
+  page: number;
+  pageSize: number;
+  options: {
+    countries: FilterOptionDto[];
+    positions: FilterOptionDto[];
+  };
+};
+
+export type RecordCategoryKey =
+  | "teams"
+  | "players"
+  | "matches"
+  | "tournaments"
+  | "penalties"
+  | "discipline";
+
+export type RecordFilterOptions = {
+  q?: string;
+  category?: RecordCategoryKey;
+};
+
+export type TournamentDetailFilterOptions = {
+  q?: string;
+  stage?: string;
+  teamSlug?: string;
+};
+
+export type CountryProfileFilterOptions = {
+  q?: string;
+  tournamentYear?: number;
+  stage?: string;
+  result?: "W" | "D" | "L";
+};
+
+export type PlayerProfileFilterOptions = {
+  q?: string;
+  tournamentYear?: number;
+  eventType?: "Goal" | "Booking" | "PenaltyKick" | "Substitution" | "Award";
+};
+
+export type MatchDetailFilterOptions = {
+  eventType?: "Goal" | "Booking" | "Substitution" | "PenaltyKick";
+};
+
+/** Generic page filter metadata envelope (frontend-safe). */
+export type PageFilterMetaDto = {
+  total: number;
+  filteredTotal: number;
+  options: Record<string, FilterOptionDto[]>;
+  activeFilters: Record<string, string | number | boolean | null>;
+};

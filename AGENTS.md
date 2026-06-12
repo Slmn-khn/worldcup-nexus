@@ -2,7 +2,7 @@
 
 ## Project
 
-WorldCup Atlas is an independent historical archive of the FIFA World Cup.
+WORLDCUP Nexus is an independent historical archive of the FIFA World Cup.
 
 It contains data for tournaments, countries, players, matches, goals, cards, substitutions, penalties, squads, records, and historical exploration.
 

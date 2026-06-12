@@ -1,0 +1,82 @@
+# WORLDCUP Nexus — CI (Checkpoint 8C).
+#
+# Safe static checks only: typecheck, lint, security checks, and a
+# production build against an EMPTY migrated database (the sitemap is
+# generated at build time and tolerates an empty schema).
+#
+# Deliberately NOT run here (need imported data and/or Meilisearch):
+# data:verify, data:verify:queries, search:verify, export:verify,
+# public:verify, test:e2e. Those run locally/admin-side via
+# `pnpm prod:validate` before any deploy (see docs/DEPLOYMENT.md §13).
+#
+# No production secrets exist in this workflow — the Postgres service
+# below is an ephemeral CI container with throwaway credentials.
+
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: worldcup_ci
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      # Ephemeral CI database only — never a real connection string.
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/worldcup_ci?schema=public
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        # version comes from the packageManager field in package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm db:generate
+
+      - name: Apply migrations (empty CI database)
+        run: pnpm db:deploy
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Security checks
+        run: pnpm security:verify
+
+      - name: Production readiness preflight
+        run: pnpm prod:preflight
+
+      - name: Dependency audit (moderate+)
+        run: pnpm audit --audit-level moderate
+
+      - name: Build
+        run: pnpm build

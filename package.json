@@ -2,12 +2,22 @@
   "name": "worldcup-atlas",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@8.15.1",
   "scripts": {
+    "data:download": "tsx scripts/import/download-fjelstul.ts",
     "data:import": "tsx scripts/import/import-fjelstul.ts",
+    "data:inspect": "tsx scripts/import/inspect-fjelstul.ts",
     "data:verify": "tsx scripts/verify/verify-counts.ts",
+    "data:verify:queries": "tsx scripts/verify/verify-page-queries.ts",
+    "export:verify": "tsx scripts/verify/verify-export.ts",
+    "public:verify": "tsx scripts/verify/verify-public-routes.ts",
+    "security:verify": "tsx scripts/verify/verify-security.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
+    "prod:preflight": "tsx scripts/verify/verify-production-readiness.ts",
+    "prod:validate": "pnpm security:verify && pnpm public:verify && pnpm export:verify && pnpm search:verify && pnpm data:verify:queries && pnpm data:verify && pnpm typecheck && pnpm lint && pnpm build && pnpm test:e2e",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -15,7 +25,10 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "search:index": "tsx scripts/search/build-index.ts"
+    "search:index": "tsx scripts/search/build-index.mts",
+    "search:verify": "tsx scripts/verify/verify-search.mts",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -25,17 +38,27 @@
     "@mui/material": "^9.0.1",
     "@mui/material-nextjs": "^9.0.1",
     "@mui/x-data-grid": "^9.3.0",
+    "@prisma/adapter-pg": "7.8.0",
     "@prisma/client": "^7.8.0",
+    "csv-parse": "^6.2.1",
     "dotenv": "^17.4.2",
     "meilisearch": "^0.58.0",
+    "motion": "^12.40.0",
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "zod": "^4.4.3"
   },
+  "pnpm": {
+    "overrides": {
+      "postcss@<8.5.10": ">=8.5.10",
+      "@hono/node-server@<1.19.13": ">=1.19.13"
+    }
+  },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@types/node": "^20",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",

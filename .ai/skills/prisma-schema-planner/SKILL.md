@@ -1,6 +1,6 @@
 ---
 name: prisma-schema-planner
-description: Use when designing or changing Prisma models, migrations, relations, indexes, and derived stats tables for WorldCup Atlas.
+description: Use when designing or changing Prisma models, migrations, relations, indexes, and derived stats tables for WORLDCUP Nexus.
 ---
 
 # Prisma Schema Planner Skill
