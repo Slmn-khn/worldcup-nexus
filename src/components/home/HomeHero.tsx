@@ -36,7 +36,7 @@ export default function HomeHero() {
         position: "relative",
         borderBottom: "1px solid",
         borderColor: "divider",
-        bgcolor: "#050B14",
+        bgcolor: "#050A12",
         overflow: "hidden",
       }}
     >
@@ -44,21 +44,15 @@ export default function HomeHero() {
       <PitchLines />
       <FootballConstellation variant="hero" intensity="medium" showBallNode />
       <ParallaxLayer
-        drift={70}
+        drift={60}
         sx={{ position: "absolute", inset: 0, pointerEvents: "none" }}
       >
         <HeroOrb size={420} color="gold" sx={{ top: -140, right: "8%" }} />
         <HeroOrb
-          size={340}
-          color="green"
-          duration={18}
-          sx={{ bottom: -160, left: "2%" }}
-        />
-        <HeroOrb
-          size={280}
+          size={320}
           color="cyan"
-          duration={22}
-          sx={{ top: "30%", left: "38%" }}
+          duration={20}
+          sx={{ bottom: -150, left: "2%" }}
         />
       </ParallaxLayer>
 
@@ -122,14 +116,6 @@ export default function HomeHero() {
               href="/records"
               variant="outlined"
               size="large"
-              sx={{
-                color: "text.primary",
-                borderColor: "divider",
-                "&:hover": {
-                  borderColor: "#22D3EE",
-                  color: "#22D3EE",
-                },
-              }}
             >
               View Records
             </Button>

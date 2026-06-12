@@ -1,9 +1,9 @@
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import PageContainer from "@/components/layout/PageContainer";
-import AtlasBackground from "@/components/visual/AtlasBackground";
+import HeroSurface from "@/components/visual/HeroSurface";
 import PitchLines from "@/components/visual/PitchLines";
 import FootballConstellation from "@/components/visual/FootballConstellation";
+import { eyebrowSx } from "@/theme/tokens";
 import RecordsScopeNote from "./RecordsScopeNote";
 
 export default function RecordsHero({
@@ -14,44 +14,29 @@ export default function RecordsHero({
   scopeNote: string;
 }) {
   return (
-    <Box
-      sx={{
-        position: "relative",
-        overflow: "hidden",
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        bgcolor: "#050B14",
-      }}
-    >
-      <AtlasBackground variant="hero" />
+    <HeroSurface variant="feature">
       <PitchLines />
       <FootballConstellation variant="records" intensity="medium" />
-      <PageContainer sx={{ position: "relative", py: { xs: 6, md: 9 } }}>
+      <PageContainer sx={{ position: "relative", py: { xs: 6, md: 8.5 } }}>
         <Typography
           variant="overline"
-          sx={{
-            color: "primary.main",
-            letterSpacing: "0.2em",
-            display: "block",
-            mb: 1.5,
-          }}
+          component="p"
+          sx={{ ...eyebrowSx, color: "primary.main", mb: 1.5 }}
         >
           The Archive
         </Typography>
         <Typography
-          variant="h2"
-          component="h1"
-          sx={{ fontSize: { xs: "2rem", md: "2.75rem" }, mb: 1.5 }}
+          variant="h1"
+          sx={{ fontSize: { xs: "2.2rem", md: "3.1rem" }, mb: 1.5 }}
         >
           Book of Records
         </Typography>
         <Typography
-          variant="h6"
-          component="p"
+          variant="body1"
           sx={{
             color: "text.secondary",
-            fontWeight: 400,
-            maxWidth: 640,
+            fontSize: { xs: "1rem", md: "1.1rem" },
+            maxWidth: 620,
             mb: 3.5,
           }}
         >
@@ -59,6 +44,6 @@ export default function RecordsHero({
         </Typography>
         <RecordsScopeNote scopeLabel={scopeLabel} scopeNote={scopeNote} />
       </PageContainer>
-    </Box>
+    </HeroSurface>
   );
 }

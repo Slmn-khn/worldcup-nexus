@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
@@ -7,7 +6,9 @@ import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
+import HeroSurface from "@/components/visual/HeroSurface";
 import { formatNumber } from "@/lib/format";
+import { eyebrowSx, tabularNums } from "@/theme/tokens";
 import type { CountryProfileDto } from "@/server/queries/types";
 
 export default function CountryHero({
@@ -18,17 +19,8 @@ export default function CountryHero({
   const { totals } = country;
 
   return (
-    <Box
-      sx={{
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        background:
-          "radial-gradient(ellipse 70% 70% at 75% -20%, rgba(244, 201, 93, 0.13), transparent), " +
-          "radial-gradient(ellipse 50% 50% at 15% 110%, rgba(34, 211, 238, 0.08), transparent), " +
-          "radial-gradient(ellipse 40% 40% at 95% 85%, rgba(163, 230, 53, 0.05), transparent), #050B14",
-      }}
-    >
-      <PageContainer sx={{ py: { xs: 5, md: 8 } }}>
+    <HeroSurface>
+      <PageContainer sx={{ py: { xs: 5, md: 7.5 } }}>
         <Breadcrumbs
           separator="/"
           sx={{
@@ -65,12 +57,8 @@ export default function CountryHero({
 
         <Typography
           variant="overline"
-          sx={{
-            color: "primary.main",
-            letterSpacing: "0.2em",
-            display: "block",
-            mb: 1,
-          }}
+          component="p"
+          sx={{ ...eyebrowSx, color: "primary.main", mb: 1.5 }}
         >
           Nation Archive
         </Typography>
@@ -96,7 +84,10 @@ export default function CountryHero({
             </Typography>
           ) : null}
         </Stack>
-        <Typography variant="body1" sx={{ color: "text.secondary", mb: 3 }}>
+        <Typography
+          variant="body1"
+          sx={{ ...tabularNums, color: "text.secondary", mb: 3 }}
+        >
           {formatNumber(totals.tournamentsEntered)} tournaments ·{" "}
           {formatNumber(totals.matchesPlayed)} matches ·{" "}
           {formatNumber(totals.goalsFor)} goals scored
@@ -150,6 +141,6 @@ export default function CountryHero({
           <ArrowBackRoundedIcon sx={{ fontSize: 16 }} /> All countries
         </Typography>
       </PageContainer>
-    </Box>
+    </HeroSurface>
   );
 }

@@ -9,9 +9,10 @@ const theme = createTheme({
     mode: "dark",
     primary: {
       main: atlas.gold,
+      dark: atlas.goldSoft,
       contrastText: atlas.deepNavy,
     },
-    // Interaction / active-UI accent (search focus, data panels).
+    // Single data/interaction accent.
     secondary: {
       main: atlas.cyan,
       contrastText: atlas.deepNavy,
@@ -22,7 +23,7 @@ const theme = createTheme({
     },
     background: {
       default: atlas.bgBase,
-      paper: atlas.surface,
+      paper: atlas.surface1,
     },
     text: {
       primary: atlas.textPrimary,
@@ -30,12 +31,11 @@ const theme = createTheme({
     },
     divider: atlas.border,
     error: {
-      main: "#EF4444",
+      main: atlas.red,
     },
     warning: {
-      main: "#FACC15",
+      main: atlas.yellow,
     },
-    // Positive stats / pitch energy.
     success: {
       main: atlas.green,
       contrastText: atlas.deepNavy,
@@ -43,32 +43,66 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "var(--font-inter), system-ui, sans-serif",
+    // Display face: modern technical sans for headings and big numbers.
     h1: {
-      fontFamily: "var(--font-serif), Georgia, serif",
-      fontWeight: 700,
-      letterSpacing: "-0.04em",
-    },
-    h2: {
-      fontFamily: "var(--font-serif), Georgia, serif",
+      fontFamily: atlas.fontDisplay,
       fontWeight: 700,
       letterSpacing: "-0.03em",
+      lineHeight: 1.05,
+    },
+    h2: {
+      fontFamily: atlas.fontDisplay,
+      fontWeight: 700,
+      letterSpacing: "-0.02em",
+      lineHeight: 1.1,
     },
     h3: {
-      fontFamily: "var(--font-serif), Georgia, serif",
+      fontFamily: atlas.fontDisplay,
       fontWeight: 700,
+      letterSpacing: "-0.015em",
+      lineHeight: 1.15,
     },
     h4: {
-      fontFamily: "var(--font-serif), Georgia, serif",
+      fontFamily: atlas.fontDisplay,
       fontWeight: 700,
+      letterSpacing: "-0.01em",
+      lineHeight: 1.2,
+    },
+    h5: {
+      fontFamily: atlas.fontDisplay,
+      fontWeight: 600,
+    },
+    h6: {
+      fontFamily: atlas.fontDisplay,
+      fontWeight: 600,
+      letterSpacing: "0",
+    },
+    body1: {
+      fontSize: "1rem",
+      lineHeight: 1.6,
+    },
+    body2: {
+      fontSize: "0.9rem",
+      lineHeight: 1.55,
+    },
+    overline: {
+      fontSize: "0.7rem",
+      fontWeight: 700,
+      letterSpacing: "0.14em",
+      lineHeight: 1.6,
+    },
+    caption: {
+      fontSize: "0.78rem",
+      lineHeight: 1.5,
     },
     button: {
       textTransform: "none",
-      fontWeight: 700,
-      letterSpacing: "0.02em",
+      fontWeight: 600,
+      letterSpacing: "0.01em",
     },
   },
   shape: {
-    borderRadius: 10,
+    borderRadius: 12,
   },
   components: {
     MuiCssBaseline: {
@@ -82,19 +116,15 @@ const theme = createTheme({
           textDecoration: "none",
         },
         "::selection": {
-          backgroundColor: atlas.goldGlow,
+          backgroundColor: atlas.goldTint,
           color: atlas.textPrimary,
         },
-        // Visible keyboard focus for every interactive element (links,
-        // buttons, card action areas) without affecting mouse users.
+        // Visible keyboard focus for every interactive element without
+        // affecting mouse users.
         "a:focus-visible, button:focus-visible, [tabindex]:focus-visible": {
           outline: `2px solid ${atlas.gold}`,
           outlineOffset: "2px",
           borderRadius: "4px",
-        },
-        // Inputs announce focus with the interaction accent instead.
-        "input:focus-visible, textarea:focus-visible": {
-          outline: "none",
         },
         // Reduced-motion fallback for CSS-driven motion. JS animations are
         // handled by MotionConfig reducedMotion="user".
@@ -113,8 +143,9 @@ const theme = createTheme({
         root: {
           background: atlas.cardGradient,
           backgroundImage: atlas.cardGradient,
-          border: `1px solid ${atlas.goldBorder}`,
-          boxShadow: "0 10px 30px rgba(2, 8, 20, 0.35)",
+          border: `1px solid ${atlas.border}`,
+          boxShadow: atlas.shadowSm,
+          borderRadius: 12,
         },
       },
     },
@@ -122,14 +153,27 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 8,
-          fontWeight: 700,
+          fontWeight: 600,
+          paddingInline: 18,
           transition:
-            "background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease, color 200ms ease",
+            "background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease",
+          "&.MuiButton-containedPrimary": {
+            boxShadow: atlas.shadowSm,
+          },
           "&.MuiButton-containedPrimary:hover": {
-            boxShadow: `0 6px 28px ${atlas.goldGlow}`,
+            backgroundColor: atlas.goldSoft,
+            boxShadow: atlas.shadowMd,
+          },
+          "&.MuiButton-outlined": {
+            borderColor: atlas.borderStrong,
+            color: atlas.textPrimary,
           },
           "&.MuiButton-outlined:hover": {
-            boxShadow: `0 0 18px rgba(34, 211, 238, 0.14)`,
+            borderColor: atlas.gold,
+            backgroundColor: "rgba(244, 201, 93, 0.06)",
+          },
+          "&.MuiButton-text:hover": {
+            backgroundColor: "rgba(248, 250, 252, 0.05)",
           },
         },
       },
@@ -138,9 +182,26 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontWeight: 600,
+          borderRadius: 7,
+        },
+        sizeSmall: {
+          fontSize: "0.72rem",
+          height: 22,
         },
         outlined: {
           borderColor: atlas.border,
+        },
+      },
+    },
+    MuiBreadcrumbs: {
+      styleOverrides: {
+        root: {
+          fontSize: "0.8rem",
+        },
+        separator: {
+          color: atlas.textMuted,
+          marginLeft: 6,
+          marginRight: 6,
         },
       },
     },
@@ -155,7 +216,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
-          fontWeight: 700,
+          fontWeight: 600,
           color: atlas.textSecondary,
           "&.Mui-selected": {
             color: atlas.gold,
@@ -180,17 +241,29 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          backgroundColor: atlas.surface,
-          transition: "box-shadow 200ms ease",
+          backgroundColor: atlas.surface1,
+          borderRadius: 8,
+          transition: "box-shadow 180ms ease",
           "&.Mui-focused": {
-            boxShadow: `0 0 0 1px ${atlas.cyan}, 0 0 20px rgba(34, 211, 238, 0.12)`,
+            boxShadow: `0 0 0 3px ${atlas.cyanSoft}`,
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: atlas.cyan,
             borderWidth: 1,
           },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: atlas.borderStrong,
+          },
         },
         notchedOutline: {
+          borderColor: atlas.border,
+          transition: "border-color 180ms ease",
+        },
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
           borderColor: atlas.border,
         },
       },

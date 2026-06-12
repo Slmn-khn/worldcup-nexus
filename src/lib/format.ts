@@ -40,6 +40,23 @@ export function formatMinute(
   return `${minute}'`;
 }
 
+/**
+ * Display casing for raw source stage strings, e.g. "final" → "Final",
+ * "group stage" → "Group Stage", "round of 16" → "Round of 16".
+ * Presentation only — never persisted or compared against source values.
+ */
+export function formatStage(stage: string | null | undefined): string | null {
+  if (stage === null || stage === undefined || stage === "") return null;
+  return stage
+    .split(" ")
+    .map((word, index) =>
+      index > 0 && word === "of"
+        ? word
+        : word.charAt(0).toUpperCase() + word.slice(1),
+    )
+    .join(" ");
+}
+
 /** Display label for a booking card type. */
 export function formatCardType(
   cardType: "YELLOW" | "SECOND_YELLOW" | "RED",

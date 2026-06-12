@@ -131,17 +131,17 @@ export default function GlobalSearch() {
             gap: 1.5,
             px: 2.5,
             py: 1.75,
-            bgcolor: "#13243A",
+            bgcolor: "#122238",
             border: "1px solid",
             borderColor: "divider",
             borderRadius: 2.5,
             transition: "border-color 150ms ease, box-shadow 200ms ease",
-            "&:hover": { borderColor: "rgba(34, 211, 238, 0.5)" },
+            "&:hover": { borderColor: "rgba(56, 189, 248, 0.5)" },
             "&:focus-within": {
-              borderColor: "#22D3EE",
-              boxShadow: "0 0 24px rgba(34, 211, 238, 0.16)",
+              borderColor: "#38BDF8",
+              boxShadow: "0 0 24px rgba(56, 189, 248, 0.16)",
             },
-            "&:focus-within .GlobalSearch-icon": { color: "#22D3EE" },
+            "&:focus-within .GlobalSearch-icon": { color: "#38BDF8" },
           }}
         >
           <SearchIcon
@@ -159,7 +159,7 @@ export default function GlobalSearch() {
             onKeyDown={onKeyDown}
           />
           {loading ? (
-            <CircularProgress size={18} sx={{ color: "#22D3EE" }} />
+            <CircularProgress size={18} sx={{ color: "#38BDF8" }} />
           ) : null}
           {/* Loading shimmer: a cyan/gold light sweep along the bottom edge
               (transform-only). Reduced motion gets a static cyan strip. */}
@@ -173,7 +173,7 @@ export default function GlobalSearch() {
                   left: 0,
                   right: 0,
                   height: 2,
-                  bgcolor: "rgba(34, 211, 238, 0.45)",
+                  bgcolor: "rgba(56, 189, 248, 0.45)",
                 }}
               />
             ) : (
@@ -192,7 +192,7 @@ export default function GlobalSearch() {
                   width: "100%",
                   height: 2,
                   background:
-                    "linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.7), rgba(244, 201, 93, 0.5), transparent)",
+                    "linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.7), rgba(244, 201, 93, 0.5), transparent)",
                 }}
               />
             )
@@ -217,14 +217,14 @@ export default function GlobalSearch() {
                 left: 0,
                 right: 0,
                 zIndex: (theme) => theme.zIndex.modal,
-                bgcolor: "#0E1A2A",
+                bgcolor: "#0D1828",
                 border: "1px solid",
-                borderColor: "rgba(34, 211, 238, 0.25)",
+                borderColor: "rgba(56, 189, 248, 0.25)",
                 borderRadius: 2,
                 maxHeight: 480,
                 overflowY: "auto",
                 boxShadow:
-                  "0 18px 50px rgba(2, 8, 20, 0.65), 0 0 24px rgba(34, 211, 238, 0.08)",
+                  "0 18px 50px rgba(2, 8, 20, 0.65), 0 0 24px rgba(56, 189, 248, 0.08)",
               }}
             >
               {error !== null ? (
@@ -261,8 +261,8 @@ export default function GlobalSearch() {
                       subheader={
                         <ListSubheader
                           sx={{
-                            bgcolor: "#13243A",
-                            color: "#22D3EE",
+                            bgcolor: "#122238",
+                            color: "#38BDF8",
                             fontWeight: 700,
                             letterSpacing: "0.1em",
                             textTransform: "uppercase",
@@ -287,8 +287,8 @@ export default function GlobalSearch() {
                             transition:
                               "background-color 150ms ease, box-shadow 150ms ease",
                             "&:hover, &:focus-visible": {
-                              bgcolor: "rgba(34, 211, 238, 0.07)",
-                              boxShadow: "inset 2px 0 0 #22D3EE",
+                              bgcolor: "rgba(56, 189, 248, 0.07)",
+                              boxShadow: "inset 2px 0 0 #38BDF8",
                             },
                           }}
                         >

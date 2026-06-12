@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
@@ -7,7 +6,9 @@ import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
+import HeroSurface from "@/components/visual/HeroSurface";
 import { formatDate, formatNumber } from "@/lib/format";
+import { eyebrowSx } from "@/theme/tokens";
 import type { PlayerProfileDto } from "@/server/queries/types";
 
 export default function PlayerHero({ player }: { player: PlayerProfileDto }) {
@@ -15,17 +16,8 @@ export default function PlayerHero({ player }: { player: PlayerProfileDto }) {
   const born = formatDate(player.dateOfBirth);
 
   return (
-    <Box
-      sx={{
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        background:
-          "radial-gradient(ellipse 70% 70% at 75% -20%, rgba(244, 201, 93, 0.13), transparent), " +
-          "radial-gradient(ellipse 50% 50% at 15% 110%, rgba(34, 211, 238, 0.08), transparent), " +
-          "radial-gradient(ellipse 40% 40% at 95% 85%, rgba(139, 92, 246, 0.06), transparent), #050B14",
-      }}
-    >
-      <PageContainer sx={{ py: { xs: 5, md: 8 } }}>
+    <HeroSurface>
+      <PageContainer sx={{ py: { xs: 5, md: 7.5 } }}>
         <Breadcrumbs
           separator="/"
           sx={{
@@ -62,18 +54,14 @@ export default function PlayerHero({ player }: { player: PlayerProfileDto }) {
 
         <Typography
           variant="overline"
-          sx={{
-            color: "primary.main",
-            letterSpacing: "0.2em",
-            display: "block",
-            mb: 1,
-          }}
+          component="p"
+          sx={{ ...eyebrowSx, color: "primary.main", mb: 1.5 }}
         >
           Player Archive
         </Typography>
         <Typography
           variant="h1"
-          sx={{ fontSize: { xs: "2.25rem", md: "3.25rem" }, mb: 1 }}
+          sx={{ fontSize: { xs: "2.2rem", md: "3.1rem" }, mb: 1 }}
         >
           {player.name}
         </Typography>
@@ -164,6 +152,6 @@ export default function PlayerHero({ player }: { player: PlayerProfileDto }) {
           ) : null}
         </Stack>
       </PageContainer>
-    </Box>
+    </HeroSurface>
   );
 }

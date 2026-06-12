@@ -16,20 +16,31 @@ type StaggerContainerProps = {
   children: React.ReactNode;
   /** Layout styles for the container (grid templates, gaps, …). */
   sx?: SxProps<Theme>;
-  /** Seconds between each child's reveal. */
+  /** Seconds between each child's reveal. Alias of staggerChildren. */
   stagger?: number;
+  /** Seconds between each child's reveal. */
+  staggerChildren?: number;
+  /** Seconds before the first child starts revealing. */
+  delayChildren?: number;
 };
 
 export default function StaggerContainer({
   children,
   sx,
-  stagger = 0.06,
+  stagger,
+  staggerChildren,
+  delayChildren = 0,
 }: StaggerContainerProps) {
   const reducedMotion = useReducedMotion();
 
   const containerVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: stagger } },
+    visible: {
+      transition: {
+        staggerChildren: staggerChildren ?? stagger ?? 0.06,
+        delayChildren,
+      },
+    },
   };
   const itemVariants = {
     hidden: { opacity: 0, y: reducedMotion ? 0 : 16 },

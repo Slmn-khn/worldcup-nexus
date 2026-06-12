@@ -342,7 +342,73 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
 - `pnpm public:verify` extended: every nav/footer link target must have a
   route file; 26 loading/error/not-found state files audited.
 
-### Checkpoint 7C — Cinematic motion system + visual upgrade (complete)
+### Checkpoint 7C — Professional visual redesign system (complete)
+
+- **Typography**: Playfair serif replaced with Space Grotesk
+  (`--font-display`) for headings, scorelines, and stats; Inter body at
+  15–17px; eyebrow label system (small caps, 0.14em); tabular numerals on
+  all data numbers; raw stage strings now display through `formatStage()`.
+- **Theme/tokens** (`src/theme/tokens.ts` rewritten): restrained palette —
+  base `#050A12`, surfaces `#0D1828/#122238/#172A44`, slate hairline
+  borders, gold `#F4C95D` + soft `#D6A84F`, single cyan data accent
+  `#38BDF8`, semantic green `#22C55E`; purple and neon green removed.
+  De-MUI'd component defaults: cards (gradient panel, 12px radius, soft
+  shadow), buttons, chips (22px small, 7px radius), breadcrumbs, selects,
+  focused inputs (cyan ring), table cells.
+- **Layout system**: shared `HeroSurface` + `PageHeader` (used by all four
+  index pages, explorer, sources, about); navbar rebuilt (brand tile, gold
+  underline active state, mobile overflow fade); editorial three-column
+  footer (disclaimer + attribution intact); `SectionHeading` with eyebrow;
+  `EmptyState` with icon panel instead of dashed placeholder.
+- **Cards**: shared anatomy (eyebrow → title → key stat → metadata → CTA);
+  number-first StatCard/RecordStatCard (record value is now the hero; fixed
+  mid-score line-break bug with word joiners); PlayerCard letter avatar
+  replaced by flag + position tile; CountryCard flags + trophy mark;
+  homepage now passes flags through.
+- **Match center**: scoreboard rebuilt as a composed panel — eyebrow
+  (tournament · stage · date), 3.2–4.5rem tabular score, winner/penalties
+  chips; match info grid stage-formatted.
+- **Tables**: leaderboards became ranked panels with proportional bars
+  (scaled to #1) and gold top-3; explorer chips moved to a tint tier system
+  (penalty kick de-alarmed to cyan tint, substitution to green tint, Award
+  ghost); DataGrid header/footer chrome, uppercase tracked headers, cyan
+  row hover; timeline sub chips tinted (literal card colors kept).
+- **Search**: cyan focus ring + icon accent on the new surfaces; grouped
+  dropdown panel restyled; loading shimmer retained (static under reduced
+  motion).
+- Motion additions intentionally deferred — see Checkpoint 7D.
+
+### Checkpoint 7D — Motion + football constellation (complete)
+
+- `motion` package with app-wide `MotionConfig reducedMotion="user"`
+  (`MotionProvider` in the provider tree); primitives extended to the 7D
+  spec: `FadeIn` (delay/y/once/duration), `StaggerContainer`
+  (staggerChildren + delayChildren), `MotionCard`, `ParallaxLayer`
+  (yRange/xRange/opacityRange with legacy drift alias), `PageTransition`.
+- `FootballConstellation` refined and mounted: content-safe layouts (nodes
+  live in the right half/top/bottom strips/corners — never over
+  headlines; match clusters sit at the far edges since the scoreboard
+  panel owns the center), gold+cyan-only palette per the style guide,
+  line opacity ≤0.11, deterministic seeded jitter (match slug /
+  tournament year), 5–8 mobile nodes via a CSS-hidden desktop group.
+- Applied: homepage hero (`hero` + ball node), records hero (`records`),
+  match detail hero (`match`, low intensity), explorer header
+  (`explorer` via the new PageHeader `decoration` slot), tournament
+  detail hero (`subtle`, low intensity).
+- Parallax hero orbs retained on the homepage; card hover motion via the
+  shared interactive sx (lift + gold border + shadow, reduced-motion
+  safe); search dropdown enter/exit, staggered group reveal, and loading
+  shimmer retained from 7C.
+- Section/timeline reveals deepened: match info grid, penalty shootout,
+  event breakdown, related links, all player profile lists, country
+  finals/top scorers/match list, and tournament teams/matches/scorers/
+  awards now FadeIn at container level (rows never animate
+  individually).
+- Reduced-motion: static constellation at lower opacity, no drift/pulse,
+  no parallax, opacity-only reveals; decorative layers aria-hidden +
+  pointer-events none.
+
+### Checkpoint 7C (superseded) — Cinematic motion system + visual upgrade (complete)
 
 - `motion` package with app-wide `MotionConfig reducedMotion="user"`;
   reusable primitives (`FadeIn`, `StaggerContainer`, `ParallaxLayer`,

@@ -1,32 +1,37 @@
 import Box from "@mui/material/Box";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
+import { atlas, eyebrowSx, tabularNums } from "@/theme/tokens";
 import type { RecordLeaderboardDto } from "@/server/queries/types";
 
-/** Compact leaderboard card: title, description, ranked rows with links. */
+/**
+ * Leaderboard panel: title strip, then ranked rows with a proportional bar
+ * under each entry (scaled to the #1 value). Rank numbers carry the meaning;
+ * bars and gold top-3 are reinforcement, never the only indicator.
+ */
 export default function LeaderboardTable({
   leaderboard,
 }: {
   leaderboard: RecordLeaderboardDto;
 }) {
+  const maxValue = Math.max(
+    1,
+    ...leaderboard.items.map((item) => item.value),
+  );
+
   return (
     <Box
       sx={{
-        border: "1px solid rgba(244, 201, 93, 0.22)",
-        borderRadius: 2,
-        background: "linear-gradient(145deg, #0E1A2A, #101827)",
-        boxShadow: "0 10px 30px rgba(2, 8, 20, 0.35)",
+        border: `1px solid ${atlas.border}`,
+        borderRadius: 3,
+        background: atlas.cardGradient,
+        boxShadow: atlas.shadowSm,
         overflow: "hidden",
-        transition: "border-color 200ms ease, box-shadow 200ms ease",
+        transition: "border-color 180ms ease, box-shadow 180ms ease",
         "&:hover": {
-          borderColor: "rgba(34, 211, 238, 0.35)",
-          boxShadow:
-            "0 12px 36px rgba(2, 8, 20, 0.5), 0 0 18px rgba(34, 211, 238, 0.08)",
+          borderColor: atlas.borderStrong,
+          boxShadow: atlas.shadowMd,
         },
       }}
     >
@@ -35,18 +40,14 @@ export default function LeaderboardTable({
           px: 2.5,
           pt: 2,
           pb: 1.5,
-          bgcolor: "#13243A",
-          borderBottom: "1px solid",
-          borderColor: "divider",
+          bgcolor: atlas.surface2,
+          borderBottom: `1px solid ${atlas.border}`,
         }}
       >
         <Typography
           variant="overline"
-          sx={{
-            color: "primary.main",
-            letterSpacing: "0.12em",
-            display: "block",
-          }}
+          component="p"
+          sx={{ ...eyebrowSx, color: "primary.main" }}
         >
           {leaderboard.title}
         </Typography>
@@ -54,28 +55,40 @@ export default function LeaderboardTable({
           {leaderboard.description}
         </Typography>
       </Box>
-      <Table size="small">
-        <TableBody>
-          {leaderboard.items.map((item) => (
-            <TableRow
+
+      <Box component="ol" sx={{ listStyle: "none", m: 0, p: 0 }}>
+        {leaderboard.items.map((item) => {
+          const topThree = item.rank <= 3;
+          const barWidth = Math.max(4, (item.value / maxValue) * 100);
+          return (
+            <Box
+              component="li"
               key={`${item.rank}-${item.label}`}
               sx={{
-                "&:last-of-type td": { borderBottom: "none" },
+                display: "grid",
+                gridTemplateColumns: "34px 1fr auto",
+                alignItems: "center",
+                columnGap: 1.5,
+                px: 2.5,
+                py: 1.25,
+                borderBottom: `1px solid ${atlas.border}`,
+                "&:last-of-type": { borderBottom: "none" },
                 transition: "background-color 150ms ease",
-                "&:hover": { bgcolor: "rgba(34, 211, 238, 0.04)" },
+                "&:hover": { bgcolor: "rgba(56, 189, 248, 0.04)" },
               }}
             >
-              <TableCell
+              <Typography
+                component="span"
+                variant="body2"
                 sx={{
-                  width: 36,
-                  color: item.rank <= 3 ? "primary.main" : "#94A3B8",
+                  ...tabularNums,
+                  color: topThree ? "primary.main" : atlas.textMuted,
                   fontWeight: 700,
-                  borderColor: "divider",
                 }}
               >
                 {item.rank}
-              </TableCell>
-              <TableCell sx={{ borderColor: "divider" }}>
+              </Typography>
+              <Box sx={{ minWidth: 0 }}>
                 {item.href !== null ? (
                   <Typography
                     component={Link}
@@ -105,22 +118,46 @@ export default function LeaderboardTable({
                     {item.detail}
                   </Typography>
                 ) : null}
-              </TableCell>
-              <TableCell
-                align="right"
+                {/* Proportional bar, scaled to the leaderboard's #1 value. */}
+                <Box
+                  aria-hidden
+                  sx={{
+                    mt: 0.75,
+                    height: 3,
+                    borderRadius: 1,
+                    bgcolor: atlas.surface2,
+                    overflow: "hidden",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: `${barWidth}%`,
+                      height: "100%",
+                      borderRadius: 1,
+                      bgcolor: topThree ? atlas.gold : atlas.textMuted,
+                      opacity: topThree ? 0.85 : 0.4,
+                    }}
+                  />
+                </Box>
+              </Box>
+              <Typography
+                component="span"
+                variant="body2"
                 sx={{
+                  ...tabularNums,
                   color: "primary.main",
                   fontWeight: 700,
                   whiteSpace: "nowrap",
-                  borderColor: "divider",
+                  alignSelf: "start",
+                  pt: 0.25,
                 }}
               >
                 {formatNumber(item.value)}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+              </Typography>
+            </Box>
+          );
+        })}
+      </Box>
     </Box>
   );
 }

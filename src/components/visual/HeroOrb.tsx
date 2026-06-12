@@ -10,12 +10,10 @@ import { motion, useReducedMotion } from "motion/react";
 const MotionBox = motion.create(Box);
 
 const ORB_GLOWS = {
-  gold: "radial-gradient(circle, rgba(244, 201, 93, 0.16) 0%, transparent 65%)",
+  gold: "radial-gradient(circle, rgba(244, 201, 93, 0.13) 0%, transparent 65%)",
   green:
-    "radial-gradient(circle, rgba(163, 230, 53, 0.11) 0%, transparent 65%)",
-  cyan: "radial-gradient(circle, rgba(34, 211, 238, 0.13) 0%, transparent 65%)",
-  purple:
-    "radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 65%)",
+    "radial-gradient(circle, rgba(34, 197, 94, 0.09) 0%, transparent 65%)",
+  cyan: "radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 65%)",
 } as const;
 
 type HeroOrbProps = {

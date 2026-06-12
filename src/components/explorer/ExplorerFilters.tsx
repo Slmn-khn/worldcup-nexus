@@ -74,18 +74,19 @@ export default function ExplorerFilters({
         // Command-panel framing for the filter console.
         border: "1px solid",
         borderColor: "divider",
-        borderRadius: 2,
-        background: "linear-gradient(145deg, #0E1A2A, #101827)",
-        boxShadow: "0 10px 30px rgba(2, 8, 20, 0.35)",
+        borderRadius: 3,
+        background: "linear-gradient(160deg, #122238 0%, #0D1828 100%)",
+        boxShadow: "0 8px 24px rgba(2, 6, 14, 0.45)",
         p: { xs: 2, md: 2.5 },
       }}
     >
       <Typography
         variant="overline"
+        component="p"
         sx={{
-          color: "#22D3EE",
-          letterSpacing: "0.18em",
-          display: "block",
+          color: "#38BDF8",
+          fontWeight: 700,
+          letterSpacing: "0.14em",
           mb: 1.5,
         }}
       >

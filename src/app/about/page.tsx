@@ -7,6 +7,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
+import PageHeader from "@/components/layout/PageHeader";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { siteConfig } from "@/lib/site";
 
@@ -19,35 +20,11 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <Box>
-      <Box sx={{ borderBottom: "1px solid", borderColor: "divider" }}>
-        <PageContainer sx={{ py: { xs: 6, md: 8 } }}>
-          <Typography
-            variant="overline"
-            sx={{
-              color: "primary.main",
-              letterSpacing: "0.2em",
-              display: "block",
-              mb: 1.5,
-            }}
-          >
-            {siteConfig.tagline}
-          </Typography>
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{ fontSize: { xs: "2rem", md: "2.75rem" }, mb: 1.5 }}
-          >
-            About WorldCup Atlas
-          </Typography>
-          <Typography
-            variant="h6"
-            component="p"
-            sx={{ color: "text.secondary", fontWeight: 400, maxWidth: 680 }}
-          >
-            {siteConfig.description}
-          </Typography>
-        </PageContainer>
-      </Box>
+      <PageHeader
+        eyebrow={siteConfig.tagline}
+        title="About WorldCup Atlas"
+        lede={siteConfig.description}
+      />
 
       <PageContainer component="section" sx={{ py: { xs: 4, md: 5 } }}>
         <SectionHeading title="What This Is" />

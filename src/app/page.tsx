@@ -78,6 +78,7 @@ export default async function Home() {
       {/* Archive at a Glance */}
       <PageContainer sx={SECTION_PADDING}>
         <SectionHeading
+          eyebrow="Live data"
           title="Archive at a Glance"
           subtitle="Live counts from the imported archive."
         />
@@ -191,6 +192,8 @@ export default async function Home() {
               <CountryCard
                 key={country.id}
                 name={country.name}
+                flagEmoji={country.flagEmoji}
+                code={country.code}
                 summary={`${formatNumber(country.tournamentsEntered)} tournament entries · ${formatNumber(country.playersCount)} players in the archive`}
                 href={`/countries/${country.slug}`}
               />
@@ -218,6 +221,7 @@ export default async function Home() {
                 key={player.id}
                 name={player.name}
                 country={player.countryName ?? "Nation unknown"}
+                flagEmoji={player.countryFlagEmoji}
                 position={player.position}
                 href={`/players/${player.slug}`}
               />

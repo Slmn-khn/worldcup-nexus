@@ -1,12 +1,30 @@
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
-import { glowPanelSx, interactiveCardSx } from "@/theme/tokens";
+import {
+  atlas,
+  eyebrowSx,
+  glowPanelSx,
+  interactiveCardSx,
+  tabularNums,
+} from "@/theme/tokens";
 import type { RecordItemDto } from "@/server/queries/types";
+
+/**
+ * Keeps scorelines like "13–0" from line-breaking after the dash by joining
+ * digit–dash–digit sequences with word-joiner characters. Display only.
+ */
+function noBreakScores(label: string): string {
+  // The string below is U+2060 WORD JOINER (invisible, zero-width).
+  const WORD_JOINER = "⁠";
+  return label.replace(
+    /(\d)([–-])(\d)/g,
+    `$1${WORD_JOINER}$2${WORD_JOINER}$3`,
+  );
+}
 
 /** Highlighted #1 record (e.g. most goals by a player). Real data only. */
 export default function RecordStatCard({
@@ -17,51 +35,44 @@ export default function RecordStatCard({
   item: RecordItemDto;
 }) {
   const content = (
-    <CardContent sx={{ p: 2.5 }}>
-      <Stack
-        direction="row"
-        spacing={1}
-        sx={{ mb: 0.75, alignItems: "baseline" }}
+    <CardContent sx={{ p: 2.5, "&:last-child": { pb: 2.5 } }}>
+      <Typography
+        variant="overline"
+        component="p"
+        aria-label={`Record: ${title}, ranked first`}
+        sx={{ ...eyebrowSx, color: atlas.textMuted, mb: 1 }}
       >
         <Typography
-          variant="caption"
           component="span"
-          aria-label="Record holder, ranked first"
-          sx={{
-            color: "#22D3EE",
-            fontWeight: 700,
-            letterSpacing: "0.08em",
-            lineHeight: 1.4,
-          }}
+          sx={{ ...eyebrowSx, color: atlas.cyan, mr: 0.75 }}
         >
           №1
         </Typography>
-        <Typography
-          variant="overline"
-          sx={{
-            color: "text.secondary",
-            letterSpacing: "0.12em",
-            lineHeight: 1.4,
-          }}
-        >
-          {title}
-        </Typography>
-      </Stack>
+        {title}
+      </Typography>
       <Typography
-        variant="h4"
+        variant="h3"
         component="p"
         sx={{
+          ...tabularNums,
           color: "primary.main",
-          fontSize: { xs: "1.5rem", md: "1.8rem" },
-          lineHeight: 1.2,
+          fontSize: { xs: "2rem", md: "2.5rem" },
+          lineHeight: 1,
         }}
       >
-        {item.label}
-      </Typography>
-      <Typography variant="body2" sx={{ color: "text.secondary", mt: 0.75 }}>
         {formatNumber(item.value)}
-        {item.detail !== null ? ` · ${item.detail}` : ""}
       </Typography>
+      <Typography
+        variant="body1"
+        sx={{ color: "text.primary", fontWeight: 600, mt: 1, lineHeight: 1.35 }}
+      >
+        {noBreakScores(item.label)}
+      </Typography>
+      {item.detail !== null ? (
+        <Typography variant="caption" sx={{ color: "text.secondary", mt: 0.5 }}>
+          {item.detail}
+        </Typography>
+      ) : null}
     </CardContent>
   );
 

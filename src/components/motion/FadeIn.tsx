@@ -18,6 +18,8 @@ type FadeInProps = {
   y?: number;
   /** Animate only the first time the element enters the viewport. */
   once?: boolean;
+  /** Seconds the reveal takes. */
+  duration?: number;
   sx?: SxProps<Theme>;
 };
 
@@ -26,6 +28,7 @@ export default function FadeIn({
   delay = 0,
   y = 18,
   once = true,
+  duration = 0.55,
   sx,
 }: FadeInProps) {
   const reducedMotion = useReducedMotion();
@@ -34,7 +37,7 @@ export default function FadeIn({
       initial={{ opacity: 0, y: reducedMotion ? 0 : y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, margin: "0px 0px -60px 0px" }}
-      transition={{ duration: 0.55, delay, ease: [0.21, 0.65, 0.36, 1] }}
+      transition={{ duration, delay, ease: [0.21, 0.65, 0.36, 1] }}
       sx={sx}
     >
       {children}

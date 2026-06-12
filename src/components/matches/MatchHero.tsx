@@ -6,39 +6,24 @@ import Typography from "@mui/material/Typography";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
+import HeroSurface from "@/components/visual/HeroSurface";
 import FootballConstellation from "@/components/visual/FootballConstellation";
-import { formatDate } from "@/lib/format";
+import { formatDate, formatStage } from "@/lib/format";
+import { atlas, eyebrowSx, tabularNums } from "@/theme/tokens";
 import type { MatchDetailDto } from "@/server/queries/types";
 
 export default function MatchHero({ match }: { match: MatchDetailDto }) {
   const date = formatDate(match.matchDate);
 
   return (
-    <Box
-      sx={{
-        position: "relative",
-        overflow: "hidden",
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        background:
-          "radial-gradient(ellipse 70% 70% at 50% -20%, rgba(244, 201, 93, 0.13), transparent), " +
-          "radial-gradient(ellipse 50% 50% at 90% 110%, rgba(34, 211, 238, 0.08), transparent), " +
-          "radial-gradient(ellipse 40% 40% at 5% 90%, rgba(139, 92, 246, 0.06), transparent), #050B14",
-      }}
-    >
+    <HeroSurface variant="feature">
       <FootballConstellation
         variant="match"
         intensity="low"
         seed={match.slug}
       />
-      <PageContainer sx={{ position: "relative", py: { xs: 5, md: 8 } }}>
-        <Breadcrumbs
-          separator="/"
-          sx={{
-            mb: 3,
-            "& .MuiBreadcrumbs-separator": { color: "text.secondary" },
-          }}
-        >
+      <PageContainer sx={{ position: "relative", py: { xs: 5, md: 7 } }}>
+        <Breadcrumbs separator="/" sx={{ mb: 4 }}>
           <Typography
             component={Link}
             href="/"
@@ -77,134 +62,129 @@ export default function MatchHero({ match }: { match: MatchDetailDto }) {
           </Typography>
         </Breadcrumbs>
 
-        <Stack
-          direction="row"
-          spacing={1}
-          sx={{ mb: 3, flexWrap: "wrap", rowGap: 1 }}
-        >
-          <Chip
-            label={match.tournamentName}
-            size="small"
-            variant="outlined"
-            sx={{ color: "text.secondary", borderColor: "divider" }}
-          />
-          <Chip
-            label={match.stage}
-            size="small"
-            sx={{
-              bgcolor: "rgba(244, 201, 93, 0.12)",
-              color: "primary.main",
-              fontWeight: 700,
-            }}
-          />
-          {date !== null ? (
-            <Chip
-              label={date}
-              size="small"
-              variant="outlined"
-              sx={{ color: "text.secondary", borderColor: "divider" }}
-            />
-          ) : null}
-        </Stack>
-
-        {/* Scoreline */}
+        {/* Scoreboard */}
         <Box
           sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "1fr auto 1fr" },
-            alignItems: "center",
-            gap: { xs: 1.5, sm: 3 },
-            textAlign: "center",
             maxWidth: 860,
             mx: "auto",
-            py: { xs: 1, md: 2 },
+            borderRadius: 3,
+            border: `1px solid ${atlas.border}`,
+            background: atlas.panelGradient,
+            boxShadow: atlas.shadowLg,
+            px: { xs: 2.5, md: 5 },
+            py: { xs: 3, md: 4 },
+            textAlign: "center",
           }}
         >
+          {/* Eyebrow: tournament · stage · date */}
           <Typography
-            variant="h2"
+            variant="overline"
             component="p"
+            sx={{ ...eyebrowSx, color: atlas.textMuted, mb: { xs: 2, md: 3 } }}
+          >
+            {match.tournamentName}
+            <Box component="span" sx={{ color: "primary.main", mx: 1 }}>
+              {formatStage(match.stage)}
+            </Box>
+            {date !== null ? date : null}
+          </Typography>
+
+          <Box
             sx={{
-              fontSize: { xs: "1.6rem", md: "2.25rem" },
-              textAlign: { sm: "right" },
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", sm: "1fr auto 1fr" },
+              alignItems: "center",
+              gap: { xs: 1, sm: 3.5 },
             }}
           >
-            {match.homeTeam.name}
-          </Typography>
-          <Box>
             <Typography
-              variant="h1"
+              variant="h2"
               component="p"
               sx={{
-                color: "primary.main",
-                fontSize: { xs: "2.75rem", md: "3.75rem" },
-                lineHeight: 1,
-                textShadow: "0 0 32px rgba(244, 201, 93, 0.35)",
+                fontSize: { xs: "1.5rem", md: "2rem" },
+                textAlign: { xs: "center", sm: "right" },
+                lineHeight: 1.15,
               }}
             >
-              {match.score}
+              {match.homeTeam.name}
             </Typography>
-            {match.penaltyScore !== null ? (
+            <Box>
               <Typography
-                variant="body2"
-                sx={{ color: "text.secondary", mt: 0.75 }}
+                variant="h1"
+                component="p"
+                sx={{
+                  ...tabularNums,
+                  color: "primary.main",
+                  fontSize: { xs: "3.2rem", md: "4.5rem" },
+                  lineHeight: 1,
+                }}
               >
-                {match.penaltyScore} on penalties
+                {match.score}
               </Typography>
-            ) : null}
+              {match.penaltyScore !== null ? (
+                <Typography
+                  variant="body2"
+                  sx={{ ...tabularNums, color: "text.secondary", mt: 0.75 }}
+                >
+                  {match.penaltyScore} on penalties
+                </Typography>
+              ) : null}
+            </Box>
+            <Typography
+              variant="h2"
+              component="p"
+              sx={{
+                fontSize: { xs: "1.5rem", md: "2rem" },
+                textAlign: { xs: "center", sm: "left" },
+                lineHeight: 1.15,
+              }}
+            >
+              {match.awayTeam.name}
+            </Typography>
           </Box>
-          <Typography
-            variant="h2"
-            component="p"
+
+          <Stack
+            direction="row"
+            spacing={1.5}
             sx={{
-              fontSize: { xs: "1.6rem", md: "2.25rem" },
-              textAlign: { sm: "left" },
+              justifyContent: "center",
+              mt: { xs: 2.5, md: 3 },
+              flexWrap: "wrap",
+              rowGap: 1,
             }}
           >
-            {match.awayTeam.name}
-          </Typography>
+            {match.winnerName !== null ? (
+              <Chip
+                label={`Winner: ${match.winnerName}`}
+                size="small"
+                sx={{
+                  bgcolor: "primary.main",
+                  color: atlas.deepNavy,
+                  fontWeight: 700,
+                }}
+              />
+            ) : (
+              <Chip
+                label="Draw"
+                size="small"
+                variant="outlined"
+                sx={{ color: "text.secondary", borderColor: atlas.border }}
+              />
+            )}
+            {match.decidedByPenalties ? (
+              <Chip
+                label="Decided by penalty shootout"
+                size="small"
+                sx={{
+                  bgcolor: atlas.cyanTint,
+                  color: atlas.cyan,
+                  border: `1px solid ${atlas.cyanSoft}`,
+                  fontWeight: 600,
+                }}
+              />
+            ) : null}
+          </Stack>
         </Box>
-
-        <Stack
-          direction="row"
-          spacing={1.5}
-          sx={{
-            justifyContent: "center",
-            mt: 1.5,
-            flexWrap: "wrap",
-            rowGap: 1,
-          }}
-        >
-          {match.decidedByPenalties ? (
-            <Chip
-              label="Decided by penalty shootout"
-              size="small"
-              sx={{
-                bgcolor: "rgba(34, 211, 238, 0.14)",
-                color: "#22D3EE",
-                border: "1px solid rgba(34, 211, 238, 0.35)",
-                fontWeight: 700,
-              }}
-            />
-          ) : null}
-          {match.winnerName !== null ? (
-            <Chip
-              label={`Winner: ${match.winnerName}`}
-              size="small"
-              sx={{
-                bgcolor: "primary.main",
-                color: "#06111F",
-                fontWeight: 700,
-              }}
-            />
-          ) : (
-            <Chip
-              label="Draw"
-              size="small"
-              variant="outlined"
-              sx={{ color: "text.secondary", borderColor: "divider" }}
-            />
-          )}
-        </Stack>
 
         <Typography
           component={Link}
@@ -222,6 +202,6 @@ export default function MatchHero({ match }: { match: MatchDetailDto }) {
           <ArrowBackRoundedIcon sx={{ fontSize: 16 }} /> {match.tournamentName}
         </Typography>
       </PageContainer>
-    </Box>
+    </HeroSurface>
   );
 }

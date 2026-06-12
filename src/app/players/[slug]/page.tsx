@@ -16,6 +16,7 @@ import PlayerBookingList from "@/components/players/PlayerBookingList";
 import PlayerPenaltyList from "@/components/players/PlayerPenaltyList";
 import PlayerSubstitutionList from "@/components/players/PlayerSubstitutionList";
 import PlayerAwards from "@/components/players/PlayerAwards";
+import FadeIn from "@/components/motion/FadeIn";
 import { getPlayerProfile } from "@/server/queries/players";
 
 export const dynamic = "force-dynamic";
@@ -65,7 +66,9 @@ export default async function PlayerProfilePage({ params }: Props) {
           title="World Cup Squads"
           subtitle="Tournaments where this player was selected in the squad."
         />
-        <PlayerTournamentHistory squads={player.squadTournaments} />
+        <FadeIn y={14}>
+          <PlayerTournamentHistory squads={player.squadTournaments} />
+        </FadeIn>
       </PageContainer>
 
       {/* Goals */}
@@ -74,7 +77,9 @@ export default async function PlayerProfilePage({ params }: Props) {
           title="Goals"
           subtitle="Every recorded goal, in chronological order."
         />
-        <PlayerGoalList goals={player.goals} />
+        <FadeIn y={14}>
+          <PlayerGoalList goals={player.goals} />
+        </FadeIn>
       </PageContainer>
 
       {/* Cards */}
@@ -83,7 +88,9 @@ export default async function PlayerProfilePage({ params }: Props) {
           title="Cards"
           subtitle="Bookings across all imported tournaments."
         />
-        <PlayerBookingList bookings={player.bookings} />
+        <FadeIn y={14}>
+          <PlayerBookingList bookings={player.bookings} />
+        </FadeIn>
       </PageContainer>
 
       {/* Penalties */}
@@ -92,7 +99,9 @@ export default async function PlayerProfilePage({ params }: Props) {
           title="Penalty Kicks"
           subtitle="Shootout kicks from the imported dataset. In-match penalty goals appear in the goals list."
         />
-        <PlayerPenaltyList kicks={player.penaltyKicks} />
+        <FadeIn y={14}>
+          <PlayerPenaltyList kicks={player.penaltyKicks} />
+        </FadeIn>
       </PageContainer>
 
       {/* Substitutions */}
@@ -101,7 +110,9 @@ export default async function PlayerProfilePage({ params }: Props) {
           title="Substitutions"
           subtitle="Times this player came on or went off."
         />
-        <PlayerSubstitutionList substitutions={player.substitutions} />
+        <FadeIn y={14}>
+          <PlayerSubstitutionList substitutions={player.substitutions} />
+        </FadeIn>
       </PageContainer>
 
       {/* Awards */}
@@ -113,7 +124,9 @@ export default async function PlayerProfilePage({ params }: Props) {
           title="Awards"
           subtitle="Official tournament awards in the archive."
         />
-        <PlayerAwards awards={player.awards} />
+        <FadeIn y={14}>
+          <PlayerAwards awards={player.awards} />
+        </FadeIn>
       </PageContainer>
     </Box>
   );

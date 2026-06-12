@@ -55,9 +55,11 @@ export default function ExplorerSummary({
         label={`${formatNumber(total)} rows`}
         size="small"
         sx={{
-          bgcolor: "rgba(34, 211, 238, 0.12)",
-          color: "#22D3EE",
+          bgcolor: "rgba(56, 189, 248, 0.12)",
+          color: "#38BDF8",
+          border: "1px solid rgba(56, 189, 248, 0.3)",
           fontWeight: 700,
+          fontVariantNumeric: "tabular-nums",
         }}
       />
       {filterChips.length > 0 ? (
@@ -69,8 +71,8 @@ export default function ExplorerSummary({
             variant="outlined"
             sx={{
               color: "text.primary",
-              borderColor: "rgba(34, 211, 238, 0.35)",
-              bgcolor: "rgba(34, 211, 238, 0.05)",
+              borderColor: "rgba(56, 189, 248, 0.3)",
+              bgcolor: "rgba(56, 189, 248, 0.05)",
             }}
           />
         ))
@@ -92,11 +94,6 @@ export default function ExplorerSummary({
           size="small"
           variant="outlined"
           startIcon={<FileDownloadOutlinedIcon />}
-          sx={{
-            color: "text.primary",
-            borderColor: "rgba(34, 211, 238, 0.4)",
-            "&:hover": { borderColor: "#22D3EE", color: "#22D3EE" },
-          }}
         >
           Export CSV
         </Button>
@@ -106,11 +103,6 @@ export default function ExplorerSummary({
           size="small"
           variant="outlined"
           startIcon={<FileDownloadOutlinedIcon />}
-          sx={{
-            color: "text.primary",
-            borderColor: "rgba(34, 211, 238, 0.4)",
-            "&:hover": { borderColor: "#22D3EE", color: "#22D3EE" },
-          }}
         >
           Export JSON
         </Button>

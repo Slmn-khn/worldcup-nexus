@@ -12,6 +12,7 @@ import CountryTournamentTimeline from "@/components/countries/CountryTournamentT
 import CountryMatchList from "@/components/countries/CountryMatchList";
 import CountryTopScorers from "@/components/countries/CountryTopScorers";
 import CountryFinals from "@/components/countries/CountryFinals";
+import FadeIn from "@/components/motion/FadeIn";
 import { getCountryProfile } from "@/server/queries/countries";
 
 export const dynamic = "force-dynamic";
@@ -70,7 +71,9 @@ export default async function CountryProfilePage({ params }: Props) {
           title="Finals"
           subtitle="Deciding finals involving this nation."
         />
-        <CountryFinals finals={country.finals} />
+        <FadeIn y={14}>
+          <CountryFinals finals={country.finals} />
+        </FadeIn>
       </PageContainer>
 
       {/* Top scorers */}
@@ -79,7 +82,9 @@ export default async function CountryProfilePage({ params }: Props) {
           title="Top Scorers"
           subtitle="Leading scorers for this nation across all imported tournaments, excluding own goals."
         />
-        <CountryTopScorers scorers={country.topScorers} />
+        <FadeIn y={14}>
+          <CountryTopScorers scorers={country.topScorers} />
+        </FadeIn>
       </PageContainer>
 
       {/* Matches */}
@@ -88,7 +93,9 @@ export default async function CountryProfilePage({ params }: Props) {
         sx={{ ...SECTION_SX, pb: { xs: 7, md: 9 } }}
       >
         <SectionHeading title="Matches" subtitle="Most recent matches first." />
-        <CountryMatchList matches={country.matches} />
+        <FadeIn y={14}>
+          <CountryMatchList matches={country.matches} />
+        </FadeIn>
       </PageContainer>
     </Box>
   );

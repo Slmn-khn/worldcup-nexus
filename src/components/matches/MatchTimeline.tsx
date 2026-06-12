@@ -17,23 +17,37 @@ type TimelineEvent = {
   detail: string;
 };
 
+// Goals are solid gold (the headline event); cards keep their literal card
+// colors; substitutions are quiet tints. Labels always carry the meaning.
 const CHIPS = {
-  goal: { label: "Goal", color: "#06111F", background: "#F4C95D" },
-  ownGoal: { label: "Own Goal", color: "#F8FAFC", background: "#7F1D1D" },
+  goal: { label: "Goal", color: "#07111F", background: "#F4C95D" },
+  ownGoal: {
+    label: "Own Goal",
+    color: "#FCA5A5",
+    background: "rgba(239, 68, 68, 0.16)",
+  },
   penaltyGoal: {
     label: "Penalty Goal",
-    color: "#06111F",
-    background: "#C9A13F",
+    color: "#07111F",
+    background: "#D6A84F",
   },
-  yellow: { label: "Yellow Card", color: "#06111F", background: "#FACC15" },
+  yellow: { label: "Yellow Card", color: "#07111F", background: "#FACC15" },
   secondYellow: {
     label: "Second Yellow",
-    color: "#06111F",
+    color: "#07111F",
     background: "#FB923C",
   },
   red: { label: "Red Card", color: "#F8FAFC", background: "#EF4444" },
-  subOn: { label: "Sub On", color: "#06111F", background: "#A3E635" },
-  subOff: { label: "Sub Off", color: "#CBD5E1", background: "#263B56" },
+  subOn: {
+    label: "Sub On",
+    color: "#4ADE80",
+    background: "rgba(34, 197, 94, 0.14)",
+  },
+  subOff: {
+    label: "Sub Off",
+    color: "#CBD5E1",
+    background: "rgba(148, 163, 184, 0.12)",
+  },
 };
 
 function buildEvents(match: MatchDetailDto): TimelineEvent[] {

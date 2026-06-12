@@ -1,4 +1,4 @@
-﻿// Tournament detail page (Checkpoint 5B) — database-backed via the query layer.
+// Tournament detail page (Checkpoint 5B) — database-backed via the query layer.
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -14,6 +14,7 @@ import TournamentTeamsGrid from "@/components/tournaments/TournamentTeamsGrid";
 import TournamentMatchList from "@/components/tournaments/TournamentMatchList";
 import TournamentTopScorers from "@/components/tournaments/TournamentTopScorers";
 import TournamentAwards from "@/components/tournaments/TournamentAwards";
+import FadeIn from "@/components/motion/FadeIn";
 import { formatNumber } from "@/lib/format";
 import { getTournamentByYear } from "@/server/queries/tournaments";
 
@@ -82,7 +83,9 @@ export default async function TournamentDetailPage({ params }: Props) {
           title="Teams"
           subtitle={`${formatNumber(tournament.teams.length)} nations qualified for this tournament.`}
         />
-        <TournamentTeamsGrid teams={tournament.teams} />
+        <FadeIn y={14}>
+          <TournamentTeamsGrid teams={tournament.teams} />
+        </FadeIn>
       </PageContainer>
 
       {/* Matches */}
@@ -91,7 +94,9 @@ export default async function TournamentDetailPage({ params }: Props) {
           title="Matches"
           subtitle={`Every match of the tournament, stage by stage (${formatNumber(tournament.matches.length)} total).`}
         />
-        <TournamentMatchList matches={tournament.matches} />
+        <FadeIn y={14}>
+          <TournamentMatchList matches={tournament.matches} />
+        </FadeIn>
       </PageContainer>
 
       {/* Top Scorers */}
@@ -100,7 +105,9 @@ export default async function TournamentDetailPage({ params }: Props) {
           title="Top Scorers"
           subtitle="Leading scorers of the tournament, excluding own goals."
         />
-        <TournamentTopScorers scorers={tournament.topScorers} />
+        <FadeIn y={14}>
+          <TournamentTopScorers scorers={tournament.topScorers} />
+        </FadeIn>
       </PageContainer>
 
       {/* Awards */}
@@ -109,7 +116,9 @@ export default async function TournamentDetailPage({ params }: Props) {
           title="Awards"
           subtitle="Official tournament awards in the archive."
         />
-        <TournamentAwards awards={tournament.awards} />
+        <FadeIn y={14}>
+          <TournamentAwards awards={tournament.awards} />
+        </FadeIn>
       </PageContainer>
 
       {/* Penalties */}
@@ -127,7 +136,9 @@ export default async function TournamentDetailPage({ params }: Props) {
           }
         />
         {shootoutMatches.length > 0 ? (
-          <TournamentMatchList matches={shootoutMatches} />
+          <FadeIn y={14}>
+            <TournamentMatchList matches={shootoutMatches} />
+          </FadeIn>
         ) : (
           <EmptyState
             title="No penalty shootouts"

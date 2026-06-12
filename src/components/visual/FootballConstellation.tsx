@@ -9,10 +9,15 @@
 // same layout renders on server and client and reads as mapped history
 // rather than random decoration.
 //
+// Layouts respect content-safe zones: page headers put text in the left
+// column, so nodes live in the right half, the top/bottom strips, and the
+// corners — never over headlines. Hues follow the style guide's
+// one-accent-per-surface rule: gold plus cyan only.
+//
 // Decorative only: aria-hidden, pointer-events none, very low opacity.
-// Animation is opacity pulses on node halos plus one slow drift of the whole
-// constellation (lines move with their nodes). Reduced motion renders the
-// same constellation fully static at slightly lower opacity.
+// Animation is opacity pulses on a few node halos plus one slow drift of the
+// whole constellation (lines move with their nodes). Reduced motion renders
+// the same constellation fully static at slightly lower opacity.
 
 import Box from "@mui/material/Box";
 import { motion, useReducedMotion } from "motion/react";
@@ -47,106 +52,108 @@ type Layout = {
 
 const GOLD = atlas.gold;
 const CYAN = atlas.cyan;
-const GREEN = atlas.green;
 
 // All layouts share a 1000×600 viewBox (preserveAspectRatio slice covers the
-// container on any aspect ratio).
+// container on any aspect ratio). Text-safe zone for header layouts: avoid
+// x < 600 between y 60–480.
 const LAYOUTS: Record<Variant, Layout> = {
-  // Most visible: history spread across the whole sky, ball node center-right.
+  // Homepage: the archive mapped across the right sky, ball node among it.
   hero: {
     nodes: [
-      { x: 120, y: 140, r: 4, color: GOLD, pulse: true },
-      { x: 240, y: 90, r: 3, color: CYAN },
-      { x: 360, y: 170, r: 3.5, color: GOLD, pulse: true, desktopOnly: true },
-      { x: 480, y: 80, r: 3, color: GREEN },
-      { x: 590, y: 150, r: 4, color: CYAN, pulse: true },
-      { x: 820, y: 100, r: 4, color: GOLD, pulse: true },
-      { x: 920, y: 200, r: 3, color: CYAN, desktopOnly: true },
-      { x: 150, y: 420, r: 3.5, color: GREEN, desktopOnly: true },
-      { x: 300, y: 500, r: 4, color: CYAN, pulse: true },
-      { x: 450, y: 430, r: 3, color: GOLD, desktopOnly: true },
-      { x: 620, y: 480, r: 4, color: GOLD, pulse: true },
-      { x: 780, y: 400, r: 3, color: GREEN, desktopOnly: true },
-      { x: 880, y: 520, r: 3.5, color: CYAN, desktopOnly: true },
-      { x: 60, y: 300, r: 3, color: CYAN, desktopOnly: true },
-    ],
-    edges: [
-      [0, 1],
-      [1, 3],
-      [3, 4],
-      [8, 10],
-      [1, 2],
-      [2, 3],
-      [5, 6],
-      [7, 8],
-      [9, 10],
-      [10, 11],
-      [11, 12],
-      [13, 0],
-      [7, 13],
-      [9, 4],
-    ],
-    ballEdges: [4, 5, 10],
-    ball: { x: 720, y: 290 },
-    lineColor: GOLD,
-  },
-  // Connected achievement stars: a gold arc rising left to right.
-  records: {
-    nodes: [
-      { x: 100, y: 450, r: 4, color: GOLD, pulse: true },
-      { x: 220, y: 360, r: 3, color: GOLD },
-      { x: 340, y: 290, r: 4, color: GOLD, pulse: true },
-      { x: 470, y: 250, r: 3, color: GOLD },
-      { x: 600, y: 230, r: 4.5, color: GOLD, pulse: true },
-      { x: 730, y: 260, r: 3, color: GOLD, desktopOnly: true },
-      { x: 850, y: 330, r: 3.5, color: GOLD, desktopOnly: true },
-      { x: 300, y: 120, r: 3, color: CYAN, desktopOnly: true },
-      { x: 520, y: 100, r: 4, color: GOLD, pulse: true, desktopOnly: true },
-      { x: 740, y: 120, r: 3, color: CYAN, desktopOnly: true },
-      { x: 920, y: 180, r: 3, color: GREEN, desktopOnly: true },
-      { x: 160, y: 200, r: 3, color: GOLD, desktopOnly: true },
+      { x: 650, y: 90, r: 3.5, color: GOLD, pulse: true },
+      { x: 760, y: 150, r: 3, color: CYAN },
+      { x: 880, y: 80, r: 4, color: GOLD, pulse: true },
+      { x: 950, y: 220, r: 3, color: CYAN, desktopOnly: true },
+      { x: 700, y: 260, r: 4, color: GOLD, pulse: true },
+      { x: 840, y: 330, r: 3.5, color: CYAN },
+      { x: 930, y: 430, r: 3, color: GOLD, desktopOnly: true },
+      { x: 720, y: 470, r: 4, color: CYAN, pulse: true, desktopOnly: true },
+      { x: 640, y: 560, r: 3, color: GOLD, desktopOnly: true },
+      { x: 420, y: 555, r: 3, color: CYAN, desktopOnly: true },
+      { x: 180, y: 565, r: 3.5, color: GOLD, pulse: true, desktopOnly: true },
+      { x: 80, y: 40, r: 3, color: CYAN, desktopOnly: true },
+      { x: 350, y: 35, r: 3, color: GOLD, desktopOnly: true },
+      { x: 580, y: 520, r: 3, color: CYAN },
     ],
     edges: [
       [0, 1],
       [1, 2],
-      [2, 3],
-      [3, 4],
+      [0, 4],
       [4, 5],
+      [5, 13],
+      [2, 3],
+      [3, 5],
       [5, 6],
+      [6, 7],
       [7, 8],
       [8, 9],
       [9, 10],
-      [11, 7],
-      [2, 7],
-      [4, 8],
+      [11, 12],
+      [12, 0],
+      [7, 13],
+      [4, 7],
     ],
-    ballEdges: [4],
-    ball: { x: 600, y: 230 },
+    ballEdges: [1, 4, 5],
+    ball: { x: 810, y: 215 },
     lineColor: GOLD,
   },
-  // Two team clusters joined through a single pitch-green node — the
-  // scoreline as the connecting star.
+  // Achievement stars: a gold arc rising to the top-right corner.
+  records: {
+    nodes: [
+      { x: 600, y: 470, r: 3.5, color: GOLD, pulse: true },
+      { x: 700, y: 400, r: 3, color: GOLD },
+      { x: 790, y: 330, r: 4, color: GOLD, pulse: true },
+      { x: 870, y: 250, r: 3, color: GOLD },
+      { x: 940, y: 170, r: 4.5, color: GOLD, pulse: true },
+      { x: 620, y: 180, r: 3, color: CYAN, desktopOnly: true },
+      { x: 760, y: 120, r: 3, color: GOLD, desktopOnly: true },
+      { x: 880, y: 60, r: 3.5, color: GOLD, pulse: true, desktopOnly: true },
+      { x: 300, y: 560, r: 3, color: GOLD, desktopOnly: true },
+      { x: 480, y: 540, r: 3, color: GOLD, desktopOnly: true },
+      { x: 70, y: 40, r: 3, color: CYAN, desktopOnly: true },
+      { x: 640, y: 560, r: 3, color: GOLD, desktopOnly: true },
+    ],
+    edges: [
+      [0, 1],
+      [1, 2],
+      [2, 3],
+      [3, 4],
+      [5, 6],
+      [6, 7],
+      [7, 4],
+      [5, 2],
+      [8, 9],
+      [9, 11],
+      [11, 0],
+      [10, 5],
+    ],
+    ballEdges: [2],
+    ball: { x: 860, y: 420 },
+    lineColor: GOLD,
+  },
+  // Two team clusters at the far edges (the scoreboard panel owns the
+  // center), joined through one low gold node — the match point.
   match: {
     nodes: [
-      { x: 140, y: 200, r: 4, color: GOLD, pulse: true },
-      { x: 250, y: 140, r: 3, color: GOLD },
-      { x: 220, y: 320, r: 3.5, color: GOLD, desktopOnly: true },
-      { x: 340, y: 240, r: 4, color: GOLD, pulse: true },
-      { x: 120, y: 400, r: 3, color: GOLD, desktopOnly: true },
-      { x: 860, y: 200, r: 4, color: CYAN, pulse: true },
-      { x: 750, y: 140, r: 3, color: CYAN },
-      { x: 780, y: 320, r: 3.5, color: CYAN, desktopOnly: true },
-      { x: 660, y: 240, r: 4, color: CYAN, pulse: true },
-      { x: 880, y: 400, r: 3, color: CYAN, desktopOnly: true },
-      { x: 500, y: 280, r: 4.5, color: GREEN, pulse: true },
+      { x: 90, y: 180, r: 4, color: GOLD, pulse: true },
+      { x: 170, y: 120, r: 3, color: GOLD },
+      { x: 140, y: 300, r: 3.5, color: GOLD, desktopOnly: true },
+      { x: 220, y: 230, r: 4, color: GOLD, pulse: true },
+      { x: 70, y: 420, r: 3, color: GOLD, desktopOnly: true },
+      { x: 910, y: 180, r: 4, color: CYAN, pulse: true },
+      { x: 830, y: 120, r: 3, color: CYAN },
+      { x: 860, y: 300, r: 3.5, color: CYAN, desktopOnly: true },
+      { x: 780, y: 230, r: 4, color: CYAN, pulse: true },
+      { x: 930, y: 420, r: 3, color: CYAN, desktopOnly: true },
+      { x: 500, y: 540, r: 4, color: GOLD, pulse: true },
     ],
     edges: [
       [0, 1],
       [1, 3],
+      [5, 6],
+      [6, 8],
       [3, 10],
       [8, 10],
-      [6, 8],
-      [5, 6],
       [0, 2],
       [2, 3],
       [4, 2],
@@ -155,84 +162,81 @@ const LAYOUTS: Record<Variant, Layout> = {
       [9, 7],
     ],
     ballEdges: [10],
-    ball: { x: 500, y: 280 },
+    ball: { x: 500, y: 540 },
     lineColor: CYAN,
   },
-  // Data-network feel: loose grid rows, cyan-heavy.
+  // Data network: loose right-leaning grid, cyan-heavy with gold anchors.
   explorer: {
     nodes: [
-      { x: 100, y: 120, r: 3, color: CYAN },
-      { x: 320, y: 100, r: 4, color: CYAN, pulse: true },
-      { x: 540, y: 130, r: 3, color: CYAN },
-      { x: 760, y: 90, r: 4, color: CYAN, pulse: true, desktopOnly: true },
-      { x: 940, y: 150, r: 3, color: CYAN, desktopOnly: true },
-      { x: 180, y: 300, r: 4, color: CYAN, pulse: true },
-      { x: 420, y: 280, r: 3.5, color: GOLD },
-      { x: 660, y: 310, r: 3, color: CYAN, desktopOnly: true },
-      { x: 880, y: 300, r: 3, color: GREEN, desktopOnly: true },
-      { x: 100, y: 480, r: 3, color: GREEN, desktopOnly: true },
-      { x: 340, y: 500, r: 3, color: CYAN, desktopOnly: true },
-      { x: 580, y: 470, r: 4, color: CYAN, pulse: true },
-      { x: 820, y: 490, r: 3, color: GOLD, desktopOnly: true },
+      { x: 620, y: 80, r: 3, color: CYAN },
+      { x: 780, y: 110, r: 4, color: CYAN, pulse: true },
+      { x: 930, y: 70, r: 3, color: CYAN },
+      { x: 650, y: 230, r: 3.5, color: CYAN },
+      { x: 820, y: 260, r: 3.5, color: GOLD },
+      { x: 950, y: 210, r: 3, color: CYAN, desktopOnly: true },
+      { x: 680, y: 400, r: 4, color: CYAN, pulse: true },
+      { x: 850, y: 430, r: 3, color: CYAN, desktopOnly: true },
+      { x: 950, y: 520, r: 3, color: CYAN, desktopOnly: true },
+      { x: 180, y: 560, r: 3, color: CYAN, desktopOnly: true },
+      { x: 380, y: 540, r: 3, color: GOLD, desktopOnly: true },
+      { x: 540, y: 560, r: 3.5, color: CYAN, pulse: true, desktopOnly: true },
+      { x: 60, y: 50, r: 3, color: CYAN, desktopOnly: true },
     ],
     edges: [
       [0, 1],
       [1, 2],
-      [0, 5],
-      [5, 6],
-      [6, 1],
-      [6, 11],
-      [2, 11],
-      [2, 3],
+      [0, 3],
       [3, 4],
-      [6, 7],
+      [4, 1],
+      [3, 6],
+      [2, 5],
+      [5, 4],
+      [4, 7],
+      [7, 6],
       [7, 8],
-      [4, 8],
-      [5, 9],
       [9, 10],
       [10, 11],
-      [11, 12],
-      [12, 8],
-      [7, 3],
-      [10, 6],
+      [11, 6],
+      [12, 0],
+      [11, 8],
     ],
-    ballEdges: [6],
-    ball: { x: 420, y: 280 },
+    ballEdges: [4],
+    ball: { x: 760, y: 330 },
     lineColor: CYAN,
   },
   // Barely-there decorative layer for quieter surfaces.
   subtle: {
     nodes: [
-      { x: 150, y: 150, r: 3, color: GOLD },
-      { x: 400, y: 100, r: 3, color: CYAN, desktopOnly: true },
-      { x: 650, y: 160, r: 3.5, color: GOLD, pulse: true },
-      { x: 900, y: 120, r: 3, color: CYAN, desktopOnly: true },
-      { x: 250, y: 450, r: 3.5, color: CYAN, pulse: true },
-      { x: 550, y: 480, r: 3, color: GREEN },
-      { x: 800, y: 430, r: 3, color: GOLD, desktopOnly: true },
-      { x: 80, y: 350, r: 3, color: CYAN },
+      { x: 650, y: 120, r: 3, color: GOLD },
+      { x: 820, y: 90, r: 3, color: CYAN, desktopOnly: true },
+      { x: 930, y: 200, r: 3.5, color: GOLD, pulse: true },
+      { x: 760, y: 300, r: 3, color: CYAN },
+      { x: 880, y: 450, r: 3, color: CYAN, pulse: true },
+      { x: 640, y: 520, r: 3, color: GOLD },
+      { x: 350, y: 560, r: 3, color: CYAN, desktopOnly: true },
+      { x: 80, y: 560, r: 3, color: GOLD, desktopOnly: true },
     ],
     edges: [
       [0, 2],
-      [0, 7],
-      [7, 4],
-      [4, 5],
       [2, 3],
+      [3, 4],
+      [4, 5],
+      [0, 1],
       [1, 2],
       [5, 6],
-      [6, 3],
-      [1, 0],
+      [6, 7],
+      [3, 1],
     ],
-    ballEdges: [],
-    ball: { x: 500, y: 300 },
+    ballEdges: [3],
+    ball: { x: 700, y: 400 },
     lineColor: CYAN,
   },
 };
 
 const INTENSITY_OPACITY: Record<Intensity, number> = {
-  low: 0.5,
-  medium: 0.75,
-  high: 1,
+  low: 0.45,
+  medium: 0.7,
+  high: 0.95,
 };
 
 // Deterministic PRNG (mulberry32) so a seed jitters the layout identically
@@ -288,11 +292,11 @@ function BallNode({
     <MotionCircle
       r={30}
       fill={GOLD}
-      animate={{ opacity: [0.06, 0.14, 0.06] }}
+      animate={{ opacity: [0.05, 0.12, 0.05] }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
     />
   ) : (
-    <circle r={30} fill={GOLD} opacity={0.08} />
+    <circle r={30} fill={GOLD} opacity={0.07} />
   );
 
   return (
@@ -300,12 +304,12 @@ function BallNode({
       {halo}
       <circle
         r={14}
-        fill={atlas.surface}
+        fill={atlas.surface1}
         stroke={GOLD}
         strokeWidth={1.2}
         opacity={0.9}
       />
-      <path d={pentagonPath(6)} fill={GOLD} opacity={0.75} />
+      <path d={pentagonPath(6)} fill={GOLD} opacity={0.7} />
       {seams.map((seam, i) => (
         <line
           key={i}
@@ -315,7 +319,7 @@ function BallNode({
           y2={seam.y2}
           stroke={GOLD}
           strokeWidth={0.8}
-          opacity={0.5}
+          opacity={0.45}
         />
       ))}
     </g>
@@ -339,7 +343,7 @@ function ConstellationNode({
         cy={node.y}
         r={haloRadius}
         fill={node.color}
-        animate={{ opacity: [0.12, 0.32, 0.12] }}
+        animate={{ opacity: [0.1, 0.28, 0.1] }}
         transition={{
           duration: 4.5 + (index % 3) * 1.5,
           delay: (index % 5) * 0.6,
@@ -353,14 +357,14 @@ function ConstellationNode({
         cy={node.y}
         r={haloRadius}
         fill={node.color}
-        opacity={0.16}
+        opacity={0.14}
       />
     );
 
   return (
     <>
       {halo}
-      <circle cx={node.x} cy={node.y} r={node.r} fill={node.color} opacity={0.85} />
+      <circle cx={node.x} cy={node.y} r={node.r} fill={node.color} opacity={0.8} />
     </>
   );
 }
@@ -387,8 +391,8 @@ export default function FootballConstellation({
   const rand = mulberry32(seedToNumber(seed ?? variant));
   const nodes = layout.nodes.map((node) => ({
     ...node,
-    x: node.x + (rand() * 2 - 1) * 16,
-    y: node.y + (rand() * 2 - 1) * 12,
+    x: node.x + (rand() * 2 - 1) * 14,
+    y: node.y + (rand() * 2 - 1) * 10,
   }));
 
   // Edges touching a desktopOnly node hide with it below md.
@@ -417,7 +421,7 @@ export default function FootballConstellation({
       y2={nodes[b].y}
       stroke={layout.lineColor}
       strokeWidth={1}
-      opacity={0.13}
+      opacity={0.11}
     />
   );
 
@@ -439,7 +443,7 @@ export default function FootballConstellation({
               y2={nodes[index].y}
               stroke={layout.lineColor}
               strokeWidth={1}
-              opacity={0.13}
+              opacity={0.11}
             />
           ))}
         </g>

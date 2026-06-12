@@ -48,9 +48,9 @@ function KickRow({
           fontWeight: 700,
           flexShrink: 0,
           bgcolor: kick.converted
-            ? "rgba(163, 230, 53, 0.16)"
+            ? "rgba(34, 197, 94, 0.16)"
             : "rgba(239, 68, 68, 0.16)",
-          color: kick.converted ? "#A3E635" : "#EF4444",
+          color: kick.converted ? "#4ADE80" : "#F87171",
         }}
       >
         {kick.converted ? "✓" : "✕"}
