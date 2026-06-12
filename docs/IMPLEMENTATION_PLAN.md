@@ -1,4 +1,4 @@
-﻿# WorldCup Atlas — Implementation Plan
+# WorldCup Atlas — Implementation Plan
 
 ## Rule: one checkpoint at a time
 

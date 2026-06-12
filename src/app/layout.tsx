@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Saira_Condensed } from "next/font/google";
 import { Providers } from "./providers";
 import AppShell from "@/components/layout/AppShell";
 import { siteConfig } from "@/lib/site";
@@ -10,9 +10,12 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+// Vault display voice: condensed uppercase headlines, scorelines, and big
+// numbers (Checkpoint 7C Revised — World Cup Vault editorial system).
+const saira = Saira_Condensed({
   subsets: ["latin"],
-  variable: "--font-serif",
+  weight: ["600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -55,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${saira.variable}`}>
       <body>
         <Providers>
           <AppShell>{children}</AppShell>

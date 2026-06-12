@@ -1,10 +1,16 @@
-import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
-import CardContent from "@mui/material/CardContent";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
+// Match card (PDF page 4 anatomy in card form): year/stage eyebrow, teams,
+// center score in condensed type, venue/context metadata.
+
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import { formatStage } from "@/lib/format";
+import {
+  atlas,
+  eyebrowSx,
+  interactiveCardSx,
+  tabularNums,
+} from "@/theme/tokens";
 
 type MatchCardProps = {
   title: string;
@@ -24,60 +30,63 @@ export default function MatchCard({
   href = "/matches",
 }: MatchCardProps) {
   return (
-    <Card
+    <Box
+      component={Link}
+      href={href}
       sx={{
-        height: "100%",
-        transition: "border-color 150ms ease, transform 150ms ease",
-        "&:hover": {
-          borderColor: "primary.main",
-          transform: "translateY(-2px)",
-        },
+        display: "flex",
+        flexDirection: "column",
+        bgcolor: atlas.surface1,
+        border: `1px solid ${atlas.border}`,
+        p: 3,
+        ...interactiveCardSx,
       }}
     >
-      <CardActionArea
-        component={Link}
-        href={href}
-        sx={{ height: "100%", alignItems: "stretch" }}
+      <Typography
+        component="p"
+        sx={{ ...eyebrowSx, color: atlas.textMuted, mb: 1.5 }}
       >
-        <CardContent sx={{ p: 3 }}>
-          <Stack direction="row" spacing={1} sx={{ mb: 1.5 }}>
-            <Chip
-              label={stage}
-              size="small"
-              sx={{
-                bgcolor: "rgba(244, 201, 93, 0.12)",
-                color: "primary.main",
-                fontWeight: 700,
-              }}
-            />
-            <Chip
-              label={tournament}
-              size="small"
-              variant="outlined"
-              sx={{ color: "text.secondary", borderColor: "divider" }}
-            />
-          </Stack>
-          <Typography
-            variant="h6"
-            component="p"
-            sx={{ color: "text.primary", mb: 0.5 }}
-          >
-            {title}
-          </Typography>
-          <Typography
-            variant="h5"
-            component="p"
-            sx={{ color: "primary.main", fontWeight: 700, mb: 1.5 }}
-          >
-            {score}
-          </Typography>
-          {summary ? (
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              {summary}
-            </Typography>
-          ) : null}
-        </CardContent>
-      </CardActionArea>
-    </Card>
+        {tournament}
+        <Box component="span" sx={{ color: atlas.gold, ml: 1 }}>
+          {formatStage(stage)}
+        </Box>
+      </Typography>
+      <Typography
+        component="p"
+        sx={{
+          fontFamily: atlas.fontDisplay,
+          fontWeight: 600,
+          fontSize: "1.15rem",
+          textTransform: "uppercase",
+          letterSpacing: "0.02em",
+          color: atlas.textPrimary,
+          lineHeight: 1.25,
+          mb: 0.75,
+        }}
+      >
+        {title}
+      </Typography>
+      <Typography
+        component="p"
+        sx={{
+          ...tabularNums,
+          fontFamily: atlas.fontDisplay,
+          fontWeight: 700,
+          fontSize: "1.9rem",
+          lineHeight: 1.05,
+          color: atlas.textPrimary,
+        }}
+      >
+        {score}
+      </Typography>
+      {summary ? (
+        <Typography
+          variant="caption"
+          sx={{ color: atlas.textMuted, display: "block", mt: 1.5 }}
+        >
+          {summary}
+        </Typography>
+      ) : null}
+    </Box>
   );
 }

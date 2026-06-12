@@ -1,14 +1,15 @@
-// Players index page (Checkpoint 5E) — database-backed via the query layer.
-// Advanced search/filtering arrives with global search and the data explorer.
+// Players index page — database-backed via the query layer.
 
 import type { Metadata } from "next";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import PageContainer from "@/components/layout/PageContainer";
+import VaultPageHeader from "@/components/vault/VaultPageHeader";
 import EmptyState from "@/components/ui/EmptyState";
 import PlayerCard from "@/components/players/PlayerCard";
 import { formatNumber } from "@/lib/format";
 import { getPlayerCards, getPlayerCount } from "@/server/queries/players";
+import { atlas } from "@/theme/tokens";
 
 export const dynamic = "force-dynamic";
 
@@ -27,54 +28,19 @@ export default async function PlayersPage() {
 
   return (
     <Box>
-      <Box
-        sx={{
-          borderBottom: "1px solid",
-          borderColor: "divider",
-          background:
-            "radial-gradient(ellipse 70% 70% at 80% -20%, rgba(244, 201, 93, 0.1), transparent), #06111F",
-        }}
-      >
-        <PageContainer sx={{ py: { xs: 6, md: 9 } }}>
-          <Typography
-            variant="overline"
-            sx={{
-              color: "primary.main",
-              letterSpacing: "0.2em",
-              display: "block",
-              mb: 1.5,
-            }}
-          >
-            The Archive
-          </Typography>
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{ fontSize: { xs: "2rem", md: "2.75rem" }, mb: 1.5 }}
-          >
-            World Cup Players
-          </Typography>
-          <Typography
-            variant="h6"
-            component="p"
-            sx={{ color: "text.secondary", fontWeight: 400, maxWidth: 640 }}
-          >
-            Explore players recorded across World Cup squads, goals, cards,
-            penalties, and awards.
-          </Typography>
-          <Typography variant="body2" sx={{ color: "text.secondary", mt: 2.5 }}>
-            {formatNumber(totalCount)} players in the archive
-          </Typography>
-        </PageContainer>
-      </Box>
+      <VaultPageHeader
+        title="World Cup Players"
+        lede="Explore players recorded across World Cup squads, goals, cards, penalties, and awards."
+        meta={`${formatNumber(totalCount)} players in the archive`}
+      />
 
-      <PageContainer sx={{ py: { xs: 5, md: 7 } }}>
+      <PageContainer sx={{ py: { xs: 6, md: 10 } }}>
         {players.length > 0 ? (
           <>
             <Box
               sx={{
                 display: "grid",
-                gap: 2.5,
+                gap: 3,
                 gridTemplateColumns: {
                   xs: "1fr",
                   sm: "1fr 1fr",
@@ -100,11 +66,11 @@ export default async function PlayersPage() {
             {totalCount > players.length ? (
               <Typography
                 variant="caption"
-                sx={{ color: "text.secondary", display: "block", mt: 2.5 }}
+                sx={{ color: atlas.textMuted, display: "block", mt: 2.5 }}
               >
                 Showing the first {formatNumber(players.length)} of{" "}
-                {formatNumber(totalCount)} players alphabetically. Search and
-                filters arrive with the global search checkpoint.
+                {formatNumber(totalCount)} players alphabetically. Use global
+                search or the Explorer to find a specific player.
               </Typography>
             ) : null}
           </>

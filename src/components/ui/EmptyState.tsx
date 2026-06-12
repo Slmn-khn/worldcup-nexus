@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { atlas } from "@/theme/tokens";
 
 type EmptyStateProps = {
   title: string;
@@ -15,31 +16,34 @@ export default function EmptyState({
   return (
     <Box
       sx={{
-        border: "1px dashed",
-        borderColor: "divider",
-        borderRadius: 2,
+        border: `1px solid ${atlas.border}`,
+        bgcolor: atlas.surfaceSoft,
         px: 4,
         py: 6,
         textAlign: "center",
-        bgcolor: "background.paper",
       }}
     >
       <Typography
         variant="h6"
         component="p"
-        sx={{ color: "text.primary", mb: 0.75 }}
+        sx={{
+          color: atlas.textPrimary,
+          textTransform: "uppercase",
+          letterSpacing: "0.06em",
+          mb: 1,
+        }}
       >
         {title}
       </Typography>
       {description ? (
         <Typography
           variant="body2"
-          sx={{ color: "text.secondary", maxWidth: 480, mx: "auto" }}
+          sx={{ color: atlas.textMuted, maxWidth: 480, mx: "auto" }}
         >
           {description}
         </Typography>
       ) : null}
-      {action ? <Box sx={{ mt: 2.5 }}>{action}</Box> : null}
+      {action ? <Box sx={{ mt: 3 }}>{action}</Box> : null}
     </Box>
   );
 }

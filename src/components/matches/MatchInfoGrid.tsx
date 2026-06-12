@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { formatDate, formatNumber } from "@/lib/format";
+import { formatDate, formatNumber, formatStage } from "@/lib/format";
 import type { MatchDetailDto } from "@/server/queries/types";
 
 /** Renders only facts present in the imported data — absent fields are omitted. */
@@ -14,7 +14,7 @@ export default function MatchInfoGrid({ match }: { match: MatchDetailDto }) {
 
   const rows = [
     { label: "Date", value: formatDate(match.matchDate) },
-    { label: "Stage", value: match.stage },
+    { label: "Stage", value: formatStage(match.stage) },
     { label: "Stadium", value: match.stadium?.name ?? null },
     {
       label: "Location",
@@ -51,7 +51,7 @@ export default function MatchInfoGrid({ match }: { match: MatchDetailDto }) {
           sx={{
             border: "1px solid",
             borderColor: "divider",
-            borderRadius: 1.5,
+            borderRadius: 0,
             bgcolor: "background.paper",
             px: 2,
             py: 1.5,

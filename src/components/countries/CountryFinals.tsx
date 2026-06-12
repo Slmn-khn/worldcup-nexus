@@ -29,7 +29,7 @@ export default function CountryFinals({
       sx={{
         border: "1px solid",
         borderColor: "divider",
-        borderRadius: 2,
+        borderRadius: 0,
         bgcolor: "background.paper",
         overflow: "hidden",
       }}
@@ -89,7 +89,7 @@ export default function CountryFinals({
               final.result === "W"
                 ? {
                     bgcolor: "primary.main",
-                    color: "#06111F",
+                    color: "#000000",
                     fontWeight: 700,
                     justifySelf: "end",
                   }

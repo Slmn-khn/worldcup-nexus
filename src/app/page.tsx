@@ -1,27 +1,30 @@
-// DB-backed home page (Checkpoint 5A). All numbers and lists come from the
-// server query layer (getHomePageData) — nothing is hardcoded or mocked.
+// DB-backed home page — Checkpoint 7C Revised (World Cup Vault editorial
+// redesign). All numbers and lists come from the server query layer
+// (getHomePageData + getTournamentCards) — nothing is hardcoded or mocked.
 // Sections without data render an honest empty state.
 
 import type { Metadata } from "next";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
-import SectionHeading from "@/components/ui/SectionHeading";
-import StatCard from "@/components/ui/StatCard";
+import VaultEyebrow from "@/components/vault/VaultEyebrow";
+import VaultButton from "@/components/vault/VaultButton";
+import VaultSection from "@/components/vault/VaultSection";
+import VaultSpecCell from "@/components/vault/VaultSpecCell";
+import TournamentTimelineStrip from "@/components/vault/TournamentTimelineStrip";
 import GlobalSearch from "@/components/ui/GlobalSearch";
 import EmptyState from "@/components/ui/EmptyState";
 import TournamentCard from "@/components/tournaments/TournamentCard";
-import MatchCard from "@/components/matches/MatchCard";
+import MatchRowList from "@/components/matches/MatchRowList";
 import CountryCard from "@/components/countries/CountryCard";
 import PlayerCard from "@/components/players/PlayerCard";
 import RecordCard from "@/components/records/RecordCard";
 import { formatDate, formatNumber } from "@/lib/format";
 import { getHomePageData } from "@/server/queries/home";
-import type { MatchCardDto } from "@/server/queries/types";
+import { getTournamentCards } from "@/server/queries/tournaments";
+import { atlas } from "@/theme/tokens";
 
 // Live archive data — always render from the current database state.
 export const dynamic = "force-dynamic";
@@ -32,88 +35,83 @@ export const metadata: Metadata = {
     "Explore every World Cup tournament, nation, player, match, goal, and penalty in one independent historical archive.",
 };
 
-const SECTION_PADDING = { py: { xs: 6, md: 8 } };
 const CARD_GRID_3 = {
   display: "grid",
-  gap: 2.5,
+  gap: 3,
   gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(3, 1fr)" },
 };
 const CARD_GRID_4 = {
   display: "grid",
-  gap: 2.5,
+  gap: 3,
   gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" },
 };
 
-function ViewAllLink({ href, label }: { href: string; label: string }) {
-  return (
-    <Button
-      component={Link}
-      href={href}
-      size="small"
-      endIcon={<ArrowForwardRoundedIcon />}
-      sx={{ color: "primary.main" }}
-    >
-      {label}
-    </Button>
-  );
-}
-
-function matchSummary(match: MatchCardDto): string | undefined {
-  const date = formatDate(match.matchDate);
-  const parts = [
-    date,
-    match.decidedByPenalties ? "Decided on penalties" : null,
-  ].filter((part): part is string => part !== null);
-  return parts.length > 0 ? parts.join(" — ") : undefined;
-}
-
 export default async function Home() {
-  const data = await getHomePageData();
+  const [data, tournaments] = await Promise.all([
+    getHomePageData(),
+    getTournamentCards(),
+  ]);
   const { archiveStats } = data;
+
+  // Archive span derived from imported tournaments — never hardcoded.
+  const years = tournaments.map((tournament) => tournament.year);
+  const spanStart = years.length > 0 ? Math.min(...years) : null;
+  const spanEnd = years.length > 0 ? Math.max(...years) : null;
+  const span =
+    spanStart !== null && spanEnd !== null ? `${spanStart}–${spanEnd}` : null;
+
+  const timelineEntries = [...tournaments]
+    .sort((a, b) => a.year - b.year)
+    .map((tournament) => ({
+      year: tournament.year,
+      winner: tournament.winner,
+    }));
+
+  const finalsRows = data.iconicMatches.map((match) => ({
+    key: match.id,
+    year: match.tournamentYear,
+    homeName: match.homeTeam.name,
+    awayName: match.awayTeam.name,
+    score:
+      match.penaltyScore !== null
+        ? `${match.score} (${match.penaltyScore} pens)`
+        : match.score,
+    context: match.tournamentName,
+    note: [
+      formatDate(match.matchDate),
+      match.decidedByPenalties ? "Decided on penalties" : null,
+    ]
+      .filter((part): part is string => part !== null)
+      .join(" — "),
+    href: `/matches/${match.slug}`,
+  }));
 
   return (
     <Box>
-      {/* Hero */}
-      <Box
-        sx={{
-          borderBottom: "1px solid",
-          borderColor: "divider",
-          background:
-            "radial-gradient(ellipse 80% 60% at 70% -10%, rgba(244, 201, 93, 0.12), transparent), " +
-            "radial-gradient(ellipse 60% 50% at 20% 110%, rgba(31, 122, 77, 0.18), transparent), " +
-            "#06111F",
-        }}
-      >
-        <PageContainer sx={{ py: { xs: 8, md: 12 } }}>
-          <Typography
-            variant="overline"
-            sx={{
-              color: "primary.main",
-              letterSpacing: "0.2em",
-              display: "block",
-              mb: 2,
-            }}
-          >
-            The Football Archive
-          </Typography>
+      {/* Hero — black cinematic band */}
+      <Box sx={{ borderBottom: `1px solid ${atlas.border}` }}>
+        <PageContainer sx={{ py: { xs: 9, md: 14 } }}>
+          <VaultEyebrow
+            label={span !== null ? `The Archive · ${span}` : "The Archive"}
+            sx={{ mb: 3 }}
+          />
           <Typography
             variant="h1"
             sx={{
-              fontSize: { xs: "2.25rem", sm: "3rem", md: "3.75rem" },
-              maxWidth: 820,
-              mb: 2.5,
+              fontSize: { xs: "3rem", sm: "4rem", md: "5.2rem" },
+              maxWidth: 1000,
+              mb: 3,
             }}
           >
             Explore the Complete History of the World Cup
           </Typography>
           <Typography
-            variant="h6"
-            component="p"
+            variant="body1"
             sx={{
-              color: "text.secondary",
-              fontWeight: 400,
-              maxWidth: 640,
-              mb: 4,
+              color: atlas.textSecondary,
+              fontSize: { xs: "1rem", md: "1.1rem" },
+              maxWidth: 620,
+              mb: 5,
             }}
           >
             Every tournament, nation, player, match, goal, and penalty in one
@@ -124,70 +122,76 @@ export default async function Home() {
             spacing={2}
             sx={{ mb: 7 }}
           >
-            <Button
-              component={Link}
-              href="/tournaments"
-              variant="contained"
-              size="large"
-            >
-              Explore Tournaments
-            </Button>
-            <Button
-              component={Link}
-              href="/records"
-              variant="outlined"
-              size="large"
-              sx={{
-                color: "text.primary",
-                borderColor: "divider",
-                "&:hover": { borderColor: "primary.main" },
-              }}
-            >
-              View Records
-            </Button>
+            <VaultButton component={Link} href="/tournaments" variant="primary">
+              Explore the Archive
+            </VaultButton>
+            <VaultButton component={Link} href="/records" variant="outline">
+              Records
+            </VaultButton>
           </Stack>
-          <Box sx={{ maxWidth: 720 }}>
+          <Box sx={{ maxWidth: 680 }}>
             <GlobalSearch />
           </Box>
         </PageContainer>
       </Box>
 
-      {/* Archive at a Glance */}
-      <PageContainer sx={SECTION_PADDING}>
-        <SectionHeading
-          title="Archive at a Glance"
-          subtitle="Live counts from the imported archive."
-        />
+      {/* Archive stat strip */}
+      <VaultSection sx={{ py: { xs: 6, md: 8 } }}>
         <Box
           sx={{
             display: "grid",
-            gap: 2.5,
+            gap: 3,
             gridTemplateColumns: { xs: "1fr 1fr", md: "repeat(4, 1fr)" },
           }}
         >
-          <StatCard
-            label="Tournaments"
+          <VaultSpecCell
             value={formatNumber(archiveStats.tournaments)}
+            label="Tournaments"
           />
-          <StatCard
-            label="Nations"
-            value={formatNumber(archiveStats.countries)}
-          />
-          <StatCard
-            label="Matches"
+          <VaultSpecCell
             value={formatNumber(archiveStats.matches)}
+            label="Matches"
           />
-          <StatCard label="Goals" value={formatNumber(archiveStats.goals)} />
+          <VaultSpecCell
+            value={formatNumber(archiveStats.goals)}
+            label="Goals"
+          />
+          <VaultSpecCell
+            value={span ?? "—"}
+            label="Archive span"
+            sublabel={
+              span !== null
+                ? `${formatNumber(archiveStats.countries)} nations recorded`
+                : undefined
+            }
+            emphasis
+          />
         </Box>
-      </PageContainer>
+      </VaultSection>
 
-      {/* Featured Tournaments */}
-      <PageContainer sx={SECTION_PADDING}>
-        <SectionHeading
-          title="Featured Tournaments"
-          subtitle="The latest editions in the archive."
-          action={<ViewAllLink href="/tournaments" label="All tournaments" />}
-        />
+      {/* Tournament timeline */}
+      <VaultSection
+        band
+        eyebrow={span ?? "The editions"}
+        title="The Tournament Timeline"
+        action={{ label: "All World Cups", href: "/tournaments" }}
+      >
+        {timelineEntries.length > 0 ? (
+          <TournamentTimelineStrip entries={timelineEntries} />
+        ) : (
+          <EmptyState
+            title="Timeline coming soon"
+            description="Tournament data has not been imported yet."
+          />
+        )}
+      </VaultSection>
+
+      {/* Featured tournaments */}
+      <VaultSection
+        eyebrow="Latest editions"
+        title="Featured Tournaments"
+        action={{ label: "All tournaments", href: "/tournaments" }}
+      >
         {data.featuredTournaments.length > 0 ? (
           <Box sx={CARD_GRID_3}>
             {data.featuredTournaments.map((tournament) => (
@@ -211,63 +215,42 @@ export default async function Home() {
             description="Tournament data has not been imported yet."
           />
         )}
-      </PageContainer>
+      </VaultSection>
 
-      {/* Iconic Matches */}
-      <Box
-        sx={{
-          bgcolor: "background.paper",
-          borderTop: "1px solid",
-          borderBottom: "1px solid",
-          borderColor: "divider",
-        }}
+      {/* Recent finals — honest label: editorial "iconic" curation is not
+          stored in the database. */}
+      <VaultSection
+        band
+        eyebrow="Deciding moments"
+        title="Recent Finals"
+        description="The most recent deciding finals in the archive."
+        action={{ label: "All matches", href: "/matches" }}
       >
-        <PageContainer sx={SECTION_PADDING}>
-          <SectionHeading
-            title="Iconic Matches"
-            subtitle="The most recent finals in the archive."
-            action={<ViewAllLink href="/matches" label="All matches" />}
+        {finalsRows.length > 0 ? (
+          <MatchRowList rows={finalsRows} />
+        ) : (
+          <EmptyState
+            title="Finals coming soon"
+            description="Match data has not been imported yet."
           />
-          {data.iconicMatches.length > 0 ? (
-            <Box sx={CARD_GRID_3}>
-              {data.iconicMatches.map((match) => (
-                <MatchCard
-                  key={match.id}
-                  title={`${match.homeTeam.name} v ${match.awayTeam.name}`}
-                  tournament={match.tournamentName}
-                  score={
-                    match.penaltyScore !== null
-                      ? `${match.score} (${match.penaltyScore} pens)`
-                      : match.score
-                  }
-                  stage={match.stage}
-                  summary={matchSummary(match)}
-                  href={`/matches/${match.slug}`}
-                />
-              ))}
-            </Box>
-          ) : (
-            <EmptyState
-              title="Matches coming soon"
-              description="Match data has not been imported yet."
-            />
-          )}
-        </PageContainer>
-      </Box>
+        )}
+      </VaultSection>
 
-      {/* Explore by Country */}
-      <PageContainer sx={SECTION_PADDING}>
-        <SectionHeading
-          title="Explore by Country"
-          subtitle="Nations with the most tournament entries."
-          action={<ViewAllLink href="/countries" label="All countries" />}
-        />
+      {/* Nations */}
+      <VaultSection
+        eyebrow="The nations"
+        title="Explore by Country"
+        description="Nations with the most tournament entries."
+        action={{ label: "All countries", href: "/countries" }}
+      >
         {data.featuredCountries.length > 0 ? (
           <Box sx={CARD_GRID_4}>
             {data.featuredCountries.map((country) => (
               <CountryCard
                 key={country.id}
                 name={country.name}
+                flagEmoji={country.flagEmoji}
+                code={country.code}
                 summary={`${formatNumber(country.tournamentsEntered)} tournament entries · ${formatNumber(country.playersCount)} players in the archive`}
                 href={`/countries/${country.slug}`}
               />
@@ -279,15 +262,16 @@ export default async function Home() {
             description="Country data has not been imported yet."
           />
         )}
-      </PageContainer>
+      </VaultSection>
 
-      {/* Legendary Players */}
-      <PageContainer sx={SECTION_PADDING}>
-        <SectionHeading
-          title="Legendary Players"
-          subtitle="The archive's all-time leading scorers."
-          action={<ViewAllLink href="/players" label="All players" />}
-        />
+      {/* Player records — honest label: these are the archive's leading
+          scorers, not a curated legends list. */}
+      <VaultSection
+        eyebrow="The pantheon"
+        title="Top Player Records"
+        description="The archive's all-time leading scorers."
+        action={{ label: "All players", href: "/players" }}
+      >
         {data.featuredPlayers.length > 0 ? (
           <Box sx={CARD_GRID_4}>
             {data.featuredPlayers.map((player) => (
@@ -295,6 +279,7 @@ export default async function Home() {
                 key={player.id}
                 name={player.name}
                 country={player.countryName ?? "Nation unknown"}
+                flagEmoji={player.countryFlagEmoji}
                 position={player.position}
                 href={`/players/${player.slug}`}
               />
@@ -306,46 +291,40 @@ export default async function Home() {
             description="Player data has not been imported yet."
           />
         )}
-      </PageContainer>
+      </VaultSection>
 
-      {/* Records Preview */}
-      <Box
-        sx={{
-          bgcolor: "background.paper",
-          borderTop: "1px solid",
-          borderColor: "divider",
-        }}
+      {/* Records & firsts */}
+      <VaultSection
+        band
+        eyebrow="Still standing"
+        title="Records & Firsts"
+        description="Database-backed leaderboards computed from imported events."
+        action={{ label: "All records", href: "/records" }}
+        sx={{ borderBottom: "none" }}
       >
-        <PageContainer sx={SECTION_PADDING}>
-          <SectionHeading
-            title="Records"
-            subtitle="Database-backed leaderboards computed from imported events."
-            action={<ViewAllLink href="/records" label="All records" />}
+        {data.recordsPreview.some((board) => board.items.length > 0) ? (
+          <Box sx={CARD_GRID_3}>
+            {data.recordsPreview
+              .filter((board) => board.items.length > 0)
+              .map((board) => {
+                const top = board.items[0];
+                return (
+                  <RecordCard
+                    key={board.key}
+                    title={board.title}
+                    value={`${top.label} — ${formatNumber(top.value)}`}
+                    description={board.description}
+                  />
+                );
+              })}
+          </Box>
+        ) : (
+          <EmptyState
+            title="Records coming soon"
+            description="Leaderboards appear once event data is imported."
           />
-          {data.recordsPreview.some((board) => board.items.length > 0) ? (
-            <Box sx={CARD_GRID_3}>
-              {data.recordsPreview
-                .filter((board) => board.items.length > 0)
-                .map((board) => {
-                  const top = board.items[0];
-                  return (
-                    <RecordCard
-                      key={board.key}
-                      title={board.title}
-                      value={`${top.label} — ${formatNumber(top.value)}`}
-                      description={board.description}
-                    />
-                  );
-                })}
-            </Box>
-          ) : (
-            <EmptyState
-              title="Records coming soon"
-              description="Leaderboards appear once event data is imported."
-            />
-          )}
-        </PageContainer>
-      </Box>
+        )}
+      </VaultSection>
     </Box>
   );
 }

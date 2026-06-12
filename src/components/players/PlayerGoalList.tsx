@@ -3,11 +3,11 @@ import PlayerEventRow, { PlayerEventRowGroup } from "./PlayerEventRow";
 import { formatMinute } from "@/lib/format";
 import type { PlayerGoalDto } from "@/server/queries/types";
 
-const GOAL_CHIP = { label: "Goal", color: "#06111F", background: "#F4C95D" };
+const GOAL_CHIP = { label: "Goal", color: "#000000", background: "#F4C95D" };
 const PENALTY_CHIP = {
   label: "Penalty Goal",
-  color: "#06111F",
-  background: "#C9A13F",
+  color: "#000000",
+  background: "#D6A84F",
 };
 const OWN_GOAL_CHIP = {
   label: "Own Goal",

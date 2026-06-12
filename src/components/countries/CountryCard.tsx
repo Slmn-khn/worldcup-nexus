@@ -1,10 +1,17 @@
-import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
-import CardContent from "@mui/material/CardContent";
+// Nation dossier card: flag + uppercase name, title count with gold mark,
+// data line. Sharp, sparse, typography-led.
+
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
+import {
+  atlas,
+  eyebrowSx,
+  interactiveCardSx,
+  tabularNums,
+} from "@/theme/tokens";
 
 type CountryCardProps = {
   name: string;
@@ -38,85 +45,91 @@ export default function CountryCard({
   ].filter((part): part is string => part !== null);
 
   return (
-    <Card
+    <Box
+      component={Link}
+      href={href}
       sx={{
-        height: "100%",
-        transition: "border-color 150ms ease, transform 150ms ease",
-        "&:hover": {
-          borderColor: "primary.main",
-          transform: "translateY(-2px)",
-        },
+        display: "block",
+        bgcolor: atlas.surface1,
+        border: `1px solid ${atlas.border}`,
+        p: 3,
+        ...interactiveCardSx,
       }}
     >
-      <CardActionArea
-        component={Link}
-        href={href}
-        sx={{ height: "100%", alignItems: "stretch" }}
+      <Stack
+        direction="row"
+        spacing={1.5}
+        sx={{ alignItems: "center", mb: 1.5 }}
       >
-        <CardContent sx={{ p: 3 }}>
-          <Stack
-            direction="row"
-            spacing={1.5}
-            sx={{ mb: 1, alignItems: "center" }}
+        {flagEmoji ? (
+          <Typography
+            component="span"
+            sx={{ fontSize: "1.5rem", lineHeight: 1 }}
+            aria-hidden
           >
-            {flagEmoji ? (
-              <Typography
-                component="span"
-                sx={{ fontSize: "1.6rem", lineHeight: 1 }}
-                aria-hidden
-              >
-                {flagEmoji}
-              </Typography>
-            ) : null}
-            <Typography
-              variant="h6"
-              component="p"
-              sx={{ color: "text.primary" }}
-            >
-              {name}
-            </Typography>
-            {code ? (
-              <Typography
-                variant="caption"
-                sx={{ color: "text.secondary", ml: "auto !important" }}
-              >
-                {code}
-              </Typography>
-            ) : null}
-          </Stack>
-          {titlesCount != null && titlesCount > 0 ? (
-            <Typography
-              variant="caption"
-              sx={{
-                color: "primary.main",
-                fontWeight: 700,
-                display: "block",
-                mb: 0.5,
-              }}
-            >
-              {formatNumber(titlesCount)}{" "}
-              {titlesCount === 1 ? "title" : "titles"}
-            </Typography>
-          ) : null}
-          {counts.length > 0 ? (
-            <Typography
-              variant="caption"
-              sx={{
-                color: "text.secondary",
-                display: "block",
-                mb: summary ? 1 : 0,
-              }}
-            >
-              {counts.join(" · ")}
-            </Typography>
-          ) : null}
-          {summary ? (
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              {summary}
-            </Typography>
-          ) : null}
-        </CardContent>
-      </CardActionArea>
-    </Card>
+            {flagEmoji}
+          </Typography>
+        ) : null}
+        <Typography
+          component="p"
+          sx={{
+            fontFamily: atlas.fontDisplay,
+            fontWeight: 700,
+            fontSize: "1.25rem",
+            textTransform: "uppercase",
+            letterSpacing: "0.02em",
+            color: atlas.textPrimary,
+            lineHeight: 1.15,
+            minWidth: 0,
+          }}
+        >
+          {name}
+        </Typography>
+        {code ? (
+          <Typography
+            component="span"
+            sx={{
+              ...eyebrowSx,
+              fontSize: "0.68rem",
+              color: atlas.textMuted,
+              ml: "auto !important",
+            }}
+          >
+            {code}
+          </Typography>
+        ) : null}
+      </Stack>
+      {titlesCount != null && titlesCount > 0 ? (
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{ alignItems: "center", mb: 1 }}
+        >
+          <Box aria-hidden sx={{ width: 5, height: 5, bgcolor: atlas.gold }} />
+          <Typography
+            component="span"
+            sx={{ ...eyebrowSx, fontSize: "0.7rem", color: atlas.gold }}
+          >
+            {formatNumber(titlesCount)} {titlesCount === 1 ? "title" : "titles"}
+          </Typography>
+        </Stack>
+      ) : null}
+      {counts.length > 0 ? (
+        <Typography
+          variant="caption"
+          sx={{ ...tabularNums, color: atlas.textMuted, display: "block" }}
+        >
+          {counts.join(" · ")}
+        </Typography>
+      ) : null}
+      {summary ? (
+        <Typography
+          variant="body2"
+          sx={{ color: atlas.textSecondary, mt: counts.length > 0 ? 1 : 0 }}
+        >
+          {summary}
+        </Typography>
+      ) : null}
+    </Box>
   );
 }

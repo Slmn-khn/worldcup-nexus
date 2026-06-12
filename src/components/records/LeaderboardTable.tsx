@@ -1,3 +1,6 @@
+// Leaderboard panel: uppercase title strip, hairline-divided ranked rows,
+// strong white values, gold top-3 ranks. Zero radius, no shadow.
+
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -6,9 +9,9 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
+import { atlas, eyebrowSx, tabularNums } from "@/theme/tokens";
 import type { RecordLeaderboardDto } from "@/server/queries/types";
 
-/** Compact leaderboard card: title, description, ranked rows with links. */
 export default function LeaderboardTable({
   leaderboard,
 }: {
@@ -17,11 +20,10 @@ export default function LeaderboardTable({
   return (
     <Box
       sx={{
-        border: "1px solid",
-        borderColor: "divider",
-        borderRadius: 2,
-        bgcolor: "background.paper",
-        overflow: "hidden",
+        border: `1px solid ${atlas.border}`,
+        bgcolor: atlas.canvasSoft,
+        transition: "border-color 150ms ease",
+        "&:hover": { borderColor: atlas.borderStrong },
       }}
     >
       <Box
@@ -29,21 +31,14 @@ export default function LeaderboardTable({
           px: 2.5,
           pt: 2,
           pb: 1.5,
-          borderBottom: "1px solid",
-          borderColor: "divider",
+          bgcolor: atlas.surfaceSoft,
+          borderBottom: `1px solid ${atlas.border}`,
         }}
       >
-        <Typography
-          variant="overline"
-          sx={{
-            color: "primary.main",
-            letterSpacing: "0.12em",
-            display: "block",
-          }}
-        >
+        <Typography component="p" sx={{ ...eyebrowSx, color: atlas.textPrimary }}>
           {leaderboard.title}
         </Typography>
-        <Typography variant="caption" sx={{ color: "text.secondary" }}>
+        <Typography variant="caption" sx={{ color: atlas.textMuted }}>
           {leaderboard.description}
         </Typography>
       </Box>
@@ -52,28 +47,34 @@ export default function LeaderboardTable({
           {leaderboard.items.map((item) => (
             <TableRow
               key={`${item.rank}-${item.label}`}
-              sx={{ "&:last-of-type td": { borderBottom: "none" } }}
+              sx={{
+                "&:last-of-type td": { borderBottom: "none" },
+                transition: "background-color 150ms ease",
+                "&:hover": { bgcolor: atlas.surfaceSoft },
+              }}
             >
               <TableCell
                 sx={{
-                  width: 36,
-                  color: "primary.main",
+                  ...tabularNums,
+                  width: 44,
+                  fontFamily: atlas.fontDisplay,
+                  fontSize: "0.95rem",
+                  color: item.rank <= 3 ? atlas.gold : atlas.textMuted,
                   fontWeight: 700,
-                  borderColor: "divider",
                 }}
               >
-                {item.rank}
+                {String(item.rank).padStart(2, "0")}
               </TableCell>
-              <TableCell sx={{ borderColor: "divider" }}>
+              <TableCell>
                 {item.href !== null ? (
                   <Typography
                     component={Link}
                     href={item.href}
                     variant="body2"
                     sx={{
-                      color: "text.primary",
+                      color: atlas.textPrimary,
                       fontWeight: 600,
-                      "&:hover": { color: "primary.main" },
+                      "&:hover": { color: atlas.goldStrong },
                     }}
                   >
                     {item.label}
@@ -81,7 +82,7 @@ export default function LeaderboardTable({
                 ) : (
                   <Typography
                     variant="body2"
-                    sx={{ color: "text.primary", fontWeight: 600 }}
+                    sx={{ color: atlas.textPrimary, fontWeight: 600 }}
                   >
                     {item.label}
                   </Typography>
@@ -89,7 +90,7 @@ export default function LeaderboardTable({
                 {item.detail !== null ? (
                   <Typography
                     variant="caption"
-                    sx={{ color: "text.secondary", display: "block" }}
+                    sx={{ color: atlas.textMuted, display: "block" }}
                   >
                     {item.detail}
                   </Typography>
@@ -98,10 +99,12 @@ export default function LeaderboardTable({
               <TableCell
                 align="right"
                 sx={{
-                  color: "primary.main",
+                  ...tabularNums,
+                  fontFamily: atlas.fontDisplay,
+                  fontSize: "1.05rem",
+                  color: atlas.textPrimary,
                   fontWeight: 700,
                   whiteSpace: "nowrap",
-                  borderColor: "divider",
                 }}
               >
                 {formatNumber(item.value)}

@@ -1,11 +1,16 @@
-import Avatar from "@mui/material/Avatar";
-import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
-import CardContent from "@mui/material/CardContent";
-import Stack from "@mui/material/Stack";
+// Player dossier card: uppercase condensed name, nation/position metadata,
+// data line. No fake photos — typography and data hierarchy carry it.
+
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
+import {
+  atlas,
+  eyebrowSx,
+  interactiveCardSx,
+  tabularNums,
+} from "@/theme/tokens";
 
 type PlayerCardProps = {
   name: string;
@@ -42,71 +47,60 @@ export default function PlayerCard({
   ].filter((part): part is string => part !== null);
 
   return (
-    <Card
+    <Box
+      component={Link}
+      href={href}
       sx={{
-        height: "100%",
-        transition: "border-color 150ms ease, transform 150ms ease",
-        "&:hover": {
-          borderColor: "primary.main",
-          transform: "translateY(-2px)",
-        },
+        display: "block",
+        bgcolor: atlas.surface1,
+        border: `1px solid ${atlas.border}`,
+        p: 3,
+        ...interactiveCardSx,
       }}
     >
-      <CardActionArea
-        component={Link}
-        href={href}
-        sx={{ height: "100%", alignItems: "stretch" }}
+      <Typography
+        component="p"
+        sx={{ ...eyebrowSx, fontSize: "0.7rem", color: atlas.textMuted, mb: 1 }}
       >
-        <CardContent sx={{ p: 3 }}>
-          <Stack
-            direction="row"
-            spacing={1.5}
-            sx={{ mb: 1.5, alignItems: "center" }}
-          >
-            <Avatar
-              sx={{
-                bgcolor: "#142338",
-                color: "primary.main",
-                border: "1px solid",
-                borderColor: "divider",
-                fontWeight: 700,
-              }}
-            >
-              {name.charAt(0)}
-            </Avatar>
-            <Stack>
-              <Typography
-                variant="h6"
-                component="p"
-                sx={{ color: "text.primary", lineHeight: 1.3 }}
-              >
-                {name}
-              </Typography>
-              <Typography variant="caption" sx={{ color: "text.secondary" }}>
-                {flagEmoji ? `${flagEmoji} ` : ""}
-                {country}
-                {position ? ` · ${position}` : ""}
-              </Typography>
-            </Stack>
-          </Stack>
-          {counts.length > 0 ? (
-            <Typography
-              variant="caption"
-              sx={{ color: "text.secondary", display: "block" }}
-            >
-              {counts.join(" · ")}
-            </Typography>
-          ) : null}
-          {summary ? (
-            <Typography
-              variant="body2"
-              sx={{ color: "text.secondary", mt: counts.length > 0 ? 1 : 0 }}
-            >
-              {summary}
-            </Typography>
-          ) : null}
-        </CardContent>
-      </CardActionArea>
-    </Card>
+        {flagEmoji ? `${flagEmoji} ` : ""}
+        {country}
+        {position ? (
+          <Box component="span" sx={{ color: atlas.gold, ml: 1 }}>
+            {position}
+          </Box>
+        ) : null}
+      </Typography>
+      <Typography
+        component="p"
+        sx={{
+          fontFamily: atlas.fontDisplay,
+          fontWeight: 700,
+          fontSize: "1.35rem",
+          textTransform: "uppercase",
+          letterSpacing: "0.02em",
+          color: atlas.textPrimary,
+          lineHeight: 1.15,
+          mb: counts.length > 0 || summary ? 1.25 : 0,
+        }}
+      >
+        {name}
+      </Typography>
+      {counts.length > 0 ? (
+        <Typography
+          variant="caption"
+          sx={{ ...tabularNums, color: atlas.textMuted, display: "block" }}
+        >
+          {counts.join(" · ")}
+        </Typography>
+      ) : null}
+      {summary ? (
+        <Typography
+          variant="body2"
+          sx={{ color: atlas.textSecondary, mt: counts.length > 0 ? 1 : 0 }}
+        >
+          {summary}
+        </Typography>
+      ) : null}
+    </Box>
   );
 }

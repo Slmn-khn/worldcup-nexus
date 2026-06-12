@@ -1,12 +1,32 @@
-import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
-import CardContent from "@mui/material/CardContent";
+// Highlighted #1 record: record-card anatomy with the value as the hero
+// and the holder as the context line. Real data only.
+
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
+import {
+  atlas,
+  eyebrowSx,
+  glowPanelSx,
+  interactiveCardSx,
+  tabularNums,
+} from "@/theme/tokens";
 import type { RecordItemDto } from "@/server/queries/types";
 
-/** Highlighted #1 record (e.g. most goals by a player). Real data only. */
+/**
+ * Keeps scorelines like "13–0" from line-breaking after the dash by joining
+ * digit–dash–digit sequences with word-joiner characters. Display only.
+ */
+function noBreakScores(label: string): string {
+  // The string below is U+2060 WORD JOINER (invisible, zero-width).
+  const WORD_JOINER = "⁠";
+  return label.replace(
+    /(\d)([–-])(\d)/g,
+    `$1${WORD_JOINER}$2${WORD_JOINER}$3`,
+  );
+}
+
 export default function RecordStatCard({
   title,
   item,
@@ -15,57 +35,72 @@ export default function RecordStatCard({
   item: RecordItemDto;
 }) {
   const content = (
-    <CardContent sx={{ p: 2.5 }}>
+    <>
+      <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1.25, mb: 1.5 }}>
+        <Box
+          aria-hidden
+          sx={{ width: 6, height: 6, bgcolor: atlas.gold, mt: 0.5, flexShrink: 0 }}
+        />
+        <Typography component="p" sx={{ ...eyebrowSx, color: atlas.textMuted }}>
+          №1 · {title}
+        </Typography>
+      </Box>
       <Typography
-        variant="overline"
-        sx={{
-          color: "text.secondary",
-          letterSpacing: "0.12em",
-          display: "block",
-          mb: 0.75,
-        }}
-      >
-        {title}
-      </Typography>
-      <Typography
-        variant="h4"
         component="p"
         sx={{
-          color: "primary.main",
-          fontSize: { xs: "1.5rem", md: "1.8rem" },
-          lineHeight: 1.2,
+          ...tabularNums,
+          fontFamily: atlas.fontDisplay,
+          fontWeight: 700,
+          fontSize: { xs: "2.1rem", md: "2.6rem" },
+          lineHeight: 1,
+          color: atlas.gold,
         }}
       >
-        {item.label}
-      </Typography>
-      <Typography variant="body2" sx={{ color: "text.secondary", mt: 0.75 }}>
         {formatNumber(item.value)}
-        {item.detail !== null ? ` · ${item.detail}` : ""}
       </Typography>
-    </CardContent>
+      <Typography
+        sx={{ color: atlas.textPrimary, fontWeight: 600, mt: 1, lineHeight: 1.3 }}
+      >
+        {noBreakScores(item.label)}
+      </Typography>
+      {item.detail !== null ? (
+        <Typography
+          variant="caption"
+          sx={{ color: atlas.textMuted, display: "block", mt: 0.5 }}
+        >
+          {item.detail}
+        </Typography>
+      ) : null}
+    </>
   );
 
   if (item.href !== null) {
     return (
-      <Card
+      <Box
+        component={Link}
+        href={item.href}
         sx={{
-          height: "100%",
-          transition: "border-color 150ms ease, transform 150ms ease",
-          "&:hover": {
-            borderColor: "primary.main",
-            transform: "translateY(-2px)",
-          },
+          display: "block",
+          bgcolor: atlas.surface1,
+          border: `1px solid ${atlas.border}`,
+          p: 3,
+          ...interactiveCardSx,
         }}
       >
-        <CardActionArea
-          component={Link}
-          href={item.href}
-          sx={{ height: "100%", alignItems: "stretch" }}
-        >
-          {content}
-        </CardActionArea>
-      </Card>
+        {content}
+      </Box>
     );
   }
-  return <Card sx={{ height: "100%" }}>{content}</Card>;
+  return (
+    <Box
+      sx={{
+        bgcolor: atlas.surface1,
+        border: `1px solid ${atlas.border}`,
+        p: 3,
+        ...glowPanelSx,
+      }}
+    >
+      {content}
+    </Box>
+  );
 }

@@ -1,43 +1,28 @@
+// Match center hero: a sharp black editorial scoreboard. Uppercase team
+// names, huge condensed score, metadata as small uppercase labels.
+
 import Box from "@mui/material/Box";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
-import { formatDate } from "@/lib/format";
+import { formatDate, formatStage } from "@/lib/format";
+import { atlas, eyebrowSx, tabularNums, textLinkSx } from "@/theme/tokens";
 import type { MatchDetailDto } from "@/server/queries/types";
 
 export default function MatchHero({ match }: { match: MatchDetailDto }) {
   const date = formatDate(match.matchDate);
 
   return (
-    <Box
-      sx={{
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        background:
-          "radial-gradient(ellipse 70% 70% at 50% -20%, rgba(244, 201, 93, 0.14), transparent), " +
-          "radial-gradient(ellipse 50% 50% at 90% 110%, rgba(31, 122, 77, 0.12), transparent), #06111F",
-      }}
-    >
+    <Box sx={{ borderBottom: `1px solid ${atlas.border}`, bgcolor: atlas.black }}>
       <PageContainer sx={{ py: { xs: 5, md: 8 } }}>
-        <Breadcrumbs
-          separator="/"
-          sx={{
-            mb: 3,
-            "& .MuiBreadcrumbs-separator": { color: "text.secondary" },
-          }}
-        >
+        <Breadcrumbs separator="/" sx={{ mb: 5 }}>
           <Typography
             component={Link}
             href="/"
             variant="body2"
-            sx={{
-              color: "text.secondary",
-              "&:hover": { color: "primary.main" },
-            }}
+            sx={{ color: atlas.textMuted, "&:hover": { color: atlas.textPrimary } }}
           >
             Home
           </Typography>
@@ -45,10 +30,7 @@ export default function MatchHero({ match }: { match: MatchDetailDto }) {
             component={Link}
             href="/tournaments"
             variant="body2"
-            sx={{
-              color: "text.secondary",
-              "&:hover": { color: "primary.main" },
-            }}
+            sx={{ color: atlas.textMuted, "&:hover": { color: atlas.textPrimary } }}
           >
             Tournaments
           </Typography>
@@ -56,159 +38,137 @@ export default function MatchHero({ match }: { match: MatchDetailDto }) {
             component={Link}
             href={`/tournaments/${match.tournamentYear}`}
             variant="body2"
-            sx={{
-              color: "text.secondary",
-              "&:hover": { color: "primary.main" },
-            }}
+            sx={{ color: atlas.textMuted, "&:hover": { color: atlas.textPrimary } }}
           >
             {match.tournamentYear}
           </Typography>
-          <Typography variant="body2" sx={{ color: "text.primary" }}>
+          <Typography variant="body2" sx={{ color: atlas.textSecondary }}>
             Match
           </Typography>
         </Breadcrumbs>
 
-        <Stack
-          direction="row"
-          spacing={1}
-          sx={{ mb: 3, flexWrap: "wrap", rowGap: 1 }}
-        >
-          <Chip
-            label={match.tournamentName}
-            size="small"
-            variant="outlined"
-            sx={{ color: "text.secondary", borderColor: "divider" }}
-          />
-          <Chip
-            label={match.stage}
-            size="small"
-            sx={{
-              bgcolor: "rgba(244, 201, 93, 0.12)",
-              color: "primary.main",
-              fontWeight: 700,
-            }}
-          />
-          {date !== null ? (
-            <Chip
-              label={date}
-              size="small"
-              variant="outlined"
-              sx={{ color: "text.secondary", borderColor: "divider" }}
-            />
-          ) : null}
-        </Stack>
-
-        {/* Scoreline */}
+        {/* Scoreboard */}
         <Box
           sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "1fr auto 1fr" },
-            alignItems: "center",
-            gap: { xs: 1.5, sm: 3 },
-            textAlign: "center",
-            maxWidth: 860,
+            maxWidth: 920,
             mx: "auto",
-            py: { xs: 1, md: 2 },
+            border: `1px solid ${atlas.border}`,
+            bgcolor: atlas.canvasSoft,
+            px: { xs: 2.5, md: 6 },
+            py: { xs: 4, md: 5 },
+            textAlign: "center",
           }}
         >
           <Typography
-            variant="h2"
             component="p"
+            sx={{ ...eyebrowSx, color: atlas.textMuted, mb: { xs: 2.5, md: 3.5 } }}
+          >
+            {match.tournamentName}
+            <Box component="span" sx={{ color: atlas.gold, mx: 1.25 }}>
+              {formatStage(match.stage)}
+            </Box>
+            {date}
+          </Typography>
+
+          <Box
             sx={{
-              fontSize: { xs: "1.6rem", md: "2.25rem" },
-              textAlign: { sm: "right" },
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", sm: "1fr auto 1fr" },
+              alignItems: "center",
+              gap: { xs: 1.5, sm: 4 },
             }}
           >
-            {match.homeTeam.name}
-          </Typography>
-          <Box>
             <Typography
-              variant="h1"
               component="p"
               sx={{
-                color: "primary.main",
-                fontSize: { xs: "2.75rem", md: "3.75rem" },
-                lineHeight: 1,
+                fontFamily: atlas.fontDisplay,
+                fontWeight: 700,
+                fontSize: { xs: "1.6rem", md: "2.2rem" },
+                textTransform: "uppercase",
+                lineHeight: 1.05,
+                color: atlas.textPrimary,
+                textAlign: { xs: "center", sm: "right" },
               }}
             >
-              {match.score}
+              {match.homeTeam.name}
             </Typography>
-            {match.penaltyScore !== null ? (
+            <Box>
               <Typography
-                variant="body2"
-                sx={{ color: "text.secondary", mt: 0.75 }}
+                component="p"
+                sx={{
+                  ...tabularNums,
+                  fontFamily: atlas.fontDisplay,
+                  fontWeight: 700,
+                  fontSize: { xs: "3.6rem", md: "5rem" },
+                  lineHeight: 0.95,
+                  color: atlas.textPrimary,
+                }}
               >
-                {match.penaltyScore} on penalties
+                {match.score}
+              </Typography>
+              {match.penaltyScore !== null ? (
+                <Typography
+                  component="p"
+                  sx={{
+                    ...eyebrowSx,
+                    fontSize: "0.7rem",
+                    color: atlas.gold,
+                    mt: 1,
+                  }}
+                >
+                  {match.penaltyScore} on penalties
+                </Typography>
+              ) : null}
+            </Box>
+            <Typography
+              component="p"
+              sx={{
+                fontFamily: atlas.fontDisplay,
+                fontWeight: 700,
+                fontSize: { xs: "1.6rem", md: "2.2rem" },
+                textTransform: "uppercase",
+                lineHeight: 1.05,
+                color: atlas.textPrimary,
+                textAlign: { xs: "center", sm: "left" },
+              }}
+            >
+              {match.awayTeam.name}
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              mt: { xs: 3, md: 4 },
+              pt: 2.5,
+              borderTop: `1px solid ${atlas.border}`,
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              columnGap: 3,
+              rowGap: 1,
+            }}
+          >
+            <Typography sx={{ ...eyebrowSx, fontSize: "0.7rem", color: atlas.textSecondary }}>
+              {match.winnerName !== null
+                ? `Winner · ${match.winnerName}`
+                : "Draw"}
+            </Typography>
+            {match.decidedByPenalties ? (
+              <Typography
+                sx={{ ...eyebrowSx, fontSize: "0.7rem", color: atlas.textMuted }}
+              >
+                Decided by penalty shootout
               </Typography>
             ) : null}
           </Box>
-          <Typography
-            variant="h2"
-            component="p"
-            sx={{
-              fontSize: { xs: "1.6rem", md: "2.25rem" },
-              textAlign: { sm: "left" },
-            }}
-          >
-            {match.awayTeam.name}
-          </Typography>
         </Box>
-
-        <Stack
-          direction="row"
-          spacing={1.5}
-          sx={{
-            justifyContent: "center",
-            mt: 1.5,
-            flexWrap: "wrap",
-            rowGap: 1,
-          }}
-        >
-          {match.decidedByPenalties ? (
-            <Chip
-              label="Decided by penalty shootout"
-              size="small"
-              sx={{
-                bgcolor: "secondary.main",
-                color: "#F8FAFC",
-                fontWeight: 700,
-              }}
-            />
-          ) : null}
-          {match.winnerName !== null ? (
-            <Chip
-              label={`Winner: ${match.winnerName}`}
-              size="small"
-              sx={{
-                bgcolor: "primary.main",
-                color: "#06111F",
-                fontWeight: 700,
-              }}
-            />
-          ) : (
-            <Chip
-              label="Draw"
-              size="small"
-              variant="outlined"
-              sx={{ color: "text.secondary", borderColor: "divider" }}
-            />
-          )}
-        </Stack>
 
         <Typography
           component={Link}
           href={`/tournaments/${match.tournamentYear}`}
-          variant="body2"
-          sx={{
-            mt: 4,
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 0.75,
-            color: "text.secondary",
-            "&:hover": { color: "primary.main" },
-          }}
+          sx={{ ...textLinkSx, color: atlas.textMuted, mt: 4 }}
         >
-          <ArrowBackRoundedIcon sx={{ fontSize: 16 }} /> {match.tournamentName}
+          <ArrowBackRoundedIcon sx={{ fontSize: 14 }} /> {match.tournamentName}
         </Typography>
       </PageContainer>
     </Box>

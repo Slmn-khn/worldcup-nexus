@@ -1,13 +1,15 @@
+// National history dossier hero: huge uppercase country name, archive
+// totals as uppercase metadata, gold title marker.
+
 import Box from "@mui/material/Box";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
+import VaultEyebrow from "@/components/vault/VaultEyebrow";
 import { formatNumber } from "@/lib/format";
+import { atlas, eyebrowSx, tabularNums, textLinkSx } from "@/theme/tokens";
 import type { CountryProfileDto } from "@/server/queries/types";
 
 export default function CountryHero({
@@ -18,31 +20,14 @@ export default function CountryHero({
   const { totals } = country;
 
   return (
-    <Box
-      sx={{
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        background:
-          "radial-gradient(ellipse 70% 70% at 75% -20%, rgba(244, 201, 93, 0.14), transparent), " +
-          "radial-gradient(ellipse 50% 50% at 15% 110%, rgba(31, 122, 77, 0.14), transparent), #06111F",
-      }}
-    >
-      <PageContainer sx={{ py: { xs: 5, md: 8 } }}>
-        <Breadcrumbs
-          separator="/"
-          sx={{
-            mb: 3,
-            "& .MuiBreadcrumbs-separator": { color: "text.secondary" },
-          }}
-        >
+    <Box sx={{ borderBottom: `1px solid ${atlas.border}`, bgcolor: atlas.black }}>
+      <PageContainer sx={{ py: { xs: 6, md: 9 } }}>
+        <Breadcrumbs separator="/" sx={{ mb: 4 }}>
           <Typography
             component={Link}
             href="/"
             variant="body2"
-            sx={{
-              color: "text.secondary",
-              "&:hover": { color: "primary.main" },
-            }}
+            sx={{ color: atlas.textMuted, "&:hover": { color: atlas.textPrimary } }}
           >
             Home
           </Typography>
@@ -50,103 +35,59 @@ export default function CountryHero({
             component={Link}
             href="/countries"
             variant="body2"
-            sx={{
-              color: "text.secondary",
-              "&:hover": { color: "primary.main" },
-            }}
+            sx={{ color: atlas.textMuted, "&:hover": { color: atlas.textPrimary } }}
           >
             Countries
           </Typography>
-          <Typography variant="body2" sx={{ color: "text.primary" }}>
+          <Typography variant="body2" sx={{ color: atlas.textSecondary }}>
             {country.name}
           </Typography>
         </Breadcrumbs>
 
-        <Typography
-          variant="overline"
-          sx={{
-            color: "primary.main",
-            letterSpacing: "0.2em",
-            display: "block",
-            mb: 1,
-          }}
-        >
-          Nation Archive
-        </Typography>
-        <Stack
-          direction="row"
-          spacing={2}
-          sx={{ alignItems: "baseline", mb: 1, flexWrap: "wrap" }}
-        >
+        <VaultEyebrow label="Nation Archive" sx={{ mb: 2 }} />
+        <Box sx={{ display: "flex", alignItems: "baseline", gap: 2, flexWrap: "wrap" }}>
           <Typography
             variant="h1"
-            sx={{ fontSize: { xs: "2.25rem", md: "3.25rem" } }}
+            sx={{ fontSize: { xs: "3rem", sm: "3.8rem", md: "5rem" } }}
           >
             {country.flagEmoji ? `${country.flagEmoji} ` : ""}
             {country.name}
           </Typography>
           {country.code !== null ? (
-            <Typography
-              variant="h6"
-              component="span"
-              sx={{ color: "text.secondary" }}
-            >
+            <Typography sx={{ ...eyebrowSx, color: atlas.textMuted }}>
               {country.code}
             </Typography>
           ) : null}
-        </Stack>
-        <Typography variant="body1" sx={{ color: "text.secondary", mb: 3 }}>
+        </Box>
+        <Typography
+          variant="body1"
+          sx={{ ...tabularNums, color: atlas.textSecondary, mt: 2 }}
+        >
           {formatNumber(totals.tournamentsEntered)} tournaments ·{" "}
           {formatNumber(totals.matchesPlayed)} matches ·{" "}
-          {formatNumber(totals.goalsFor)} goals scored
+          {formatNumber(totals.goalsFor)} goals scored ·{" "}
+          {formatNumber(totals.wins)}W {formatNumber(totals.draws)}D{" "}
+          {formatNumber(totals.losses)}L
         </Typography>
-
-        <Stack
-          direction="row"
-          spacing={1.5}
-          sx={{ flexWrap: "wrap", rowGap: 1.5 }}
-        >
-          {totals.titles > 0 ? (
-            <Chip
-              icon={
-                <EmojiEventsRoundedIcon sx={{ "&&": { color: "#06111F" } }} />
-              }
-              label={`${formatNumber(totals.titles)} ${totals.titles === 1 ? "title" : "titles"}`}
-              sx={{
-                bgcolor: "primary.main",
-                color: "#06111F",
-                fontWeight: 700,
-              }}
-            />
-          ) : null}
-          {totals.finalsPlayed > 0 ? (
-            <Chip
-              label={`${formatNumber(totals.finalsPlayed)} ${totals.finalsPlayed === 1 ? "final" : "finals"}`}
-              variant="outlined"
-              sx={{ color: "text.primary", borderColor: "divider" }}
-            />
-          ) : null}
-          <Chip
-            label={`${formatNumber(totals.wins)}W · ${formatNumber(totals.draws)}D · ${formatNumber(totals.losses)}L`}
-            variant="outlined"
-            sx={{ color: "text.secondary", borderColor: "divider" }}
-          />
-        </Stack>
+        {totals.titles > 0 ? (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.25, mt: 2 }}>
+            <Box aria-hidden sx={{ width: 6, height: 6, bgcolor: atlas.gold }} />
+            <Typography sx={{ ...eyebrowSx, color: atlas.gold }}>
+              {formatNumber(totals.titles)}{" "}
+              {totals.titles === 1 ? "World title" : "World titles"}
+              {totals.finalsPlayed > 0
+                ? ` · ${formatNumber(totals.finalsPlayed)} ${totals.finalsPlayed === 1 ? "final" : "finals"}`
+                : ""}
+            </Typography>
+          </Box>
+        ) : null}
 
         <Typography
           component={Link}
           href="/countries"
-          variant="body2"
-          sx={{
-            mt: 3.5,
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 0.75,
-            color: "text.secondary",
-            "&:hover": { color: "primary.main" },
-          }}
+          sx={{ ...textLinkSx, color: atlas.textMuted, mt: 4 }}
         >
-          <ArrowBackRoundedIcon sx={{ fontSize: 16 }} /> All countries
+          <ArrowBackRoundedIcon sx={{ fontSize: 14 }} /> All countries
         </Typography>
       </PageContainer>
     </Box>

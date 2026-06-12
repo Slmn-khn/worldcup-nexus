@@ -47,8 +47,14 @@ test("tournament detail renders (1986)", async ({ page }) => {
     page.getByRole("heading", { name: "World Cup Tournaments" }),
   ).toBeVisible();
   await page.goto("/tournaments/1986");
-  await expect(page.getByRole("heading", { name: /1986 FIFA/ })).toBeVisible();
-  await expect(page.getByText("Champions: Argentina")).toBeVisible();
+  // Vault dossier hero: the year is the h1; the full tournament name and the
+  // champion panel render as supporting text.
+  await expect(page.getByRole("heading", { name: "1986" })).toBeVisible();
+  await expect(
+    page.getByText("1986 FIFA Men's World Cup").first(),
+  ).toBeVisible();
+  await expect(page.getByText("Champion").first()).toBeVisible();
+  await expect(page.getByText("Argentina").first()).toBeVisible();
 });
 
 test("match detail renders (1986 final)", async ({ page }) => {

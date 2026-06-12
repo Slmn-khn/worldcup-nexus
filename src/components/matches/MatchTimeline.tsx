@@ -17,22 +17,22 @@ type TimelineEvent = {
 };
 
 const CHIPS = {
-  goal: { label: "Goal", color: "#06111F", background: "#F4C95D" },
+  goal: { label: "Goal", color: "#000000", background: "#F4C95D" },
   ownGoal: { label: "Own Goal", color: "#F8FAFC", background: "#7F1D1D" },
   penaltyGoal: {
     label: "Penalty Goal",
-    color: "#06111F",
-    background: "#C9A13F",
+    color: "#000000",
+    background: "#D6A84F",
   },
-  yellow: { label: "Yellow Card", color: "#06111F", background: "#FACC15" },
+  yellow: { label: "Yellow Card", color: "#000000", background: "#FACC15" },
   secondYellow: {
     label: "Second Yellow",
-    color: "#06111F",
+    color: "#000000",
     background: "#FB923C",
   },
   red: { label: "Red Card", color: "#F8FAFC", background: "#EF4444" },
-  subOn: { label: "Sub On", color: "#F8FAFC", background: "#1F7A4D" },
-  subOff: { label: "Sub Off", color: "#CBD5E1", background: "#253449" },
+  subOn: { label: "Sub On", color: "#F8FAFC", background: "#1F8A4C" },
+  subOff: { label: "Sub Off", color: "#CBD5E1", background: "#2A2A2A" },
 };
 
 function buildEvents(match: MatchDetailDto): TimelineEvent[] {
@@ -125,7 +125,7 @@ export default function MatchTimeline({ match }: { match: MatchDetailDto }) {
       sx={{
         border: "1px solid",
         borderColor: "divider",
-        borderRadius: 2,
+        borderRadius: 0,
         bgcolor: "background.paper",
         overflow: "hidden",
       }}

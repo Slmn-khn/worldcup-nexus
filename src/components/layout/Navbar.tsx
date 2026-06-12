@@ -2,14 +2,14 @@
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import { usePathname } from "next/navigation";
 import Link from "@/components/Link";
+import VaultStripe from "@/components/vault/VaultStripe";
 import { siteConfig } from "@/lib/site";
+import { atlas } from "@/theme/tokens";
 
 const NAV_LINKS = siteConfig.navLinks;
 
@@ -21,19 +21,19 @@ export default function Navbar() {
       position="sticky"
       elevation={0}
       sx={{
-        bgcolor: "rgba(6, 17, 31, 0.88)",
+        bgcolor: "rgba(0, 0, 0, 0.92)",
         backgroundImage: "none",
-        backdropFilter: "blur(12px)",
-        borderBottom: "1px solid",
-        borderColor: "divider",
+        backdropFilter: "blur(10px)",
+        borderBottom: `1px solid ${atlas.border}`,
       }}
     >
-      <Container maxWidth="lg">
+      <Box sx={{ maxWidth: 1440, mx: "auto", width: "100%", px: { xs: 2.5, sm: 4, md: 6 } }}>
         <Toolbar
           disableGutters
           sx={{
+            minHeight: { xs: 56, md: 64 },
             flexWrap: { xs: "wrap", md: "nowrap" },
-            gap: { xs: 0.5, md: 3 },
+            gap: { xs: 0.5, md: 4 },
             py: { xs: 1, md: 0 },
           }}
         >
@@ -41,45 +41,43 @@ export default function Navbar() {
             component={Link}
             href="/"
             aria-label="WorldCup Atlas home"
-            direction="row"
-            spacing={1}
-            sx={{
-              flexShrink: 0,
-              alignItems: "center",
-              "&:hover .brand-gold": { color: "#C9A13F" },
-            }}
+            sx={{ flexShrink: 0 }}
           >
-            <EmojiEventsRoundedIcon sx={{ color: "primary.main" }} />
             <Typography
-              variant="h6"
               component="span"
               sx={{
-                color: "text.primary",
-                fontFamily: "var(--font-serif), Georgia, serif",
+                fontFamily: atlas.fontDisplay,
+                fontWeight: 700,
+                fontSize: "1.15rem",
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                color: atlas.textPrimary,
+                lineHeight: 1.1,
               }}
             >
               WorldCup{" "}
-              <Box
-                component="span"
-                className="brand-gold"
-                sx={{ color: "primary.main" }}
-              >
+              <Box component="span" sx={{ color: atlas.gold }}>
                 Atlas
               </Box>
             </Typography>
+            <VaultStripe width={44} sx={{ mt: 0.5, height: "3px" }} />
           </Stack>
           <Box
             component="nav"
             aria-label="Primary"
             sx={{
               display: "flex",
-              gap: 0.5,
+              gap: { xs: 1.5, md: 2.5 },
               ml: { md: "auto" },
               width: { xs: "100%", md: "auto" },
               overflowX: "auto",
               pb: { xs: 0.5, md: 0 },
               scrollbarWidth: "none",
               "&::-webkit-scrollbar": { display: "none" },
+              maskImage: {
+                xs: "linear-gradient(to right, black 92%, transparent)",
+                md: "none",
+              },
             }}
           >
             {NAV_LINKS.map(({ label, href }) => {
@@ -92,18 +90,25 @@ export default function Navbar() {
                   href={href}
                   aria-current={active ? "page" : undefined}
                   sx={{
-                    px: 1.5,
+                    position: "relative",
                     py: 0.75,
-                    borderRadius: 1,
-                    fontSize: "0.875rem",
-                    fontWeight: 600,
+                    fontSize: "0.78rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.11em",
+                    textTransform: "uppercase",
                     whiteSpace: "nowrap",
-                    color: active ? "primary.main" : "text.secondary",
-                    bgcolor: active ? "rgba(244, 201, 93, 0.1)" : "transparent",
-                    transition: "color 150ms ease, background-color 150ms ease",
-                    "&:hover": {
-                      color: "text.primary",
-                      bgcolor: "rgba(248, 250, 252, 0.06)",
+                    color: active ? atlas.textPrimary : atlas.textMuted,
+                    transition: "color 150ms ease",
+                    "&:hover": { color: atlas.textPrimary },
+                    // Active marker: 2px white underline (category-tab style).
+                    "&::after": {
+                      content: '""',
+                      position: "absolute",
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      height: 2,
+                      bgcolor: active ? atlas.textPrimary : "transparent",
                     },
                   }}
                 >
@@ -113,7 +118,7 @@ export default function Navbar() {
             })}
           </Box>
         </Toolbar>
-      </Container>
+      </Box>
     </AppBar>
   );
 }

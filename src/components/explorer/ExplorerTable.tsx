@@ -10,17 +10,17 @@ import {
   type GridPaginationModel,
 } from "@mui/x-data-grid";
 import Link from "@/components/Link";
-import { formatDate, formatMinute } from "@/lib/format";
+import { formatDate, formatMinute, formatStage } from "@/lib/format";
 import type { ExplorerRowDto } from "@/server/queries/types";
 
 const EVENT_CHIP_STYLES: Record<string, { color: string; background: string }> =
   {
-    Match: { color: "#06111F", background: "#F4C95D" },
-    Goal: { color: "#06111F", background: "#C9A13F" },
-    Booking: { color: "#06111F", background: "#FACC15" },
-    Substitution: { color: "#F8FAFC", background: "#1F7A4D" },
+    Match: { color: "#000000", background: "#F4C95D" },
+    Goal: { color: "#000000", background: "#D6A84F" },
+    Booking: { color: "#000000", background: "#FACC15" },
+    Substitution: { color: "#F8FAFC", background: "#1F8A4C" },
     PenaltyKick: { color: "#F8FAFC", background: "#7F1D1D" },
-    Award: { color: "#CBD5E1", background: "#253449" },
+    Award: { color: "#CBD5E1", background: "#2A2A2A" },
   };
 
 const EVENT_LABELS: Record<string, string> = {
@@ -80,7 +80,7 @@ const COLUMNS: GridColDef<ExplorerRowDto>[] = [
     headerName: "Stage",
     width: 140,
     sortable: false,
-    valueGetter: (_value, row) => row.stage ?? "—",
+    valueGetter: (_value, row) => formatStage(row.stage) ?? "—",
   },
   {
     field: "matchLabel",
@@ -225,9 +225,9 @@ export default function ExplorerTable({
           border: "1px solid",
           borderColor: "divider",
           bgcolor: "background.paper",
-          "--DataGrid-rowBorderColor": "#253449",
+          "--DataGrid-rowBorderColor": "#2A2A2A",
           "& .MuiDataGrid-columnHeaders": { borderColor: "divider" },
-          "& .MuiDataGrid-columnHeader": { bgcolor: "#142338" },
+          "& .MuiDataGrid-columnHeader": { bgcolor: "#171717" },
           "& .MuiDataGrid-cell": { display: "flex", alignItems: "center" },
           "& .MuiDataGrid-footerContainer": { borderColor: "divider" },
         }}

@@ -102,7 +102,7 @@ function EventSection({
           sx={{
             border: "1px solid",
             borderColor: "divider",
-            borderRadius: 2,
+            borderRadius: 0,
             bgcolor: "background.paper",
             overflow: "hidden",
           }}

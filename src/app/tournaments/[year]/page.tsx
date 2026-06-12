@@ -63,6 +63,7 @@ export default async function TournamentDetailPage({ params }: Props) {
       {/* Overview */}
       <PageContainer component="section" id="overview" sx={SECTION_SX}>
         <SectionHeading
+          eyebrow="The tournament in numbers"
           title="Overview"
           subtitle="Tournament totals counted from imported source data."
         />
@@ -106,6 +107,7 @@ export default async function TournamentDetailPage({ params }: Props) {
       {/* Awards */}
       <PageContainer component="section" id="awards" sx={SECTION_SX}>
         <SectionHeading
+          eyebrow="Honours"
           title="Awards"
           subtitle="Official tournament awards in the archive."
         />

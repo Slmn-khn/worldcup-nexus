@@ -4,10 +4,10 @@ import { formatCardType, formatMinute } from "@/lib/format";
 import type { PlayerBookingDto } from "@/server/queries/types";
 
 const CARD_CHIPS = {
-  YELLOW: { label: "Yellow Card", color: "#06111F", background: "#FACC15" },
+  YELLOW: { label: "Yellow Card", color: "#000000", background: "#FACC15" },
   SECOND_YELLOW: {
     label: "Second Yellow",
-    color: "#06111F",
+    color: "#000000",
     background: "#FB923C",
   },
   RED: { label: "Red Card", color: "#F8FAFC", background: "#EF4444" },

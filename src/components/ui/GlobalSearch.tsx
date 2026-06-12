@@ -1,8 +1,8 @@
 "use client";
 
-// Global search box (Checkpoint 6A) — debounced queries against /api/search,
-// grouped results in a dropdown. Pages never depend on search availability:
-// if Meilisearch is down only the dropdown shows an error.
+// Global search — debounced queries against /api/search, grouped results in
+// a black rectangular dropdown panel. Pages never depend on search
+// availability: if Meilisearch is down only the dropdown shows an error.
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
@@ -17,6 +17,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import SearchIcon from "@mui/icons-material/Search";
 import Link from "@/components/Link";
+import { atlas, eyebrowSx } from "@/theme/tokens";
 import type { SearchResponseDto, SearchResultDto } from "@/server/search/types";
 
 const MIN_QUERY_LENGTH = 2;
@@ -123,47 +124,50 @@ export default function GlobalSearch() {
             alignItems: "center",
             gap: 1.5,
             px: 2.5,
-            py: 1.75,
-            bgcolor: "#142338",
-            border: "1px solid",
-            borderColor: "divider",
-            borderRadius: 2.5,
+            minHeight: 56,
+            bgcolor: atlas.surface1,
+            border: `1px solid ${atlas.border}`,
+            borderRadius: 0,
             transition: "border-color 150ms ease",
-            "&:hover, &:focus-within": { borderColor: "primary.main" },
+            "&:hover": { borderColor: atlas.borderStrong },
+            "&:focus-within": { borderColor: atlas.textPrimary },
+            "&:focus-within .GlobalSearch-icon": { color: atlas.goldStrong },
           }}
         >
-          <SearchIcon sx={{ color: "text.secondary" }} />
+          <SearchIcon
+            className="GlobalSearch-icon"
+            sx={{ color: atlas.textMuted, transition: "color 150ms ease" }}
+          />
           <InputBase
             fullWidth
             placeholder="Search tournaments, countries, players, matches…"
             inputProps={{ "aria-label": "Search the archive" }}
-            sx={{ color: "text.primary", fontSize: "1.05rem" }}
+            sx={{ color: atlas.textPrimary, fontSize: "1rem", fontWeight: 300 }}
             value={query}
             onChange={(event) => handleQueryChange(event.target.value)}
             onFocus={() => setOpen(true)}
             onKeyDown={onKeyDown}
           />
           {loading ? (
-            <CircularProgress size={18} sx={{ color: "primary.main" }} />
+            <CircularProgress size={16} sx={{ color: atlas.gold }} />
           ) : null}
         </Paper>
 
         {showDropdown ? (
           <Paper
-            elevation={8}
+            elevation={0}
             role="region"
             aria-label="Search results"
             aria-live="polite"
             sx={{
               position: "absolute",
-              top: "calc(100% + 8px)",
+              top: "calc(100% + 6px)",
               left: 0,
               right: 0,
               zIndex: (theme) => theme.zIndex.modal,
-              bgcolor: "#0E1A2A",
-              border: "1px solid",
-              borderColor: "divider",
-              borderRadius: 2,
+              bgcolor: atlas.canvasSoft,
+              border: `1px solid ${atlas.borderStrong}`,
+              borderRadius: 0,
               maxHeight: 480,
               overflowY: "auto",
             }}
@@ -171,14 +175,14 @@ export default function GlobalSearch() {
             {error !== null ? (
               <Typography
                 variant="body2"
-                sx={{ color: "text.secondary", px: 2.5, py: 2 }}
+                sx={{ color: atlas.textSecondary, px: 2.5, py: 2 }}
               >
                 {error}
               </Typography>
             ) : response !== null && response.total === 0 ? (
               <Typography
                 variant="body2"
-                sx={{ color: "text.secondary", px: 2.5, py: 2 }}
+                sx={{ color: atlas.textSecondary, px: 2.5, py: 2 }}
               >
                 No results for “{response.query}”.
               </Typography>
@@ -191,13 +195,11 @@ export default function GlobalSearch() {
                     <ListSubheader
                       key={`${group.key}-header`}
                       sx={{
-                        bgcolor: "#142338",
-                        color: "primary.main",
-                        fontWeight: 700,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                        fontSize: "0.7rem",
-                        lineHeight: 2.6,
+                        ...eyebrowSx,
+                        bgcolor: atlas.surfaceSoft,
+                        color: atlas.textMuted,
+                        borderBottom: `1px solid ${atlas.border}`,
+                        lineHeight: 2.8,
                       }}
                     >
                       {group.label}
@@ -212,18 +214,23 @@ export default function GlobalSearch() {
                           alignItems: "baseline",
                           flexWrap: "wrap",
                           columnGap: 1,
+                          borderBottom: `1px solid ${atlas.border}`,
+                          transition: "background-color 150ms ease",
+                          "&:hover, &:focus-visible": {
+                            bgcolor: atlas.surface1,
+                          },
                         }}
                       >
                         <Typography
                           variant="body2"
-                          sx={{ color: "text.primary", fontWeight: 600 }}
+                          sx={{ color: atlas.textPrimary, fontWeight: 600 }}
                         >
                           {item.title}
                         </Typography>
                         {item.subtitle ? (
                           <Typography
                             variant="caption"
-                            sx={{ color: "text.secondary" }}
+                            sx={{ color: atlas.textMuted }}
                           >
                             {item.subtitle}
                           </Typography>
@@ -236,7 +243,7 @@ export default function GlobalSearch() {
             ) : (
               <Typography
                 variant="body2"
-                sx={{ color: "text.secondary", px: 2.5, py: 2 }}
+                sx={{ color: atlas.textSecondary, px: 2.5, py: 2 }}
               >
                 Searching…
               </Typography>
@@ -246,7 +253,7 @@ export default function GlobalSearch() {
 
         <Typography
           variant="caption"
-          sx={{ color: "text.secondary", display: "block", mt: 1, px: 0.5 }}
+          sx={{ color: atlas.textMuted, display: "block", mt: 1 }}
         >
           Try: Brazil 1970, Maradona 1986, Argentina France final
         </Typography>

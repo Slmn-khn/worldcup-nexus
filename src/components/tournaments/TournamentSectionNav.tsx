@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import Chip from "@mui/material/Chip";
+import { atlas, eyebrowSx } from "@/theme/tokens";
 
 const SECTIONS = [
   { label: "Overview", anchor: "#overview" },
@@ -10,7 +10,7 @@ const SECTIONS = [
   { label: "Penalties", anchor: "#penalties" },
 ];
 
-/** Plain anchor navigation — no client state needed. */
+/** Plain anchor navigation — uppercase category-tab labels, no fills. */
 export default function TournamentSectionNav() {
   return (
     <Box
@@ -18,27 +18,34 @@ export default function TournamentSectionNav() {
       aria-label="Tournament sections"
       sx={{
         display: "flex",
-        gap: 1,
+        gap: { xs: 2.5, md: 3.5 },
         overflowX: "auto",
-        pb: 0.5,
+        borderBottom: `1px solid ${atlas.border}`,
+        pb: 0,
         scrollbarWidth: "none",
         "&::-webkit-scrollbar": { display: "none" },
       }}
     >
       {SECTIONS.map((section) => (
-        <Chip
+        <Box
           key={section.anchor}
-          label={section.label}
           component="a"
           href={section.anchor}
-          clickable
-          variant="outlined"
           sx={{
-            color: "text.secondary",
-            borderColor: "divider",
-            "&:hover": { color: "primary.main", borderColor: "primary.main" },
+            ...eyebrowSx,
+            whiteSpace: "nowrap",
+            color: atlas.textMuted,
+            pb: 1.5,
+            borderBottom: "2px solid transparent",
+            transition: "color 150ms ease, border-color 150ms ease",
+            "&:hover": {
+              color: atlas.textPrimary,
+              borderBottomColor: atlas.textPrimary,
+            },
           }}
-        />
+        >
+          {section.label}
+        </Box>
       ))}
     </Box>
   );
