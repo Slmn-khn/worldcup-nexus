@@ -35,7 +35,7 @@ function check(name: string, passed: boolean, detail: string): void {
 }
 
 async function main() {
-  console.log("WorldCup Atlas — export verification\n");
+  console.log("WORLDCUP Nexus — export verification\n");
 
   // Filtered export (Goal) — the common case.
   const goalExport = await getExplorerExport({

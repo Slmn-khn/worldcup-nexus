@@ -7,11 +7,11 @@ import { siteConfig } from "@/lib/site";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: siteConfig.siteName,
-    short_name: "Atlas",
+    short_name: "Nexus",
     description: siteConfig.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#06111F",
-    theme_color: "#F4C95D",
+    background_color: "#000000",
+    theme_color: "#D6A84F",
   };
 }

@@ -1,50 +1,175 @@
-// Match queries for DB-backed pages (Checkpoint 4D).
+// Match queries for DB-backed pages (Checkpoint 4D; filters in 7D).
 
 import { prisma } from "@/server/db/prisma";
+import type { Prisma } from "@/generated/prisma/client";
 import { finalStageFilter, matchCardInclude, toMatchCardDto } from "./helpers";
-import type { MatchCardDto, MatchDetailDto, MatchIndexDto } from "./types";
+import type {
+  FilterOptionDto,
+  MatchCardDto,
+  MatchDetailDto,
+  MatchFilterOptions,
+  MatchIndexDto,
+  MatchIndexFilterMetaDto,
+} from "./types";
+
+function matchWhere(options: MatchFilterOptions): Prisma.MatchWhereInput {
+  const where: Prisma.MatchWhereInput = {};
+  const and: Prisma.MatchWhereInput[] = [];
+
+  if (options.tournamentYear !== undefined) {
+    and.push({ tournament: { year: options.tournamentYear } });
+  }
+  if (options.countrySlug !== undefined) {
+    and.push({
+      OR: [
+        { homeTeam: { country: { slug: options.countrySlug } } },
+        { awayTeam: { country: { slug: options.countrySlug } } },
+      ],
+    });
+  }
+  if (options.stage !== undefined) {
+    and.push({ stage: { equals: options.stage, mode: "insensitive" } });
+  }
+  if (options.decidedByPenalties !== undefined) {
+    and.push({ decidedByPenalties: options.decidedByPenalties });
+  }
+  const q = options.q?.trim();
+  if (q !== undefined && q !== "") {
+    const qOr: Prisma.MatchWhereInput[] = [
+      { homeTeam: { name: { contains: q, mode: "insensitive" } } },
+      { awayTeam: { name: { contains: q, mode: "insensitive" } } },
+      { stage: { contains: q, mode: "insensitive" } },
+      { stadium: { name: { contains: q, mode: "insensitive" } } },
+    ];
+    const asYear = Number(q);
+    if (Number.isInteger(asYear) && asYear >= 1900 && asYear <= 2100) {
+      qOr.push({ tournament: { year: asYear } });
+    }
+    and.push({ OR: qOr });
+  }
+
+  if (and.length > 0) where.AND = and;
+  return where;
+}
 
 /**
- * Paged match cards for the /matches index. Newest tournaments first, then
- * latest matches within each tournament. No advanced filtering yet — that
- * arrives with the data explorer.
+ * Paged, filterable match cards for the /matches index. Score-derived sorts
+ * (highest-scoring, biggest-margin) rank the filtered ids in memory first —
+ * Prisma cannot order by computed columns — then fetch just the page.
  */
 export async function getMatchCards(
-  options: { page?: number; pageSize?: number; tournamentYear?: number } = {},
+  options: MatchFilterOptions = {},
 ): Promise<MatchIndexDto> {
-  const { page = 1, pageSize = 60, tournamentYear } = options;
-  const where =
-    tournamentYear !== undefined
-      ? { tournament: { year: tournamentYear } }
-      : undefined;
+  const { page = 1, pageSize = 30, sort = "newest" } = options;
+  const where = matchWhere(options);
+  const skip = Math.max(0, page - 1) * pageSize;
 
+  const withHref = (match: Parameters<typeof toMatchCardDto>[0]) => {
+    const card = toMatchCardDto(match);
+    // slug is unique and always set by the import; id is the fallback.
+    return {
+      ...card,
+      href: `/matches/${card.slug !== "" ? card.slug : card.id}`,
+    };
+  };
+
+  if (sort === "highest-scoring" || sort === "biggest-margin") {
+    const scored = await prisma.match.findMany({
+      where,
+      select: { id: true, homeScore: true, awayScore: true, matchDate: true },
+    });
+    scored.sort((a, b) => {
+      const aValue =
+        sort === "highest-scoring"
+          ? a.homeScore + a.awayScore
+          : Math.abs(a.homeScore - a.awayScore);
+      const bValue =
+        sort === "highest-scoring"
+          ? b.homeScore + b.awayScore
+          : Math.abs(b.homeScore - b.awayScore);
+      return (
+        bValue - aValue ||
+        (b.matchDate?.getTime() ?? 0) - (a.matchDate?.getTime() ?? 0)
+      );
+    });
+    const pageIds = scored.slice(skip, skip + pageSize).map((m) => m.id);
+    const pageMatches = await prisma.match.findMany({
+      where: { id: { in: pageIds } },
+      include: matchCardInclude,
+    });
+    const byId = new Map(pageMatches.map((m) => [m.id, m]));
+    return {
+      matches: pageIds
+        .map((id) => byId.get(id))
+        .filter((m): m is NonNullable<typeof m> => m !== undefined)
+        .map(withHref),
+      totalCount: scored.length,
+      page,
+      pageSize,
+    };
+  }
+
+  const dateOrder = sort === "oldest" ? ("asc" as const) : ("desc" as const);
   const [matches, totalCount] = await Promise.all([
     prisma.match.findMany({
       where,
       include: matchCardInclude,
       orderBy: [
-        { tournament: { year: "desc" } },
-        { matchDate: "desc" },
-        { matchNumber: "desc" },
+        { tournament: { year: dateOrder } },
+        { matchDate: dateOrder },
+        { matchNumber: dateOrder },
       ],
-      skip: Math.max(0, page - 1) * pageSize,
+      skip,
       take: pageSize,
     }),
     prisma.match.count({ where }),
   ]);
 
   return {
-    matches: matches.map((match) => {
-      const card = toMatchCardDto(match);
-      // slug is unique and always set by the import; id is the fallback.
-      return {
-        ...card,
-        href: `/matches/${card.slug !== "" ? card.slug : card.id}`,
-      };
-    }),
+    matches: matches.map(withHref),
     totalCount,
     page,
     pageSize,
+  };
+}
+
+/** Filter-option metadata for the /matches index, from actual DB values. */
+export async function getMatchFilterMeta(): Promise<MatchIndexFilterMetaDto> {
+  const [tournaments, countries, stages] = await Promise.all([
+    prisma.tournament.findMany({
+      select: { year: true },
+      orderBy: { year: "desc" },
+    }),
+    prisma.country.findMany({
+      where: { teams: { some: {} } },
+      select: { name: true, slug: true },
+      orderBy: { name: "asc" },
+    }),
+    prisma.match.findMany({
+      select: { stage: true },
+      distinct: ["stage"],
+      orderBy: { stage: "asc" },
+    }),
+  ]);
+
+  const stageOptions: FilterOptionDto[] = stages.map(({ stage }) => ({
+    // Display casing happens at render; the value must stay the raw DB value.
+    label: stage,
+    value: stage,
+  }));
+
+  return {
+    options: {
+      years: tournaments.map(({ year }) => ({
+        label: String(year),
+        value: String(year),
+      })),
+      countries: countries.map(({ name, slug }) => ({
+        label: name,
+        value: slug,
+      })),
+      stages: stageOptions,
+    },
   };
 }
 

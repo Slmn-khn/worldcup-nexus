@@ -1,4 +1,4 @@
-# WorldCup Atlas — Deployment
+# WORLDCUP Nexus — Deployment
 
 ## Required environment variables
 

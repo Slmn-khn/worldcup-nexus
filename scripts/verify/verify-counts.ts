@@ -54,7 +54,7 @@ function sourceTournamentYears(): number[] {
 }
 
 async function main() {
-  console.log("WorldCup Atlas — data verification (core + events)\n");
+  console.log("WORLDCUP Nexus — data verification (core + events)\n");
   const prisma = createScriptPrismaClient();
 
   try {

@@ -1,8 +1,8 @@
-# GitHub Copilot Instructions for WorldCup Atlas
+# GitHub Copilot Instructions for WORLDCUP Nexus
 
 Follow `AGENTS.md`.
 
-WorldCup Atlas is a Next.js App Router + TypeScript + MUI application for a historical World Cup archive.
+WORLDCUP Nexus is a Next.js App Router + TypeScript + MUI application for a historical World Cup archive.
 
 Rules:
 

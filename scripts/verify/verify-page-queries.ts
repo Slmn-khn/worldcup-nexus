@@ -6,18 +6,27 @@ import "dotenv/config";
 
 import { prisma } from "@/server/db/prisma";
 import { getArchiveStats, getHomePageData } from "@/server/queries/home";
-import { getCountryCards, getCountryProfile } from "@/server/queries/countries";
+import {
+  getCountryCards,
+  getCountryIndex,
+  getCountryProfile,
+} from "@/server/queries/countries";
 import {
   getFinalMatchForTournament,
   getMatchByIdOrSlug,
   getMatchCards,
 } from "@/server/queries/matches";
-import { getPlayerCards, getPlayerProfile } from "@/server/queries/players";
+import {
+  getPlayerCards,
+  getPlayerIndex,
+  getPlayerProfile,
+} from "@/server/queries/players";
 import { getExplorerData } from "@/server/queries/explorer";
 import { getRecordsOverview } from "@/server/queries/records";
 import {
   getTournamentByYear,
   getTournamentCards,
+  getTournamentIndex,
 } from "@/server/queries/tournaments";
 
 type Check = {
@@ -38,7 +47,7 @@ function check(
 }
 
 async function main() {
-  console.log("WorldCup Atlas — page query verification (Checkpoint 4D)\n");
+  console.log("WORLDCUP Nexus — page query verification (Checkpoint 4D)\n");
 
   // ---- Archive stats. ----
   const stats = await getArchiveStats();
@@ -619,6 +628,193 @@ async function main() {
       `countries ${home.featuredCountries.length}, players ${home.featuredPlayers.length}, ` +
       `record boards ${home.recordsPreview.length}`,
   );
+
+  // ---- Checkpoint 7D — page filters (Vault archive controls). ----
+
+  const tournamentIndexAll = await getTournamentIndex();
+  check(
+    "tournament index unfiltered returns all rows",
+    tournamentIndexAll.filteredTotal === tournamentIndexAll.total &&
+      tournamentIndexAll.total > 0,
+    `${tournamentIndexAll.filteredTotal}/${tournamentIndexAll.total} tournaments, ` +
+      `${tournamentIndexAll.options.hosts.length} hosts, ${tournamentIndexAll.options.winners.length} winners`,
+  );
+
+  const argentinaWinner = tournamentIndexAll.options.winners.find((option) =>
+    option.value.toLowerCase().includes("argentina"),
+  );
+  if (argentinaWinner !== undefined) {
+    const filtered = await getTournamentIndex({ q: "argentina" });
+    check(
+      "tournaments q=argentina returns matching rows",
+      filtered.filteredTotal > 0 &&
+        filtered.tournaments.every((tournament) =>
+          `${tournament.year} ${tournament.name} ${tournament.hostName ?? ""} ${tournament.winner ?? ""} ${tournament.runnerUp ?? ""}`
+            .toLowerCase()
+            .includes("argentina"),
+        ),
+      `${filtered.filteredTotal} tournaments match`,
+    );
+  } else {
+    check(
+      "tournaments q=argentina returns matching rows",
+      false,
+      "no Argentina winner in data — skipped",
+      false,
+    );
+  }
+
+  const tournamentsOldest = await getTournamentIndex({ sort: "oldest" });
+  check(
+    "tournaments sort=oldest is ascending",
+    tournamentsOldest.tournaments.every(
+      (tournament, index, list) =>
+        index === 0 || tournament.year >= list[index - 1].year,
+    ),
+    `first year ${tournamentsOldest.tournaments[0]?.year ?? "n/a"}`,
+  );
+
+  const matches1986 = await getMatchCards({ tournamentYear: 1986 });
+  check(
+    "matches tournamentYear=1986 returns only that year",
+    matches1986.matches.length > 0 &&
+      matches1986.matches.every((match) => match.tournamentYear === 1986),
+    `${matches1986.totalCount} matches, page has ${matches1986.matches.length}`,
+  );
+
+  const argentinaNation = await prisma.country.findFirst({
+    where: { name: { equals: "Argentina", mode: "insensitive" } },
+    select: { slug: true, name: true },
+  });
+  if (argentinaNation !== null) {
+    const argentinaMatches = await getMatchCards({
+      countrySlug: argentinaNation.slug,
+      pageSize: 10,
+    });
+    check(
+      "matches countrySlug filter returns involving matches",
+      argentinaMatches.totalCount > 0 &&
+        argentinaMatches.matches.every(
+          (match) =>
+            match.homeTeam.name === argentinaNation.name ||
+            match.awayTeam.name === argentinaNation.name,
+        ),
+      `${argentinaMatches.totalCount} matches involve ${argentinaNation.name}`,
+    );
+  } else {
+    check(
+      "matches countrySlug filter returns involving matches",
+      false,
+      "Argentina not in database — skipped",
+      false,
+    );
+  }
+
+  const highScoring = await getMatchCards({
+    sort: "highest-scoring",
+    pageSize: 5,
+  });
+  check(
+    "matches sort=highest-scoring is descending by total goals",
+    highScoring.matches.every(
+      (match, index, list) =>
+        index === 0 ||
+        match.homeScore + match.awayScore <=
+          list[index - 1].homeScore + list[index - 1].awayScore,
+    ),
+    `top total ${highScoring.matches[0] !== undefined ? highScoring.matches[0].homeScore + highScoring.matches[0].awayScore : "n/a"} goals`,
+  );
+
+  const penaltyMatches = await getMatchCards({
+    decidedByPenalties: true,
+    pageSize: 10,
+  });
+  check(
+    "matches decidedByPenalties=true returns only shootouts",
+    penaltyMatches.totalCount > 0 &&
+      penaltyMatches.matches.every((match) => match.decidedByPenalties),
+    `${penaltyMatches.totalCount} shootout matches`,
+  );
+
+  const brazilCountries = await getCountryIndex({ q: "brazil" });
+  check(
+    "countries q=brazil returns Brazil if present",
+    brazilCountries.filteredTotal === 0 ||
+      brazilCountries.countries.some((country) =>
+        country.name.toLowerCase().includes("brazil"),
+      ),
+    `${brazilCountries.filteredTotal} matches`,
+    false,
+  );
+
+  const champions = await getCountryIndex({ hasTitles: true });
+  check(
+    "countries hasTitles=true returns only champions",
+    champions.countries.every((country) => (country.titlesCount ?? 0) > 0),
+    `${champions.filteredTotal} champion nations`,
+  );
+
+  const maradonaIndex = await getPlayerIndex({ q: "maradona" });
+  check(
+    "players q=maradona returns Maradona if present",
+    maradonaIndex.filteredTotal === 0 ||
+      maradonaIndex.players.some((player) =>
+        player.name.toLowerCase().includes("maradona"),
+      ),
+    `${maradonaIndex.filteredTotal} players match`,
+    false,
+  );
+
+  if (argentinaNation !== null) {
+    const argentinaPlayers = await getPlayerIndex({
+      countrySlug: argentinaNation.slug,
+      pageSize: 10,
+    });
+    check(
+      "players countrySlug filter returns that nation's players",
+      argentinaPlayers.filteredTotal > 0 &&
+        argentinaPlayers.players.every(
+          (player) => player.countrySlug === argentinaNation.slug,
+        ),
+      `${argentinaPlayers.filteredTotal} ${argentinaNation.name} players`,
+    );
+  }
+
+  const topScorerSort = await getPlayerIndex({
+    sort: "most-goals",
+    pageSize: 5,
+  });
+  check(
+    "players sort=most-goals is descending and goal-backed",
+    topScorerSort.players.length > 0 &&
+      topScorerSort.players.every(
+        (player, index, list) =>
+          (player.goalsCount ?? 0) > 0 &&
+          (index === 0 ||
+            (player.goalsCount ?? 0) <= (list[index - 1].goalsCount ?? 0)),
+      ),
+    `top scorer ${topScorerSort.players[0]?.name ?? "n/a"} — ${topScorerSort.players[0]?.goalsCount ?? 0} goals`,
+  );
+
+  // Bad params must normalize, never throw.
+  try {
+    const badParams = await getMatchCards({
+      page: -5,
+      pageSize: 99999,
+      sort: "newest",
+    });
+    check(
+      "match query tolerates out-of-range pagination",
+      badParams.matches.length > 0,
+      `page normalized, ${badParams.matches.length} rows`,
+    );
+  } catch (error) {
+    check(
+      "match query tolerates out-of-range pagination",
+      false,
+      `threw: ${(error as Error).message}`,
+    );
+  }
 
   // ---- Report. ----
   console.log("Checks");

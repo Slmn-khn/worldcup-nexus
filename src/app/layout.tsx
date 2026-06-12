@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Saira_Condensed } from "next/font/google";
 import { Providers } from "./providers";
 import AppShell from "@/components/layout/AppShell";
 import { siteConfig } from "@/lib/site";
@@ -10,11 +10,11 @@ const inter = Inter({
   display: "swap",
 });
 
-// Display face for headings, scorelines, and big numbers — modern,
-// technical, slightly sporty. Replaces the previous serif (Playfair),
-// which read old-fashioned for a sports intelligence product.
-const spaceGrotesk = Space_Grotesk({
+// Vault display voice: condensed uppercase headlines, scorelines, and big
+// numbers (Checkpoint 7C Revised — World Cup Vault editorial system).
+const saira = Saira_Condensed({
   subsets: ["latin"],
+  weight: ["600", "700"],
   variable: "--font-display",
   display: "swap",
 });
@@ -58,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${inter.variable} ${saira.variable}`}>
       <body>
         <Providers>
           <AppShell>{children}</AppShell>

@@ -13,43 +13,15 @@ import Link from "@/components/Link";
 import { formatDate, formatMinute, formatStage } from "@/lib/format";
 import type { ExplorerRowDto } from "@/server/queries/types";
 
-// Chip tiers: solid gold only for the headline events (Match, Goal);
-// everything else is a quiet tint — color never reads as alarm or status.
-const EVENT_CHIP_STYLES: Record<
-  string,
-  { color: string; background: string; border: string }
-> = {
-  Match: {
-    color: "#07111F",
-    background: "#F4C95D",
-    border: "transparent",
-  },
-  Goal: {
-    color: "#07111F",
-    background: "#D6A84F",
-    border: "transparent",
-  },
-  Booking: {
-    color: "#FACC15",
-    background: "rgba(250, 204, 21, 0.14)",
-    border: "rgba(250, 204, 21, 0.3)",
-  },
-  Substitution: {
-    color: "#4ADE80",
-    background: "rgba(34, 197, 94, 0.14)",
-    border: "rgba(34, 197, 94, 0.3)",
-  },
-  PenaltyKick: {
-    color: "#38BDF8",
-    background: "rgba(56, 189, 248, 0.12)",
-    border: "rgba(56, 189, 248, 0.3)",
-  },
-  Award: {
-    color: "#CBD5E1",
-    background: "transparent",
-    border: "rgba(148, 163, 184, 0.3)",
-  },
-};
+const EVENT_CHIP_STYLES: Record<string, { color: string; background: string }> =
+  {
+    Match: { color: "#000000", background: "#F4C95D" },
+    Goal: { color: "#000000", background: "#D6A84F" },
+    Booking: { color: "#000000", background: "#FACC15" },
+    Substitution: { color: "#F8FAFC", background: "#1F8A4C" },
+    PenaltyKick: { color: "#F8FAFC", background: "#7F1D1D" },
+    Award: { color: "#CBD5E1", background: "#2A2A2A" },
+  };
 
 const EVENT_LABELS: Record<string, string> = {
   PenaltyKick: "Penalty kick",
@@ -70,8 +42,7 @@ const COLUMNS: GridColDef<ExplorerRowDto>[] = [
           sx={{
             bgcolor: style.background,
             color: style.color,
-            border: `1px solid ${style.border}`,
-            fontWeight: 600,
+            fontWeight: 700,
           }}
         />
       );
@@ -253,28 +224,12 @@ export default function ExplorerTable({
         sx={{
           border: "1px solid",
           borderColor: "divider",
-          borderRadius: 3,
           bgcolor: "background.paper",
-          boxShadow: "0 8px 24px rgba(2, 6, 14, 0.45)",
-          fontSize: "0.875rem",
-          "--DataGrid-rowBorderColor": "rgba(148, 163, 184, 0.12)",
+          "--DataGrid-rowBorderColor": "#2A2A2A",
           "& .MuiDataGrid-columnHeaders": { borderColor: "divider" },
-          "& .MuiDataGrid-columnHeader": { bgcolor: "#122238" },
-          "& .MuiDataGrid-columnHeaderTitle": {
-            fontWeight: 700,
-            fontSize: "0.74rem",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: "#94A3B8",
-          },
+          "& .MuiDataGrid-columnHeader": { bgcolor: "#171717" },
           "& .MuiDataGrid-cell": { display: "flex", alignItems: "center" },
-          "& .MuiDataGrid-row:hover": {
-            backgroundColor: "rgba(56, 189, 248, 0.04)",
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderColor: "divider",
-            bgcolor: "#0D1828",
-          },
+          "& .MuiDataGrid-footerContainer": { borderColor: "divider" },
         }}
       />
     </Box>

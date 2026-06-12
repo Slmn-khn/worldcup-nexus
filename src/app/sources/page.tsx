@@ -9,14 +9,14 @@ import MuiLink from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import PageContainer from "@/components/layout/PageContainer";
-import PageHeader from "@/components/layout/PageHeader";
+import VaultPageHeader from "@/components/vault/VaultPageHeader";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Data Sources",
   description:
-    "Data sources, attribution, license details, transformations, and known limitations of the WorldCup Atlas archive.",
+    "Data sources, attribution, license details, transformations, and known limitations of the WORLDCUP Nexus archive.",
 };
 
 const SECTION_SX = { py: { xs: 3.5, md: 4.5 } };
@@ -43,7 +43,7 @@ export default function SourcesPage() {
 
   return (
     <Box>
-      <PageHeader
+      <VaultPageHeader
         title="Data Sources"
         lede="Where the archive's data comes from, how it is transformed, and how it is licensed."
       />
@@ -54,7 +54,7 @@ export default function SourcesPage() {
           variant="body1"
           sx={{ color: "text.secondary", maxWidth: 760, mb: 2 }}
         >
-          All historical data in WorldCup Atlas comes from the{" "}
+          All historical data in WORLDCUP Nexus comes from the{" "}
           <MuiLink
             href={attribution.repositoryUrl}
             target="_blank"
@@ -71,7 +71,7 @@ export default function SourcesPage() {
           sx={{
             border: "1px solid",
             borderColor: "divider",
-            borderRadius: 2,
+            borderRadius: 0,
             bgcolor: "rgba(244, 201, 93, 0.05)",
             px: 3,
             py: 2.5,
@@ -107,7 +107,7 @@ export default function SourcesPage() {
             .
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary", mt: 1 }}>
-            Modification notice: WorldCup Atlas normalizes the original CSV
+            Modification notice: WORLDCUP Nexus normalizes the original CSV
             files into a relational database, derives display fields and
             aggregate statistics (described below), and serves the result
             through this site. The underlying data presented here remains

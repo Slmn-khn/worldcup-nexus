@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { atlas } from "@/theme/tokens";
+import { atlas, eyebrowSx } from "@/theme/tokens";
 
 const SECTIONS = [
   { label: "Overview", anchor: "#overview" },
@@ -10,21 +10,18 @@ const SECTIONS = [
   { label: "Penalties", anchor: "#penalties" },
 ];
 
-/** Plain anchor navigation — no client state needed. */
+/** Plain anchor navigation — uppercase category-tab labels, no fills. */
 export default function TournamentSectionNav() {
   return (
     <Box
       component="nav"
       aria-label="Tournament sections"
       sx={{
-        display: "inline-flex",
-        gap: 0.5,
-        maxWidth: "100%",
+        display: "flex",
+        gap: { xs: 2.5, md: 3.5 },
         overflowX: "auto",
-        p: 0.5,
-        borderRadius: 2,
-        border: `1px solid ${atlas.border}`,
-        bgcolor: atlas.surface1,
+        borderBottom: `1px solid ${atlas.border}`,
+        pb: 0,
         scrollbarWidth: "none",
         "&::-webkit-scrollbar": { display: "none" },
       }}
@@ -35,17 +32,15 @@ export default function TournamentSectionNav() {
           component="a"
           href={section.anchor}
           sx={{
-            px: 1.5,
-            py: 0.6,
-            borderRadius: 1.5,
-            fontSize: "0.82rem",
-            fontWeight: 600,
+            ...eyebrowSx,
             whiteSpace: "nowrap",
-            color: "text.secondary",
-            transition: "color 150ms ease, background-color 150ms ease",
+            color: atlas.textMuted,
+            pb: 1.5,
+            borderBottom: "2px solid transparent",
+            transition: "color 150ms ease, border-color 150ms ease",
             "&:hover": {
-              color: "text.primary",
-              bgcolor: atlas.surface2,
+              color: atlas.textPrimary,
+              borderBottomColor: atlas.textPrimary,
             },
           }}
         >

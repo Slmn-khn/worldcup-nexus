@@ -51,7 +51,7 @@ export default function MatchInfoGrid({ match }: { match: MatchDetailDto }) {
           sx={{
             border: "1px solid",
             borderColor: "divider",
-            borderRadius: 1.5,
+            borderRadius: 0,
             bgcolor: "background.paper",
             px: 2,
             py: 1.5,

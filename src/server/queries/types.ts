@@ -445,3 +445,152 @@ export type HomePageDataDto = {
   featuredPlayers: PlayerCardDto[];
   recordsPreview: RecordLeaderboardDto[];
 };
+
+// ---------------------------------------------------------------------------
+// Checkpoint 7D — Vault archive controls (page filters)
+// ---------------------------------------------------------------------------
+
+/** One option in a filter select, sourced from actual DB values. */
+export type FilterOptionDto = {
+  label: string;
+  value: string;
+  count?: number;
+};
+
+export type TournamentSort =
+  | "newest"
+  | "oldest"
+  | "most-goals"
+  | "most-matches"
+  | "most-teams";
+
+export type TournamentFilterOptions = {
+  q?: string;
+  yearFrom?: number;
+  yearTo?: number;
+  host?: string;
+  winner?: string;
+  sort?: TournamentSort;
+};
+
+/** Filtered tournament cards plus the metadata the filter bar needs. */
+export type TournamentIndexDto = {
+  tournaments: TournamentCardDto[];
+  total: number;
+  filteredTotal: number;
+  options: {
+    hosts: FilterOptionDto[];
+    winners: FilterOptionDto[];
+    years: FilterOptionDto[];
+  };
+};
+
+export type MatchSort = "newest" | "oldest" | "highest-scoring" | "biggest-margin";
+
+export type MatchFilterOptions = {
+  q?: string;
+  tournamentYear?: number;
+  countrySlug?: string;
+  stage?: string;
+  decidedByPenalties?: boolean;
+  sort?: MatchSort;
+  page?: number;
+  pageSize?: number;
+};
+
+export type MatchIndexFilterMetaDto = {
+  options: {
+    years: FilterOptionDto[];
+    countries: FilterOptionDto[];
+    stages: FilterOptionDto[];
+  };
+};
+
+export type CountrySort =
+  | "name"
+  | "most-tournaments"
+  | "most-matches"
+  | "most-goals"
+  | "most-titles";
+
+export type CountryFilterOptions = {
+  q?: string;
+  hasTitles?: boolean;
+  minTournaments?: number;
+  sort?: CountrySort;
+};
+
+export type PlayerSort =
+  | "name"
+  | "most-goals"
+  | "most-awards"
+  | "most-cards"
+  | "most-squad-tournaments";
+
+export type PlayerFilterOptions = {
+  q?: string;
+  countrySlug?: string;
+  position?: string;
+  hasGoals?: boolean;
+  hasAwards?: boolean;
+  hasCards?: boolean;
+  sort?: PlayerSort;
+  page?: number;
+  pageSize?: number;
+};
+
+export type PlayerIndexDto = {
+  players: PlayerCardDto[];
+  total: number;
+  filteredTotal: number;
+  page: number;
+  pageSize: number;
+  options: {
+    countries: FilterOptionDto[];
+    positions: FilterOptionDto[];
+  };
+};
+
+export type RecordCategoryKey =
+  | "teams"
+  | "players"
+  | "matches"
+  | "tournaments"
+  | "penalties"
+  | "discipline";
+
+export type RecordFilterOptions = {
+  q?: string;
+  category?: RecordCategoryKey;
+};
+
+export type TournamentDetailFilterOptions = {
+  q?: string;
+  stage?: string;
+  teamSlug?: string;
+};
+
+export type CountryProfileFilterOptions = {
+  q?: string;
+  tournamentYear?: number;
+  stage?: string;
+  result?: "W" | "D" | "L";
+};
+
+export type PlayerProfileFilterOptions = {
+  q?: string;
+  tournamentYear?: number;
+  eventType?: "Goal" | "Booking" | "PenaltyKick" | "Substitution" | "Award";
+};
+
+export type MatchDetailFilterOptions = {
+  eventType?: "Goal" | "Booking" | "Substitution" | "PenaltyKick";
+};
+
+/** Generic page filter metadata envelope (frontend-safe). */
+export type PageFilterMetaDto = {
+  total: number;
+  filteredTotal: number;
+  options: Record<string, FilterOptionDto[]>;
+  activeFilters: Record<string, string | number | boolean | null>;
+};

@@ -11,14 +11,14 @@ export async function GET() {
 
     return NextResponse.json({
       ok: true,
-      app: "WorldCup Atlas",
+      app: "WORLDCUP Nexus",
       database: "connected",
     });
   } catch {
     return NextResponse.json(
       {
         ok: false,
-        app: "WorldCup Atlas",
+        app: "WORLDCUP Nexus",
         database: "disconnected",
       },
       { status: 500 },

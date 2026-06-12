@@ -41,7 +41,7 @@ export default function TournamentTeamsGrid({
             py: 1.25,
             border: "1px solid",
             borderColor: "divider",
-            borderRadius: 1.5,
+            borderRadius: 0,
             bgcolor: "background.paper",
           }}
         >

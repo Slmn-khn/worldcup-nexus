@@ -1,94 +1,97 @@
-// Checkpoint 7C — "Premium Sports Intelligence Archive" design tokens.
+// Checkpoint 7C Revised — "WORLDCUP Nexus Vault Editorial System" tokens.
 // Server-safe (no "use client") so both server and client components can
 // import them.
 //
-// Color roles: gold is the brand voice (identity, champions, record values,
-// primary CTAs); cyan is the single data/interaction accent (links, focus,
-// active UI, data panel edges) applied as text/lines/tints — almost never as
-// solid fills; green is semantic only (positive outcomes); red/yellow are
-// match-event semantics. One accent per surface: a view shows gold plus at
-// most one other accent.
+// The system is a near-pure black canvas holding white uppercase display
+// type, light gray body copy, 1px hairlines, and zero-radius surfaces.
+// Gold is a micro accent (eyebrow squares, record values, champions) —
+// never large fills. The green/gold/red stripe is a brand-identity marker
+// only: footer wordmark, nav, major archive moments — never a button fill,
+// never a background.
 export const atlas = {
-  // Base
-  bgBase: "#050A12",
-  deepNavy: "#07111F",
-  surface1: "#0D1828",
-  surface2: "#122238",
-  surface3: "#172A44",
-  border: "rgba(148, 163, 184, 0.16)",
-  borderStrong: "rgba(148, 163, 184, 0.3)",
-  // Brand
-  gold: "#F4C95D",
+  // Canvas
+  black: "#000000",
+  bgBase: "#000000",
+  canvasSoft: "#080808",
+  surfaceSoft: "#0D0D0D",
+  surface1: "#171717", // cards
+  surface2: "#222222", // elevated
+  surface3: "#2B2B2B", // carbon
+  deepNavy: "#080808", // legacy alias → canvasSoft
+  // Hairlines
+  border: "#2A2A2A",
+  borderStrong: "#3C3C3C",
+  // Accent (micro use only)
+  gold: "#D6A84F",
+  goldStrong: "#F4C95D",
   goldSoft: "#D6A84F",
-  goldTint: "rgba(244, 201, 93, 0.12)",
-  goldBorder: "rgba(244, 201, 93, 0.38)",
-  // Data accent
-  cyan: "#38BDF8",
-  cyanSoft: "rgba(56, 189, 248, 0.18)",
-  cyanTint: "rgba(56, 189, 248, 0.1)",
-  // Pitch accent (semantic positive only)
-  green: "#22C55E",
-  greenSoft: "rgba(34, 197, 94, 0.14)",
-  // Match-event semantics
-  red: "#EF4444",
-  redSoft: "rgba(239, 68, 68, 0.14)",
+  goldTint: "rgba(214, 168, 79, 0.12)",
+  goldBorder: "rgba(214, 168, 79, 0.45)",
+  // Stripe identity colors (stripe + tiny semantic marks only)
+  pitchGreen: "#1F8A4C",
+  cardRed: "#D9293E",
+  green: "#1F8A4C",
+  red: "#D9293E",
   yellow: "#FACC15",
-  yellowSoft: "rgba(250, 204, 21, 0.16)",
   // Text
-  textPrimary: "#F8FAFC",
-  textSecondary: "#CBD5E1",
-  textMuted: "#94A3B8",
-  // Surfaces & depth (restrained: thin borders, soft shadows, no glow)
-  cardGradient: "linear-gradient(160deg, #0D1828 0%, #0B1422 100%)",
-  panelGradient: "linear-gradient(160deg, #122238 0%, #0D1828 100%)",
-  shadowSm: "0 1px 2px rgba(2, 6, 14, 0.5)",
-  shadowMd: "0 8px 24px rgba(2, 6, 14, 0.45)",
-  shadowLg: "0 16px 40px rgba(2, 6, 14, 0.55)",
+  textPrimary: "#FFFFFF",
+  textSecondary: "#BBBBBB",
+  bodyStrong: "#E6E6E6",
+  textMuted: "#7E7E7E",
+  // Surfaces & depth — flat: no gradients, no shadows
+  cardGradient: "#171717",
+  panelGradient: "#171717",
+  shadowSm: "none",
+  shadowMd: "none",
+  shadowLg: "none",
   fontDisplay: "var(--font-display), system-ui, sans-serif",
 } as const;
 
 /** Stats and scorelines align digits with tabular numerals. */
 export const tabularNums = { fontVariantNumeric: "tabular-nums" } as const;
 
-// Uppercase eyebrow/technical label, e.g. section markers and card labels.
+// Uppercase letterspaced label — the "machined" Vault voice.
 export const eyebrowSx = {
-  fontSize: "0.7rem",
+  fontSize: "0.75rem",
   fontWeight: 700,
-  letterSpacing: "0.14em",
+  letterSpacing: "0.125em",
   textTransform: "uppercase",
-  lineHeight: 1.6,
+  lineHeight: 1.5,
 } as const;
 
-// Shared hover/focus treatment for clickable archive cards: slight lift,
-// gold border emphasis, deeper shadow. Transform is disabled for
-// reduced-motion users; border/shadow transitions remain.
+// Uppercase text-link label with arrow, e.g. "ALL TOURNAMENTS →".
+export const textLinkSx = {
+  ...eyebrowSx,
+  color: atlas.textPrimary,
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 0.75,
+  transition: "color 150ms ease",
+  "&:hover": { color: atlas.goldStrong },
+} as const;
+
+// Interactive card treatment: zero radius, hairline border; hover sharpens
+// the border. No lift, no glow, no shadow — precision, not bounce.
 export const interactiveCardSx = {
   height: "100%",
-  transition:
-    "border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease",
+  transition: "border-color 150ms ease, background-color 150ms ease",
   "&:hover, &:focus-within": {
-    borderColor: atlas.goldBorder,
-    transform: "translateY(-2px)",
-    boxShadow: atlas.shadowMd,
-  },
-  "@media (prefers-reduced-motion: reduce)": {
-    "&:hover, &:focus-within": { transform: "none" },
+    borderColor: atlas.borderStrong,
+    bgcolor: atlas.surface2,
   },
 } as const;
 
-// Static panel treatment for non-clickable stat/record cards: border
-// emphasis only, no lift.
+// Static panel treatment for non-clickable stat/record cells.
 export const glowPanelSx = {
   height: "100%",
-  transition: "border-color 180ms ease, box-shadow 180ms ease",
+  transition: "border-color 150ms ease",
   "&:hover": {
     borderColor: atlas.borderStrong,
-    boxShadow: atlas.shadowMd,
   },
 } as const;
 
-// Chip tiers — solid fills are reserved for true emphasis (goals,
-// champions); everything else is a tint or a ghost outline.
+// Chip tiers — rectangular minimal labels; solid fills reserved for literal
+// card colors and true emphasis.
 export const chipTintSx = (color: string, bg: string, border: string) =>
   ({
     bgcolor: bg,

@@ -1,6 +1,7 @@
-import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
-import CardContent from "@mui/material/CardContent";
+// Highlighted #1 record: record-card anatomy with the value as the hero
+// and the holder as the context line. Real data only.
+
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
@@ -26,7 +27,6 @@ function noBreakScores(label: string): string {
   );
 }
 
-/** Highlighted #1 record (e.g. most goals by a player). Real data only. */
 export default function RecordStatCard({
   title,
   item,
@@ -35,59 +35,72 @@ export default function RecordStatCard({
   item: RecordItemDto;
 }) {
   const content = (
-    <CardContent sx={{ p: 2.5, "&:last-child": { pb: 2.5 } }}>
-      <Typography
-        variant="overline"
-        component="p"
-        aria-label={`Record: ${title}, ranked first`}
-        sx={{ ...eyebrowSx, color: atlas.textMuted, mb: 1 }}
-      >
-        <Typography
-          component="span"
-          sx={{ ...eyebrowSx, color: atlas.cyan, mr: 0.75 }}
-        >
-          №1
+    <>
+      <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1.25, mb: 1.5 }}>
+        <Box
+          aria-hidden
+          sx={{ width: 6, height: 6, bgcolor: atlas.gold, mt: 0.5, flexShrink: 0 }}
+        />
+        <Typography component="p" sx={{ ...eyebrowSx, color: atlas.textMuted }}>
+          №1 · {title}
         </Typography>
-        {title}
-      </Typography>
+      </Box>
       <Typography
-        variant="h3"
         component="p"
         sx={{
           ...tabularNums,
-          color: "primary.main",
-          fontSize: { xs: "2rem", md: "2.5rem" },
+          fontFamily: atlas.fontDisplay,
+          fontWeight: 700,
+          fontSize: { xs: "2.1rem", md: "2.6rem" },
           lineHeight: 1,
+          color: atlas.gold,
         }}
       >
         {formatNumber(item.value)}
       </Typography>
       <Typography
-        variant="body1"
-        sx={{ color: "text.primary", fontWeight: 600, mt: 1, lineHeight: 1.35 }}
+        sx={{ color: atlas.textPrimary, fontWeight: 600, mt: 1, lineHeight: 1.3 }}
       >
         {noBreakScores(item.label)}
       </Typography>
       {item.detail !== null ? (
-        <Typography variant="caption" sx={{ color: "text.secondary", mt: 0.5 }}>
+        <Typography
+          variant="caption"
+          sx={{ color: atlas.textMuted, display: "block", mt: 0.5 }}
+        >
           {item.detail}
         </Typography>
       ) : null}
-    </CardContent>
+    </>
   );
 
   if (item.href !== null) {
     return (
-      <Card sx={interactiveCardSx}>
-        <CardActionArea
-          component={Link}
-          href={item.href}
-          sx={{ height: "100%", alignItems: "stretch" }}
-        >
-          {content}
-        </CardActionArea>
-      </Card>
+      <Box
+        component={Link}
+        href={item.href}
+        sx={{
+          display: "block",
+          bgcolor: atlas.surface1,
+          border: `1px solid ${atlas.border}`,
+          p: 3,
+          ...interactiveCardSx,
+        }}
+      >
+        {content}
+      </Box>
     );
   }
-  return <Card sx={glowPanelSx}>{content}</Card>;
+  return (
+    <Box
+      sx={{
+        bgcolor: atlas.surface1,
+        border: `1px solid ${atlas.border}`,
+        p: 3,
+        ...glowPanelSx,
+      }}
+    >
+      {content}
+    </Box>
+  );
 }

@@ -1,4 +1,4 @@
-# WorldCup Atlas — Data Model
+# WORLDCUP Nexus — Data Model
 
 ## Design principles
 

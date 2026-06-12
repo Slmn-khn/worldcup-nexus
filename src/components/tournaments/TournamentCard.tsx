@@ -1,10 +1,10 @@
+// Tournament card (PDF page 3): top band with huge condensed year + host,
+// winner/final/runner-up blocks, "VIEW TOURNAMENT →" text link. Zero
+// radius, hairline borders, no shadow.
+
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
-import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
 import {
@@ -12,6 +12,7 @@ import {
   eyebrowSx,
   interactiveCardSx,
   tabularNums,
+  textLinkSx,
 } from "@/theme/tokens";
 
 type TournamentCardProps = {
@@ -48,130 +49,154 @@ export default function TournamentCard({
   ].filter((part): part is string => part !== null);
 
   return (
-    <Card sx={interactiveCardSx}>
-      <CardActionArea
-        component={Link}
-        href={href ?? `/tournaments/${year}`}
-        sx={{ height: "100%", alignItems: "stretch" }}
+    <Box
+      component={Link}
+      href={href ?? `/tournaments/${year}`}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        bgcolor: atlas.surface1,
+        border: `1px solid ${atlas.border}`,
+        ...interactiveCardSx,
+      }}
+    >
+      {/* Top band: year + host */}
+      <Box
+        sx={{
+          px: 3,
+          py: 2.5,
+          bgcolor: atlas.canvasSoft,
+          borderBottom: `1px solid ${atlas.border}`,
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "space-between",
+          gap: 2,
+        }}
       >
-        <CardContent
+        <Typography
+          component="p"
           sx={{
-            p: 3,
-            display: "flex",
-            flexDirection: "column",
-            height: "100%",
+            ...tabularNums,
+            fontFamily: atlas.fontDisplay,
+            fontWeight: 700,
+            fontSize: "2.6rem",
+            lineHeight: 1,
+            color: atlas.textPrimary,
           }}
         >
-          {/* Eyebrow: edition marker + host */}
-          <Stack
-            direction="row"
-            sx={{ mb: 0.75, alignItems: "baseline", gap: 1 }}
-          >
-            <Typography
-              variant="overline"
-              component="p"
-              sx={{ ...eyebrowSx, color: atlas.textMuted }}
-            >
-              Edition
-            </Typography>
-            {host ? (
-              <Typography
-                variant="caption"
-                sx={{ color: atlas.textMuted, ml: "auto" }}
-              >
-                Host: {host}
-              </Typography>
-            ) : null}
-          </Stack>
-
-          {/* Title: the year carries the card */}
+          {year}
+        </Typography>
+        {host ? (
           <Typography
-            variant="h3"
             component="p"
-            sx={{
-              ...tabularNums,
-              color: "primary.main",
-              fontSize: "2.3rem",
-              lineHeight: 1,
-              mb: 0.75,
-            }}
+            sx={{ ...eyebrowSx, color: atlas.textSecondary }}
           >
-            {year}
+            {host}
           </Typography>
-          {name ? (
-            <Typography
-              variant="body2"
-              sx={{ color: "text.secondary", mb: 2 }}
-            >
-              {name}
-            </Typography>
-          ) : null}
+        ) : null}
+      </Box>
 
-          {/* Key result */}
+      <Box sx={{ p: 3, display: "flex", flexDirection: "column", flexGrow: 1 }}>
+        {winner ? (
           <Box
             sx={{
-              bgcolor: atlas.surface2,
-              border: `1px solid ${atlas.border}`,
-              borderRadius: 2,
-              px: 2,
-              py: 1.25,
-              mb: 2,
+              display: "grid",
+              gridTemplateColumns: "1fr auto",
+              columnGap: 2,
+              rowGap: 1.5,
             }}
           >
-            {winner ? (
-              <>
-                <Typography
-                  variant="body2"
-                  sx={{ ...tabularNums, color: "text.primary", fontWeight: 700 }}
-                >
-                  {finalScore && runnerUp
-                    ? `${winner} ${finalScore} ${runnerUp}`
-                    : winner}
+            <Box>
+              <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+                <Box
+                  aria-hidden
+                  sx={{ width: 5, height: 5, bgcolor: atlas.gold }}
+                />
+                <Typography sx={{ ...eyebrowSx, color: atlas.textMuted }}>
+                  Winner
                 </Typography>
-                <Typography variant="caption" sx={{ color: atlas.textMuted }}>
-                  {finalScore && runnerUp ? "Final" : "Champions"}
-                </Typography>
-              </>
-            ) : (
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                Result not yet in the archive
+              </Stack>
+              <Typography
+                sx={{ color: atlas.textPrimary, fontWeight: 600, mt: 0.5 }}
+              >
+                {winner}
               </Typography>
-            )}
+            </Box>
+            <Box sx={{ textAlign: "right" }}>
+              <Typography sx={{ ...eyebrowSx, color: atlas.textMuted }}>
+                Final
+              </Typography>
+              <Typography
+                sx={{
+                  ...tabularNums,
+                  fontFamily: atlas.fontDisplay,
+                  fontWeight: 700,
+                  fontSize: "1.5rem",
+                  lineHeight: 1.1,
+                  color: atlas.textPrimary,
+                  mt: 0.25,
+                }}
+              >
+                {finalScore ?? "—"}
+              </Typography>
+            </Box>
+            {runnerUp ? (
+              <Box sx={{ gridColumn: "1 / -1" }}>
+                <Typography sx={{ ...eyebrowSx, color: atlas.textMuted }}>
+                  Runner-up
+                </Typography>
+                <Typography
+                  sx={{ color: atlas.textSecondary, fontWeight: 300, mt: 0.5 }}
+                >
+                  {runnerUp}
+                </Typography>
+              </Box>
+            ) : null}
           </Box>
+        ) : (
+          <Typography variant="body2" sx={{ color: atlas.textMuted }}>
+            Result not yet in the archive
+          </Typography>
+        )}
 
-          {/* Metadata row */}
-          {counts.length > 0 ? (
-            <Typography
-              variant="caption"
-              sx={{ ...tabularNums, color: "text.secondary" }}
-            >
-              {counts.join(" · ")}
-            </Typography>
-          ) : null}
-          {summary ? (
-            <Typography variant="body2" sx={{ color: "text.secondary", mt: 1 }}>
-              {summary}
-            </Typography>
-          ) : null}
-
-          {/* CTA affordance */}
+        {name ? (
           <Typography
             variant="caption"
-            sx={{
-              color: "primary.main",
-              fontWeight: 600,
-              mt: "auto",
-              pt: 2,
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 0.5,
-            }}
+            sx={{ color: atlas.textMuted, display: "block", mt: 2 }}
           >
-            View tournament
-            <ArrowForwardRoundedIcon sx={{ fontSize: 14 }} />
+            {name}
           </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+        ) : null}
+        {counts.length > 0 ? (
+          <Typography
+            variant="caption"
+            sx={{ ...tabularNums, color: atlas.textMuted, display: "block", mt: 0.5 }}
+          >
+            {counts.join(" · ")}
+          </Typography>
+        ) : null}
+        {summary ? (
+          <Typography variant="body2" sx={{ color: atlas.textSecondary, mt: 1.5 }}>
+            {summary}
+          </Typography>
+        ) : null}
+
+        <Box
+          sx={{
+            ...textLinkSx,
+            mt: "auto",
+            pt: 2.5,
+            borderTop: `1px solid ${atlas.border}`,
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box component="span">View tournament</Box>
+          <Box component="span" aria-hidden>
+            →
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }

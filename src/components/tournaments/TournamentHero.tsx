@@ -1,15 +1,14 @@
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
+// Tournament dossier hero (PPTX slides 8–9): back link, huge condensed
+// year, host eyebrow, and a champion scoreboard block on a hairline panel.
+
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
-import HeroSurface from "@/components/visual/HeroSurface";
-import FootballConstellation from "@/components/visual/FootballConstellation";
+import VaultEyebrow from "@/components/vault/VaultEyebrow";
 import { formatDate } from "@/lib/format";
-import { eyebrowSx } from "@/theme/tokens";
+import { atlas, eyebrowSx, tabularNums, textLinkSx } from "@/theme/tokens";
 import type { TournamentDetailDto } from "@/server/queries/types";
 
 export default function TournamentHero({
@@ -19,125 +18,114 @@ export default function TournamentHero({
 }) {
   const startDate = formatDate(tournament.startDate);
   const endDate = formatDate(tournament.endDate);
+  const dates =
+    startDate !== null && endDate !== null ? `${startDate} – ${endDate}` : null;
 
   return (
-    <HeroSurface>
-      <FootballConstellation
-        variant="subtle"
-        intensity="low"
-        seed={tournament.year}
-      />
-      <PageContainer sx={{ position: "relative", py: { xs: 5, md: 7.5 } }}>
-        <Breadcrumbs
-          separator="/"
-          sx={{
-            mb: 3,
-            "& .MuiBreadcrumbs-separator": { color: "text.secondary" },
-          }}
-        >
-          <Typography
-            component={Link}
-            href="/"
-            variant="body2"
-            sx={{
-              color: "text.secondary",
-              "&:hover": { color: "primary.main" },
-            }}
-          >
-            Home
-          </Typography>
-          <Typography
-            component={Link}
-            href="/tournaments"
-            variant="body2"
-            sx={{
-              color: "text.secondary",
-              "&:hover": { color: "primary.main" },
-            }}
-          >
-            Tournaments
-          </Typography>
-          <Typography variant="body2" sx={{ color: "text.primary" }}>
-            {tournament.year}
-          </Typography>
-        </Breadcrumbs>
-
-        <Typography
-          variant="overline"
-          component="p"
-          sx={{ ...eyebrowSx, color: "primary.main", mb: 1.5 }}
-        >
-          Tournament Archive
-        </Typography>
-        <Typography
-          variant="h1"
-          sx={{ fontSize: { xs: "2.2rem", md: "3.1rem" }, mb: 1 }}
-        >
-          {tournament.name}
-        </Typography>
-        <Typography variant="body1" sx={{ color: "text.secondary", mb: 3 }}>
-          {[
-            tournament.hostName !== null
-              ? `Hosted by ${tournament.hostName}`
-              : null,
-            startDate !== null && endDate !== null
-              ? `${startDate} – ${endDate}`
-              : null,
-          ]
-            .filter((part): part is string => part !== null)
-            .join(" · ")}
-        </Typography>
-
-        <Stack
-          direction="row"
-          spacing={1.5}
-          sx={{ flexWrap: "wrap", rowGap: 1.5 }}
-        >
-          {tournament.winner !== null ? (
-            <Chip
-              icon={
-                <EmojiEventsRoundedIcon sx={{ "&&": { color: "#06111F" } }} />
-              }
-              label={`Champions: ${tournament.winner}`}
-              sx={{
-                bgcolor: "primary.main",
-                color: "#06111F",
-                fontWeight: 700,
-              }}
-            />
-          ) : null}
-          {tournament.runnerUp !== null ? (
-            <Chip
-              label={`Runners-up: ${tournament.runnerUp}`}
-              variant="outlined"
-              sx={{ color: "text.primary", borderColor: "divider" }}
-            />
-          ) : null}
-          {tournament.finalScore !== null ? (
-            <Chip
-              label={`Final: ${tournament.finalScore}`}
-              variant="outlined"
-              sx={{ color: "text.secondary", borderColor: "divider" }}
-            />
-          ) : null}
-        </Stack>
-
+    <Box sx={{ borderBottom: `1px solid ${atlas.border}`, bgcolor: atlas.black }}>
+      <PageContainer sx={{ py: { xs: 6, md: 9 } }}>
         <Typography
           component={Link}
           href="/tournaments"
-          variant="body2"
+          sx={{ ...textLinkSx, color: atlas.textMuted, mb: 4 }}
+        >
+          <ArrowBackRoundedIcon sx={{ fontSize: 14 }} /> All World Cups
+        </Typography>
+
+        <Box
           sx={{
-            mt: 3.5,
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 0.75,
-            color: "text.secondary",
-            "&:hover": { color: "primary.main" },
+            display: "grid",
+            gap: { xs: 4, md: 6 },
+            gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1.2fr) minmax(0, 1fr)" },
+            alignItems: "end",
+            mt: 3,
           }}
         >
-          <ArrowBackRoundedIcon sx={{ fontSize: 16 }} /> All tournaments
-        </Typography>
+          {/* Identity block */}
+          <Box>
+            {tournament.hostName !== null ? (
+              <VaultEyebrow
+                label={`Host · ${tournament.hostName}`}
+                sx={{ mb: 2 }}
+              />
+            ) : null}
+            <Typography
+              variant="h1"
+              sx={{
+                ...tabularNums,
+                fontSize: { xs: "4.4rem", md: "6.4rem" },
+                lineHeight: 0.95,
+                mb: 1.5,
+              }}
+            >
+              {tournament.year}
+            </Typography>
+            <Typography variant="body1" sx={{ color: atlas.textSecondary }}>
+              {tournament.name}
+              {dates !== null ? ` · ${dates}` : ""}
+            </Typography>
+          </Box>
+
+          {/* Champion scoreboard block */}
+          {tournament.winner !== null ? (
+            <Box
+              sx={{
+                border: `1px solid ${atlas.border}`,
+                bgcolor: atlas.surface1,
+                p: { xs: 3, md: 4 },
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1.25, mb: 1 }}>
+                <Box
+                  aria-hidden
+                  sx={{ width: 6, height: 6, bgcolor: atlas.gold }}
+                />
+                <Typography sx={{ ...eyebrowSx, color: atlas.textMuted }}>
+                  Champion
+                </Typography>
+              </Box>
+              <Typography
+                sx={{
+                  fontFamily: atlas.fontDisplay,
+                  fontWeight: 700,
+                  fontSize: { xs: "1.7rem", md: "2rem" },
+                  textTransform: "uppercase",
+                  color: atlas.textPrimary,
+                  lineHeight: 1.05,
+                }}
+              >
+                {tournament.winner}
+              </Typography>
+              {tournament.finalScore !== null ? (
+                <Typography
+                  sx={{
+                    ...tabularNums,
+                    fontFamily: atlas.fontDisplay,
+                    fontWeight: 700,
+                    fontSize: { xs: "1.5rem", md: "1.8rem" },
+                    color: atlas.gold,
+                    mt: 1,
+                  }}
+                >
+                  {tournament.finalScore}
+                </Typography>
+              ) : null}
+              {tournament.runnerUp !== null ? (
+                <Box sx={{ mt: 2, pt: 2, borderTop: `1px solid ${atlas.border}` }}>
+                  <Typography sx={{ ...eyebrowSx, color: atlas.textMuted }}>
+                    Runner-up
+                  </Typography>
+                  <Typography
+                    sx={{ color: atlas.textSecondary, fontWeight: 400, mt: 0.5 }}
+                  >
+                    {tournament.runnerUp}
+                  </Typography>
+                </Box>
+              ) : null}
+            </Box>
+          ) : null}
+        </Box>
       </PageContainer>
-    </HeroSurface>
+    </Box>
   );
 }

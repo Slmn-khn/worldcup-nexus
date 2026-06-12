@@ -9,9 +9,12 @@ import {
   toMatchCardDto,
 } from "./helpers";
 import type {
+  FilterOptionDto,
   TopScorerDto,
   TournamentCardDto,
   TournamentDetailDto,
+  TournamentFilterOptions,
+  TournamentIndexDto,
   MatchCardDto,
 } from "./types";
 
@@ -70,6 +73,96 @@ export async function getTournamentCards(): Promise<TournamentCardDto[]> {
       t.runnerUpTeamId !== null ? (names.get(t.runnerUpTeamId) ?? null) : null,
     finalScore: finalScores.get(t.id) ?? null,
   }));
+}
+
+/**
+ * Filtered + sorted tournament cards for the /tournaments index, with
+ * filter-option metadata sourced from the actual rows. The archive holds a
+ * few dozen tournaments, so filtering happens in memory over the same cards
+ * the unfiltered page renders — no second source of truth.
+ */
+export async function getTournamentIndex(
+  options: TournamentFilterOptions = {},
+): Promise<TournamentIndexDto> {
+  const all = await getTournamentCards();
+
+  const q = options.q?.trim().toLowerCase();
+  let filtered = all.filter((tournament) => {
+    if (
+      options.yearFrom !== undefined &&
+      tournament.year < options.yearFrom
+    ) {
+      return false;
+    }
+    if (options.yearTo !== undefined && tournament.year > options.yearTo) {
+      return false;
+    }
+    if (options.host !== undefined && tournament.hostName !== options.host) {
+      return false;
+    }
+    if (options.winner !== undefined && tournament.winner !== options.winner) {
+      return false;
+    }
+    if (q !== undefined && q !== "") {
+      const haystack = [
+        String(tournament.year),
+        tournament.name,
+        tournament.hostName ?? "",
+        tournament.winner ?? "",
+        tournament.runnerUp ?? "",
+      ]
+        .join(" ")
+        .toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const sort = options.sort ?? "newest";
+  filtered = [...filtered].sort((a, b) => {
+    switch (sort) {
+      case "oldest":
+        return a.year - b.year;
+      case "most-goals":
+        return (b.goalsCount ?? 0) - (a.goalsCount ?? 0) || b.year - a.year;
+      case "most-matches":
+        return (
+          (b.matchesCount ?? 0) - (a.matchesCount ?? 0) || b.year - a.year
+        );
+      case "most-teams":
+        return (b.teamsCount ?? 0) - (a.teamsCount ?? 0) || b.year - a.year;
+      case "newest":
+      default:
+        return b.year - a.year;
+    }
+  });
+
+  const optionFrom = (values: (string | null)[]): FilterOptionDto[] => {
+    const counts = new Map<string, number>();
+    for (const value of values) {
+      if (value === null) continue;
+      counts.set(value, (counts.get(value) ?? 0) + 1);
+    }
+    return [...counts.entries()]
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([value, count]) => ({ label: value, value, count }));
+  };
+
+  return {
+    tournaments: filtered,
+    total: all.length,
+    filteredTotal: filtered.length,
+    options: {
+      hosts: optionFrom(all.map((tournament) => tournament.hostName)),
+      winners: optionFrom(all.map((tournament) => tournament.winner)),
+      years: [...all]
+        .sort((a, b) => b.year - a.year)
+        .map((tournament) => ({
+          label: String(tournament.year),
+          value: String(tournament.year),
+        })),
+    },
+  };
 }
 
 async function topScorersForTournament(

@@ -12,12 +12,30 @@ import CountryTournamentTimeline from "@/components/countries/CountryTournamentT
 import CountryMatchList from "@/components/countries/CountryMatchList";
 import CountryTopScorers from "@/components/countries/CountryTopScorers";
 import CountryFinals from "@/components/countries/CountryFinals";
-import FadeIn from "@/components/motion/FadeIn";
+import VaultFilterBar from "@/components/filters/VaultFilterBar";
+import EmptyState from "@/components/ui/EmptyState";
+import { formatStage } from "@/lib/format";
+import {
+  getEnumParam,
+  getNumberParam,
+  getStringParam,
+  type RawSearchParams,
+} from "@/lib/search-params";
 import { getCountryProfile } from "@/server/queries/countries";
 
 export const dynamic = "force-dynamic";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<RawSearchParams>;
+};
+
+const RESULTS = ["W", "D", "L"] as const;
+const RESULT_LABELS: Record<(typeof RESULTS)[number], string> = {
+  W: "Wins",
+  D: "Draws",
+  L: "Losses",
+};
 
 // Deduplicates the query between generateMetadata and the page render.
 const getProfile = cache(async (slug: string) => getCountryProfile(slug));
@@ -36,12 +54,92 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const SECTION_SX = { py: { xs: 4, md: 5 } };
 
-export default async function CountryProfilePage({ params }: Props) {
+export default async function CountryProfilePage({
+  params,
+  searchParams,
+}: Props) {
   const { slug } = await params;
   if (slug.trim() === "") notFound();
 
-  const country = await getProfile(decodeURIComponent(slug));
+  const [country, rawParams] = await Promise.all([
+    getProfile(decodeURIComponent(slug)),
+    searchParams,
+  ]);
   if (country === null) notFound();
+
+  // Local archive controls — they narrow the match list only; hero, stats,
+  // timeline, finals, and top scorers always show the full history.
+  const matchFilters = {
+    q: getStringParam(rawParams, "q"),
+    tournamentYear: getNumberParam(rawParams, "tournamentYear", {
+      min: 1900,
+      max: 2100,
+    }),
+    stage: getStringParam(rawParams, "stage"),
+    result: getEnumParam(rawParams, "result", RESULTS),
+  };
+  const q = matchFilters.q?.toLowerCase();
+  const filteredMatches = country.matches.filter((match) => {
+    if (
+      matchFilters.tournamentYear !== undefined &&
+      match.tournamentYear !== matchFilters.tournamentYear
+    ) {
+      return false;
+    }
+    if (
+      matchFilters.stage !== undefined &&
+      match.stage.toLowerCase() !== matchFilters.stage.toLowerCase()
+    ) {
+      return false;
+    }
+    if (
+      matchFilters.result !== undefined &&
+      match.result !== matchFilters.result
+    ) {
+      return false;
+    }
+    if (q !== undefined) {
+      const haystack =
+        `${match.homeTeam.name} ${match.awayTeam.name} ${match.opponent} ${match.stage} ${match.stadiumName ?? ""}`.toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
+    return true;
+  });
+  const yearOptions = [
+    ...new Set(country.matches.map((match) => match.tournamentYear)),
+  ]
+    .sort((a, b) => b - a)
+    .map((year) => ({ label: String(year), value: String(year) }));
+  const stageOptions = [
+    ...new Set(country.matches.map((match) => match.stage)),
+  ].map((stage) => ({ label: formatStage(stage) ?? stage, value: stage }));
+
+  const activeMatchFilters = [
+    matchFilters.q !== undefined
+      ? { param: "q", label: "Search", value: matchFilters.q }
+      : null,
+    matchFilters.tournamentYear !== undefined
+      ? {
+          param: "tournamentYear",
+          label: "Tournament",
+          value: String(matchFilters.tournamentYear),
+        }
+      : null,
+    matchFilters.stage !== undefined
+      ? {
+          param: "stage",
+          label: "Stage",
+          value: formatStage(matchFilters.stage) ?? matchFilters.stage,
+        }
+      : null,
+    matchFilters.result !== undefined
+      ? {
+          param: "result",
+          label: "Result",
+          value: RESULT_LABELS[matchFilters.result],
+        }
+      : null,
+  ].filter((item): item is NonNullable<typeof item> => item !== null);
 
   return (
     <Box>
@@ -71,9 +169,7 @@ export default async function CountryProfilePage({ params }: Props) {
           title="Finals"
           subtitle="Deciding finals involving this nation."
         />
-        <FadeIn y={14}>
-          <CountryFinals finals={country.finals} />
-        </FadeIn>
+        <CountryFinals finals={country.finals} />
       </PageContainer>
 
       {/* Top scorers */}
@@ -82,9 +178,7 @@ export default async function CountryProfilePage({ params }: Props) {
           title="Top Scorers"
           subtitle="Leading scorers for this nation across all imported tournaments, excluding own goals."
         />
-        <FadeIn y={14}>
-          <CountryTopScorers scorers={country.topScorers} />
-        </FadeIn>
+        <CountryTopScorers scorers={country.topScorers} />
       </PageContainer>
 
       {/* Matches */}
@@ -93,9 +187,49 @@ export default async function CountryProfilePage({ params }: Props) {
         sx={{ ...SECTION_SX, pb: { xs: 7, md: 9 } }}
       >
         <SectionHeading title="Matches" subtitle="Most recent matches first." />
-        <FadeIn y={14}>
-          <CountryMatchList matches={country.matches} />
-        </FadeIn>
+        <Box sx={{ mb: 3 }}>
+          <VaultFilterBar
+            fields={[
+              { kind: "search", placeholder: "Search matches…" },
+              {
+                kind: "select",
+                param: "tournamentYear",
+                label: "Tournament",
+                options: yearOptions,
+                allLabel: "All tournaments",
+              },
+              {
+                kind: "select",
+                param: "stage",
+                label: "Stage",
+                options: stageOptions,
+                allLabel: "All stages",
+              },
+              {
+                kind: "select",
+                param: "result",
+                label: "Result",
+                options: RESULTS.map((result) => ({
+                  label: RESULT_LABELS[result],
+                  value: result,
+                })),
+                allLabel: "All results",
+              },
+            ]}
+            active={activeMatchFilters}
+            resultCount={filteredMatches.length}
+            totalCount={country.matches.length}
+            resultNoun="matches"
+          />
+        </Box>
+        {filteredMatches.length > 0 ? (
+          <CountryMatchList matches={filteredMatches} />
+        ) : (
+          <EmptyState
+            title="No matches fit these filters"
+            description={`No ${country.name} match fits the current tournament, stage, result, or search.`}
+          />
+        )}
       </PageContainer>
     </Box>
   );

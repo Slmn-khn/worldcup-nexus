@@ -3,15 +3,11 @@ import PlayerEventRow, { PlayerEventRowGroup } from "./PlayerEventRow";
 import { formatMinute } from "@/lib/format";
 import type { PlayerSubstitutionDto } from "@/server/queries/types";
 
-const IN_CHIP = {
-  label: "Subbed In",
-  color: "#4ADE80",
-  background: "rgba(34, 197, 94, 0.14)",
-};
+const IN_CHIP = { label: "Subbed In", color: "#F8FAFC", background: "#1F8A4C" };
 const OUT_CHIP = {
   label: "Subbed Out",
   color: "#CBD5E1",
-  background: "rgba(148, 163, 184, 0.12)",
+  background: "#2A2A2A",
 };
 
 export default function PlayerSubstitutionList({

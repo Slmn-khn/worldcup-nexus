@@ -1,6 +1,7 @@
-import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
-import CardContent from "@mui/material/CardContent";
+// Match card (PDF page 4 anatomy in card form): year/stage eyebrow, teams,
+// center score in condensed type, venue/context metadata.
+
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import { formatStage } from "@/lib/format";
@@ -29,54 +30,63 @@ export default function MatchCard({
   href = "/matches",
 }: MatchCardProps) {
   return (
-    <Card sx={interactiveCardSx}>
-      <CardActionArea
-        component={Link}
-        href={href}
-        sx={{ height: "100%", alignItems: "stretch" }}
+    <Box
+      component={Link}
+      href={href}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        bgcolor: atlas.surface1,
+        border: `1px solid ${atlas.border}`,
+        p: 3,
+        ...interactiveCardSx,
+      }}
+    >
+      <Typography
+        component="p"
+        sx={{ ...eyebrowSx, color: atlas.textMuted, mb: 1.5 }}
       >
-        <CardContent sx={{ p: 3 }}>
-          {/* Eyebrow: tournament · stage (one quiet line, not two chips) */}
-          <Typography
-            variant="overline"
-            component="p"
-            sx={{ ...eyebrowSx, color: atlas.textMuted, mb: 1.25 }}
-          >
-            {tournament}
-            <Typography
-              component="span"
-              sx={{ ...eyebrowSx, color: "primary.main", ml: 1 }}
-            >
-              {formatStage(stage)}
-            </Typography>
-          </Typography>
-
-          <Typography
-            variant="h6"
-            component="p"
-            sx={{ color: "text.primary", lineHeight: 1.3, mb: 0.75 }}
-          >
-            {title}
-          </Typography>
-          <Typography
-            variant="h4"
-            component="p"
-            sx={{
-              ...tabularNums,
-              color: "primary.main",
-              fontSize: "1.7rem",
-              mb: summary ? 1.25 : 0,
-            }}
-          >
-            {score}
-          </Typography>
-          {summary ? (
-            <Typography variant="caption" sx={{ color: "text.secondary" }}>
-              {summary}
-            </Typography>
-          ) : null}
-        </CardContent>
-      </CardActionArea>
-    </Card>
+        {tournament}
+        <Box component="span" sx={{ color: atlas.gold, ml: 1 }}>
+          {formatStage(stage)}
+        </Box>
+      </Typography>
+      <Typography
+        component="p"
+        sx={{
+          fontFamily: atlas.fontDisplay,
+          fontWeight: 600,
+          fontSize: "1.15rem",
+          textTransform: "uppercase",
+          letterSpacing: "0.02em",
+          color: atlas.textPrimary,
+          lineHeight: 1.25,
+          mb: 0.75,
+        }}
+      >
+        {title}
+      </Typography>
+      <Typography
+        component="p"
+        sx={{
+          ...tabularNums,
+          fontFamily: atlas.fontDisplay,
+          fontWeight: 700,
+          fontSize: "1.9rem",
+          lineHeight: 1.05,
+          color: atlas.textPrimary,
+        }}
+      >
+        {score}
+      </Typography>
+      {summary ? (
+        <Typography
+          variant="caption"
+          sx={{ color: atlas.textMuted, display: "block", mt: 1.5 }}
+        >
+          {summary}
+        </Typography>
+      ) : null}
+    </Box>
   );
 }

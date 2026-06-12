@@ -51,7 +51,9 @@ type Layout = {
 };
 
 const GOLD = atlas.gold;
-const CYAN = atlas.cyan;
+// Parked component: not mounted on any page (motion/constellation work is
+// deferred). The Vault token set has no cyan, so the accent is local here.
+const CYAN = "#38BDF8";
 
 // All layouts share a 1000×600 viewBox (preserveAspectRatio slice covers the
 // container on any aspect ratio). Text-safe zone for header layouts: avoid

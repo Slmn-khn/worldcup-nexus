@@ -2,13 +2,12 @@
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import { usePathname } from "next/navigation";
 import Link from "@/components/Link";
+import VaultStripe from "@/components/vault/VaultStripe";
 import { siteConfig } from "@/lib/site";
 import { atlas } from "@/theme/tokens";
 
@@ -22,77 +21,59 @@ export default function Navbar() {
       position="sticky"
       elevation={0}
       sx={{
-        bgcolor: "rgba(5, 10, 18, 0.85)",
+        bgcolor: "rgba(0, 0, 0, 0.92)",
         backgroundImage: "none",
-        backdropFilter: "blur(14px)",
+        backdropFilter: "blur(10px)",
         borderBottom: `1px solid ${atlas.border}`,
       }}
     >
-      <Container maxWidth="lg">
+      <Box sx={{ maxWidth: 1440, mx: "auto", width: "100%", px: { xs: 2.5, sm: 4, md: 6 } }}>
         <Toolbar
           disableGutters
           sx={{
-            minHeight: { md: 68 },
+            minHeight: { xs: 56, md: 64 },
             flexWrap: { xs: "wrap", md: "nowrap" },
-            gap: { xs: 0.5, md: 3 },
+            gap: { xs: 0.5, md: 4 },
             py: { xs: 1, md: 0 },
           }}
         >
           <Stack
             component={Link}
             href="/"
-            aria-label="WorldCup Atlas home"
-            direction="row"
-            spacing={1.25}
-            sx={{ flexShrink: 0, alignItems: "center" }}
+            aria-label="WORLDCUP Nexus home"
+            sx={{ flexShrink: 0 }}
           >
-            <Box
-              aria-hidden
-              sx={{
-                width: 32,
-                height: 32,
-                borderRadius: 1.5,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                bgcolor: atlas.goldTint,
-                border: `1px solid ${atlas.goldBorder}`,
-              }}
-            >
-              <EmojiEventsRoundedIcon
-                sx={{ color: "primary.main", fontSize: 19 }}
-              />
-            </Box>
             <Typography
-              variant="h6"
               component="span"
               sx={{
-                color: "text.primary",
                 fontFamily: atlas.fontDisplay,
                 fontWeight: 700,
-                fontSize: "1.05rem",
-                letterSpacing: "-0.01em",
+                fontSize: "1.15rem",
+                letterSpacing: "0.04em",
+                color: atlas.textPrimary,
+                lineHeight: 1.1,
               }}
             >
-              WorldCup{" "}
-              <Box component="span" sx={{ color: "primary.main" }}>
-                Atlas
+              {/* Exact brand casing — no text-transform on the wordmark. */}
+              WORLDCUP{" "}
+              <Box component="span" sx={{ color: atlas.gold }}>
+                Nexus
               </Box>
             </Typography>
+            <VaultStripe width={44} sx={{ mt: 0.5, height: "3px" }} />
           </Stack>
           <Box
             component="nav"
             aria-label="Primary"
             sx={{
               display: "flex",
-              gap: { xs: 0.25, md: 0.5 },
+              gap: { xs: 1.5, md: 2.5 },
               ml: { md: "auto" },
               width: { xs: "100%", md: "auto" },
               overflowX: "auto",
               pb: { xs: 0.5, md: 0 },
               scrollbarWidth: "none",
               "&::-webkit-scrollbar": { display: "none" },
-              // Edge fade signals horizontal scroll on small screens.
               maskImage: {
                 xs: "linear-gradient(to right, black 92%, transparent)",
                 md: "none",
@@ -110,25 +91,24 @@ export default function Navbar() {
                   aria-current={active ? "page" : undefined}
                   sx={{
                     position: "relative",
-                    px: 1.5,
                     py: 0.75,
-                    fontSize: "0.875rem",
-                    fontWeight: 600,
+                    fontSize: "0.78rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.11em",
+                    textTransform: "uppercase",
                     whiteSpace: "nowrap",
-                    color: active ? "text.primary" : "text.secondary",
+                    color: active ? atlas.textPrimary : atlas.textMuted,
                     transition: "color 150ms ease",
-                    "&:hover": { color: "text.primary" },
-                    // Single active treatment: gold underline bar.
+                    "&:hover": { color: atlas.textPrimary },
+                    // Active marker: 2px white underline (category-tab style).
                     "&::after": {
                       content: '""',
                       position: "absolute",
-                      left: 12,
-                      right: 12,
-                      bottom: 2,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
                       height: 2,
-                      borderRadius: 1,
-                      bgcolor: active ? "primary.main" : "transparent",
-                      transition: "background-color 150ms ease",
+                      bgcolor: active ? atlas.textPrimary : "transparent",
                     },
                   }}
                 >
@@ -138,7 +118,7 @@ export default function Navbar() {
             })}
           </Box>
         </Toolbar>
-      </Container>
+      </Box>
     </AppBar>
   );
 }

@@ -32,7 +32,7 @@ async function waitOk(
 }
 
 async function main() {
-  console.log("WorldCup Atlas — building search index\n");
+  console.log("WORLDCUP Nexus — building search index\n");
 
   const client = getSearchClient();
   await client.health();

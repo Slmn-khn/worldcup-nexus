@@ -39,7 +39,7 @@ const REQUIRED_FILES = [
 ];
 
 async function main() {
-  console.log("WorldCup Atlas — public route verification\n");
+  console.log("WORLDCUP Nexus — public route verification\n");
 
   for (const file of REQUIRED_FILES) {
     check(`file exists: ${file}`, existsSync(path.resolve(file)), file);
@@ -92,7 +92,7 @@ async function main() {
 
   check(
     "site config has required values",
-    siteConfig.siteName === "WorldCup Atlas" &&
+    siteConfig.siteName === "WORLDCUP Nexus" &&
       siteConfig.disclaimer.includes("not affiliated with FIFA") &&
       siteConfig.siteUrl.startsWith("http") &&
       siteConfig.sourceAttribution.license === "CC-BY-SA 4.0" &&

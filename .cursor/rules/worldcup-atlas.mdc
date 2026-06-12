@@ -1,5 +1,5 @@
 ---
-description: WorldCup Atlas global project rules
+description: WORLDCUP Nexus global project rules
 globs:
   - "src/**/*"
   - "prisma/**/*"
@@ -8,7 +8,7 @@ globs:
 alwaysApply: true
 ---
 
-# WorldCup Atlas Rules
+# WORLDCUP Nexus Rules
 
 Read `AGENTS.md` before making changes.
 
