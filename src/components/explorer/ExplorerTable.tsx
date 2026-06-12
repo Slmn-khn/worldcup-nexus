@@ -18,9 +18,9 @@ const EVENT_CHIP_STYLES: Record<string, { color: string; background: string }> =
     Match: { color: "#06111F", background: "#F4C95D" },
     Goal: { color: "#06111F", background: "#C9A13F" },
     Booking: { color: "#06111F", background: "#FACC15" },
-    Substitution: { color: "#F8FAFC", background: "#1F7A4D" },
+    Substitution: { color: "#06111F", background: "#A3E635" },
     PenaltyKick: { color: "#F8FAFC", background: "#7F1D1D" },
-    Award: { color: "#CBD5E1", background: "#253449" },
+    Award: { color: "#CBD5E1", background: "#263B56" },
   };
 
 const EVENT_LABELS: Record<string, string> = {
@@ -224,11 +224,20 @@ export default function ExplorerTable({
         sx={{
           border: "1px solid",
           borderColor: "divider",
+          borderRadius: 2,
           bgcolor: "background.paper",
-          "--DataGrid-rowBorderColor": "#253449",
+          boxShadow: "0 12px 36px rgba(2, 8, 20, 0.45)",
+          "--DataGrid-rowBorderColor": "#263B56",
           "& .MuiDataGrid-columnHeaders": { borderColor: "divider" },
-          "& .MuiDataGrid-columnHeader": { bgcolor: "#142338" },
+          "& .MuiDataGrid-columnHeader": { bgcolor: "#13243A" },
+          "& .MuiDataGrid-columnHeaderTitle": {
+            fontWeight: 700,
+            letterSpacing: "0.04em",
+          },
           "& .MuiDataGrid-cell": { display: "flex", alignItems: "center" },
+          "& .MuiDataGrid-row:hover": {
+            backgroundColor: "rgba(34, 211, 238, 0.04)",
+          },
           "& .MuiDataGrid-footerContainer": { borderColor: "divider" },
         }}
       />

@@ -1,6 +1,9 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import PageContainer from "@/components/layout/PageContainer";
+import AtlasBackground from "@/components/visual/AtlasBackground";
+import PitchLines from "@/components/visual/PitchLines";
+import FootballConstellation from "@/components/visual/FootballConstellation";
 import RecordsScopeNote from "./RecordsScopeNote";
 
 export default function RecordsHero({
@@ -13,14 +16,17 @@ export default function RecordsHero({
   return (
     <Box
       sx={{
+        position: "relative",
+        overflow: "hidden",
         borderBottom: "1px solid",
         borderColor: "divider",
-        background:
-          "radial-gradient(ellipse 70% 70% at 80% -20%, rgba(244, 201, 93, 0.14), transparent), " +
-          "radial-gradient(ellipse 50% 50% at 10% 110%, rgba(31, 122, 77, 0.12), transparent), #06111F",
+        bgcolor: "#050B14",
       }}
     >
-      <PageContainer sx={{ py: { xs: 6, md: 9 } }}>
+      <AtlasBackground variant="hero" />
+      <PitchLines />
+      <FootballConstellation variant="records" intensity="medium" />
+      <PageContainer sx={{ position: "relative", py: { xs: 6, md: 9 } }}>
         <Typography
           variant="overline"
           sx={{

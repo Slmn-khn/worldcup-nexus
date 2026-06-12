@@ -361,6 +361,25 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
 - Performance/a11y guardrails: transform/opacity only, parallax limited to
   the hero, no per-row table animation, reduced-motion honored at three
   levels (MotionConfig, `useReducedMotion` guards, CSS fallback).
+- **Visual upgrade pass — "Cinematic Football Intelligence"**: design token
+  system in `src/theme/tokens.ts` (base `#050B14`, border `#263B56`,
+  electric cyan `#22D3EE` for interaction/search/data, pitch neon green
+  `#A3E635` for positive stats, rare purple `#8B5CF6` glow depth; gold
+  stays the brand color). Theme-level premium card panels (gradient
+  background, gold border, glow shadows), shared `interactiveCardSx`/
+  `glowPanelSx` replacing per-card hover duplication, cyan input focus
+  rings, `AtlasBackground`/`HeroOrb`/`PitchLines` reworked with
+  cyan/green/purple glow layers (cyan + purple orb variants added).
+  GlobalSearch upgraded to a command input: cyan focus glow, animated
+  cyan/gold loading shimmer (static strip under reduced motion), staggered
+  group reveal, cyan row hover light. Records hero gets full atmosphere;
+  leaderboards became premium panels with elevated header strips and
+  top-3 gold ranks. Explorer filters framed as a "Query Console" command
+  panel; cyan active-filter chips, cyan export buttons, DataGrid depth +
+  row hover tint (CSS only). Detail heroes re-lit with gold/cyan/purple
+  gradients on the deeper base; match scoreboard gold glow; sub-on /
+  converted-penalty markers moved to pitch neon green with dark text
+  (labels preserved — meaning never color-only).
 
 - Remaining: standings/bracket views, source reconciliation, deployment
   itself.

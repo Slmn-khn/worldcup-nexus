@@ -14,9 +14,10 @@ export default function PitchLines() {
         pointerEvents: "none",
         overflow: "hidden",
         opacity: 0.35,
-        // Halfway line + faint horizontal mowing stripes.
+        // Halfway line + faint horizontal mowing stripes, tinted with a
+        // whisper of pitch green for stadium atmosphere.
         backgroundImage:
-          "linear-gradient(to right, transparent calc(50% - 1px), rgba(203, 213, 225, 0.05) calc(50% - 1px), rgba(203, 213, 225, 0.05) calc(50% + 1px), transparent calc(50% + 1px)), " +
+          "linear-gradient(to right, transparent calc(50% - 1px), rgba(163, 230, 53, 0.06) calc(50% - 1px), rgba(163, 230, 53, 0.06) calc(50% + 1px), transparent calc(50% + 1px)), " +
           "repeating-linear-gradient(to bottom, transparent 0px, transparent 79px, rgba(203, 213, 225, 0.02) 79px, rgba(203, 213, 225, 0.02) 80px)",
         // Centre circle.
         "&::after": {
@@ -28,7 +29,7 @@ export default function PitchLines() {
           height: 380,
           transform: "translate(-50%, -50%)",
           borderRadius: "50%",
-          border: "1px solid rgba(203, 213, 225, 0.06)",
+          border: "1px solid rgba(163, 230, 53, 0.07)",
         },
       }}
     />

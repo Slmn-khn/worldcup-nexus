@@ -1,6 +1,7 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { glowPanelSx } from "@/theme/tokens";
 
 type RecordCardProps = {
   title: string;
@@ -16,11 +17,19 @@ export default function RecordCard({
   return (
     <Card
       sx={{
-        height: "100%",
-        transition: "border-color 200ms ease, box-shadow 200ms ease",
-        "&:hover": {
-          borderColor: "rgba(244, 201, 93, 0.4)",
-          boxShadow: "0 6px 24px rgba(6, 17, 31, 0.5)",
+        ...glowPanelSx,
+        position: "relative",
+        // Cyan data edge light along the top of the panel.
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 2,
+          background:
+            "linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.4), rgba(244, 201, 93, 0.35), transparent)",
+          pointerEvents: "none",
         },
       }}
     >

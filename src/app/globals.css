@@ -1,13 +1,6 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #050b14;
+  --foreground: #f8fafc;
 }
 
 html {
@@ -42,8 +35,12 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
+html {
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    color-scheme: dark;
+    scroll-behavior: auto;
   }
 }

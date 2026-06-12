@@ -16,6 +16,7 @@ import GlobalSearch from "@/components/ui/GlobalSearch";
 import AtlasBackground from "@/components/visual/AtlasBackground";
 import PitchLines from "@/components/visual/PitchLines";
 import HeroOrb from "@/components/visual/HeroOrb";
+import FootballConstellation from "@/components/visual/FootballConstellation";
 import ParallaxLayer from "@/components/motion/ParallaxLayer";
 
 const MotionBox = motion.create(Box);
@@ -35,12 +36,13 @@ export default function HomeHero() {
         position: "relative",
         borderBottom: "1px solid",
         borderColor: "divider",
-        bgcolor: "#06111F",
+        bgcolor: "#050B14",
         overflow: "hidden",
       }}
     >
       <AtlasBackground variant="hero" />
       <PitchLines />
+      <FootballConstellation variant="hero" intensity="medium" showBallNode />
       <ParallaxLayer
         drift={70}
         sx={{ position: "absolute", inset: 0, pointerEvents: "none" }}
@@ -51,6 +53,12 @@ export default function HomeHero() {
           color="green"
           duration={18}
           sx={{ bottom: -160, left: "2%" }}
+        />
+        <HeroOrb
+          size={280}
+          color="cyan"
+          duration={22}
+          sx={{ top: "30%", left: "38%" }}
         />
       </ParallaxLayer>
 
@@ -117,7 +125,10 @@ export default function HomeHero() {
               sx={{
                 color: "text.primary",
                 borderColor: "divider",
-                "&:hover": { borderColor: "primary.main" },
+                "&:hover": {
+                  borderColor: "#22D3EE",
+                  color: "#22D3EE",
+                },
               }}
             >
               View Records

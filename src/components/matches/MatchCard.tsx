@@ -5,6 +5,7 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import { interactiveCardSx } from "@/theme/tokens";
 
 type MatchCardProps = {
   title: string;
@@ -24,22 +25,7 @@ export default function MatchCard({
   href = "/matches",
 }: MatchCardProps) {
   return (
-    <Card
-      sx={{
-        height: "100%",
-        transition:
-          "border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease",
-        "&:focus-within": {
-          borderColor: "primary.main",
-          boxShadow: "0 10px 32px rgba(244, 201, 93, 0.14)",
-        },
-        "&:hover": {
-          borderColor: "primary.main",
-          transform: "translateY(-3px)",
-          boxShadow: "0 10px 32px rgba(244, 201, 93, 0.14)",
-        },
-      }}
-    >
+    <Card sx={interactiveCardSx}>
       <CardActionArea
         component={Link}
         href={href}

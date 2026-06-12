@@ -55,8 +55,8 @@ export default function ExplorerSummary({
         label={`${formatNumber(total)} rows`}
         size="small"
         sx={{
-          bgcolor: "rgba(244, 201, 93, 0.12)",
-          color: "primary.main",
+          bgcolor: "rgba(34, 211, 238, 0.12)",
+          color: "#22D3EE",
           fontWeight: 700,
         }}
       />
@@ -67,7 +67,11 @@ export default function ExplorerSummary({
             label={label}
             size="small"
             variant="outlined"
-            sx={{ color: "text.secondary", borderColor: "divider" }}
+            sx={{
+              color: "text.primary",
+              borderColor: "rgba(34, 211, 238, 0.35)",
+              bgcolor: "rgba(34, 211, 238, 0.05)",
+            }}
           />
         ))
       ) : (
@@ -90,8 +94,8 @@ export default function ExplorerSummary({
           startIcon={<FileDownloadOutlinedIcon />}
           sx={{
             color: "text.primary",
-            borderColor: "divider",
-            "&:hover": { borderColor: "primary.main" },
+            borderColor: "rgba(34, 211, 238, 0.4)",
+            "&:hover": { borderColor: "#22D3EE", color: "#22D3EE" },
           }}
         >
           Export CSV
@@ -104,8 +108,8 @@ export default function ExplorerSummary({
           startIcon={<FileDownloadOutlinedIcon />}
           sx={{
             color: "text.primary",
-            borderColor: "divider",
-            "&:hover": { borderColor: "primary.main" },
+            borderColor: "rgba(34, 211, 238, 0.4)",
+            "&:hover": { borderColor: "#22D3EE", color: "#22D3EE" },
           }}
         >
           Export JSON

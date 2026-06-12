@@ -20,8 +20,9 @@ export default function PlayerHero({ player }: { player: PlayerProfileDto }) {
         borderBottom: "1px solid",
         borderColor: "divider",
         background:
-          "radial-gradient(ellipse 70% 70% at 75% -20%, rgba(244, 201, 93, 0.14), transparent), " +
-          "radial-gradient(ellipse 50% 50% at 15% 110%, rgba(31, 122, 77, 0.14), transparent), #06111F",
+          "radial-gradient(ellipse 70% 70% at 75% -20%, rgba(244, 201, 93, 0.13), transparent), " +
+          "radial-gradient(ellipse 50% 50% at 15% 110%, rgba(34, 211, 238, 0.08), transparent), " +
+          "radial-gradient(ellipse 40% 40% at 95% 85%, rgba(139, 92, 246, 0.06), transparent), #050B14",
       }}
     >
       <PageContainer sx={{ py: { xs: 5, md: 8 } }}>

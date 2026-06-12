@@ -1,9 +1,11 @@
-﻿import Card from "@mui/material/Card";
+import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
+import { glowPanelSx, interactiveCardSx } from "@/theme/tokens";
 import type { RecordItemDto } from "@/server/queries/types";
 
 /** Highlighted #1 record (e.g. most goals by a player). Real data only. */
@@ -16,17 +18,35 @@ export default function RecordStatCard({
 }) {
   const content = (
     <CardContent sx={{ p: 2.5 }}>
-      <Typography
-        variant="overline"
-        sx={{
-          color: "text.secondary",
-          letterSpacing: "0.12em",
-          display: "block",
-          mb: 0.75,
-        }}
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{ mb: 0.75, alignItems: "baseline" }}
       >
-        {title}
-      </Typography>
+        <Typography
+          variant="caption"
+          component="span"
+          aria-label="Record holder, ranked first"
+          sx={{
+            color: "#22D3EE",
+            fontWeight: 700,
+            letterSpacing: "0.08em",
+            lineHeight: 1.4,
+          }}
+        >
+          №1
+        </Typography>
+        <Typography
+          variant="overline"
+          sx={{
+            color: "text.secondary",
+            letterSpacing: "0.12em",
+            lineHeight: 1.4,
+          }}
+        >
+          {title}
+        </Typography>
+      </Stack>
       <Typography
         variant="h4"
         component="p"
@@ -47,22 +67,7 @@ export default function RecordStatCard({
 
   if (item.href !== null) {
     return (
-      <Card
-        sx={{
-          height: "100%",
-          transition:
-            "border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease",
-          "&:focus-within": {
-            borderColor: "primary.main",
-            boxShadow: "0 10px 32px rgba(244, 201, 93, 0.14)",
-          },
-          "&:hover": {
-            borderColor: "primary.main",
-            transform: "translateY(-3px)",
-            boxShadow: "0 10px 32px rgba(244, 201, 93, 0.14)",
-          },
-        }}
-      >
+      <Card sx={interactiveCardSx}>
         <CardActionArea
           component={Link}
           href={item.href}
@@ -73,5 +78,5 @@ export default function RecordStatCard({
       </Card>
     );
   }
-  return <Card sx={{ height: "100%" }}>{content}</Card>;
+  return <Card sx={glowPanelSx}>{content}</Card>;
 }

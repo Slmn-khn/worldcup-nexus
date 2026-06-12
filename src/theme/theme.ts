@@ -1,35 +1,44 @@
 "use client";
 
 import { createTheme } from "@mui/material/styles";
+import { atlas } from "./tokens";
 
 const theme = createTheme({
   cssVariables: true,
   palette: {
     mode: "dark",
     primary: {
-      main: "#F4C95D",
-      contrastText: "#06111F",
+      main: atlas.gold,
+      contrastText: atlas.deepNavy,
     },
+    // Interaction / active-UI accent (search focus, data panels).
     secondary: {
-      main: "#1F7A4D",
+      main: atlas.cyan,
+      contrastText: atlas.deepNavy,
+    },
+    info: {
+      main: atlas.cyan,
+      contrastText: atlas.deepNavy,
     },
     background: {
-      default: "#06111F",
-      paper: "#0E1A2A",
+      default: atlas.bgBase,
+      paper: atlas.surface,
     },
     text: {
-      primary: "#F8FAFC",
-      secondary: "#CBD5E1",
+      primary: atlas.textPrimary,
+      secondary: atlas.textSecondary,
     },
-    divider: "#253449",
+    divider: atlas.border,
     error: {
       main: "#EF4444",
     },
     warning: {
       main: "#FACC15",
     },
+    // Positive stats / pitch energy.
     success: {
-      main: "#22C55E",
+      main: atlas.green,
+      contrastText: atlas.deepNavy,
     },
   },
   typography: {
@@ -65,23 +74,34 @@ const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: "#06111F",
-          color: "#F8FAFC",
+          backgroundColor: atlas.bgBase,
+          color: atlas.textPrimary,
         },
         a: {
           color: "inherit",
           textDecoration: "none",
         },
+        "::selection": {
+          backgroundColor: atlas.goldGlow,
+          color: atlas.textPrimary,
+        },
         // Visible keyboard focus for every interactive element (links,
         // buttons, card action areas) without affecting mouse users.
         "a:focus-visible, button:focus-visible, [tabindex]:focus-visible": {
-          outline: "2px solid #F4C95D",
+          outline: `2px solid ${atlas.gold}`,
           outlineOffset: "2px",
           borderRadius: "4px",
+        },
+        // Inputs announce focus with the interaction accent instead.
+        "input:focus-visible, textarea:focus-visible": {
+          outline: "none",
         },
         // Reduced-motion fallback for CSS-driven motion. JS animations are
         // handled by MotionConfig reducedMotion="user".
         "@media (prefers-reduced-motion: reduce)": {
+          html: {
+            scrollBehavior: "auto",
+          },
           "*": {
             scrollBehavior: "auto !important",
           },
@@ -91,9 +111,10 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundImage: "none",
-          border: "1px solid #253449",
-          boxShadow: "none",
+          background: atlas.cardGradient,
+          backgroundImage: atlas.cardGradient,
+          border: `1px solid ${atlas.goldBorder}`,
+          boxShadow: "0 10px 30px rgba(2, 8, 20, 0.35)",
         },
       },
     },
@@ -103,17 +124,30 @@ const theme = createTheme({
           borderRadius: 8,
           fontWeight: 700,
           transition:
-            "background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease",
+            "background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease, color 200ms ease",
           "&.MuiButton-containedPrimary:hover": {
-            boxShadow: "0 6px 24px rgba(244, 201, 93, 0.28)",
+            boxShadow: `0 6px 28px ${atlas.goldGlow}`,
           },
+          "&.MuiButton-outlined:hover": {
+            boxShadow: `0 0 18px rgba(34, 211, 238, 0.14)`,
+          },
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontWeight: 600,
+        },
+        outlined: {
+          borderColor: atlas.border,
         },
       },
     },
     MuiTabs: {
       styleOverrides: {
         indicator: {
-          backgroundColor: "#F4C95D",
+          backgroundColor: atlas.gold,
         },
       },
     },
@@ -122,9 +156,9 @@ const theme = createTheme({
         root: {
           textTransform: "none",
           fontWeight: 700,
-          color: "#CBD5E1",
+          color: atlas.textSecondary,
           "&.Mui-selected": {
-            color: "#F4C95D",
+            color: atlas.gold,
           },
         },
       },
@@ -134,13 +168,30 @@ const theme = createTheme({
         variant: "outlined",
       },
     },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          "&.Mui-focused": {
+            color: atlas.cyan,
+          },
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          backgroundColor: "#0E1A2A",
+          backgroundColor: atlas.surface,
+          transition: "box-shadow 200ms ease",
+          "&.Mui-focused": {
+            boxShadow: `0 0 0 1px ${atlas.cyan}, 0 0 20px rgba(34, 211, 238, 0.12)`,
+          },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: atlas.cyan,
+            borderWidth: 1,
+          },
         },
         notchedOutline: {
-          borderColor: "#253449",
+          borderColor: atlas.border,
         },
       },
     },

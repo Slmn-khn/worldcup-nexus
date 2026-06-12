@@ -12,6 +12,8 @@ import ExplorerFilters from "@/components/explorer/ExplorerFilters";
 import ExplorerTable from "@/components/explorer/ExplorerTable";
 import ExplorerSummary from "@/components/explorer/ExplorerSummary";
 import FadeIn from "@/components/motion/FadeIn";
+import AtlasBackground from "@/components/visual/AtlasBackground";
+import FootballConstellation from "@/components/visual/FootballConstellation";
 import { getExplorerData } from "@/server/queries/explorer";
 import {
   parseExplorerOptions,
@@ -40,13 +42,16 @@ export default async function ExplorerPage({ searchParams }: Props) {
     <Box>
       <Box
         sx={{
+          position: "relative",
+          overflow: "hidden",
           borderBottom: "1px solid",
           borderColor: "divider",
-          background:
-            "radial-gradient(ellipse 70% 70% at 80% -20%, rgba(244, 201, 93, 0.1), transparent), #06111F",
+          bgcolor: "#050B14",
         }}
       >
-        <PageContainer sx={{ py: { xs: 6, md: 8 } }}>
+        <AtlasBackground variant="hero" />
+        <FootballConstellation variant="explorer" intensity="medium" />
+        <PageContainer sx={{ position: "relative", py: { xs: 6, md: 8 } }}>
           <Typography
             variant="overline"
             sx={{

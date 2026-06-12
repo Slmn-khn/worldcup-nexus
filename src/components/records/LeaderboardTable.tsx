@@ -17,11 +17,17 @@ export default function LeaderboardTable({
   return (
     <Box
       sx={{
-        border: "1px solid",
-        borderColor: "divider",
+        border: "1px solid rgba(244, 201, 93, 0.22)",
         borderRadius: 2,
-        bgcolor: "background.paper",
+        background: "linear-gradient(145deg, #0E1A2A, #101827)",
+        boxShadow: "0 10px 30px rgba(2, 8, 20, 0.35)",
         overflow: "hidden",
+        transition: "border-color 200ms ease, box-shadow 200ms ease",
+        "&:hover": {
+          borderColor: "rgba(34, 211, 238, 0.35)",
+          boxShadow:
+            "0 12px 36px rgba(2, 8, 20, 0.5), 0 0 18px rgba(34, 211, 238, 0.08)",
+        },
       }}
     >
       <Box
@@ -29,6 +35,7 @@ export default function LeaderboardTable({
           px: 2.5,
           pt: 2,
           pb: 1.5,
+          bgcolor: "#13243A",
           borderBottom: "1px solid",
           borderColor: "divider",
         }}
@@ -52,12 +59,16 @@ export default function LeaderboardTable({
           {leaderboard.items.map((item) => (
             <TableRow
               key={`${item.rank}-${item.label}`}
-              sx={{ "&:last-of-type td": { borderBottom: "none" } }}
+              sx={{
+                "&:last-of-type td": { borderBottom: "none" },
+                transition: "background-color 150ms ease",
+                "&:hover": { bgcolor: "rgba(34, 211, 238, 0.04)" },
+              }}
             >
               <TableCell
                 sx={{
                   width: 36,
-                  color: "primary.main",
+                  color: item.rank <= 3 ? "primary.main" : "#94A3B8",
                   fontWeight: 700,
                   borderColor: "divider",
                 }}

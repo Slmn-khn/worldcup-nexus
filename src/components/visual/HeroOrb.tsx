@@ -9,9 +9,18 @@ import { motion, useReducedMotion } from "motion/react";
 
 const MotionBox = motion.create(Box);
 
+const ORB_GLOWS = {
+  gold: "radial-gradient(circle, rgba(244, 201, 93, 0.16) 0%, transparent 65%)",
+  green:
+    "radial-gradient(circle, rgba(163, 230, 53, 0.11) 0%, transparent 65%)",
+  cyan: "radial-gradient(circle, rgba(34, 211, 238, 0.13) 0%, transparent 65%)",
+  purple:
+    "radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 65%)",
+} as const;
+
 type HeroOrbProps = {
   size?: number;
-  color?: "gold" | "green";
+  color?: keyof typeof ORB_GLOWS;
   /** Seconds for one float cycle. */
   duration?: number;
   sx?: SxProps<Theme>;
@@ -24,10 +33,7 @@ export default function HeroOrb({
   sx,
 }: HeroOrbProps) {
   const reducedMotion = useReducedMotion();
-  const glow =
-    color === "gold"
-      ? "radial-gradient(circle, rgba(244, 201, 93, 0.16) 0%, transparent 65%)"
-      : "radial-gradient(circle, rgba(31, 122, 77, 0.2) 0%, transparent 65%)";
+  const glow = ORB_GLOWS[color];
 
   const base: SxProps<Theme> = {
     position: "absolute",

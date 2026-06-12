@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
+import FootballConstellation from "@/components/visual/FootballConstellation";
 import { formatDate } from "@/lib/format";
 import type { MatchDetailDto } from "@/server/queries/types";
 
@@ -15,14 +16,22 @@ export default function MatchHero({ match }: { match: MatchDetailDto }) {
   return (
     <Box
       sx={{
+        position: "relative",
+        overflow: "hidden",
         borderBottom: "1px solid",
         borderColor: "divider",
         background:
-          "radial-gradient(ellipse 70% 70% at 50% -20%, rgba(244, 201, 93, 0.14), transparent), " +
-          "radial-gradient(ellipse 50% 50% at 90% 110%, rgba(31, 122, 77, 0.12), transparent), #06111F",
+          "radial-gradient(ellipse 70% 70% at 50% -20%, rgba(244, 201, 93, 0.13), transparent), " +
+          "radial-gradient(ellipse 50% 50% at 90% 110%, rgba(34, 211, 238, 0.08), transparent), " +
+          "radial-gradient(ellipse 40% 40% at 5% 90%, rgba(139, 92, 246, 0.06), transparent), #050B14",
       }}
     >
-      <PageContainer sx={{ py: { xs: 5, md: 8 } }}>
+      <FootballConstellation
+        variant="match"
+        intensity="low"
+        seed={match.slug}
+      />
+      <PageContainer sx={{ position: "relative", py: { xs: 5, md: 8 } }}>
         <Breadcrumbs
           separator="/"
           sx={{
@@ -129,6 +138,7 @@ export default function MatchHero({ match }: { match: MatchDetailDto }) {
                 color: "primary.main",
                 fontSize: { xs: "2.75rem", md: "3.75rem" },
                 lineHeight: 1,
+                textShadow: "0 0 32px rgba(244, 201, 93, 0.35)",
               }}
             >
               {match.score}
@@ -169,8 +179,9 @@ export default function MatchHero({ match }: { match: MatchDetailDto }) {
               label="Decided by penalty shootout"
               size="small"
               sx={{
-                bgcolor: "secondary.main",
-                color: "#F8FAFC",
+                bgcolor: "rgba(34, 211, 238, 0.14)",
+                color: "#22D3EE",
+                border: "1px solid rgba(34, 211, 238, 0.35)",
                 fontWeight: 700,
               }}
             />

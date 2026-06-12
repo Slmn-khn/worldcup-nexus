@@ -29,6 +29,17 @@ export default function SectionHeading({
             sx={{
               color: "text.primary",
               fontSize: { xs: "1.5rem", md: "1.9rem" },
+              // Short gold→cyan accent rule under every section title.
+              "&::after": {
+                content: '""',
+                display: "block",
+                width: 48,
+                height: 3,
+                mt: 1,
+                borderRadius: 1,
+                background:
+                  "linear-gradient(90deg, #F4C95D, rgba(34, 211, 238, 0.7))",
+              },
             }}
           >
             {title}

@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import { formatNumber } from "@/lib/format";
+import { interactiveCardSx } from "@/theme/tokens";
 
 type TournamentCardProps = {
   year: number;
@@ -41,22 +42,7 @@ export default function TournamentCard({
   ].filter((part): part is string => part !== null);
 
   return (
-    <Card
-      sx={{
-        height: "100%",
-        transition:
-          "border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease",
-        "&:focus-within": {
-          borderColor: "primary.main",
-          boxShadow: "0 10px 32px rgba(244, 201, 93, 0.14)",
-        },
-        "&:hover": {
-          borderColor: "primary.main",
-          transform: "translateY(-3px)",
-          boxShadow: "0 10px 32px rgba(244, 201, 93, 0.14)",
-        },
-      }}
-    >
+    <Card sx={interactiveCardSx}>
       <CardActionArea
         component={Link}
         href={href ?? `/tournaments/${year}`}
@@ -101,7 +87,7 @@ export default function TournamentCard({
           ) : null}
           <Box
             sx={{
-              bgcolor: "#142338",
+              bgcolor: "#13243A",
               border: "1px solid",
               borderColor: "divider",
               borderRadius: 1.5,

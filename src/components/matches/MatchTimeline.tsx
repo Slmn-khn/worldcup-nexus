@@ -32,8 +32,8 @@ const CHIPS = {
     background: "#FB923C",
   },
   red: { label: "Red Card", color: "#F8FAFC", background: "#EF4444" },
-  subOn: { label: "Sub On", color: "#F8FAFC", background: "#1F7A4D" },
-  subOff: { label: "Sub Off", color: "#CBD5E1", background: "#253449" },
+  subOn: { label: "Sub On", color: "#06111F", background: "#A3E635" },
+  subOff: { label: "Sub Off", color: "#CBD5E1", background: "#263B56" },
 };
 
 function buildEvents(match: MatchDetailDto): TimelineEvent[] {

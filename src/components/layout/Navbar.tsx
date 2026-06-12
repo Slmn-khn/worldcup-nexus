@@ -21,7 +21,7 @@ export default function Navbar() {
       position="sticky"
       elevation={0}
       sx={{
-        bgcolor: "rgba(6, 17, 31, 0.88)",
+        bgcolor: "rgba(5, 11, 20, 0.88)",
         backgroundImage: "none",
         backdropFilter: "blur(12px)",
         borderBottom: "1px solid",
@@ -98,8 +98,13 @@ export default function Navbar() {
                     fontSize: "0.875rem",
                     fontWeight: 600,
                     whiteSpace: "nowrap",
-                    color: active ? "primary.main" : "text.secondary",
-                    bgcolor: active ? "rgba(244, 201, 93, 0.1)" : "transparent",
+                    color: active ? "#22D3EE" : "text.secondary",
+                    bgcolor: active
+                      ? "rgba(34, 211, 238, 0.08)"
+                      : "transparent",
+                    boxShadow: active
+                      ? "inset 0 -2px 0 rgba(34, 211, 238, 0.55)"
+                      : "none",
                     transition: "color 150ms ease, background-color 150ms ease",
                     "&:hover": {
                       color: "text.primary",
