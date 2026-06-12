@@ -13,6 +13,7 @@ const STATIC_ROUTES: { path: string; expectText: string | RegExp }[] = [
   { path: "/explorer", expectText: "Data Explorer" },
   { path: "/sources", expectText: "Data Sources" },
   { path: "/about", expectText: "About WORLDCUP Nexus" },
+  { path: "/privacy", expectText: "Privacy" },
 ];
 
 for (const route of STATIC_ROUTES) {
@@ -92,6 +93,34 @@ test("unknown page shows not-found with 404 status", async ({ page }) => {
 test("explorer filters via URL params", async ({ page }) => {
   await page.goto("/explorer?eventType=Goal&tournamentYear=1986");
   await expect(page.getByText("132 rows").first()).toBeVisible();
+});
+
+// Checkpoint 8B hardening: baseline security headers on every response,
+// Report-Only CSP (non-enforcing), and the rebranded export filename.
+test("security headers are present", async ({ request }) => {
+  const response = await request.get("/");
+  expect(response.status()).toBe(200);
+  const headers = response.headers();
+  expect(headers["x-content-type-options"]).toBe("nosniff");
+  expect(headers["referrer-policy"]).toBe("strict-origin-when-cross-origin");
+  expect(headers["x-frame-options"]).toBe("DENY");
+  expect(headers["permissions-policy"]).toContain("camera=()");
+  expect(headers["cross-origin-opener-policy"]).toBe("same-origin");
+  expect(headers["cross-origin-resource-policy"]).toBe("same-origin");
+  expect(headers["content-security-policy-report-only"]).toContain(
+    "default-src 'self'",
+  );
+});
+
+test("explorer export uses Nexus filename", async ({ request }) => {
+  const response = await request.get(
+    "/api/export/explorer?format=csv&eventType=Goal&tournamentYear=1986",
+  );
+  expect(response.status()).toBe(200);
+  expect(response.headers()["content-disposition"]).toContain(
+    "worldcup-nexus-explorer.csv",
+  );
+  expect(response.headers()["x-ratelimit-limit"]).toBeUndefined(); // only on 429
 });
 
 test("sitemap and robots respond", async ({ request }) => {

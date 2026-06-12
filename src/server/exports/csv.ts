@@ -1,9 +1,19 @@
 // Minimal CSV serialization — no dependency needed for flat DTO rows.
 
-/** Escapes a single CSV cell (quotes, commas, newlines); null/undefined → "". */
+// Spreadsheet formula-injection guard (Checkpoint 8B, P0.3): Excel/Sheets
+// may evaluate cells starting with these characters as formulas. Scores like
+// "3–2" use an en dash (not ASCII "-") and are unaffected.
+const FORMULA_PREFIX = /^[=+\-@\t\r]/;
+
+/**
+ * Escapes a single CSV cell (quotes, commas, newlines); null/undefined → "".
+ * Cells that would be interpreted as spreadsheet formulas are neutralized
+ * with a leading single quote before the normal escaping.
+ */
 export function toCsvValue(value: unknown): string {
   if (value === null || value === undefined) return "";
-  const text = String(value);
+  let text = String(value);
+  if (FORMULA_PREFIX.test(text)) text = `'${text}`;
   return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
 }
 

@@ -2,6 +2,7 @@
   "name": "worldcup-atlas",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@8.15.1",
   "scripts": {
     "data:download": "tsx scripts/import/download-fjelstul.ts",
     "data:import": "tsx scripts/import/import-fjelstul.ts",
@@ -10,9 +11,13 @@
     "data:verify:queries": "tsx scripts/verify/verify-page-queries.ts",
     "export:verify": "tsx scripts/verify/verify-export.ts",
     "public:verify": "tsx scripts/verify/verify-public-routes.ts",
+    "security:verify": "tsx scripts/verify/verify-security.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
+    "prod:preflight": "tsx scripts/verify/verify-production-readiness.ts",
+    "prod:validate": "pnpm security:verify && pnpm public:verify && pnpm export:verify && pnpm search:verify && pnpm data:verify:queries && pnpm data:verify && pnpm typecheck && pnpm lint && pnpm build && pnpm test:e2e",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -43,6 +48,12 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "zod": "^4.4.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "postcss@<8.5.10": ">=8.5.10",
+      "@hono/node-server@<1.19.13": ">=1.19.13"
+    }
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
