@@ -4,6 +4,7 @@
 // Sections without data render an honest empty state.
 
 import type { Metadata } from "next";
+import Image from "next/image";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -88,9 +89,43 @@ export default async function Home() {
 
   return (
     <Box>
-      {/* Hero — black cinematic band */}
-      <Box sx={{ borderBottom: `1px solid ${atlas.border}` }}>
-        <PageContainer sx={{ py: { xs: 9, md: 14 } }}>
+      {/* Hero — black cinematic band with the brand banner as a right-weighted
+          backdrop. The banner is a decorative support layer behind a dark
+          overlay; the real H1/subtitle below remain the source of the title. */}
+      <Box
+        sx={{
+          position: "relative",
+          overflow: "hidden",
+          borderBottom: `1px solid ${atlas.border}`,
+          bgcolor: atlas.black,
+        }}
+      >
+        <Box sx={{ position: "absolute", inset: 0, zIndex: 0 }}>
+          <Image
+            src="/brand/worldcup-nexus-banner.png"
+            alt="WORLDCUP Nexus — independent World Cup archive"
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center right" }}
+          />
+          {/* Dark gradient keeps the headline and copy readable; on wide
+              screens it fades to the right so the artwork still reads. */}
+          <Box
+            aria-hidden
+            sx={{
+              position: "absolute",
+              inset: 0,
+              background: {
+                xs: "linear-gradient(180deg, rgba(0,0,0,0.74) 0%, rgba(0,0,0,0.9) 100%)",
+                md: `linear-gradient(90deg, ${atlas.black} 0%, rgba(0,0,0,0.92) 36%, rgba(0,0,0,0.55) 72%, rgba(0,0,0,0.32) 100%)`,
+              },
+            }}
+          />
+        </Box>
+        <PageContainer
+          sx={{ position: "relative", zIndex: 1, py: { xs: 9, md: 14 } }}
+        >
           <VaultEyebrow
             label={span !== null ? `The Archive · ${span}` : "The Archive"}
             sx={{ mb: 3 }}

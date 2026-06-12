@@ -450,6 +450,57 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
 - Remaining: standings/bracket views, source reconciliation, deployment
   itself.
 
+### Checkpoint 8F — Responsive Footer + Mobile Navigation Polish (complete)
+
+Mobile/responsive polish — no redesign, no data or schema changes.
+
+- `src/components/layout/Footer.tsx`: replaced the single-column mobile
+  stack (which left the footer too tall, loose, and full of blank black)
+  with a 2-column link grid on `xs`/`sm` (brand spans full width) and the
+  4-up grid on `md+`. Tightened mobile padding/gaps (`pt` 40px, `rowGap`
+  32px, attribution `mt` 32px) and gave link rows a ~40px touch target.
+  Attribution + independence disclaimer stay visible at every breakpoint.
+- `src/components/layout/Navbar.tsx`: the mobile horizontal-scroll nav
+  (which cut "Explorer" off behind a fade mask) is replaced by a hamburger
+  button + right-anchored black `Drawer` below `md`: stripe accent, brand,
+  close button, hairline link rows, ~52px tap targets, left gold active
+  stripe (not a pill), closes on navigation. Desktop inline nav unchanged.
+- Accessibility: menu/close buttons have `aria-label`; hamburger exposes
+  `aria-haspopup`/`aria-expanded`; active route uses `aria-current` plus a
+  non-color marker; focus-visible from the global theme still applies.
+- Tests: `tests/e2e/responsive-layout.spec.ts` (375×812 + 1280×900) —
+  footer brand/disclaimer/attribution visible, footer links reachable,
+  hamburger opens and Explorer is navigable, no horizontal overflow on
+  key routes, desktop nav inline with no hamburger. Functional checks
+  only, no screenshots.
+- MUI only; no Tailwind; all routes intact.
+
+### Checkpoint 8E — Brand Assets, Favicon, and Social Banner (complete)
+
+Deployment polish: wired the WORLDCUP Nexus brand artwork through the app.
+
+- Source assets committed under `public/brand`: `worldcup-nexus-icon.png`
+  (app/brand icon) and `worldcup-nexus-banner.png` (hero / social banner).
+- `scripts/assets/generate-icons.ts` (`pnpm assets:icons`, `sharp` dev
+  dependency) generates the variant set from the source icon —
+  `public/favicon.ico` (PNG-in-ICO), `public/icon.png` (512),
+  `public/apple-icon.png` (180), and `worldcup-nexus-icon-{32,192,512}.png`.
+  The source icon is never overwritten; no throwaway sizes are emitted. The
+  legacy `src/app/favicon.ico` was removed to avoid the `/favicon.ico` route
+  conflict with the generated public asset.
+- `src/app/layout.tsx` metadata: `icons` (icon / shortcut / apple) plus
+  Open Graph and Twitter (`summary_large_image`) images pointing at the
+  banner; `src/lib/site.ts` holds the asset paths. `src/app/manifest.ts`
+  now ships the 192/512 PWA icons.
+- Homepage hero (`src/app/page.tsx`) uses the banner as a right-weighted
+  `next/image` backdrop (`priority`, meaningful `alt`) behind an
+  `aria-hidden` dark gradient — the semantic `<h1>`/subtitle and the
+  black-canvas Vault layout are unchanged. Banner is not added to every page.
+- `scripts/verify/verify-public-routes.ts` checks the required brand assets
+  exist and that the manifest references on-disk icons.
+- No data logic, Prisma schema, Docker, or import scripts touched. No
+  official FIFA branding introduced.
+
 ### Checkpoint 8A — Security audit (complete)
 
 - Static code/configuration audit of the full public surface: API

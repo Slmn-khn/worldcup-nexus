@@ -39,6 +39,7 @@ Open http://localhost:3000.
 | Command                    | Purpose                               |
 | -------------------------- | ------------------------------------- |
 | `pnpm dev` / `build`       | Run / build the app                   |
+| `pnpm assets:icons`        | Generate favicon/PWA icon variants    |
 | `pnpm data:download`       | Cache source CSVs                     |
 | `pnpm data:import`         | Normalize source data into PostgreSQL |
 | `pnpm search:index`        | Build the Meilisearch index           |
@@ -89,6 +90,24 @@ reconciliation.
 
 See [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) for the full
 checkpoint log.
+
+## Brand assets
+
+Brand artwork lives in [public/brand](public/brand). Two source files are
+committed:
+
+- `public/brand/worldcup-nexus-icon.png` — source app/brand icon
+- `public/brand/worldcup-nexus-banner.png` — wide hero / social banner
+
+The favicon and PWA/Apple icon variants are **generated** from the source
+icon with `pnpm assets:icons` (uses `sharp`). Run it before building if the
+variants are missing; it writes `public/favicon.ico`, `public/icon.png`,
+`public/apple-icon.png`, and the `worldcup-nexus-icon-{32,192,512}.png`
+variants under `public/brand`. The banner is used for the homepage hero and
+for Open Graph / Twitter social previews (see `src/app/layout.tsx`).
+
+No official FIFA logos or branding are used — the marks are WORLDCUP Nexus's
+own, and the site never implies FIFA affiliation.
 
 ## Data source and attribution
 

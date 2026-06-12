@@ -4,6 +4,7 @@
   "private": true,
   "packageManager": "pnpm@8.15.1",
   "scripts": {
+    "assets:icons": "tsx scripts/assets/generate-icons.ts",
     "data:download": "tsx scripts/import/download-fjelstul.ts",
     "data:import": "tsx scripts/import/import-fjelstul.ts",
     "data:inspect": "tsx scripts/import/inspect-fjelstul.ts",
@@ -19,7 +20,7 @@
     "prod:preflight": "tsx scripts/verify/verify-production-readiness.ts",
     "prod:validate": "pnpm security:verify && pnpm public:verify && pnpm export:verify && pnpm search:verify && pnpm data:verify:queries && pnpm data:verify && pnpm typecheck && pnpm lint && pnpm build && pnpm test:e2e",
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -67,6 +68,7 @@
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.8.3",
     "prisma": "^7.8.0",
+    "sharp": "^0.35.1",
     "tsx": "^4.22.4",
     "typescript": "^5",
     "vitest": "^4.1.7"

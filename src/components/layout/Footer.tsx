@@ -32,11 +32,11 @@ function FooterColumn({
     <Box component="nav" aria-label={heading}>
       <Typography
         component="p"
-        sx={{ ...eyebrowSx, color: atlas.textMuted, mb: 2 }}
+        sx={{ ...eyebrowSx, color: atlas.textMuted, mb: { xs: 1, md: 1.75 } }}
       >
         {heading}
       </Typography>
-      <Stack spacing={1.25}>
+      <Stack spacing={0.25}>
         {links.map(({ label, href }) => (
           <Typography
             key={href}
@@ -45,6 +45,11 @@ function FooterColumn({
             variant="body2"
             sx={{
               color: atlas.textSecondary,
+              // Comfortable touch target (~40px) without stretching the
+              // column — links sit on tight rows, not huge single lines.
+              display: "inline-flex",
+              alignItems: "center",
+              minHeight: 40,
               width: "fit-content",
               transition: "color 150ms ease",
               "&:hover": { color: atlas.textPrimary },
@@ -73,23 +78,32 @@ export default function Footer() {
           maxWidth: 1440,
           mx: "auto",
           px: { xs: 2.5, sm: 4, md: 6 },
-          pt: { xs: 6, md: 8 },
+          // Compact mobile rhythm; roomier desktop. No 96px voids.
+          pt: { xs: 5, md: 8 },
           pb: 0,
         }}
       >
         <Box
           sx={{
             display: "grid",
-            gap: { xs: 5, md: 6 },
+            // Tighter gaps on small screens keep the footer composed.
+            columnGap: { xs: 3, sm: 4, md: 6 },
+            rowGap: { xs: 4, md: 6 },
+            // Mobile + tablet: 2 columns of link groups with the brand
+            // spanning the full width. Desktop: brand + 3 columns (4-up).
             gridTemplateColumns: {
-              xs: "1fr",
-              sm: "1fr 1fr",
+              xs: "1fr 1fr",
               md: "minmax(0, 1.6fr) 1fr 1fr 1fr",
             },
           }}
         >
-          {/* Brand block */}
-          <Box sx={{ maxWidth: 360 }}>
+          {/* Brand block — full width below desktop, first column on desktop. */}
+          <Box
+            sx={{
+              gridColumn: { xs: "1 / -1", md: "auto" },
+              maxWidth: { xs: "100%", md: 360 },
+            }}
+          >
             <Typography
               component="p"
               sx={{
@@ -106,13 +120,13 @@ export default function Footer() {
                 Nexus
               </Box>
             </Typography>
-            <VaultStripe width={56} sx={{ mt: 1, mb: 2.5 }} />
+            <VaultStripe width={56} sx={{ mt: 1, mb: 2 }} />
             <Typography variant="body2" sx={{ color: atlas.textSecondary }}>
               {siteConfig.description}
             </Typography>
             <Typography
               variant="body2"
-              sx={{ color: atlas.textMuted, mt: 1.5 }}
+              sx={{ color: atlas.textMuted, mt: 1.25 }}
             >
               {siteConfig.disclaimer}
             </Typography>
@@ -125,8 +139,8 @@ export default function Footer() {
         {/* Bottom attribution row */}
         <Box
           sx={{
-            mt: { xs: 6, md: 8 },
-            py: 3,
+            mt: { xs: 4, md: 8 },
+            py: { xs: 2.5, md: 3 },
             borderTop: `1px solid ${atlas.border}`,
             display: "flex",
             flexWrap: "wrap",

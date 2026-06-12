@@ -136,6 +136,22 @@ repo, framework Next.js, install `pnpm install --frozen-lockfile`, build
 note the build needs database connectivity (the sitemap is generated at
 build time with daily revalidation).
 
+### 9b. Brand assets
+
+Brand artwork lives in `public/brand`. The two source files
+(`worldcup-nexus-icon.png`, `worldcup-nexus-banner.png`) are committed. The
+favicon / PWA / Apple icon variants are **generated** and must exist before
+build:
+
+```bash
+pnpm assets:icons   # writes favicon.ico, icon.png, apple-icon.png + 32/192/512
+```
+
+`pnpm public:verify` fails if any required brand asset is missing, so the
+predeploy gate catches a forgotten generation step. The banner powers the
+homepage hero and the Open Graph / Twitter social previews. No official FIFA
+branding is used.
+
 ## 10. Security checklist
 
 Code-level hardening shipped in Checkpoint 8B (headers + Report-Only
