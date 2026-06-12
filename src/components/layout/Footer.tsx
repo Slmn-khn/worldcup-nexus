@@ -92,13 +92,13 @@ export default function Footer() {
                 fontWeight: 700,
                 fontSize: "1.3rem",
                 letterSpacing: "0.04em",
-                textTransform: "uppercase",
                 color: atlas.textPrimary,
               }}
             >
-              WorldCup{" "}
+              {/* Exact brand casing — no text-transform on the wordmark. */}
+              WORLDCUP{" "}
               <Box component="span" sx={{ color: atlas.gold }}>
-                Atlas
+                Nexus
               </Box>
             </Typography>
             <VaultStripe width={56} sx={{ mt: 1, mb: 2.5 }} />

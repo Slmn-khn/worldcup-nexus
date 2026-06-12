@@ -1,13 +1,13 @@
 // Central site configuration used by metadata, layout, footer, sitemap,
 // and robots. Single source of truth for naming and the independence
-// disclaimer — WorldCup Atlas never claims FIFA affiliation.
+// disclaimer — WORLDCUP Nexus never claims FIFA affiliation.
 
 export const siteConfig = {
-  siteName: "WorldCup Atlas",
-  tagline: "Every World Cup. Every Nation. Every Match.",
+  siteName: "WORLDCUP Nexus",
+  tagline: "Every World Cup. Every Era. Every Legend.",
   description: "An independent historical archive of the FIFA World Cup.",
   disclaimer:
-    "WorldCup Atlas is an independent historical archive and is not affiliated with FIFA.",
+    "WORLDCUP Nexus is an independent historical archive and is not affiliated with FIFA.",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   sourceAttribution: {
     name: "Fjelstul World Cup Database",

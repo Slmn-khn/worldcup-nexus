@@ -47,7 +47,7 @@ function check(
 }
 
 async function main() {
-  console.log("WorldCup Atlas — page query verification (Checkpoint 4D)\n");
+  console.log("WORLDCUP Nexus — page query verification (Checkpoint 4D)\n");
 
   // ---- Archive stats. ----
   const stats = await getArchiveStats();

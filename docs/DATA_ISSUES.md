@@ -1,4 +1,4 @@
-# WorldCup Atlas — Data Issues Log
+# WORLDCUP Nexus — Data Issues Log
 
 Running log of known data conflicts, anomalies, and unresolved discrepancies between sources.
 

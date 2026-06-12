@@ -23,7 +23,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "World Cup Tournaments",
   description:
-    "Browse every FIFA World Cup tournament in the WorldCup Atlas archive.",
+    "Browse every FIFA World Cup tournament in the WORLDCUP Nexus archive.",
 };
 
 const SORTS: TournamentSort[] = [

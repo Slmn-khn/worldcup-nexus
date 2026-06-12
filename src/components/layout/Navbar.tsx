@@ -40,7 +40,7 @@ export default function Navbar() {
           <Stack
             component={Link}
             href="/"
-            aria-label="WorldCup Atlas home"
+            aria-label="WORLDCUP Nexus home"
             sx={{ flexShrink: 0 }}
           >
             <Typography
@@ -50,14 +50,14 @@ export default function Navbar() {
                 fontWeight: 700,
                 fontSize: "1.15rem",
                 letterSpacing: "0.04em",
-                textTransform: "uppercase",
                 color: atlas.textPrimary,
                 lineHeight: 1.1,
               }}
             >
-              WorldCup{" "}
+              {/* Exact brand casing — no text-transform on the wordmark. */}
+              WORLDCUP{" "}
               <Box component="span" sx={{ color: atlas.gold }}>
-                Atlas
+                Nexus
               </Box>
             </Typography>
             <VaultStripe width={44} sx={{ mt: 0.5, height: "3px" }} />

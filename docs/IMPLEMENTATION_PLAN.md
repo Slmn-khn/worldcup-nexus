@@ -1,4 +1,4 @@
-# WorldCup Atlas — Implementation Plan
+# WORLDCUP Nexus — Implementation Plan
 
 ## Rule: one checkpoint at a time
 
@@ -51,7 +51,7 @@ Do not start the next checkpoint until the current one's acceptance criteria are
 
 **Status: complete**
 
-**Summary:** Static WorldCup Atlas app shell is built with `AppShell`, `Navbar`, `Footer`, `PageContainer`, `SectionHeading`, `StatCard`, `GlobalSearch` placeholder, entity cards (tournament, match, country, player, record), a clearly labeled mock-data file, and the homepage shell.
+**Summary:** Static WORLDCUP Nexus app shell is built with `AppShell`, `Navbar`, `Footer`, `PageContainer`, `SectionHeading`, `StatCard`, `GlobalSearch` placeholder, entity cards (tournament, match, country, player, record), a clearly labeled mock-data file, and the homepage shell.
 
 ### Deliverables
 

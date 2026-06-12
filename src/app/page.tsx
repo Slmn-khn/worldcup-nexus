@@ -30,7 +30,7 @@ import { atlas } from "@/theme/tokens";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: { absolute: "WorldCup Atlas — Independent World Cup Archive" },
+  title: { absolute: "WORLDCUP Nexus — Independent World Cup Archive" },
   description:
     "Explore every World Cup tournament, nation, player, match, goal, and penalty in one independent historical archive.",
 };

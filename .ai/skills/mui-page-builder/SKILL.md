@@ -1,6 +1,6 @@
 ---
 name: mui-page-builder
-description: Use when building WorldCup Atlas frontend pages or components with MUI, including layout, cards, filters, tables, tabs, and responsive behavior.
+description: Use when building WORLDCUP Nexus frontend pages or components with MUI, including layout, cards, filters, tables, tabs, and responsive behavior.
 ---
 
 # MUI Page Builder Skill

@@ -13,7 +13,7 @@ const EXPECTED_QUERIES = ["maradona", "brazil", "1986", "argentina france"];
 type Check = { query: string; passed: boolean; detail: string };
 
 async function main() {
-  console.log("WorldCup Atlas — search verification\n");
+  console.log("WORLDCUP Nexus — search verification\n");
 
   const checks: Check[] = [];
   for (const query of EXPECTED_QUERIES) {

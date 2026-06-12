@@ -14,7 +14,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "What WorldCup Atlas is: an independent, data-driven historical archive of the FIFA World Cup.",
+    "What WORLDCUP Nexus is: an independent, data-driven historical archive of the FIFA World Cup.",
 };
 
 export default function AboutPage() {
@@ -22,7 +22,7 @@ export default function AboutPage() {
     <Box>
       <VaultPageHeader
         eyebrow={siteConfig.tagline}
-        title="About WorldCup Atlas"
+        title="About WORLDCUP Nexus"
         lede={siteConfig.description}
       />
 
@@ -32,7 +32,7 @@ export default function AboutPage() {
           variant="body1"
           sx={{ color: "text.secondary", maxWidth: 760 }}
         >
-          WorldCup Atlas is a digital football museum: every imported
+          WORLDCUP Nexus is a digital football museum: every imported
           tournament, nation, player, match, goal, card, substitution, and
           penalty in one place. Browse tournament histories, relive matches
           through event timelines, follow a nation through every campaign, trace

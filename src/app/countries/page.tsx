@@ -23,7 +23,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "World Cup Nations",
-  description: "Explore every World Cup nation in the WorldCup Atlas archive.",
+  description: "Explore every World Cup nation in the WORLDCUP Nexus archive.",
 };
 
 const SORTS: CountrySort[] = [
@@ -88,7 +88,7 @@ export default async function CountriesPage({ searchParams }: Props) {
     <Box>
       <VaultPageHeader
         title="World Cup Nations"
-        lede="Explore every nation and team history recorded in the WorldCup Atlas database."
+        lede="Explore every nation and team history recorded in the WORLDCUP Nexus database."
         meta={`${formatNumber(index.total)} nations in the archive`}
       />
 

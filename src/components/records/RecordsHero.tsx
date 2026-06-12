@@ -31,7 +31,7 @@ export default function RecordsHero({
             mb: 4,
           }}
         >
-          Explore leaderboards built from the imported WorldCup Atlas database.
+          Explore leaderboards built from the imported WORLDCUP Nexus database.
         </Typography>
         <RecordsScopeNote scopeLabel={scopeLabel} scopeNote={scopeNote} />
       </PageContainer>

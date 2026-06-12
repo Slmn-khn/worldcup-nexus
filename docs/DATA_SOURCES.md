@@ -1,4 +1,4 @@
-﻿# WorldCup Atlas — Data Sources
+# WORLDCUP Nexus — Data Sources
 
 ## Rule: no invented data
 

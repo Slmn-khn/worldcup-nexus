@@ -1,8 +1,8 @@
-# WorldCup Atlas Vault Editorial System
+# WORLDCUP Nexus Vault Editorial System
 
 ## Design philosophy
 
-WorldCup Atlas is a premium black-canvas World Cup archive — editorial,
+WORLDCUP Nexus is a premium black-canvas World Cup archive — editorial,
 cinematic, historical, data-rich. The system holds white uppercase
 condensed headlines and light gray body copy on a near-pure black canvas;
 structure comes from 1px hairlines and a strict grid, identity from a

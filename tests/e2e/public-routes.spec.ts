@@ -12,7 +12,7 @@ const STATIC_ROUTES: { path: string; expectText: string | RegExp }[] = [
   { path: "/records", expectText: "Book of Records" },
   { path: "/explorer", expectText: "Data Explorer" },
   { path: "/sources", expectText: "Data Sources" },
-  { path: "/about", expectText: "About WorldCup Atlas" },
+  { path: "/about", expectText: "About WORLDCUP Nexus" },
 ];
 
 for (const route of STATIC_ROUTES) {

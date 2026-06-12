@@ -25,7 +25,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "World Cup Matches",
-  description: "Browse World Cup match records in the WorldCup Atlas archive.",
+  description: "Browse World Cup match records in the WORLDCUP Nexus archive.",
 };
 
 const SORTS: MatchSort[] = [
@@ -127,7 +127,7 @@ export default async function MatchesPage({ searchParams }: Props) {
     <Box>
       <VaultPageHeader
         title="World Cup Matches"
-        lede="Browse match records from the imported WorldCup Atlas database."
+        lede="Browse match records from the imported WORLDCUP Nexus database."
         meta={`${formatNumber(index.totalCount)} matches match the current view`}
       />
 

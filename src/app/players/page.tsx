@@ -27,7 +27,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "World Cup Players",
-  description: "Explore World Cup players in the WorldCup Atlas archive.",
+  description: "Explore World Cup players in the WORLDCUP Nexus archive.",
 };
 
 const SORTS: PlayerSort[] = [

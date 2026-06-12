@@ -1,4 +1,4 @@
-// Checkpoint 7C Revised — "WorldCup Atlas Vault Editorial System" tokens.
+// Checkpoint 7C Revised — "WORLDCUP Nexus Vault Editorial System" tokens.
 // Server-safe (no "use client") so both server and client components can
 // import them.
 //

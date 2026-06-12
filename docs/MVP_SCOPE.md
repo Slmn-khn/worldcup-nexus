@@ -1,8 +1,8 @@
-# WorldCup Atlas — MVP Scope
+# WORLDCUP Nexus — MVP Scope
 
 ## Product definition
 
-WorldCup Atlas is an independent historical archive of the FIFA World Cup.
+WORLDCUP Nexus is an independent historical archive of the FIFA World Cup.
 
 ## MVP pages
 

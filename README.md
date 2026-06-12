@@ -1,12 +1,12 @@
-# WorldCup Atlas
+# WORLDCUP Nexus
 
-**Every World Cup. Every Nation. Every Match.**
+**Every World Cup. Every Era. Every Legend.**
 
-WorldCup Atlas is an independent historical archive of the FIFA World Cup:
+WORLDCUP Nexus is an independent historical archive of the FIFA World Cup:
 every imported tournament, nation, player, match, goal, card, substitution,
 and penalty — browsable, searchable, and exportable.
 
-> WorldCup Atlas is an independent project and is **not affiliated with
+> WORLDCUP Nexus is an independent project and is **not affiliated with
 > FIFA**.
 
 ## Tech stack
@@ -77,7 +77,7 @@ All historical data comes from the
 Joshua C. Fjelstul, Ph.D. — © 2023 Joshua C. Fjelstul, Ph.D., published
 under the
 [CC-BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
-WorldCup Atlas normalizes the original CSVs into a relational database and
+WORLDCUP Nexus normalizes the original CSVs into a relational database and
 derives display fields and aggregates; modifications are documented in
 [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) and
 [docs/DATA_ISSUES.md](docs/DATA_ISSUES.md). Attribution details are also on
