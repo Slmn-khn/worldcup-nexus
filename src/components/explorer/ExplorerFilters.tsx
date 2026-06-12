@@ -1,16 +1,11 @@
 "use client";
 
-import * as React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+// Explorer query console — built on the shared Vault filter components
+// (Checkpoint 7D), so the explorer uses the same archive controls as the
+// index pages. URL-driven; page resets to 1 on any filter change.
+
+import VaultFilterBar from "@/components/filters/VaultFilterBar";
+import { formatStage } from "@/lib/format";
 import type {
   ExplorerDataDto,
   ExplorerEventType,
@@ -25,223 +20,138 @@ const EVENT_TYPE_LABELS: Record<ExplorerEventType, string> = {
   Award: "Awards",
 };
 
+const PAGE_SIZE_OPTIONS = [25, 50, 100].map((size) => ({
+  label: `${size} rows`,
+  value: String(size),
+}));
+
 type Props = {
   filters: ExplorerDataDto["filters"];
   active: ExplorerDataDto["activeFilters"];
   currentPageSize: number;
+  total: number;
 };
 
 export default function ExplorerFilters({
   filters,
   active,
   currentPageSize,
+  total,
 }: Props) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [qInput, setQInput] = React.useState(active.q ?? "");
+  const countryName =
+    filters.countries.find((country) => country.slug === active.countrySlug)
+      ?.name ?? active.countrySlug;
+  const playerName =
+    filters.players.find((player) => player.slug === active.playerSlug)
+      ?.name ?? active.playerSlug;
 
-  function updateParams(updates: Record<string, string | null>) {
-    const params = new URLSearchParams(searchParams.toString());
-    for (const [key, value] of Object.entries(updates)) {
-      if (value === null || value === "") {
-        params.delete(key);
-      } else {
-        params.set(key, value);
-      }
-    }
-    // Filter changes restart from the first page.
-    params.delete("page");
-    const query = params.toString();
-    router.push(query === "" ? pathname : `${pathname}?${query}`);
-  }
-
-  function applyTextQuery() {
-    updateParams({ q: qInput.trim() === "" ? null : qInput.trim() });
-  }
-
-  const hasFilters =
-    active.eventType !== null ||
-    active.tournamentYear !== null ||
-    active.countrySlug !== null ||
-    active.playerSlug !== null ||
-    active.stage !== null ||
-    active.q !== null;
+  const activeItems = [
+    active.eventType !== null
+      ? {
+          param: "eventType",
+          label: "Event",
+          value:
+            EVENT_TYPE_LABELS[active.eventType as ExplorerEventType] ??
+            active.eventType,
+        }
+      : null,
+    active.tournamentYear !== null
+      ? {
+          param: "tournamentYear",
+          label: "Tournament",
+          value: String(active.tournamentYear),
+        }
+      : null,
+    active.countrySlug !== null
+      ? { param: "countrySlug", label: "Country", value: countryName ?? "" }
+      : null,
+    active.playerSlug !== null
+      ? { param: "playerSlug", label: "Player", value: playerName ?? "" }
+      : null,
+    active.stage !== null
+      ? {
+          param: "stage",
+          label: "Stage",
+          value: formatStage(active.stage) ?? active.stage,
+        }
+      : null,
+    active.q !== null
+      ? { param: "q", label: "Search", value: active.q }
+      : null,
+  ].filter((item): item is NonNullable<typeof item> => item !== null);
 
   return (
-    <Box>
-      <Stack
-        direction="row"
-        spacing={2}
-        sx={{ alignItems: "center", flexWrap: "wrap", rowGap: 2 }}
-      >
-        <FormControl size="small" sx={{ minWidth: 170 }}>
-          <InputLabel id="explorer-event-type">Event type</InputLabel>
-          <Select
-            labelId="explorer-event-type"
-            label="Event type"
-            value={active.eventType ?? ""}
-            onChange={(event) =>
-              updateParams({ eventType: event.target.value || null })
-            }
-          >
-            <MenuItem value="">All event types</MenuItem>
-            {filters.eventTypes.map((eventType) => (
-              <MenuItem key={eventType} value={eventType}>
-                {EVENT_TYPE_LABELS[eventType]}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl size="small" sx={{ minWidth: 150 }}>
-          <InputLabel id="explorer-year">Tournament</InputLabel>
-          <Select
-            labelId="explorer-year"
-            label="Tournament"
-            value={
-              active.tournamentYear !== null
-                ? String(active.tournamentYear)
-                : ""
-            }
-            onChange={(event) =>
-              updateParams({ tournamentYear: event.target.value || null })
-            }
-          >
-            <MenuItem value="">All tournaments</MenuItem>
-            {filters.tournamentYears.map((year) => (
-              <MenuItem key={year} value={String(year)}>
-                {year}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl size="small" sx={{ minWidth: 180 }}>
-          <InputLabel id="explorer-country">Country</InputLabel>
-          <Select
-            labelId="explorer-country"
-            label="Country"
-            value={active.countrySlug ?? ""}
-            onChange={(event) =>
-              updateParams({ countrySlug: event.target.value || null })
-            }
-          >
-            <MenuItem value="">All countries</MenuItem>
-            {filters.countries.map((country) => (
-              <MenuItem key={country.slug} value={country.slug}>
-                {country.flagEmoji ? `${country.flagEmoji} ` : ""}
-                {country.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl size="small" sx={{ minWidth: 200 }}>
-          <InputLabel id="explorer-player">Player</InputLabel>
-          <Select
-            labelId="explorer-player"
-            label="Player"
-            value={active.playerSlug ?? ""}
-            onChange={(event) =>
-              updateParams({ playerSlug: event.target.value || null })
-            }
-          >
-            <MenuItem value="">All players</MenuItem>
-            {filters.players.map((player) => (
-              <MenuItem key={player.slug} value={player.slug}>
-                {player.name}
-                {player.countryName !== null ? ` (${player.countryName})` : ""}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl size="small" sx={{ minWidth: 170 }}>
-          <InputLabel id="explorer-stage">Stage</InputLabel>
-          <Select
-            labelId="explorer-stage"
-            label="Stage"
-            value={active.stage ?? ""}
-            onChange={(event) =>
-              updateParams({ stage: event.target.value || null })
-            }
-          >
-            <MenuItem value="">All stages</MenuItem>
-            {filters.stages.map((stage) => (
-              <MenuItem key={stage} value={stage}>
-                {stage}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl size="small" sx={{ minWidth: 120 }}>
-          <InputLabel id="explorer-page-size">Rows</InputLabel>
-          <Select
-            labelId="explorer-page-size"
-            label="Rows"
-            value={String(currentPageSize)}
-            onChange={(event) => updateParams({ pageSize: event.target.value })}
-          >
-            {[25, 50, 100].map((size) => (
-              <MenuItem key={size} value={String(size)}>
-                {size} rows
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Stack>
-
-      <Stack
-        direction="row"
-        spacing={1.5}
-        sx={{ alignItems: "center", flexWrap: "wrap", rowGap: 1.5, mt: 2 }}
-      >
-        <TextField
-          size="small"
-          label="Text search"
-          placeholder="e.g. maradona, azteca, semi-finals"
-          value={qInput}
-          onChange={(event) => setQInput(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") applyTextQuery();
-          }}
-          sx={{ minWidth: 280 }}
-        />
-        <Button variant="outlined" size="small" onClick={applyTextQuery}>
-          Apply
-        </Button>
-        {hasFilters ? (
-          <Button
-            size="small"
-            onClick={() => {
-              setQInput("");
-              updateParams({
-                eventType: null,
-                tournamentYear: null,
-                countrySlug: null,
-                playerSlug: null,
-                stage: null,
-                q: null,
-              });
-            }}
-            sx={{
-              color: "text.secondary",
-              "&:hover": { color: "primary.main" },
-            }}
-          >
-            Clear filters
-          </Button>
-        ) : null}
-      </Stack>
-      <Typography
-        variant="caption"
-        sx={{ color: "text.secondary", display: "block", mt: 1 }}
-      >
-        Player filter options are limited in v1 (players with recorded events,
-        capped at 200).
-      </Typography>
-    </Box>
+    <VaultFilterBar
+      label="Query Console"
+      fields={[
+        {
+          kind: "search",
+          placeholder: "Search events — e.g. maradona, azteca…",
+        },
+        {
+          kind: "select",
+          param: "eventType",
+          label: "Event type",
+          options: filters.eventTypes.map((eventType) => ({
+            label: EVENT_TYPE_LABELS[eventType],
+            value: eventType,
+          })),
+          allLabel: "All event types",
+        },
+        {
+          kind: "select",
+          param: "tournamentYear",
+          label: "Tournament",
+          options: filters.tournamentYears.map((year) => ({
+            label: String(year),
+            value: String(year),
+          })),
+          allLabel: "All tournaments",
+        },
+        {
+          kind: "select",
+          param: "countrySlug",
+          label: "Country",
+          options: filters.countries.map((country) => ({
+            label: `${country.flagEmoji ? `${country.flagEmoji} ` : ""}${country.name}`,
+            value: country.slug,
+          })),
+          allLabel: "All countries",
+        },
+        {
+          kind: "select",
+          param: "playerSlug",
+          label: "Player",
+          options: filters.players.map((player) => ({
+            label:
+              player.countryName !== null
+                ? `${player.name} (${player.countryName})`
+                : player.name,
+            value: player.slug,
+          })),
+          allLabel: "All players",
+        },
+        {
+          kind: "select",
+          param: "stage",
+          label: "Stage",
+          options: filters.stages.map((stage) => ({
+            label: formatStage(stage) ?? stage,
+            value: stage,
+          })),
+          allLabel: "All stages",
+        },
+        {
+          kind: "select",
+          param: "pageSize",
+          label: "Rows",
+          options: PAGE_SIZE_OPTIONS,
+          allLabel: `${currentPageSize} rows`,
+        },
+      ]}
+      active={activeItems}
+      resultCount={total}
+      resultNoun="rows"
+    />
   );
 }

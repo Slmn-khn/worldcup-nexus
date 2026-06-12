@@ -94,6 +94,37 @@ muted headers, strong white tabular numerics for scores/values, gold for
 top-3 ranks. Row hover = one-step surface tint. Mobile overflow scrolls
 horizontally inside the intended wrapper — never tiny text.
 
+## Vault Archive Controls (Checkpoint 7D)
+
+Page filtering uses the shared components in `src/components/filters/`
+(VaultFilterBar, VaultSearchInput, VaultSelect, VaultActiveFilters,
+VaultPager, useUrlFilters). They are archive controls, not SaaS chrome.
+
+- **Filter bar**: a `#0D0D0D` panel with a 1px hairline, zero radius, an
+  uppercase panel label ("ARCHIVE CONTROLS" / "QUERY CONSOLE"), and a
+  tabular result count ("12 / 30 TOURNAMENTS"). Controls sit in a row at
+  desktop and stack at mobile — no drawer, no sidebar.
+- **Inputs/selects**: 48px tall, black fill, hairline border, zero
+  radius, uppercase 0.66rem letterspaced field labels above. Focus
+  border turns white. Search commits on Enter/blur (URL-driven, not
+  keystroke-driven) and offers a clear button.
+- **Active filters**: rectangular hairline labels — uppercase param name
+  in muted gray, value in white, × to remove — plus an uppercase "CLEAR
+  FILTERS" text action. Never rounded, never colorful pills.
+- **Sort** is an ordinary rectangular select; **categories** (records)
+  are uppercase text tabs with a 2px underline on the active tab.
+- **URL-driven**: every filter lives in the query string; views are
+  bookmarkable/shareable; changing a filter resets `page` to 1;
+  unrelated params are preserved; invalid params are ignored or
+  normalized (`src/lib/search-params.ts`), never thrown on.
+- **Options come from the database** (distinct stages, real country
+  slugs, actual hosts/winners) — never hardcoded lists, never fake data.
+- **Empty states are honest**: "no matches fit these filters" panels with
+  a clear path back, distinct from "data not imported yet".
+- Detail pages use the same bar for *local* scope only (a tournament's
+  match list, a nation's match list, a player's event sections) — heroes,
+  stat strips, and honours never filter away.
+
 ## Footer
 
 Black, structured, calm (PDF page 6): brand block (wordmark + stripe +

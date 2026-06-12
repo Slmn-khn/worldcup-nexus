@@ -11,6 +11,7 @@ import { prisma } from "@/server/db/prisma";
 import { FINAL_STAGE, matchCardInclude, toMatchCardDto } from "./helpers";
 import type {
   CountryCardDto,
+  CountryFilterOptions,
   CountryMatchDto,
   CountryProfileDto,
   TopScorerDto,
@@ -82,6 +83,68 @@ export async function getCountryCards(): Promise<CountryCardDto[]> {
     goalsFor: goalsByCountry.get(country.id) ?? 0,
     titlesCount: titlesByCountry.get(country.id) ?? 0,
   }));
+}
+
+/**
+ * Filtered + sorted country cards for the /countries index. The archive
+ * holds under a hundred nations, so filtering happens in memory over the
+ * same aggregates the unfiltered page renders. Title counts come from
+ * Tournament.winnerTeamId (source-resolved) — safe to filter on.
+ */
+export async function getCountryIndex(options: CountryFilterOptions = {}): Promise<{
+  countries: CountryCardDto[];
+  total: number;
+  filteredTotal: number;
+}> {
+  const all = await getCountryCards();
+
+  const q = options.q?.trim().toLowerCase();
+  let filtered = all.filter((country) => {
+    const titles = country.titlesCount ?? 0;
+    if (options.hasTitles === true && titles === 0) return false;
+    if (options.hasTitles === false && titles > 0) return false;
+    if (
+      options.minTournaments !== undefined &&
+      (country.tournamentsEntered ?? 0) < options.minTournaments
+    ) {
+      return false;
+    }
+    if (q !== undefined && q !== "") {
+      const haystack = `${country.name} ${country.code ?? ""}`.toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const sort = options.sort ?? "name";
+  filtered = [...filtered].sort((a, b) => {
+    switch (sort) {
+      case "most-tournaments":
+        return (
+          (b.tournamentsEntered ?? 0) - (a.tournamentsEntered ?? 0) ||
+          a.name.localeCompare(b.name)
+        );
+      case "most-matches":
+        return (
+          (b.matchesCount ?? 0) - (a.matchesCount ?? 0) ||
+          a.name.localeCompare(b.name)
+        );
+      case "most-goals":
+        return (
+          (b.goalsFor ?? 0) - (a.goalsFor ?? 0) || a.name.localeCompare(b.name)
+        );
+      case "most-titles":
+        return (
+          (b.titlesCount ?? 0) - (a.titlesCount ?? 0) ||
+          a.name.localeCompare(b.name)
+        );
+      case "name":
+      default:
+        return a.name.localeCompare(b.name);
+    }
+  });
+
+  return { countries: filtered, total: all.length, filteredTotal: filtered.length };
 }
 
 async function topScorersForTeams(

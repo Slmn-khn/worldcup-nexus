@@ -49,6 +49,7 @@ export default async function ExplorerPage({ searchParams }: Props) {
             filters={data.filters}
             active={data.activeFilters}
             currentPageSize={data.pageSize}
+            total={data.total}
           />
           <ExplorerSummary
             total={data.total}

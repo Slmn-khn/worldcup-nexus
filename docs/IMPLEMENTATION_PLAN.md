@@ -345,6 +345,59 @@ functions (`getHomePageData`, `getTournamentByYear`, `getMatchByIdOrSlug`,
 - Remaining: standings/bracket views, source reconciliation, deployment
   itself.
 
+### Checkpoint 7C Revised — World Cup Vault Editorial Redesign (complete)
+
+The UI follows the uploaded World Cup Vault references and the design.md
+black-canvas editorial system: true-black canvas, Saira Condensed
+uppercase display over Inter 300 body, 1px hairlines, zero radius
+everywhere, restrained gold accents, the green/gold/red identity stripe
+(brand mark only), Vault primitives in `src/components/vault/`, the
+PDF-structured homepage (derived archive span, tournament timeline,
+finals rows), dossier detail pages, and the structured black footer with
+CC-BY-SA attribution. Motion/constellation effects remain parked until
+the visual foundation is stable.
+
+### Checkpoint 7D — Vault Archive Controls + Page Filters (complete)
+
+URL-driven, bookmarkable filtering across the archive in the Vault
+editorial style (no rounded SaaS pills, no sidebar chrome):
+
+- **Reusable filter system** (`src/components/filters/`): VaultFilterBar
+  (hairline panel, uppercase label, result count), VaultSearchInput
+  (48px zero-radius, commits on Enter/blur, clear button), VaultSelect
+  (URL-bound, always an "All" option, options from the query layer),
+  VaultActiveFilters (rectangular labels + clear all), VaultPager
+  (server-rendered PREV/NEXT preserving params), useUrlFilters (client
+  hook: preserves unrelated params, resets page on filter change).
+  Mobile = stacked controls; no drawer needed.
+- **Safe param parsing** (`src/lib/search-params.ts`): string/number/
+  boolean/enum/pagination helpers that ignore or normalize bad input —
+  pages never throw on malformed URLs.
+- **Query layer**: `getTournamentIndex` (q/yearFrom/yearTo/host/winner +
+  5 sorts, in-memory over the cards, options from actual rows);
+  `getMatchCards` extended (q over teams/stage/stadium/year,
+  countrySlug via team→country, stage, decidedByPenalties, 4 sorts —
+  score-derived sorts rank filtered ids in memory then fetch the page) +
+  `getMatchFilterMeta` (years/countries/distinct stages);
+  `getCountryIndex` (q/hasTitles/minTournaments + 5 sorts — titles from
+  source-resolved winnerTeamId, safe to filter); `getPlayerIndex`
+  (q/countrySlug/position/hasGoals/hasAwards/hasCards, paged, 5 sorts —
+  "most goals" via own-goal-excluding groupBy, labeled on the page).
+- **Pages**: /tournaments, /matches, /countries, /players each carry an
+  ARCHIVE CONTROLS bar with filtered counts and honest empty states;
+  /records gets uppercase category tabs (hairline underline) + record
+  search that narrows whole leaderboards (entries are never trimmed);
+  /explorer's Query Console now composes the same Vault filter
+  components (API/export untouched).
+- **Detail page local filters**: tournament match list (q/stage/
+  teamSlug), country match list (q/tournamentYear/stage/result W-D-L
+  from the source-backed result field), player event sections
+  (q/tournamentYear/eventType — squads history never trimmed). Match
+  detail event filter deliberately deferred as future polish.
+- **Verification**: `pnpm data:verify:queries` gains 7D checks — year/
+  country/penalty filter correctness, sort order assertions, q lookups
+  (soft where naming-dependent), and bad-param tolerance.
+
 ### Deliverables
 
 Pages wired to live database:

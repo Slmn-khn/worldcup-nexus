@@ -14,12 +14,17 @@ import TournamentTeamsGrid from "@/components/tournaments/TournamentTeamsGrid";
 import TournamentMatchList from "@/components/tournaments/TournamentMatchList";
 import TournamentTopScorers from "@/components/tournaments/TournamentTopScorers";
 import TournamentAwards from "@/components/tournaments/TournamentAwards";
-import { formatNumber } from "@/lib/format";
+import VaultFilterBar from "@/components/filters/VaultFilterBar";
+import { formatNumber, formatStage } from "@/lib/format";
+import { getStringParam, type RawSearchParams } from "@/lib/search-params";
 import { getTournamentByYear } from "@/server/queries/tournaments";
 
 export const dynamic = "force-dynamic";
 
-type Props = { params: Promise<{ year: string }> };
+type Props = {
+  params: Promise<{ year: string }>;
+  searchParams: Promise<RawSearchParams>;
+};
 
 function parseYear(raw: string): number | null {
   const year = Number(raw);
@@ -40,17 +45,82 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const SECTION_SX = { py: { xs: 4, md: 5 }, scrollMarginTop: 96 };
 
-export default async function TournamentDetailPage({ params }: Props) {
+export default async function TournamentDetailPage({
+  params,
+  searchParams,
+}: Props) {
   const { year: rawYear } = await params;
   const year = parseYear(rawYear);
   if (year === null) notFound();
 
-  const tournament = await getTournamentByYear(year);
+  const [tournament, rawParams] = await Promise.all([
+    getTournamentByYear(year),
+    searchParams,
+  ]);
   if (tournament === null) notFound();
 
   const shootoutMatches = tournament.matches.filter(
     (match) => match.decidedByPenalties,
   );
+
+  // Local archive controls — they narrow the match list only; the hero,
+  // stats, awards, and top scorers always show the full tournament.
+  const matchFilters = {
+    q: getStringParam(rawParams, "q"),
+    stage: getStringParam(rawParams, "stage"),
+    teamSlug: getStringParam(rawParams, "teamSlug"),
+  };
+  const q = matchFilters.q?.toLowerCase();
+  const filteredMatches = tournament.matches.filter((match) => {
+    if (
+      matchFilters.stage !== undefined &&
+      match.stage.toLowerCase() !== matchFilters.stage.toLowerCase()
+    ) {
+      return false;
+    }
+    if (
+      matchFilters.teamSlug !== undefined &&
+      match.homeTeam.slug !== matchFilters.teamSlug &&
+      match.awayTeam.slug !== matchFilters.teamSlug
+    ) {
+      return false;
+    }
+    if (q !== undefined) {
+      const haystack =
+        `${match.homeTeam.name} ${match.awayTeam.name} ${match.stage} ${match.stadiumName ?? ""}`.toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
+    return true;
+  });
+  const stageOptions = [
+    ...new Set(tournament.matches.map((match) => match.stage)),
+  ].map((stage) => ({
+    label: formatStage(stage) ?? stage,
+    value: stage,
+  }));
+  const teamOptions = tournament.teams.map((team) => ({
+    label: team.name,
+    value: team.slug,
+  }));
+  const teamName =
+    teamOptions.find((option) => option.value === matchFilters.teamSlug)
+      ?.label ?? matchFilters.teamSlug;
+
+  const activeMatchFilters = [
+    matchFilters.q !== undefined
+      ? { param: "q", label: "Search", value: matchFilters.q }
+      : null,
+    matchFilters.stage !== undefined
+      ? {
+          param: "stage",
+          label: "Stage",
+          value: formatStage(matchFilters.stage) ?? matchFilters.stage,
+        }
+      : null,
+    matchFilters.teamSlug !== undefined
+      ? { param: "teamSlug", label: "Team", value: teamName ?? "" }
+      : null,
+  ].filter((item): item is NonNullable<typeof item> => item !== null);
 
   return (
     <Box>
@@ -92,7 +162,39 @@ export default async function TournamentDetailPage({ params }: Props) {
           title="Matches"
           subtitle={`Every match of the tournament, stage by stage (${formatNumber(tournament.matches.length)} total).`}
         />
-        <TournamentMatchList matches={tournament.matches} />
+        <Box sx={{ mb: 3 }}>
+          <VaultFilterBar
+            fields={[
+              { kind: "search", placeholder: "Search matches…" },
+              {
+                kind: "select",
+                param: "stage",
+                label: "Stage",
+                options: stageOptions,
+                allLabel: "All stages",
+              },
+              {
+                kind: "select",
+                param: "teamSlug",
+                label: "Team",
+                options: teamOptions,
+                allLabel: "All teams",
+              },
+            ]}
+            active={activeMatchFilters}
+            resultCount={filteredMatches.length}
+            totalCount={tournament.matches.length}
+            resultNoun="matches"
+          />
+        </Box>
+        {filteredMatches.length > 0 ? (
+          <TournamentMatchList matches={filteredMatches} />
+        ) : (
+          <EmptyState
+            title="No matches fit these filters"
+            description="No match in this tournament fits the current stage, team, or search."
+          />
+        )}
       </PageContainer>
 
       {/* Top Scorers */}
