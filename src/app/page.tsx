@@ -62,7 +62,7 @@ export default async function Home() {
     spanStart !== null && spanEnd !== null ? `${spanStart}–${spanEnd}` : null;
 
   const timelineEntries = [...tournaments]
-    .sort((a, b) => a.year - b.year)
+    .sort((a, b) => b.year - a.year)
     .map((tournament) => ({
       year: tournament.year,
       winner: tournament.winner,
