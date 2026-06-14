@@ -3,6 +3,7 @@ import { Inter, Saira_Condensed } from "next/font/google";
 import { Providers } from "./providers";
 import AppShell from "@/components/layout/AppShell";
 import { siteConfig } from "@/lib/site";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -72,6 +73,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
   return (
     <html lang="en" className={`${inter.variable} ${saira.variable}`}>
       <body>
@@ -79,6 +82,7 @@ export default function RootLayout({
           <AppShell>{children}</AppShell>
         </Providers>
       </body>
+      {gaMeasurementId ? <GoogleAnalytics gaId={gaMeasurementId} /> : null}
     </html>
   );
 }
