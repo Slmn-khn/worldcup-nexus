@@ -5,6 +5,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { atlas, eyebrowSx, interactiveCardSx, tabularNums } from "@/theme/tokens";
+import CountryFlag from "@/components/media/CountryFlag";
 import type { FixtureDto } from "@/server/fixtures/types";
 import FixtureStatusChip from "./FixtureStatusChip";
 import {
@@ -29,6 +30,16 @@ function TeamLine({
   align: "right" | "left";
 }) {
   const glyph = safeFlagGlyph(flag);
+  // Prefer a verified emoji glyph; otherwise fall back to a CSS flag resolved
+  // from the team name/code (with its own neutral badge fallback).
+  const flagNode =
+    glyph !== null ? (
+      <Box component="span" aria-hidden sx={{ fontSize: "1.1rem" }}>
+        {glyph}
+      </Box>
+    ) : name !== null || code !== null ? (
+      <CountryFlag name={name} code={code} fifaCode={code} size="sm" />
+    ) : null;
   return (
     <Box
       sx={{
@@ -39,11 +50,7 @@ function TeamLine({
         minWidth: 0,
       }}
     >
-      {glyph !== null && align === "left" ? (
-        <Box component="span" aria-hidden sx={{ fontSize: "1.1rem" }}>
-          {glyph}
-        </Box>
-      ) : null}
+      {flagNode !== null && align === "left" ? flagNode : null}
       <Typography
         component="span"
         sx={{
@@ -57,11 +64,7 @@ function TeamLine({
       >
         {teamLabel(name, code)}
       </Typography>
-      {glyph !== null && align === "right" ? (
-        <Box component="span" aria-hidden sx={{ fontSize: "1.1rem" }}>
-          {glyph}
-        </Box>
-      ) : null}
+      {flagNode !== null && align === "right" ? flagNode : null}
     </Box>
   );
 }
