@@ -49,6 +49,9 @@ importers:
       dotenv:
         specifier: ^17.4.2
         version: 17.4.2
+      flag-icons:
+        specifier: ^7.5.0
+        version: 7.5.0
       meilisearch:
         specifier: ^0.58.0
         version: 0.58.0
@@ -3745,6 +3748,10 @@ packages:
       locate-path: 6.0.0
       path-exists: 4.0.0
     dev: true
+
+  /flag-icons@7.5.0:
+    resolution: {integrity: sha512-kd+MNXviFIg5hijH766tt+3x76ele1AXlo4zDdCxIvqWZhKt4T83bOtxUOOMlTx/EcFdUMH5yvQgYlFh1EqqFg==}
+    dev: false
 
   /flat-cache@4.0.1:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}

@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Saira_Condensed } from "next/font/google";
+// CSS-based country flags (flag-icons). Pure CSS, no external images — used by
+// the <CountryFlag> media component. See docs/MEDIA_ASSET_STRATEGY.md.
+import "flag-icons/css/flag-icons.min.css";
 import { Providers } from "./providers";
 import AppShell from "@/components/layout/AppShell";
 import { siteConfig } from "@/lib/site";
