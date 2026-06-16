@@ -23,6 +23,25 @@ enum PenaltyKickType {
   SHOOTOUT
 }
 
+// Live-fixture pipeline (2026 schedule & scores). Distinct from the historical
+// Match model: Fixture holds source-attributed, syncable provider rows for the
+// current/upcoming tournament — never silently merged into the curated archive.
+enum FixtureStatus {
+  SCHEDULED
+  LIVE
+  HALF_TIME
+  FINISHED
+  POSTPONED
+  CANCELLED
+  UNKNOWN
+}
+
+enum FixtureSource {
+  OPENFOOTBALL
+  WORLDCUP26
+  MANUAL
+}
+
 model Tournament {
   id           String    @id @default(cuid())
   sourceId     String?   @unique
@@ -333,6 +352,85 @@ model Award {
   @@index([tournamentId])
   @@index([playerId])
   @@index([teamId])
+}
+
+// One row per (provider, source match id) for the 2026 schedule & scores
+// feature. The canonical view per logical match is computed at read time
+// (see src/server/fixtures/normalize.ts selectCanonicalFixtures) — provider
+// rows are kept separate so a flaky live source never corrupts the baseline.
+model Fixture {
+  id String @id @default(cuid())
+
+  tournamentYear Int
+  source         FixtureSource
+  sourceId       String?
+
+  matchNumber Int?
+  round       String?
+  stage       String?
+  groupName   String?
+
+  kickoffAtUtc     DateTime?
+  kickoffDateLabel String?
+  kickoffTimeLabel String?
+  venueTimeZone    String?
+
+  homeTeamName String?
+  awayTeamName String?
+  homeTeamSlug String?
+  awayTeamSlug String?
+  homeTeamCode String?
+  awayTeamCode String?
+  homeTeamFlag String?
+  awayTeamFlag String?
+
+  homeScore        Int?
+  awayScore        Int?
+  homePenaltyScore Int?
+  awayPenaltyScore Int?
+
+  status FixtureStatus @default(UNKNOWN)
+
+  venueName   String?
+  cityName    String?
+  countryName String?
+
+  sourcePriority  Int       @default(100)
+  sourceUpdatedAt DateTime?
+  lastSyncedAt    DateTime  @default(now())
+  rawPayload      Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([source, sourceId])
+  @@index([tournamentYear])
+  @@index([kickoffAtUtc])
+  @@index([status])
+  @@index([groupName])
+  @@index([stage])
+  @@index([homeTeamSlug])
+  @@index([awayTeamSlug])
+}
+
+// Audit trail for each provider sync attempt — never leaks provider secrets.
+model FixtureSyncLog {
+  id String @id @default(cuid())
+
+  provider        String
+  status          String
+  startedAt       DateTime  @default(now())
+  finishedAt      DateTime?
+  recordsFetched  Int       @default(0)
+  recordsUpserted Int       @default(0)
+  errorMessage    String?
+  metadata        Json?
+
+  createdAt DateTime @default(now())
+
+  @@index([provider])
+  @@index([status])
+  @@index([startedAt])
 }
 
 // Verbatim copy of every imported source row, kept for auditing and
