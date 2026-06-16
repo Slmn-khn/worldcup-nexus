@@ -90,6 +90,41 @@ normalize or import anything into the database — that happens in Checkpoint 4.
 
 ---
 
+## Live fixtures: 2026 schedule & scores
+
+The 2026 schedule/scores feature uses a **separate** pipeline from the historical
+Fjelstul archive (it lands in the `Fixture` table, never in `Match`). It is
+source-attributed and synced into PostgreSQL before rendering — the browser
+never calls these providers. See `docs/FEATURE_2026_SCHEDULE.md` for the full
+design.
+
+| Provider | Role | Priority (lower wins) | Trust |
+| --- | --- | --- | --- |
+| OpenFootball `worldcup.json` (2026) | Baseline schedule, venues, groups, basic results | 50 | Stable open data, not guaranteed live |
+| worldcup26.ir API (optional) | Live scores / current status | 10 | Non-authoritative community source; fails gracefully |
+| Official FIFA fixtures page | Manual verification reference only — **not scraped** | — | Reference only |
+
+- OpenFootball is the **stable baseline** for 2026 fixtures, and the
+  **production default** is `openfootball-only` — worldcup26 is not called at
+  all unless explicitly enabled. The Fjelstul database stays the primary source
+  for all **historical** (≤ 2022) data.
+- worldcup26 is **optional**, used only for live/current updates when configured
+  (`FIXTURE_SYNC_PROVIDER_MODE=openfootball-first` or `live-first` plus a
+  `WORLDCUP26_API_BASE_URL`). Its endpoint is `…/get/games`. If it returns 404 /
+  is unavailable, the sync logs a non-fatal warning and the app falls back to
+  the OpenFootball baseline.
+- External provider data is synced **server-side** into PostgreSQL; the frontend
+  renders from our database, and no provider is ever called from the browser.
+- Each provider's rows are stored separately; the canonical per-match view is
+  computed at read time. Provider conflicts are resolved by `sourcePriority` and
+  documented in `docs/FEATURE_2026_SCHEDULE.md` (and `docs/DATA_ISSUES.md` when a
+  specific conflict is found).
+- worldcup26.ir is community-maintained and non-authoritative; if it appears in
+  production it is credited via the per-fixture source line, and its data is
+  treated as provisional until verified against the official FIFA page.
+- WorldCup Nexus / WorldCup Atlas is an independent archive and is **not
+  affiliated with FIFA**; no official FIFA logos or branding are used.
+
 ## Additional reference sources
 
 The following are acceptable as reference for verification only. They must not be used as automated import sources without documented review:

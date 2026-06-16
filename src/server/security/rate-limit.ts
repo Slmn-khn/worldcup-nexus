@@ -8,7 +8,12 @@
 
 import { NextResponse } from "next/server";
 
-export type RateLimitBucket = "search" | "explorer" | "export" | "health";
+export type RateLimitBucket =
+  | "search"
+  | "explorer"
+  | "export"
+  | "health"
+  | "fixtures";
 
 export const RATE_LIMITS: Record<
   RateLimitBucket,
@@ -18,6 +23,7 @@ export const RATE_LIMITS: Record<
   explorer: { limit: 60, windowMs: 60_000 },
   export: { limit: 6, windowMs: 60_000 },
   health: { limit: 120, windowMs: 60_000 },
+  fixtures: { limit: 60, windowMs: 60_000 },
 };
 
 export type RateLimitResult = {
