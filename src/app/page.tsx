@@ -19,12 +19,14 @@ import GlobalSearch from "@/components/ui/GlobalSearch";
 import EmptyState from "@/components/ui/EmptyState";
 import TournamentCard from "@/components/tournaments/TournamentCard";
 import MatchRowList from "@/components/matches/MatchRowList";
+import HomeLatestMatchesSection from "@/components/fixtures/HomeLatestMatchesSection";
 import CountryCard from "@/components/countries/CountryCard";
 import PlayerCard from "@/components/players/PlayerCard";
 import RecordCard from "@/components/records/RecordCard";
 import { formatDate, formatNumber } from "@/lib/format";
 import { getHomePageData } from "@/server/queries/home";
 import { getTournamentCards } from "@/server/queries/tournaments";
+import { getHomeFixtures2026 } from "@/server/fixtures/queries";
 import { atlas } from "@/theme/tokens";
 
 // Live archive data — always render from the current database state.
@@ -48,9 +50,10 @@ const CARD_GRID_4 = {
 };
 
 export default async function Home() {
-  const [data, tournaments] = await Promise.all([
+  const [data, tournaments, fixtureData] = await Promise.all([
     getHomePageData(),
     getTournamentCards(),
+    getHomeFixtures2026(),
   ]);
   const { archiveStats } = data;
 
@@ -202,6 +205,17 @@ export default async function Home() {
             emphasis
           />
         </Box>
+      </VaultSection>
+
+      {/* Latest Matches / 2026 Schedule & Scores — live archive data from the
+          fixture pipeline (DB-backed; no third-party calls from the browser). */}
+      <VaultSection
+        eyebrow="2026 World Cup"
+        title="Latest Matches & Scores"
+        description="Live, today's, recent, and upcoming 2026 World Cup fixtures."
+        action={{ label: "Full schedule", href: "/schedule/2026" }}
+      >
+        <HomeLatestMatchesSection data={fixtureData} />
       </VaultSection>
 
       {/* Tournament timeline */}
