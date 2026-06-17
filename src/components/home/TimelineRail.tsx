@@ -77,10 +77,19 @@ export default function TimelineRail({
               clickable
               component={Link}
               href={`/tournaments/${entry.year}`}
-              aria-label={`${entry.year} World Cup`}
+              aria-label={`View ${entry.year} World Cup details`}
               // Native link-drag is suppressed by the rail's onDragStart handler
               // (see useDragScroll), so a mouse drag scrolls instead of dragging.
-              sx={{ flex: "0 0 auto", width: CARD_WIDTH, px: 2.5, py: 2.5 }}
+              sx={{
+                flex: "0 0 auto",
+                width: CARD_WIDTH,
+                px: 2.5,
+                py: 2.5,
+                "&:focus-visible": {
+                  outline: `2px solid ${atlasColors.cyan}`,
+                  outlineOffset: 4,
+                },
+              }}
             >
               <Typography
                 component="p"
