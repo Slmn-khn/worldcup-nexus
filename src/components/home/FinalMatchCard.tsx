@@ -1,21 +1,19 @@
-// Final / iconic match card (Phase 4). Flags + scoreline on a dark event card.
-// Uses an approved EVENT_COVER media band when one exists, otherwise the card is
-// carried entirely by flags + typography (no copyrighted match photography, no
+// Final / iconic match card (neon pass). A compact premium results card: a
+// year · stage chip, both teams with flags, a glowing centered scoreline, an
+// optional penalty note, and venue. Optional approved EVENT_COVER media band;
+// otherwise flags + typography carry it (no copyrighted match photography, no
 // broken images). Links to the match detail page.
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import GlowCard from "@/components/ui/GlowCard";
+import NeonChip from "@/components/ui/NeonChip";
 import EntityImage from "@/components/media/EntityImage";
 import CountryFlag from "@/components/media/CountryFlag";
-import {
-  atlas,
-  eyebrowSx,
-  interactiveCardSx,
-  tabularNums,
-  textLinkSx,
-} from "@/theme/tokens";
+import { atlas } from "@/theme/tokens";
+import { atlasColors, atlasGlow } from "@/theme/visualTokens";
 import type { HomeFinal } from "@/server/home/queries";
 
 function TeamRow({ name }: { name: string }) {
@@ -25,17 +23,20 @@ function TeamRow({ name }: { name: string }) {
       spacing={1.25}
       sx={{ alignItems: "center", minWidth: 0 }}
     >
-      <CountryFlag name={name} size="sm" />
+      <CountryFlag name={name} size="sm" rounded />
       <Typography
         sx={{
           fontFamily: atlas.fontDisplay,
           fontWeight: 700,
-          fontSize: "1.1rem",
+          fontSize: "1.05rem",
           textTransform: "uppercase",
           letterSpacing: "0.02em",
-          color: atlas.textPrimary,
+          color: atlasColors.textPrimary,
           lineHeight: 1.1,
           minWidth: 0,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
         }}
       >
         {name}
@@ -46,18 +47,18 @@ function TeamRow({ name }: { name: string }) {
 
 export default function FinalMatchCard({ match }: { match: HomeFinal }) {
   return (
-    <Box
+    <GlowCard
+      variant="default"
+      clickable
       component={Link}
       href={`/matches/${match.slug}`}
       sx={{
         display: "flex",
         flexDirection: "column",
-        bgcolor: atlas.surface1,
-        border: `1px solid ${atlas.border}`,
-        ...interactiveCardSx,
+        overflow: "hidden",
+        p: 0,
       }}
     >
-      {/* Optional approved event cover — gradient fallback otherwise. */}
       {match.eventMedia !== null ? (
         <EntityImage
           media={match.eventMedia}
@@ -65,11 +66,13 @@ export default function FinalMatchCard({ match }: { match: HomeFinal }) {
           alt={`${match.homeTeam} vs ${match.awayTeam}, ${match.year}`}
           aspectRatio="16 / 6"
           sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-          sx={{ borderLeft: "none", borderRight: "none", borderTop: "none" }}
+          sx={{ border: "none" }}
         />
       ) : null}
 
-      <Box sx={{ p: 3, display: "flex", flexDirection: "column", flexGrow: 1 }}>
+      <Box
+        sx={{ p: 2.75, display: "flex", flexDirection: "column", flexGrow: 1 }}
+      >
         <Stack
           direction="row"
           spacing={1}
@@ -79,12 +82,23 @@ export default function FinalMatchCard({ match }: { match: HomeFinal }) {
             mb: 2.5,
           }}
         >
-          <Typography component="span" sx={{ ...eyebrowSx, color: atlas.gold }}>
-            {match.year} · {match.stageLabel}
-          </Typography>
+          <NeonChip
+            accent="gold"
+            label={`${match.year} · ${match.stageLabel}`}
+          />
           <Typography
             component="span"
-            sx={{ ...eyebrowSx, fontSize: "0.62rem", color: atlas.textMuted }}
+            sx={{
+              fontSize: "0.6rem",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: atlasColors.textMuted,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              minWidth: 0,
+            }}
           >
             {match.tournamentName}
           </Typography>
@@ -101,12 +115,13 @@ export default function FinalMatchCard({ match }: { match: HomeFinal }) {
           </Stack>
           <Typography
             sx={{
-              ...tabularNums,
               fontFamily: atlas.fontDisplay,
               fontWeight: 700,
-              fontSize: "1.9rem",
+              fontVariantNumeric: "tabular-nums",
+              fontSize: "2rem",
               lineHeight: 1,
-              color: atlas.textPrimary,
+              color: atlasColors.goldStrong,
+              textShadow: `0 0 18px ${atlasGlow.gold}`,
               flexShrink: 0,
             }}
           >
@@ -117,7 +132,7 @@ export default function FinalMatchCard({ match }: { match: HomeFinal }) {
         {match.decidedByPenalties ? (
           <Typography
             variant="caption"
-            sx={{ color: atlas.gold, mt: 1.5, display: "block" }}
+            sx={{ color: atlasColors.cyanStrong, mt: 1.5, display: "block" }}
           >
             Decided on penalties
           </Typography>
@@ -125,7 +140,7 @@ export default function FinalMatchCard({ match }: { match: HomeFinal }) {
         {match.venue !== null ? (
           <Typography
             variant="caption"
-            sx={{ color: atlas.textMuted, mt: 0.5, display: "block" }}
+            sx={{ color: atlasColors.textMuted, mt: 0.5, display: "block" }}
           >
             {match.venue}
           </Typography>
@@ -133,12 +148,16 @@ export default function FinalMatchCard({ match }: { match: HomeFinal }) {
 
         <Box
           sx={{
-            ...textLinkSx,
             mt: "auto",
-            pt: 2.5,
-            borderTop: `1px solid ${atlas.border}`,
+            pt: 2.25,
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: "0.72rem",
+            fontWeight: 700,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: atlasColors.cyanStrong,
           }}
         >
           <Box component="span">Match detail</Box>
@@ -147,6 +166,6 @@ export default function FinalMatchCard({ match }: { match: HomeFinal }) {
           </Box>
         </Box>
       </Box>
-    </Box>
+    </GlowCard>
   );
 }

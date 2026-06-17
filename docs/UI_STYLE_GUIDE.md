@@ -1,4 +1,38 @@
-# WORLDCUP Nexus Vault Editorial System
+# WORLDCUP Nexus Visual System
+
+## Neon Atlas — current visual direction
+
+WORLDCUP Nexus now leads with a **"stadium at night"** premium identity: a deep
+blue-black canvas lit by **trophy gold** and **electric cyan** glow. The homepage
+is the flagship of this language; interior archive pages keep a calmer layout but
+share the same palette and will migrate toward it over time.
+
+**Tokens live in `src/theme/visualTokens.ts`** (`atlasColors`, `atlasGlow`,
+`atlasBorders`, `atlasShadows`, `atlasGradients`, `atlasRadius`,
+`tournamentGradient`, `accentTextSx`). Apply them via `sx` — the base theme
+(`src/theme/theme.ts`) stays zero-radius so non-homepage routes are unaffected
+unless intentionally migrated.
+
+- **Canvas:** page `#020812`, deep blue `#061827`, surface `#0B1622`, glass
+  `rgba(10,20,32,0.82)`. Full-page atmosphere is a cyan glow (top-right) + gold
+  glow (lower-left) over deep blue (`atlasGradients.page`).
+- **Accents:** gold `#F4C95D` / `#FFD66B`, cyan `#00D9FF` / `#39E6FF`. Numbers and
+  values glow via `accentTextSx`.
+- **Cards:** rounded (`atlasRadius` 12–28px), gradient-filled, soft 1px borders
+  that brighten gold/cyan on hover, with a lift + glow shadow. Drop shadows and
+  gradients are **embraced** on premium surfaces (a reversal of the old Vault
+  rules). Use the shared wrappers in `src/components/ui/`: `GlowCard`,
+  `SectionHeader`, `NeonButton`, `NeonChip`, `GlowingSearchBar`.
+- **Glow:** gold/cyan halos (`atlasShadows.goldGlow`/`cyanGlow`, `atlasGlow.*`).
+  Keep it tasteful — one or two accent moments per surface, never a wall of neon.
+- **Buttons:** pill-shaped `NeonButton` (gold filled, cyan filled, outline) with a
+  glow on hover.
+- **Still true:** MUI only, no Tailwind, no official FIFA logos, no unapproved or
+  copyrighted media, condensed uppercase display headings, honest data labels.
+
+The sections below document the original **Vault Editorial** system. It remains
+the reference for the calmer interior-archive layout (typography, grid, data
+honesty), now recolored onto the Neon Atlas palette above.
 
 ## Design philosophy
 
@@ -199,14 +233,18 @@ generated from the icon with `pnpm assets:icons` — never hand-edited.
 
 ## What to avoid
 
-- Neon glow, cyber gradients, particle/constellation backgrounds.
-- Rounded corners on cards/buttons/inputs (circles allowed only for
-  functional icon controls).
-- Drop shadows; layered chrome; atmospheric backdrops behind type.
+> Superseded by the **Neon Atlas** direction at the top of this guide. Glow,
+> gradients, rounded cards, and drop shadows are now part of the premium surface
+> language (via `src/theme/visualTokens.ts`). The items below are retained as the
+> calmer-layout sensibility for interior archive pages, not hard prohibitions.
+
+- Particle/constellation backgrounds and animated atmosphere behind type
+  (still avoid — a CSS glow gradient is fine, moving particle fields are not).
+- A wall of neon: keep glow to one or two accent moments per surface.
 - Bold body text; sentence-case hero headlines; tracking under 1.5px on
   uppercase labels.
-- More than one accent moment per surface; stripe overuse.
-- Official FIFA logos or implied affiliation.
+- Stripe overuse.
+- Official FIFA logos or implied affiliation; unapproved or copyrighted media.
 
 ## Future motion guidance (Checkpoint 7D)
 

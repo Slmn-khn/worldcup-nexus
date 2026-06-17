@@ -7,8 +7,9 @@ import Image from "next/image";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { atlas } from "@/theme/tokens";
+import { atlasGlow } from "@/theme/visualTokens";
 import { getInitials } from "@/lib/media/initials";
-import CountryFlag from "./CountryFlag";
+import CountryFlag, { type CountryFlagSize } from "./CountryFlag";
 
 export type PlayerPortraitSize = "sm" | "md" | "lg" | "xl";
 
@@ -17,6 +18,19 @@ const SIZE_PX: Record<PlayerPortraitSize, number> = {
   md: 80,
   lg: 128,
   xl: 184,
+};
+
+// Flag badge geometry per portrait size: a circular dark wrapper with a gold
+// rim + glow holding a CSS flag. Bigger and clearly visible on the large
+// collectible cards (lg/xl); proportional on small list portraits.
+const BADGE: Record<
+  PlayerPortraitSize,
+  { wrap: number; flag: CountryFlagSize; offset: number }
+> = {
+  sm: { wrap: 22, flag: "xs", offset: -4 },
+  md: { wrap: 28, flag: "sm", offset: -5 },
+  lg: { wrap: 34, flag: "md", offset: -5 },
+  xl: { wrap: 38, flag: "md", offset: -6 },
 };
 
 type PlayerPortraitProps = {
@@ -40,7 +54,7 @@ export default function PlayerPortrait({
   const hasImage = imageUrl != null && imageUrl.trim() !== "";
   const initials = getInitials(name);
   const showFlag = countryName != null || countryCode != null;
-  const flagSize = size === "lg" || size === "xl" ? "sm" : "xs";
+  const badge = BADGE[size];
 
   return (
     <Box
@@ -104,18 +118,27 @@ export default function PlayerPortrait({
         <Box
           sx={{
             position: "absolute",
-            right: -4,
-            bottom: -4,
+            right: badge.offset,
+            bottom: badge.offset,
+            width: badge.wrap,
+            height: badge.wrap,
+            minWidth: badge.wrap,
+            borderRadius: "50%",
+            bgcolor: "rgba(2, 8, 18, 0.85)",
+            border: `1px solid ${atlasGlow.gold}`,
+            boxShadow: `0 0 12px ${atlasGlow.gold}`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             lineHeight: 0,
-            // Lift the badge above the portrait edge.
-            boxShadow: `0 0 0 2px ${atlas.bgBase}`,
           }}
         >
           <CountryFlag
             name={countryName}
             code={countryCode}
-            size={flagSize}
+            size={badge.flag}
             rounded
+            sx={{ border: "none", boxShadow: "none" }}
           />
         </Box>
       ) : null}

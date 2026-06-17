@@ -1,96 +1,136 @@
-// Player record card (Phase 4). Reuses the fallback-first PlayerPortrait — an
-// approved curated portrait when one exists, otherwise the dark charcoal +
-// gold initials crest (never a broken image, never a hardcoded URL). Shows the
-// player's World Cup goals as the record value, with an honest scope.
+// Player record card (neon pass). A collectible-style card: a tall spotlit
+// portrait area (the fallback-first PlayerPortrait — approved curated image when
+// one exists, otherwise the dark charcoal + gold initials crest with a country
+// flag badge, never a broken image, never a hardcoded URL), then the player
+// name and their World Cup goals as a glowing record value.
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import GlowCard from "@/components/ui/GlowCard";
 import PlayerPortrait from "@/components/media/PlayerPortrait";
+import { atlas } from "@/theme/tokens";
 import { formatNumber } from "@/lib/format";
 import {
-  atlas,
-  eyebrowSx,
-  interactiveCardSx,
-  tabularNums,
-} from "@/theme/tokens";
+  atlasColors,
+  atlasGlow,
+  accentTextSx,
+  type AtlasAccent,
+} from "@/theme/visualTokens";
 import type { HomePlayerRecord } from "@/server/home/queries";
 
 export default function PlayerRecordCard({
   player,
+  accent = "gold",
 }: {
   player: HomePlayerRecord;
+  accent?: AtlasAccent;
 }) {
+  const spotlight = accent === "gold" ? atlasGlow.goldSoft : atlasGlow.cyanSoft;
+
   return (
-    <Box
+    <GlowCard
+      variant={accent}
+      clickable
       component={Link}
       href={`/players/${player.slug}`}
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "flex-start",
-        bgcolor: atlas.surface1,
-        border: `1px solid ${atlas.border}`,
-        p: 3,
-        ...interactiveCardSx,
+        overflow: "hidden",
+        p: 0,
       }}
     >
-      <PlayerPortrait
-        name={player.name}
-        imageUrl={player.portraitUrl}
-        countryName={player.countryName}
-        size="lg"
-        alt={`${player.name} portrait`}
-      />
-      <Typography
-        component="p"
+      {/* Spotlit portrait stage. */}
+      <Box
         sx={{
-          fontFamily: atlas.fontDisplay,
-          fontWeight: 700,
-          fontSize: "1.25rem",
-          textTransform: "uppercase",
-          letterSpacing: "0.02em",
-          color: atlas.textPrimary,
-          lineHeight: 1.15,
-          mt: 2,
+          position: "relative",
+          py: 3.5,
+          display: "flex",
+          justifyContent: "center",
+          background: `radial-gradient(60% 80% at 50% 30%, ${spotlight}, transparent 70%)`,
         }}
       >
-        {player.name}
-      </Typography>
-      <Typography
-        component="p"
-        sx={{
-          ...eyebrowSx,
-          fontSize: "0.66rem",
-          color: atlas.textMuted,
-          mt: 0.75,
-        }}
-      >
-        {player.countryName ?? "Nation unknown"}
-      </Typography>
+        <PlayerPortrait
+          name={player.name}
+          imageUrl={player.portraitUrl}
+          countryName={player.countryName}
+          size="xl"
+          alt={`${player.name} portrait`}
+        />
+      </Box>
 
-      <Stack direction="row" spacing={1} sx={{ alignItems: "baseline", mt: 2 }}>
+      <Box
+        sx={{
+          px: 2.5,
+          pb: 2.75,
+          pt: 0.5,
+          textAlign: "center",
+          borderTop: `1px solid ${atlasColors.surfaceRaised}`,
+        }}
+      >
         <Typography
-          component="span"
+          component="p"
           sx={{
-            ...tabularNums,
             fontFamily: atlas.fontDisplay,
             fontWeight: 700,
-            fontSize: "1.6rem",
-            lineHeight: 1,
-            color: atlas.gold,
+            fontSize: "1.15rem",
+            textTransform: "uppercase",
+            letterSpacing: "0.02em",
+            color: atlasColors.textPrimary,
+            lineHeight: 1.15,
+            mt: 2,
           }}
         >
-          {formatNumber(player.goals)}
+          {player.name}
         </Typography>
         <Typography
-          component="span"
-          sx={{ ...eyebrowSx, fontSize: "0.62rem", color: atlas.textMuted }}
+          component="p"
+          sx={{
+            fontSize: "0.6rem",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: atlasColors.textMuted,
+            mt: 0.75,
+          }}
         >
-          World Cup goals
+          {player.countryName ?? "Nation unknown"}
         </Typography>
-      </Stack>
-    </Box>
+
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{ alignItems: "baseline", justifyContent: "center", mt: 1.75 }}
+        >
+          <Typography
+            component="span"
+            sx={{
+              fontFamily: atlas.fontDisplay,
+              fontWeight: 700,
+              fontVariantNumeric: "tabular-nums",
+              fontSize: "1.7rem",
+              lineHeight: 1,
+              ...accentTextSx(accent),
+            }}
+          >
+            {formatNumber(player.goals)}
+          </Typography>
+          <Typography
+            component="span"
+            sx={{
+              fontSize: "0.58rem",
+              fontWeight: 700,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: atlasColors.textMuted,
+            }}
+          >
+            World Cup goals
+          </Typography>
+        </Stack>
+      </Box>
+    </GlowCard>
   );
 }

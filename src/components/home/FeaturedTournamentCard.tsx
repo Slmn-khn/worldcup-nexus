@@ -1,22 +1,22 @@
-// Featured tournament card (Phase 4). A media band on top — approved HERO image
-// when one exists, otherwise a dark CSS gradient (EntityImage handles both, so
-// there are never broken images) — then a structured header (year + host) and
-// winner / final / runner-up blocks. Zero radius, hairline borders, no shadow.
+// Featured tournament card (neon pass). Taller, image-first: a media band on
+// top — approved HERO image when one exists, otherwise a deterministic per-year
+// CSS theme gradient (never a broken image) — with the year + host overlaid,
+// then winner / final / runner-up and a View Tournament CTA. Hover lifts + glows.
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import GlowCard from "@/components/ui/GlowCard";
 import EntityImage from "@/components/media/EntityImage";
 import CountryFlag from "@/components/media/CountryFlag";
+import { atlas } from "@/theme/tokens";
 import { formatNumber } from "@/lib/format";
 import {
-  atlas,
-  eyebrowSx,
-  interactiveCardSx,
-  tabularNums,
-  textLinkSx,
-} from "@/theme/tokens";
+  atlasColors,
+  atlasGlow,
+  tournamentGradient,
+} from "@/theme/visualTokens";
 import type { HomeFeaturedTournament } from "@/server/home/queries";
 
 export default function FeaturedTournamentCard({
@@ -37,52 +37,71 @@ export default function FeaturedTournamentCard({
   ].filter((part): part is string => part !== null);
 
   return (
-    <Box
+    <GlowCard
+      variant="default"
+      clickable
       component={Link}
       href={`/tournaments/${tournament.year}`}
       sx={{
         display: "flex",
         flexDirection: "column",
-        bgcolor: atlas.surface1,
-        border: `1px solid ${atlas.border}`,
-        ...interactiveCardSx,
+        overflow: "hidden",
+        p: 0,
       }}
     >
-      {/* Decorative media band — approved HERO or a dark gradient fallback. */}
+      {/* Media band — approved HERO image, or a per-year theme gradient. */}
       <Box sx={{ position: "relative" }}>
-        <EntityImage
-          media={tournament.heroMedia}
-          fallbackType="tournament-gradient"
-          alt={`${tournament.name} visual`}
-          aspectRatio="16 / 7"
-          sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-          sx={{ borderLeft: "none", borderRight: "none", borderTop: "none" }}
+        {tournament.heroMedia !== null ? (
+          <EntityImage
+            media={tournament.heroMedia}
+            fallbackType="tournament-gradient"
+            alt={`${tournament.name} visual`}
+            aspectRatio="16 / 8"
+            sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+            sx={{ border: "none" }}
+          />
+        ) : (
+          <Box
+            aria-hidden
+            sx={{
+              aspectRatio: "16 / 8",
+              background: tournamentGradient(tournament.year),
+            }}
+          />
+        )}
+        {/* Readability scrim + year/host. */}
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(0deg, rgba(3,12,22,0.92) 0%, rgba(3,12,22,0.1) 55%, transparent 100%)",
+          }}
         />
         <Box
           sx={{
             position: "absolute",
             left: 0,
-            bottom: 0,
             right: 0,
-            px: 3,
+            bottom: 0,
+            px: 2.5,
             py: 2,
             display: "flex",
-            alignItems: "baseline",
+            alignItems: "flex-end",
             justifyContent: "space-between",
             gap: 2,
-            background:
-              "linear-gradient(0deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0) 100%)",
           }}
         >
           <Typography
             component="p"
             sx={{
-              ...tabularNums,
               fontFamily: atlas.fontDisplay,
               fontWeight: 700,
-              fontSize: "2.4rem",
-              lineHeight: 1,
-              color: atlas.textPrimary,
+              fontVariantNumeric: "tabular-nums",
+              fontSize: "2.6rem",
+              lineHeight: 0.95,
+              color: atlasColors.textPrimary,
+              textShadow: `0 0 24px ${atlasGlow.cyanSoft}`,
             }}
           >
             {tournament.year}
@@ -90,7 +109,14 @@ export default function FeaturedTournamentCard({
           {tournament.hostName ? (
             <Typography
               component="p"
-              sx={{ ...eyebrowSx, color: atlas.textSecondary }}
+              sx={{
+                fontSize: "0.68rem",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: atlasColors.textSecondary,
+                textAlign: "right",
+              }}
             >
               {tournament.hostName}
             </Typography>
@@ -98,7 +124,9 @@ export default function FeaturedTournamentCard({
         </Box>
       </Box>
 
-      <Box sx={{ p: 3, display: "flex", flexDirection: "column", flexGrow: 1 }}>
+      <Box
+        sx={{ p: 2.75, display: "flex", flexDirection: "column", flexGrow: 1 }}
+      >
         {tournament.winner ? (
           <Box
             sx={{
@@ -109,24 +137,27 @@ export default function FeaturedTournamentCard({
             }}
           >
             <Box sx={{ minWidth: 0 }}>
-              <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-                <Box
-                  aria-hidden
-                  sx={{ width: 5, height: 5, bgcolor: atlas.gold }}
-                />
-                <Typography sx={{ ...eyebrowSx, color: atlas.textMuted }}>
-                  Winner
-                </Typography>
-              </Stack>
+              <Typography
+                sx={{
+                  fontSize: "0.6rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: atlasColors.gold,
+                  mb: 0.75,
+                }}
+              >
+                Champion
+              </Typography>
               <Stack
                 direction="row"
                 spacing={1}
-                sx={{ alignItems: "center", mt: 0.5, minWidth: 0 }}
+                sx={{ alignItems: "center", minWidth: 0 }}
               >
-                <CountryFlag name={tournament.winner} size="xs" />
+                <CountryFlag name={tournament.winner} size="sm" rounded />
                 <Typography
                   sx={{
-                    color: atlas.textPrimary,
+                    color: atlasColors.textPrimary,
                     fontWeight: 600,
                     minWidth: 0,
                   }}
@@ -136,18 +167,26 @@ export default function FeaturedTournamentCard({
               </Stack>
             </Box>
             <Box sx={{ textAlign: "right" }}>
-              <Typography sx={{ ...eyebrowSx, color: atlas.textMuted }}>
+              <Typography
+                sx={{
+                  fontSize: "0.6rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: atlasColors.textMuted,
+                  mb: 0.75,
+                }}
+              >
                 Final
               </Typography>
               <Typography
                 sx={{
-                  ...tabularNums,
                   fontFamily: atlas.fontDisplay,
                   fontWeight: 700,
+                  fontVariantNumeric: "tabular-nums",
                   fontSize: "1.4rem",
-                  lineHeight: 1.1,
-                  color: atlas.textPrimary,
-                  mt: 0.25,
+                  lineHeight: 1.05,
+                  color: atlasColors.textPrimary,
                 }}
               >
                 {tournament.finalScore ?? "—"}
@@ -155,19 +194,17 @@ export default function FeaturedTournamentCard({
             </Box>
             {tournament.runnerUp ? (
               <Box sx={{ gridColumn: "1 / -1" }}>
-                <Typography sx={{ ...eyebrowSx, color: atlas.textMuted }}>
-                  Runner-up
-                </Typography>
                 <Typography
-                  sx={{ color: atlas.textSecondary, fontWeight: 300, mt: 0.5 }}
+                  component="span"
+                  sx={{ color: atlasColors.textMuted, fontSize: "0.82rem" }}
                 >
-                  {tournament.runnerUp}
+                  Runner-up: {tournament.runnerUp}
                 </Typography>
               </Box>
             ) : null}
           </Box>
         ) : (
-          <Typography variant="body2" sx={{ color: atlas.textMuted }}>
+          <Typography variant="body2" sx={{ color: atlasColors.textMuted }}>
             Result not yet in the archive
           </Typography>
         )}
@@ -176,8 +213,8 @@ export default function FeaturedTournamentCard({
           <Typography
             variant="caption"
             sx={{
-              ...tabularNums,
-              color: atlas.textMuted,
+              fontVariantNumeric: "tabular-nums",
+              color: atlasColors.textMuted,
               display: "block",
               mt: 2,
             }}
@@ -188,12 +225,16 @@ export default function FeaturedTournamentCard({
 
         <Box
           sx={{
-            ...textLinkSx,
             mt: "auto",
-            pt: 2.5,
-            borderTop: `1px solid ${atlas.border}`,
+            pt: 2.25,
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: "0.72rem",
+            fontWeight: 700,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: atlasColors.cyanStrong,
           }}
         >
           <Box component="span">View tournament</Box>
@@ -202,6 +243,6 @@ export default function FeaturedTournamentCard({
           </Box>
         </Box>
       </Box>
-    </Box>
+    </GlowCard>
   );
 }

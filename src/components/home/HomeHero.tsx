@@ -1,18 +1,17 @@
-// Homepage hero (Phase 4). Cinematic black band with the brand banner as a
-// right-weighted backdrop behind a dark gradient — the real <h1>/subtitle carry
-// the title, the image is decorative support (UI_STYLE_GUIDE brand rules). Gold
-// micro-accent via the eyebrow. No FIFA marks, no copyrighted photography.
+// Homepage hero (neon pass). A cinematic deep-blue "stadium at night" panel:
+// CSS-only football glow (cyan core + gold counter-glow), faint pitch lines, and
+// a vignette — no external image, no FIFA marks. The <h1> carries the title with
+// "World Cup" in trophy gold; a glowing search bar and CTAs sit beneath.
 
-import Image from "next/image";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
-import VaultEyebrow from "@/components/vault/VaultEyebrow";
-import VaultButton from "@/components/vault/VaultButton";
-import GlobalSearch from "@/components/ui/GlobalSearch";
-import { atlas } from "@/theme/tokens";
+import NeonButton from "@/components/ui/NeonButton";
+import NeonChip from "@/components/ui/NeonChip";
+import GlowingSearchBar from "@/components/ui/GlowingSearchBar";
+import { atlasColors, atlasGradients, atlasGlow } from "@/theme/visualTokens";
 
 type HomeHeroProps = {
   /** e.g. "1930–2022" — derived from the archive, never hardcoded. */
@@ -25,56 +24,74 @@ export default function HomeHero({ span }: HomeHeroProps) {
       sx={{
         position: "relative",
         overflow: "hidden",
-        borderBottom: `1px solid ${atlas.border}`,
-        bgcolor: atlas.black,
+        background: atlasGradients.hero,
+        borderBottom: `1px solid ${atlasColors.surfaceRaised}`,
       }}
     >
-      <Box sx={{ position: "absolute", inset: 0, zIndex: 0 }}>
-        <Image
-          src="/brand/worldcup-nexus-banner.png"
-          alt="WORLDCUP Nexus — independent World Cup archive"
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center right" }}
-        />
-        {/* Dark gradient keeps the headline and copy readable; on wide screens
-            it fades to the right so the artwork still reads. */}
-        <Box
-          aria-hidden
-          sx={{
-            position: "absolute",
-            inset: 0,
-            background: {
-              xs: "linear-gradient(180deg, rgba(0,0,0,0.74) 0%, rgba(0,0,0,0.9) 100%)",
-              md: `linear-gradient(90deg, ${atlas.black} 0%, rgba(0,0,0,0.92) 36%, rgba(0,0,0,0.55) 72%, rgba(0,0,0,0.32) 100%)`,
-            },
-          }}
-        />
-      </Box>
+      {/* Faint pitch lines — CSS only, decorative. */}
+      <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          opacity: 0.5,
+          backgroundImage: `
+            linear-gradient(transparent 49.5%, ${atlasGlow.cyanSoft} 50%, transparent 50.5%),
+            radial-gradient(circle at 50% 120%, ${atlasGlow.cyanSoft}, transparent 45%)`,
+          backgroundSize: "100% 64px, 100% 100%",
+          maskImage:
+            "radial-gradient(120% 90% at 70% 20%, #000 30%, transparent 75%)",
+        }}
+      />
+      {/* Vignette to keep type readable. */}
+      <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          background:
+            "radial-gradient(120% 90% at 50% 0%, transparent 40%, rgba(2,8,18,0.7) 100%)",
+        }}
+      />
 
       <PageContainer
-        sx={{ position: "relative", zIndex: 1, py: { xs: 9, md: 14 } }}
+        sx={{ position: "relative", zIndex: 1, py: { xs: 9, md: 15 } }}
       >
-        <VaultEyebrow
-          label={span != null ? `The Archive · ${span}` : "The Archive"}
-          sx={{ mb: 3 }}
-        />
+        <Box sx={{ mb: 3 }}>
+          <NeonChip
+            accent="cyan"
+            dot
+            label={span != null ? `The Archive · ${span}` : "The Archive"}
+          />
+        </Box>
         <Typography
           variant="h1"
           sx={{
-            fontSize: { xs: "3rem", sm: "4rem", md: "5.2rem" },
-            maxWidth: 1000,
+            fontSize: { xs: "2.9rem", sm: "4rem", md: "5.4rem" },
+            maxWidth: 1040,
             mb: 3,
+            color: atlasColors.textPrimary,
+            textShadow: "0 2px 40px rgba(0,0,0,0.6)",
           }}
         >
-          Explore the World Cup like never before
+          Explore the complete history of the{" "}
+          <Box
+            component="span"
+            sx={{
+              color: atlasColors.goldStrong,
+              textShadow: `0 0 28px ${atlasGlow.gold}`,
+            }}
+          >
+            World Cup
+          </Box>
         </Typography>
         <Typography
           variant="body1"
           sx={{
-            color: atlas.textSecondary,
-            fontSize: { xs: "1rem", md: "1.1rem" },
+            color: atlasColors.textSecondary,
+            fontSize: { xs: "1rem", md: "1.12rem" },
             maxWidth: 640,
             mb: 5,
           }}
@@ -82,21 +99,41 @@ export default function HomeHero({ span }: HomeHeroProps) {
           Every tournament, nation, player, match, goal, record, and 2026
           fixture in one independent football archive.
         </Typography>
+
+        <Box sx={{ maxWidth: 680, mb: 4 }}>
+          <GlowingSearchBar />
+        </Box>
+
         <Stack
           direction={{ xs: "column", sm: "row" }}
           spacing={2}
-          sx={{ mb: 7 }}
+          sx={{ alignItems: { xs: "stretch", sm: "center" } }}
         >
-          <VaultButton component={Link} href="/tournaments" variant="primary">
-            Explore Tournaments
-          </VaultButton>
-          <VaultButton component={Link} href="/schedule/2026" variant="outline">
-            View 2026 Schedule
-          </VaultButton>
+          <NeonButton component={Link} href="/tournaments" neon="gold">
+            Explore The Archive
+          </NeonButton>
+          <NeonButton component={Link} href="/records" neon="outline">
+            Records
+          </NeonButton>
+          <Typography
+            component={Link}
+            href="/schedule/2026"
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 0.75,
+              fontSize: "0.78rem",
+              fontWeight: 700,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: atlasColors.cyanStrong,
+              transition: "text-shadow 150ms ease",
+              "&:hover": { textShadow: `0 0 16px ${atlasGlow.cyan}` },
+            }}
+          >
+            View 2026 Schedule →
+          </Typography>
         </Stack>
-        <Box sx={{ maxWidth: 680 }}>
-          <GlobalSearch />
-        </Box>
       </PageContainer>
     </Box>
   );

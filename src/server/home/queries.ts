@@ -36,7 +36,7 @@ import type { FixtureDto, FixtureFreshness } from "@/server/fixtures/types";
 const FEATURED_TOURNAMENTS_LIMIT = 6;
 const RECENT_FINALS_LIMIT = 6;
 const COUNTRY_HIGHLIGHTS_LIMIT = 12;
-const PLAYER_RECORDS_LIMIT = 6;
+const PLAYER_RECORDS_LIMIT = 5;
 
 export type HomeArchiveStats = {
   tournaments: number;
