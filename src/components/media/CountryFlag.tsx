@@ -66,6 +66,8 @@ export default function CountryFlag({
         role="img"
         aria-label={accessibleLabel}
         title={accessibleLabel}
+        data-flag-code={code}
+        data-country-name={country.name ?? undefined}
         className={`fi fi-${code}${rounded ? " fis" : ""}`}
         sx={[
           {
@@ -91,6 +93,8 @@ export default function CountryFlag({
       role="img"
       aria-label={accessibleLabel}
       title={accessibleLabel}
+      data-flag-code={code ?? undefined}
+      data-country-name={country.name ?? undefined}
       sx={[
         {
           display: "inline-flex",
