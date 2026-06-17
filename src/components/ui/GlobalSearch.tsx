@@ -18,6 +18,7 @@ import Typography from "@mui/material/Typography";
 import SearchIcon from "@mui/icons-material/Search";
 import Link from "@/components/Link";
 import { atlas, eyebrowSx } from "@/theme/tokens";
+import { atlasBorders, atlasColors, atlasShadows } from "@/theme/visualTokens";
 import type { SearchResponseDto, SearchResultDto } from "@/server/search/types";
 
 const MIN_QUERY_LENGTH = 2;
@@ -124,19 +125,26 @@ export default function GlobalSearch() {
             alignItems: "center",
             gap: 1.5,
             px: 2.5,
-            minHeight: 56,
-            bgcolor: atlas.surface1,
-            border: `1px solid ${atlas.border}`,
-            borderRadius: 0,
-            transition: "border-color 150ms ease",
-            "&:hover": { borderColor: atlas.borderStrong },
-            "&:focus-within": { borderColor: atlas.textPrimary },
-            "&:focus-within .GlobalSearch-icon": { color: atlas.goldStrong },
+            minHeight: 58,
+            bgcolor: atlasColors.surfaceGlass,
+            backdropFilter: "blur(12px)",
+            border: `1px solid ${atlasBorders.cyan}`,
+            borderRadius: "16px",
+            boxShadow: atlasShadows.cyanGlow,
+            transition: "border-color 200ms ease, box-shadow 200ms ease",
+            "&:hover": { borderColor: atlasBorders.cyanStrong },
+            "&:focus-within": {
+              borderColor: atlasColors.cyanStrong,
+              boxShadow: atlasShadows.cyanGlowStrong,
+            },
+            "&:focus-within .GlobalSearch-icon": {
+              color: atlasColors.cyanStrong,
+            },
           }}
         >
           <SearchIcon
             className="GlobalSearch-icon"
-            sx={{ color: atlas.textMuted, transition: "color 150ms ease" }}
+            sx={{ color: atlasColors.cyan, transition: "color 150ms ease" }}
           />
           <InputBase
             fullWidth
@@ -149,7 +157,7 @@ export default function GlobalSearch() {
             onKeyDown={onKeyDown}
           />
           {loading ? (
-            <CircularProgress size={16} sx={{ color: atlas.gold }} />
+            <CircularProgress size={16} sx={{ color: atlasColors.cyan }} />
           ) : null}
         </Paper>
 
@@ -161,13 +169,14 @@ export default function GlobalSearch() {
             aria-live="polite"
             sx={{
               position: "absolute",
-              top: "calc(100% + 6px)",
+              top: "calc(100% + 8px)",
               left: 0,
               right: 0,
               zIndex: (theme) => theme.zIndex.modal,
-              bgcolor: atlas.canvasSoft,
-              border: `1px solid ${atlas.borderStrong}`,
-              borderRadius: 0,
+              bgcolor: atlasColors.surface,
+              border: `1px solid ${atlasBorders.softStrong}`,
+              borderRadius: "14px",
+              boxShadow: atlasShadows.card,
               maxHeight: 480,
               overflowY: "auto",
             }}

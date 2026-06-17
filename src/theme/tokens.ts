@@ -8,39 +8,43 @@
 // never large fills. The green/gold/red stripe is a brand-identity marker
 // only: footer wordmark, nav, major archive moments — never a button fill,
 // never a background.
+// Recolored to the Nexus neon palette (deep-blue canvas, trophy gold + electric
+// cyan accents). Token NAMES are unchanged so every existing surface that reads
+// `atlas.*` inherits the new theme with no per-component edits. Mirrors
+// `nexusColors` in src/theme/visualTokens.ts.
 export const atlas = {
-  // Canvas
-  black: "#000000",
-  bgBase: "#000000",
-  canvasSoft: "#080808",
-  surfaceSoft: "#0D0D0D",
-  surface1: "#171717", // cards
-  surface2: "#222222", // elevated
-  surface3: "#2B2B2B", // carbon
-  deepNavy: "#080808", // legacy alias → canvasSoft
-  // Hairlines
-  border: "#2A2A2A",
-  borderStrong: "#3C3C3C",
-  // Accent (micro use only)
-  gold: "#D6A84F",
-  goldStrong: "#F4C95D",
-  goldSoft: "#D6A84F",
-  goldTint: "rgba(214, 168, 79, 0.12)",
-  goldBorder: "rgba(214, 168, 79, 0.45)",
-  // Stripe identity colors (stripe + tiny semantic marks only)
-  pitchGreen: "#1F8A4C",
-  cardRed: "#D9293E",
-  green: "#1F8A4C",
-  red: "#D9293E",
+  // Canvas — deep stadium blues fading toward near-black.
+  black: "#020812",
+  bgBase: "#020812",
+  canvasSoft: "#03101C",
+  surfaceSoft: "#07131F",
+  surface1: "#0B1622", // cards
+  surface2: "#102033", // elevated
+  surface3: "#16293B", // carbon
+  deepNavy: "#061827",
+  // Hairlines — soft white instead of charcoal.
+  border: "rgba(255, 255, 255, 0.12)",
+  borderStrong: "rgba(255, 255, 255, 0.22)",
+  // Accent — trophy gold.
+  gold: "#F4C95D",
+  goldStrong: "#FFD66B",
+  goldSoft: "#F4C95D",
+  goldTint: "rgba(244, 201, 93, 0.14)",
+  goldBorder: "rgba(244, 201, 93, 0.40)",
+  // Stripe + semantic marks.
+  pitchGreen: "#27D07F",
+  cardRed: "#FF5470",
+  green: "#27D07F",
+  red: "#FF5470",
   yellow: "#FACC15",
-  // Text
-  textPrimary: "#FFFFFF",
-  textSecondary: "#BBBBBB",
-  bodyStrong: "#E6E6E6",
-  textMuted: "#7E7E7E",
-  // Surfaces & depth — flat: no gradients, no shadows
-  cardGradient: "#171717",
-  panelGradient: "#171717",
+  // Text.
+  textPrimary: "#F8FAFC",
+  textSecondary: "#A8B3C7",
+  bodyStrong: "#E6EDF7",
+  textMuted: "#6B7280",
+  // Surfaces & depth.
+  cardGradient: "#0B1622",
+  panelGradient: "#0B1622",
   shadowSm: "none",
   shadowMd: "none",
   shadowLg: "none",

@@ -15,6 +15,7 @@ import Link from "@/components/Link";
 import VaultStripe from "@/components/vault/VaultStripe";
 import { siteConfig } from "@/lib/site";
 import { atlas } from "@/theme/tokens";
+import { atlasBorders } from "@/theme/visualTokens";
 
 const NAV_LINKS = siteConfig.navLinks;
 
@@ -56,10 +57,10 @@ export default function Navbar() {
       position="sticky"
       elevation={0}
       sx={{
-        bgcolor: "rgba(0, 0, 0, 0.92)",
+        bgcolor: "rgba(4, 12, 22, 0.72)",
         backgroundImage: "none",
-        backdropFilter: "blur(10px)",
-        borderBottom: `1px solid ${atlas.border}`,
+        backdropFilter: "blur(16px) saturate(140%)",
+        borderBottom: `1px solid ${atlasBorders.soft}`,
       }}
     >
       <Box

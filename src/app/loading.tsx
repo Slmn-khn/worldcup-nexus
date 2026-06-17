@@ -1,23 +1,7 @@
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
+// Route-level loading — themed cyan spinner via the shared LoadingState.
+
+import LoadingState from "@/components/ui/LoadingState";
 
 export default function RootLoading() {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 2,
-        py: 16,
-      }}
-    >
-      <CircularProgress size={32} sx={{ color: "primary.main" }} />
-      <Typography variant="body2" sx={{ color: "text.secondary" }}>
-        Loading the archive…
-      </Typography>
-    </Box>
-  );
+  return <LoadingState fullPage message="Loading the archive…" />;
 }
