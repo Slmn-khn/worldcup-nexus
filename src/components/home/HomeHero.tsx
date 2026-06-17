@@ -1,131 +1,102 @@
-"use client";
+// Homepage hero (Phase 4). Cinematic black band with the brand banner as a
+// right-weighted backdrop behind a dark gradient — the real <h1>/subtitle carry
+// the title, the image is decorative support (UI_STYLE_GUIDE brand rules). Gold
+// micro-accent via the eyebrow. No FIFA marks, no copyrighted photography.
 
-// Cinematic homepage hero (Checkpoint 7C): layered gradient atmosphere,
-// pitch lines, floating glow orbs with scroll parallax, and a staggered
-// entrance for the headline, copy, CTAs, and search. Client component by
-// design — it renders static copy only (no data fetching).
-
+import Image from "next/image";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { motion, useReducedMotion } from "motion/react";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
+import VaultEyebrow from "@/components/vault/VaultEyebrow";
+import VaultButton from "@/components/vault/VaultButton";
 import GlobalSearch from "@/components/ui/GlobalSearch";
-import AtlasBackground from "@/components/visual/AtlasBackground";
-import PitchLines from "@/components/visual/PitchLines";
-import HeroOrb from "@/components/visual/HeroOrb";
-import FootballConstellation from "@/components/visual/FootballConstellation";
-import ParallaxLayer from "@/components/motion/ParallaxLayer";
+import { atlas } from "@/theme/tokens";
 
-const MotionBox = motion.create(Box);
+type HomeHeroProps = {
+  /** e.g. "1930–2022" — derived from the archive, never hardcoded. */
+  span?: string | null;
+};
 
-export default function HomeHero() {
-  const reducedMotion = useReducedMotion();
-
-  const entrance = (delay: number) => ({
-    initial: { opacity: 0, y: reducedMotion ? 0 : 22 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.65, delay, ease: [0.21, 0.65, 0.36, 1] as const },
-  });
-
+export default function HomeHero({ span }: HomeHeroProps) {
   return (
     <Box
       sx={{
         position: "relative",
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        bgcolor: "#050A12",
         overflow: "hidden",
+        borderBottom: `1px solid ${atlas.border}`,
+        bgcolor: atlas.black,
       }}
     >
-      <AtlasBackground variant="hero" />
-      <PitchLines />
-      <FootballConstellation variant="hero" intensity="medium" showBallNode />
-      <ParallaxLayer
-        drift={60}
-        sx={{ position: "absolute", inset: 0, pointerEvents: "none" }}
-      >
-        <HeroOrb size={420} color="gold" sx={{ top: -140, right: "8%" }} />
-        <HeroOrb
-          size={320}
-          color="cyan"
-          duration={20}
-          sx={{ bottom: -150, left: "2%" }}
+      <Box sx={{ position: "absolute", inset: 0, zIndex: 0 }}>
+        <Image
+          src="/brand/worldcup-nexus-banner.png"
+          alt="WORLDCUP Nexus — independent World Cup archive"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center right" }}
         />
-      </ParallaxLayer>
+        {/* Dark gradient keeps the headline and copy readable; on wide screens
+            it fades to the right so the artwork still reads. */}
+        <Box
+          aria-hidden
+          sx={{
+            position: "absolute",
+            inset: 0,
+            background: {
+              xs: "linear-gradient(180deg, rgba(0,0,0,0.74) 0%, rgba(0,0,0,0.9) 100%)",
+              md: `linear-gradient(90deg, ${atlas.black} 0%, rgba(0,0,0,0.92) 36%, rgba(0,0,0,0.55) 72%, rgba(0,0,0,0.32) 100%)`,
+            },
+          }}
+        />
+      </Box>
 
-      <PageContainer sx={{ position: "relative", py: { xs: 8, md: 12 } }}>
-        <MotionBox {...entrance(0)}>
-          <Typography
-            variant="overline"
-            sx={{
-              color: "primary.main",
-              letterSpacing: "0.2em",
-              display: "block",
-              mb: 2,
-            }}
-          >
-            The Football Archive
-          </Typography>
-        </MotionBox>
-        <MotionBox {...entrance(0.08)}>
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: { xs: "2.25rem", sm: "3rem", md: "3.75rem" },
-              maxWidth: 820,
-              mb: 2.5,
-            }}
-          >
-            Explore the Complete History of the World Cup
-          </Typography>
-        </MotionBox>
-        <MotionBox {...entrance(0.16)}>
-          <Typography
-            variant="h6"
-            component="p"
-            sx={{
-              color: "text.secondary",
-              fontWeight: 400,
-              maxWidth: 640,
-              mb: 4,
-            }}
-          >
-            Every tournament, nation, player, match, goal, and penalty in one
-            independent historical archive.
-          </Typography>
-        </MotionBox>
-        <MotionBox {...entrance(0.24)}>
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={2}
-            sx={{ mb: 7 }}
-          >
-            <Button
-              component={Link}
-              href="/tournaments"
-              variant="contained"
-              size="large"
-            >
-              Explore Tournaments
-            </Button>
-            <Button
-              component={Link}
-              href="/records"
-              variant="outlined"
-              size="large"
-            >
-              View Records
-            </Button>
-          </Stack>
-        </MotionBox>
-        <MotionBox {...entrance(0.32)}>
-          <Box sx={{ maxWidth: 720 }}>
-            <GlobalSearch />
-          </Box>
-        </MotionBox>
+      <PageContainer
+        sx={{ position: "relative", zIndex: 1, py: { xs: 9, md: 14 } }}
+      >
+        <VaultEyebrow
+          label={span != null ? `The Archive · ${span}` : "The Archive"}
+          sx={{ mb: 3 }}
+        />
+        <Typography
+          variant="h1"
+          sx={{
+            fontSize: { xs: "3rem", sm: "4rem", md: "5.2rem" },
+            maxWidth: 1000,
+            mb: 3,
+          }}
+        >
+          Explore the World Cup like never before
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            color: atlas.textSecondary,
+            fontSize: { xs: "1rem", md: "1.1rem" },
+            maxWidth: 640,
+            mb: 5,
+          }}
+        >
+          Every tournament, nation, player, match, goal, record, and 2026
+          fixture in one independent football archive.
+        </Typography>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={2}
+          sx={{ mb: 7 }}
+        >
+          <VaultButton component={Link} href="/tournaments" variant="primary">
+            Explore Tournaments
+          </VaultButton>
+          <VaultButton component={Link} href="/schedule/2026" variant="outline">
+            View 2026 Schedule
+          </VaultButton>
+        </Stack>
+        <Box sx={{ maxWidth: 680 }}>
+          <GlobalSearch />
+        </Box>
       </PageContainer>
     </Box>
   );
