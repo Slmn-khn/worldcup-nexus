@@ -1,19 +1,26 @@
 // Seed curated, license-cleared media from data/media/curated-player-media.json.
 //
 // Safety rules (see docs/MEDIA_LICENSE_POLICY.md):
+// - Every record is validated with Zod; an invalid record is skipped (with the
+//   exact issues logged), never imported half-formed.
 // - Refuses to import an asset without source/credit/license UNLESS the provider
 //   is GENERATED or LOCAL (assets we created/own).
 // - Resolves entities by slug; skips (with a note) anything it cannot resolve.
 // - Upsert-safe: re-running does not create duplicate assets/links.
+// - A non-APPROVED record is never linked as a public primary asset.
 // - Never renders anything publicly — it only writes rows. Status comes from the
 //   data file; non-APPROVED rows stay invisible to the public query layer.
 //
-// If only the .example.json file exists, it prints a friendly message and exits 0.
+// Exit behavior:
+// - Missing data file (only the .example.json, or nothing): friendly note, exit 0.
+// - Empty data file (`[]`): friendly note, exit 0.
 
 import "dotenv/config";
 
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
+
+import { z } from "zod";
 
 import { createScriptPrismaClient } from "../import/utils/db";
 import type { ScriptPrismaClient } from "../import/utils/db";
@@ -26,44 +33,108 @@ const DATA_DIR = resolve(process.cwd(), "data", "media");
 const DATA_FILE = resolve(DATA_DIR, "curated-player-media.json");
 const EXAMPLE_FILE = resolve(DATA_DIR, "curated-player-media.example.json");
 
-type CuratedMediaEntry = {
-  entityType: string;
-  entitySlug: string;
-  assetType: string;
-  provider: string;
-  providerAssetId?: string | null;
-  sourcePageUrl?: string | null;
-  originalUrl?: string | null;
-  storageUrl?: string | null;
-  optimizedUrl?: string | null;
-  title?: string | null;
-  description?: string | null;
-  altText?: string | null;
-  licenseType?: string | null;
-  licenseName?: string | null;
-  licenseUrl?: string | null;
-  creatorName?: string | null;
-  creditText?: string | null;
-  attributionHtml?: string | null;
-  status?: string | null;
-  caption?: string | null;
-  priority?: number | null;
-  isPrimary?: boolean | null;
-};
+// Enum value sets mirror prisma/schema.prisma. Kept as literal tuples so the
+// script validates without importing the generated runtime enums.
+const ENTITY_TYPES = [
+  "PLAYER",
+  "COUNTRY",
+  "TOURNAMENT",
+  "MATCH",
+  "RECORD",
+  "ICONIC_MOMENT",
+  "STADIUM",
+  "GENERIC",
+] as const;
+const ASSET_TYPES = [
+  "PORTRAIT",
+  "FLAG",
+  "HERO",
+  "POSTER",
+  "THUMBNAIL",
+  "BACKGROUND",
+  "EVENT_COVER",
+  "TROPHY",
+  "STADIUM",
+  "SILHOUETTE",
+  "FALLBACK",
+] as const;
+const PROVIDERS = [
+  "LOCAL",
+  "WIKIMEDIA_COMMONS",
+  "WIKIDATA",
+  "CLOUDINARY",
+  "SUPABASE_STORAGE",
+  "GENERATED",
+  "MANUAL",
+  "OTHER",
+] as const;
+const LICENSE_TYPES = [
+  "PUBLIC_DOMAIN",
+  "CC0",
+  "CC_BY",
+  "CC_BY_SA",
+  "CC_BY_NC",
+  "RIGHTS_RESERVED",
+  "GENERATED_OWNED",
+  "UNKNOWN",
+] as const;
+const STATUSES = [
+  "CANDIDATE",
+  "APPROVED",
+  "REJECTED",
+  "NEEDS_REVIEW",
+  "ARCHIVED",
+] as const;
 
-const OWNED_PROVIDERS = new Set(["GENERATED", "LOCAL"]);
+// Blank/whitespace strings collapse to undefined so "present but empty" is
+// treated as missing (and caught by the license check below).
+const optionalText = z.preprocess(
+  (value) =>
+    typeof value === "string" && value.trim() === "" ? undefined : value,
+  z.string().trim().min(1).optional(),
+);
+
+const curatedEntrySchema = z.object({
+  entityType: z.enum(ENTITY_TYPES),
+  entitySlug: z.string().trim().min(1),
+  assetType: z.enum(ASSET_TYPES),
+  provider: z.enum(PROVIDERS),
+  providerAssetId: optionalText,
+  sourcePageUrl: optionalText,
+  originalUrl: optionalText,
+  storageUrl: optionalText,
+  optimizedUrl: optionalText,
+  title: optionalText,
+  description: optionalText,
+  altText: optionalText,
+  licenseType: z.enum(LICENSE_TYPES).optional().default("UNKNOWN"),
+  licenseName: optionalText,
+  licenseUrl: optionalText,
+  creatorName: optionalText,
+  creditText: optionalText,
+  attributionHtml: optionalText,
+  status: z.enum(STATUSES).optional().default("CANDIDATE"),
+  caption: optionalText,
+  priority: z.number().int().optional(),
+  isPrimary: z.boolean().optional(),
+});
+
+type CuratedMediaEntry = z.infer<typeof curatedEntrySchema>;
+
+const OWNED_PROVIDERS = new Set<CuratedMediaEntry["provider"]>([
+  "GENERATED",
+  "LOCAL",
+]);
 
 /** A non-owned asset must carry source + credit + a real license. */
 function missingLicenseFields(entry: CuratedMediaEntry): string[] {
   if (OWNED_PROVIDERS.has(entry.provider)) return [];
   const missing: string[] = [];
-  const has = (v?: string | null) => v != null && v.trim() !== "";
-  if (!has(entry.sourcePageUrl) && !has(entry.originalUrl))
+  if (entry.sourcePageUrl == null && entry.originalUrl == null)
     missing.push("sourcePageUrl/originalUrl");
-  if (!has(entry.creditText) && !has(entry.creatorName))
+  if (entry.creditText == null && entry.creatorName == null)
     missing.push("creditText/creatorName");
   if (
-    !has(entry.licenseType) ||
     entry.licenseType === "UNKNOWN" ||
     entry.licenseType === "RIGHTS_RESERVED"
   )
@@ -74,7 +145,7 @@ function missingLicenseFields(entry: CuratedMediaEntry): string[] {
 /** Resolve an entity id from its slug for the supported entity types. */
 async function resolveEntityId(
   prisma: ScriptPrismaClient,
-  entityType: string,
+  entityType: CuratedMediaEntry["entityType"],
   slug: string,
 ): Promise<string | null> {
   switch (entityType) {
@@ -104,6 +175,15 @@ async function resolveEntityId(
   }
 }
 
+type Summary = {
+  recordsRead: number;
+  playersFound: number;
+  assetsCreated: number;
+  assetsUpdated: number;
+  linksCreated: number;
+  skipped: number;
+};
+
 async function main() {
   console.log("WORLDCUP Nexus — curated media seed\n");
 
@@ -124,11 +204,9 @@ async function main() {
     return;
   }
 
-  let entries: CuratedMediaEntry[];
+  let raw: unknown;
   try {
-    const parsed = JSON.parse(readFileSync(DATA_FILE, "utf8"));
-    if (!Array.isArray(parsed)) throw new Error("expected a JSON array");
-    entries = parsed as CuratedMediaEntry[];
+    raw = JSON.parse(readFileSync(DATA_FILE, "utf8"));
   } catch (error) {
     console.error(
       "Failed to parse curated-player-media.json:",
@@ -138,9 +216,32 @@ async function main() {
     return;
   }
 
+  if (!Array.isArray(raw)) {
+    console.error(
+      "curated-player-media.json must be a JSON array. Nothing seeded.",
+    );
+    process.exitCode = 1;
+    return;
+  }
+
+  if (raw.length === 0) {
+    console.log(
+      "curated-player-media.json is empty ([]). No curated media to seed yet — " +
+        "exiting cleanly.",
+    );
+    return;
+  }
+
   const prisma = createScriptPrismaClient();
-  let imported = 0;
-  let skipped = 0;
+  const summary: Summary = {
+    recordsRead: raw.length,
+    playersFound: 0,
+    assetsCreated: 0,
+    assetsUpdated: 0,
+    linksCreated: 0,
+    skipped: 0,
+  };
+  const foundEntityIds = new Set<string>();
 
   try {
     const job = await prisma.mediaImportJob.create({
@@ -149,17 +250,29 @@ async function main() {
         entityType: "GENERIC",
         query: "curated-player-media.json",
         status: "RUNNING",
-        recordsFound: entries.length,
+        recordsFound: raw.length,
       },
     });
 
-    for (const entry of entries) {
+    for (let i = 0; i < raw.length; i += 1) {
+      const parsed = curatedEntrySchema.safeParse(raw[i]);
+      if (!parsed.success) {
+        const issues = parsed.error.issues
+          .map(
+            (issue) => `${issue.path.join(".") || "(root)"}: ${issue.message}`,
+          )
+          .join("; ");
+        console.log(`[SKIP] record #${i} — invalid: ${issues}`);
+        summary.skipped += 1;
+        continue;
+      }
+      const entry = parsed.data;
       const label = `${entry.entityType}:${entry.entitySlug}`;
 
       const missing = missingLicenseFields(entry);
       if (missing.length > 0) {
         console.log(`[SKIP] ${label} — missing ${missing.join(", ")}`);
-        skipped += 1;
+        summary.skipped += 1;
         continue;
       }
 
@@ -169,26 +282,47 @@ async function main() {
         entry.entitySlug,
       );
       if (entityId === null) {
-        console.log(`[SKIP] ${label} — entity not found by slug`);
-        skipped += 1;
+        console.warn(`[SKIP] ${label} — entity not found by slug`);
+        summary.skipped += 1;
         continue;
       }
+      foundEntityIds.add(entityId);
+
+      const usage = entry.assetType as MediaAssetType;
+      const entityType = entry.entityType as MediaEntityType;
+      const isApproved = entry.status === "APPROVED";
 
       // Idempotency: a curated asset is identified by its entity link
-      // (entityType + entityId + usage) — re-running updates that asset in place.
-      const usage = entry.assetType as MediaAssetType;
+      // (entityType + entityId + usage) — re-running updates it in place.
       const existingLink = await prisma.entityMedia.findFirst({
-        where: {
-          entityType: entry.entityType as MediaEntityType,
-          entityId,
-          usage,
-        },
+        where: { entityType, entityId, usage },
         include: { mediaAsset: true },
       });
 
+      // A non-APPROVED record never becomes a public primary asset. An APPROVED
+      // record is primary only when no other primary asset already holds the
+      // slot (unless the data explicitly states otherwise).
+      let isPrimary = false;
+      if (isApproved) {
+        if (entry.isPrimary !== undefined) {
+          isPrimary = entry.isPrimary;
+        } else {
+          const existingPrimary = await prisma.entityMedia.findFirst({
+            where: {
+              entityType,
+              entityId,
+              usage,
+              isPrimary: true,
+              ...(existingLink ? { id: { not: existingLink.id } } : {}),
+            },
+          });
+          isPrimary = existingPrimary === null;
+        }
+      }
+
       const assetData = {
         assetType: entry.assetType,
-        status: entry.status ?? "CANDIDATE",
+        status: entry.status,
         provider: entry.provider,
         providerAssetId: entry.providerAssetId ?? null,
         sourcePageUrl: entry.sourcePageUrl ?? null,
@@ -198,7 +332,7 @@ async function main() {
         title: entry.title ?? null,
         description: entry.description ?? null,
         altText: entry.altText ?? null,
-        licenseType: entry.licenseType ?? "UNKNOWN",
+        licenseType: entry.licenseType,
         licenseName: entry.licenseName ?? null,
         licenseUrl: entry.licenseUrl ?? null,
         creatorName: entry.creatorName ?? null,
@@ -215,13 +349,14 @@ async function main() {
         await prisma.entityMedia.update({
           where: { id: existingLink.id },
           data: {
-            priority: entry.priority ?? existingLink.priority,
-            isPrimary: entry.isPrimary ?? existingLink.isPrimary,
+            priority: entry.priority ?? 10,
+            isPrimary,
             caption: entry.caption ?? null,
             displayAlt: entry.altText ?? null,
           },
         });
-        console.log(`[UPDATE] ${label}`);
+        summary.assetsUpdated += 1;
+        console.log(`[UPDATE] ${label}${isPrimary ? " (primary)" : ""}`);
       } else {
         await prisma.mediaAsset.create({
           data: {
@@ -229,32 +364,43 @@ async function main() {
             ...(assetData as any),
             entityLinks: {
               create: {
-                entityType: entry.entityType as MediaEntityType,
+                entityType,
                 entityId,
                 usage,
-                priority: entry.priority ?? 100,
-                isPrimary: entry.isPrimary ?? true,
+                priority: entry.priority ?? 10,
+                isPrimary,
                 caption: entry.caption ?? null,
                 displayAlt: entry.altText ?? null,
               },
             },
           },
         });
-        console.log(`[CREATE] ${label}`);
+        summary.assetsCreated += 1;
+        summary.linksCreated += 1;
+        console.log(`[CREATE] ${label}${isPrimary ? " (primary)" : ""}`);
       }
-      imported += 1;
     }
+
+    summary.playersFound = foundEntityIds.size;
 
     await prisma.mediaImportJob.update({
       where: { id: job.id },
       data: {
         status: "DONE",
-        recordsImported: imported,
+        recordsImported: summary.assetsCreated + summary.assetsUpdated,
         finishedAt: new Date(),
       },
     });
 
-    console.log(`\nDone. ${imported} imported, ${skipped} skipped.`);
+    console.log(
+      "\nDone.\n" +
+        `  recordsRead:   ${summary.recordsRead}\n` +
+        `  playersFound:  ${summary.playersFound}\n` +
+        `  assetsCreated: ${summary.assetsCreated}\n` +
+        `  assetsUpdated: ${summary.assetsUpdated}\n` +
+        `  linksCreated:  ${summary.linksCreated}\n` +
+        `  skipped:       ${summary.skipped}`,
+    );
   } finally {
     await prisma.$disconnect();
   }

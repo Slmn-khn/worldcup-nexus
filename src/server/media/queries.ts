@@ -8,10 +8,14 @@
 // - Nothing throws when an entity has no media — callers get [] / null.
 
 import { prisma } from "@/server/db/prisma";
-import { MediaAssetStatus } from "@/generated/prisma/enums";
+import {
+  MediaAssetStatus,
+  MediaAssetType as MediaAssetTypeEnum,
+  MediaEntityType as MediaEntityTypeEnum,
+} from "@/generated/prisma/enums";
 import type { MediaAssetType, MediaEntityType } from "@/generated/prisma/enums";
 import type { Prisma } from "@/generated/prisma/client";
-import type { MediaAssetDto } from "./types";
+import type { MediaAssetDto, MediaCreditDto } from "./types";
 import { resolveMediaUrl } from "./selectors";
 
 type EntityMediaWithAsset = Prisma.EntityMediaGetPayload<{
@@ -107,4 +111,74 @@ export async function getMediaForEntities(input: {
     }
   }
   return result;
+}
+
+/**
+ * Best APPROVED PORTRAIT per player, keyed by the player's slug. Resolves slugs
+ * to ids internally so callers can pass the slugs they already have on a card.
+ * Slugs with no approved portrait are simply absent from the map. Returns an
+ * empty map for an empty input. Never throws — a failure resolves to an empty
+ * map so media can never block a page render.
+ */
+export async function getPrimaryPlayerPortraitsBySlug(
+  slugs: string[],
+): Promise<Map<string, MediaAssetDto>> {
+  const result = new Map<string, MediaAssetDto>();
+  const uniqueSlugs = [...new Set(slugs)].filter((slug) => slug !== "");
+  if (uniqueSlugs.length === 0) return result;
+
+  try {
+    const players = await prisma.player.findMany({
+      where: { slug: { in: uniqueSlugs } },
+      select: { id: true, slug: true },
+    });
+    if (players.length === 0) return result;
+
+    const slugById = new Map(players.map((p) => [p.id, p.slug]));
+    const byId = await getMediaForEntities({
+      entityType: MediaEntityTypeEnum.PLAYER,
+      entityIds: players.map((p) => p.id),
+      usage: MediaAssetTypeEnum.PORTRAIT,
+    });
+
+    for (const [id, dto] of byId) {
+      const slug = slugById.get(id);
+      if (slug !== undefined) result.set(slug, dto);
+    }
+    return result;
+  } catch {
+    // Media is a decorative enhancement — never let a query failure break a page.
+    return result;
+  }
+}
+
+/**
+ * All APPROVED assets' public attribution rows, for the credits page. Ordered
+ * newest first. Never includes rawMetadata. Returns [] when there is none and
+ * never throws.
+ */
+export async function getApprovedMediaCredits(): Promise<MediaCreditDto[]> {
+  try {
+    const assets = await prisma.mediaAsset.findMany({
+      where: { status: MediaAssetStatus.APPROVED },
+      orderBy: { createdAt: "desc" },
+      select: {
+        id: true,
+        assetType: true,
+        title: true,
+        altText: true,
+        provider: true,
+        licenseType: true,
+        licenseName: true,
+        licenseUrl: true,
+        creatorName: true,
+        creditText: true,
+        attributionHtml: true,
+        sourcePageUrl: true,
+      },
+    });
+    return assets;
+  } catch {
+    return [];
+  }
 }

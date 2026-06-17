@@ -43,6 +43,25 @@ export type MediaAssetDto = {
   priority: number;
 };
 
+/**
+ * One approved asset's public attribution row, for the credits surface.
+ * Never includes rawMetadata or storage internals.
+ */
+export type MediaCreditDto = {
+  id: string;
+  assetType: MediaAssetType;
+  title: string | null;
+  altText: string | null;
+  provider: MediaSourceProvider;
+  licenseType: MediaLicenseType;
+  licenseName: string | null;
+  licenseUrl: string | null;
+  creatorName: string | null;
+  creditText: string | null;
+  attributionHtml: string | null;
+  sourcePageUrl: string | null;
+};
+
 export type MediaFallbackKind =
   | "silhouette"
   | "flag"

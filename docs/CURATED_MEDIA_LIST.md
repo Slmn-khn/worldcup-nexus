@@ -9,6 +9,31 @@ before seeding.
 This list is a **work queue**, not a guarantee that media exists yet. The site
 must function with none of these present.
 
+## First curated player portrait batch — status
+
+**Status: pipeline ready, zero portraits approved.** Phase 3 shipped the curated
+portrait pipeline end to end:
+
+- `data/media/curated-player-media.json` exists as an **empty array (`[]`)** — no
+  player portrait has cleared license/attribution review yet, and no license
+  metadata has been invented to fill the gap.
+- The seed script (`scripts/media/seed-curated-media.ts`) validates every record
+  with Zod, refuses non-owned assets that lack source/credit/license, resolves
+  players by slug, and upserts `MediaAsset` + `EntityMedia` (usage `PORTRAIT`,
+  `priority` 10, `isPrimary` only when no primary portrait already exists and the
+  record is `APPROVED`).
+- `PlayerPortrait` renders an approved image when one exists and a dark
+  charcoal + gold initials crest otherwise. It is already wired (fallback-first)
+  into the homepage **Top Player Records** cards and the **player profile hero**.
+
+When a portrait clears review, add its record to
+`data/media/curated-player-media.json`, set `status` to `APPROVED`, run
+`pnpm media:seed`, update the player row below to `Approved`, and confirm it
+appears on **[/media-credits](../src/app/media-credits/page.tsx)**.
+
+> **Reminder:** every public image must carry source, creator, and license.
+> Approved media is credited automatically on the **/media-credits** page.
+
 ## Players (portraits)
 
 | Player            | Suggested slug      | Status   | License | Notes |
