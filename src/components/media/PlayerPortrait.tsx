@@ -10,12 +10,13 @@ import { atlas } from "@/theme/tokens";
 import { getInitials } from "@/lib/media/initials";
 import CountryFlag from "./CountryFlag";
 
-export type PlayerPortraitSize = "sm" | "md" | "lg";
+export type PlayerPortraitSize = "sm" | "md" | "lg" | "xl";
 
 const SIZE_PX: Record<PlayerPortraitSize, number> = {
   sm: 48,
   md: 80,
   lg: 128,
+  xl: 184,
 };
 
 type PlayerPortraitProps = {
@@ -39,7 +40,7 @@ export default function PlayerPortrait({
   const hasImage = imageUrl != null && imageUrl.trim() !== "";
   const initials = getInitials(name);
   const showFlag = countryName != null || countryCode != null;
-  const flagSize = size === "lg" ? "sm" : "xs";
+  const flagSize = size === "lg" || size === "xl" ? "sm" : "xs";
 
   return (
     <Box
@@ -57,11 +58,16 @@ export default function PlayerPortrait({
           height: px,
           overflow: "hidden",
           borderRadius: 0,
-          border: `1px solid ${atlas.border}`,
+          // Image: neutral hairline. Fallback: dark charcoal with a subtle gold
+          // border and a faint gold glow so initials read as a deliberate crest.
+          border: `1px solid ${hasImage ? atlas.border : atlas.goldBorder}`,
           bgcolor: atlas.surface1,
           background: hasImage
             ? undefined
             : `radial-gradient(circle at 50% 30%, ${atlas.surface3} 0%, ${atlas.surface1} 72%)`,
+          boxShadow: hasImage
+            ? "none"
+            : `inset 0 0 ${px * 0.28}px ${atlas.goldTint}`,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

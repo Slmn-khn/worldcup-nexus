@@ -58,10 +58,17 @@ asset that lacks source/credit/license — *unless* the provider is `GENERATED` 
 
 ## Attribution surface
 
-A public **credits page/section** will be added in a later phase, generated from
-the stored `creditText` / `attributionHtml` of `APPROVED` assets. Until then, the
-`<MediaCredit>` component is available for inline/compact credit display wherever
-approved media is shown.
+**Every public image must carry attribution.** No third-party image may be shown
+without a recorded source, creator, and license — the seed script enforces this
+at import time (except for `LOCAL`/`GENERATED` assets we own).
+
+A public **credits page** is live at **`/media-credits`** (see
+`src/app/media-credits/page.tsx`). It is generated entirely from the stored
+`creditText` / `licenseName` / `licenseUrl` / `creatorName` / `sourcePageUrl` of
+`APPROVED` assets — `rawMetadata` is never exposed. It is linked from the site
+footer ("Media Credits"). When no approved media exists it shows a clean empty
+state. The `<MediaCredit>` component remains available for inline/compact credit
+display wherever approved media is shown.
 
 When in doubt, **do not publish.** Leave the asset as `CANDIDATE` or
 `NEEDS_REVIEW` and flag it for human review.

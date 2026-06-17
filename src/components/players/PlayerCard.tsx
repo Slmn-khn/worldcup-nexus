@@ -20,6 +20,8 @@ type PlayerCardProps = {
   flagEmoji?: string | null;
   position?: string | null;
   summary?: string;
+  /** Approved portrait URL from the media layer; falls back to initials. */
+  portraitUrl?: string | null;
   /** Squad selections — NOT match appearances. */
   selectedTournamentsCount?: number | null;
   goalsCount?: number | null;
@@ -33,6 +35,7 @@ export default function PlayerCard({
   flagEmoji,
   position,
   summary,
+  portraitUrl,
   selectedTournamentsCount,
   goalsCount,
   awardsCount,
@@ -61,9 +64,14 @@ export default function PlayerCard({
       }}
     >
       <Stack direction="row" spacing={2} sx={{ alignItems: "flex-start" }}>
-        {/* Fallback-first portrait: renders initials (no image data needed) so
-            it is safe with zero media rows. */}
-        <PlayerPortrait name={name} countryName={country} size="sm" />
+        {/* Fallback-first portrait: shows the approved image when one exists,
+            otherwise initials — safe with zero media rows. */}
+        <PlayerPortrait
+          name={name}
+          imageUrl={portraitUrl}
+          countryName={country}
+          size="sm"
+        />
         <Box sx={{ minWidth: 0, flex: 1 }}>
           <Typography
             component="p"

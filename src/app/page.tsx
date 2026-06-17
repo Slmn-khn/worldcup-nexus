@@ -27,6 +27,7 @@ import { formatDate, formatNumber } from "@/lib/format";
 import { getHomePageData } from "@/server/queries/home";
 import { getTournamentCards } from "@/server/queries/tournaments";
 import { getHomeFixtures2026 } from "@/server/fixtures/queries";
+import { getPrimaryPlayerPortraitsBySlug } from "@/server/media/queries";
 import { atlas } from "@/theme/tokens";
 
 // Live archive data — always render from the current database state.
@@ -56,6 +57,13 @@ export default async function Home() {
     getHomeFixtures2026(),
   ]);
   const { archiveStats } = data;
+
+  // Approved player portraits for the records cards — decorative only. The
+  // helper never throws and returns an empty map if media is unavailable, so a
+  // missing/failed media layer can never break the homepage.
+  const playerPortraits = await getPrimaryPlayerPortraitsBySlug(
+    data.featuredPlayers.map((player) => player.slug),
+  );
 
   // Archive span derived from imported tournaments — never hardcoded.
   const years = tournaments.map((tournament) => tournament.year);
@@ -330,6 +338,7 @@ export default async function Home() {
                 country={player.countryName ?? "Nation unknown"}
                 flagEmoji={player.countryFlagEmoji}
                 position={player.position}
+                portraitUrl={playerPortraits.get(player.slug)?.url}
                 href={`/players/${player.slug}`}
               />
             ))}
