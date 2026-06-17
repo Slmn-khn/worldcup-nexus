@@ -32,7 +32,13 @@ type TabKey = "latest" | "live" | "today" | "results" | "upcoming";
 const CARD_GRID = {
   display: "grid",
   gap: 2,
-  gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(3, 1fr)" },
+  // Two columns through laptop widths (wide enough for full team names), three
+  // only on very large screens — avoids the cramped 3-up that truncated names.
+  gridTemplateColumns: {
+    xs: "1fr",
+    sm: "repeat(2, minmax(0, 1fr))",
+    xl: "repeat(3, minmax(0, 1fr))",
+  },
 };
 
 export default function HomeLatestMatchesSection({
@@ -79,7 +85,10 @@ export default function HomeLatestMatchesSection({
               minHeight: 0,
               mb: 3,
               borderBottom: `1px solid ${atlas.border}`,
-              "& .MuiTabs-indicator": { backgroundColor: atlas.textPrimary, height: 2 },
+              "& .MuiTabs-indicator": {
+                backgroundColor: atlas.textPrimary,
+                height: 2,
+              },
               "& .MuiTab-root": {
                 ...eyebrowSx,
                 fontSize: "0.72rem",
@@ -112,7 +121,10 @@ export default function HomeLatestMatchesSection({
                 ))}
               </Box>
             ) : (
-              <PanelEmptyState tabKey={current.key} nextUpcoming={data.nextUpcoming} />
+              <PanelEmptyState
+                tabKey={current.key}
+                nextUpcoming={data.nextUpcoming}
+              />
             )}
           </Box>
         </>
@@ -145,7 +157,12 @@ function PanelEmptyState({
           <Box sx={{ mt: 3 }}>
             <Typography
               component="p"
-              sx={{ ...eyebrowSx, fontSize: "0.62rem", color: atlas.textMuted, mb: 1.5 }}
+              sx={{
+                ...eyebrowSx,
+                fontSize: "0.62rem",
+                color: atlas.textMuted,
+                mb: 1.5,
+              }}
             >
               Next up
             </Typography>

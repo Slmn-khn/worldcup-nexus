@@ -1,17 +1,15 @@
-// A single fixture as a Vault card: context eyebrow + status, teams with a
-// centred scoreline (or "vs"), kick-off date/time, venue, and a small source
-// line. Zero radius, hairline, no shadow — composes the Vault card anatomy.
+// A single fixture as a premium neon scoreboard card: a context eyebrow + status
+// chip on top, then a vertical scoreboard (one row per team — flag, full team
+// name, and that team's score in gold), then kick-off date/time, venue, and a
+// small source line. The vertical layout gives full team names room so they
+// never split mid-word.
 
 import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { atlas, eyebrowSx, tabularNums } from "@/theme/tokens";
-import {
-  atlasBorders,
-  atlasColors,
-  atlasGradients,
-  atlasRadius,
-  atlasShadows,
-} from "@/theme/visualTokens";
+import { atlasColors } from "@/theme/visualTokens";
 import CountryFlag from "@/components/media/CountryFlag";
 import type { FixtureDto } from "@/server/fixtures/types";
 import FixtureStatusChip from "./FixtureStatusChip";
@@ -21,92 +19,159 @@ import {
   fixtureTimeLabel,
   fixtureVenue,
   safeFlagGlyph,
-  scoreLine,
   teamLabel,
 } from "./fixtureDisplay";
 
-function TeamLine({
+function FixtureTeamRow({
   name,
   code,
   flag,
-  align,
+  score,
+  hasScore,
+  isWinner,
 }: {
   name: string | null;
   code: string | null;
   flag: string | null;
-  align: "right" | "left";
+  score: number | null;
+  hasScore: boolean;
+  isWinner: boolean;
 }) {
   const glyph = safeFlagGlyph(flag);
-  // Prefer a verified emoji glyph; otherwise fall back to a CSS flag resolved
-  // from the team name/code (with its own neutral badge fallback).
+  // Prefer a verified emoji glyph; otherwise a CSS flag resolved from the team
+  // name/code (with its own neutral fallback). Flags only — no inline code chip.
   const flagNode =
     glyph !== null ? (
-      <Box component="span" aria-hidden sx={{ fontSize: "1.1rem" }}>
+      <Box
+        component="span"
+        aria-hidden
+        sx={{ fontSize: "1.5rem", lineHeight: 0 }}
+      >
         {glyph}
       </Box>
     ) : name !== null || code !== null ? (
-      <CountryFlag name={name} code={code} fifaCode={code} size="sm" />
+      <CountryFlag name={name} code={code} fifaCode={code} size="md" rounded />
     ) : null;
+  const label = teamLabel(name, code);
+
   return (
     <Box
       sx={{
-        display: "flex",
+        display: "grid",
+        gridTemplateColumns: "minmax(0, 1fr) auto",
         alignItems: "center",
-        justifyContent: align === "right" ? "flex-end" : "flex-start",
-        gap: 1,
-        minWidth: 0,
+        gap: 1.5,
       }}
     >
-      {flagNode !== null && align === "left" ? flagNode : null}
-      <Typography
-        component="span"
-        sx={{
-          color: atlas.bodyStrong,
-          fontWeight: 400,
-          textAlign: align,
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap",
-        }}
+      <Stack
+        direction="row"
+        spacing={1.25}
+        sx={{ alignItems: "center", minWidth: 0 }}
       >
-        {teamLabel(name, code)}
-      </Typography>
-      {flagNode !== null && align === "right" ? flagNode : null}
+        {flagNode !== null ? (
+          <Box sx={{ flexShrink: 0, display: "inline-flex" }}>{flagNode}</Box>
+        ) : null}
+        <Typography
+          component="span"
+          title={label}
+          sx={{
+            // Wrap only at natural spaces (no mid-word splitting), clamp to two
+            // lines, and keep the full name available via the title tooltip.
+            minWidth: 0,
+            fontWeight: 700,
+            fontSize: { xs: 15, sm: 16, md: 17 },
+            lineHeight: 1.15,
+            color:
+              hasScore && !isWinner ? atlas.textSecondary : atlas.textPrimary,
+            whiteSpace: "normal",
+            wordBreak: "normal",
+            overflowWrap: "normal",
+            hyphens: "none",
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+          }}
+        >
+          {label}
+        </Typography>
+      </Stack>
+
+      {hasScore ? (
+        <Typography
+          component="span"
+          sx={{
+            ...tabularNums,
+            fontFamily: atlas.fontDisplay,
+            fontWeight: 800,
+            fontSize: { xs: 24, sm: 28 },
+            lineHeight: 1,
+            minWidth: 28,
+            textAlign: "right",
+            color: atlasColors.gold,
+            textShadow: "0 0 18px rgba(244,201,93,0.35)",
+            opacity: isWinner ? 1 : 0.72,
+          }}
+        >
+          {score ?? "–"}
+        </Typography>
+      ) : null}
     </Box>
   );
 }
 
 export default function FixtureCard({ fixture }: { fixture: FixtureDto }) {
-  const score = scoreLine(fixture);
   const context = fixtureContext(fixture);
   const dateLabel = fixtureDateLabel(fixture);
   const timeLabel = fixtureTimeLabel(fixture);
   const venue = fixtureVenue(fixture);
+
+  const hasScore = fixture.homeScore !== null && fixture.awayScore !== null;
+  const decidedByPens =
+    fixture.homePenaltyScore !== null && fixture.awayPenaltyScore !== null;
+
+  // Winner highlight (regulation, or the shootout result when applicable).
+  let homeWin = false;
+  let awayWin = false;
+  if (hasScore) {
+    if (decidedByPens) {
+      homeWin = fixture.homePenaltyScore! > fixture.awayPenaltyScore!;
+      awayWin = fixture.awayPenaltyScore! > fixture.homePenaltyScore!;
+    } else {
+      homeWin = fixture.homeScore! > fixture.awayScore!;
+      awayWin = fixture.awayScore! > fixture.homeScore!;
+    }
+  }
 
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        background: atlasGradients.surface,
-        border: `1px solid ${atlasBorders.soft}`,
-        borderRadius: `${atlasRadius.md}px`,
-        boxShadow: atlasShadows.card,
-        p: { xs: 2.5, md: 3 },
-        transition: "border-color 200ms ease, box-shadow 200ms ease",
+        minHeight: 210,
+        p: { xs: 2.25, sm: 2.75 },
+        borderRadius: "20px",
+        background:
+          "linear-gradient(180deg, rgba(12,29,45,0.96), rgba(7,20,33,0.96))",
+        border: "1px solid rgba(0,217,255,0.18)",
+        boxShadow: "0 18px 40px rgba(0,0,0,0.24)",
+        transition:
+          "border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease",
         "&:hover": {
-          borderColor: atlasBorders.cyan,
-          boxShadow: atlasShadows.cyanGlow,
+          transform: "translateY(-3px)",
+          borderColor: "rgba(0,217,255,0.38)",
+          boxShadow: "0 0 28px rgba(0,217,255,0.12)",
         },
       }}
     >
+      {/* Top row: context eyebrow (may wrap) + status chip (always visible). */}
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: "space-between",
           gap: 1.5,
-          mb: 2,
+          mb: 2.25,
         }}
       >
         <Typography
@@ -115,60 +180,62 @@ export default function FixtureCard({ fixture }: { fixture: FixtureDto }) {
             ...eyebrowSx,
             fontSize: "0.62rem",
             color: atlas.textMuted,
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
+            minWidth: 0,
           }}
         >
           {context ?? "World Cup 2026"}
         </Typography>
-        <FixtureStatusChip status={fixture.status} />
+        <Box sx={{ flexShrink: 0 }}>
+          <FixtureStatusChip status={fixture.status} />
+        </Box>
       </Box>
 
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "1fr auto 1fr",
-          alignItems: "center",
-          columnGap: { xs: 1.5, md: 2 },
-        }}
-      >
-        <TeamLine
+      {/* Vertical scoreboard. */}
+      <Stack spacing={1.5}>
+        <FixtureTeamRow
           name={fixture.homeTeamName}
           code={fixture.homeTeamCode}
           flag={fixture.homeTeamFlag}
-          align="right"
+          score={fixture.homeScore}
+          hasScore={hasScore}
+          isWinner={homeWin}
         />
-        <Typography
-          component="span"
-          sx={{
-            ...tabularNums,
-            fontFamily: atlas.fontDisplay,
-            fontWeight: 700,
-            fontSize: { xs: "1.6rem", md: "2rem" },
-            color:
-              score !== null ? atlasColors.goldStrong : atlasColors.textMuted,
-            textShadow:
-              score !== null ? "0 0 18px rgba(244,201,93,0.4)" : "none",
-            whiteSpace: "nowrap",
-            px: { xs: 1, md: 1.5 },
-          }}
-        >
-          {score ?? "vs"}
-        </Typography>
-        <TeamLine
+        {!hasScore ? (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+            <Box sx={{ flex: 1, height: "1px", bgcolor: atlas.border }} />
+            <Typography
+              component="span"
+              sx={{ ...eyebrowSx, fontSize: "0.6rem", color: atlas.textMuted }}
+            >
+              vs
+            </Typography>
+            <Box sx={{ flex: 1, height: "1px", bgcolor: atlas.border }} />
+          </Box>
+        ) : null}
+        <FixtureTeamRow
           name={fixture.awayTeamName}
           code={fixture.awayTeamCode}
           flag={fixture.awayTeamFlag}
-          align="left"
+          score={fixture.awayScore}
+          hasScore={hasScore}
+          isWinner={awayWin}
         />
-      </Box>
+      </Stack>
 
+      {decidedByPens ? (
+        <Typography
+          variant="caption"
+          sx={{ ...tabularNums, color: atlasColors.gold, mt: 1.25 }}
+        >
+          Penalties {fixture.homePenaltyScore}–{fixture.awayPenaltyScore}
+        </Typography>
+      ) : null}
+
+      {/* Metadata. */}
+      <Divider sx={{ borderColor: "rgba(255,255,255,0.08)", my: 2 }} />
       <Box
         sx={{
-          mt: 2,
-          pt: 2,
-          borderTop: `1px solid ${atlas.border}`,
+          mt: "auto",
           display: "flex",
           flexDirection: "column",
           gap: 0.5,

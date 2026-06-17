@@ -59,7 +59,9 @@ export default function CountryPill({
     >
       <CountryFlag
         name={country.name}
+        slug={country.slug}
         code={country.code}
+        fifaCode={country.code}
         size="lg"
         rounded
         sx={{

@@ -46,7 +46,10 @@ export function useDragScroll(): UseDragScroll {
       state.current.scrollLeft = el.scrollLeft;
       state.current.hasDragged = false;
       state.current.pointerId = event.pointerId;
-      el.setPointerCapture?.(event.pointerId);
+      // Do NOT capture the pointer here. Capturing on pointerdown retargets the
+      // trailing `click` to this container (the common ancestor of down/up), so
+      // a plain click never reaches the card's <a> and navigation silently
+      // fails. We capture lazily in onPointerMove once a real drag begins.
       setIsDragging(true);
     },
     [],
@@ -57,7 +60,13 @@ export function useDragScroll(): UseDragScroll {
       const el = ref.current;
       if (el === null || !state.current.active) return;
       const delta = event.clientX - state.current.startX;
-      if (Math.abs(delta) > DRAG_THRESHOLD_PX) state.current.hasDragged = true;
+      if (!state.current.hasDragged && Math.abs(delta) > DRAG_THRESHOLD_PX) {
+        state.current.hasDragged = true;
+        // Now that it's a real drag, capture so we keep receiving moves even if
+        // the cursor leaves the rail. A plain click never reaches this branch,
+        // so its trailing click still lands on the card's <a>.
+        el.setPointerCapture?.(event.pointerId);
+      }
       el.scrollLeft = state.current.scrollLeft - delta;
     },
     [],
