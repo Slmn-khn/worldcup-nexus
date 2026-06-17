@@ -31,9 +31,14 @@ The product should feel like a premium digital football museum, not a betting si
 
 - Use MUI only.
 - Do not add Tailwind CSS.
-- Use `src/theme/theme.ts`.
+- Use `src/theme/theme.ts` for the base theme and `src/theme/visualTokens.ts`
+  for the premium "Neon Atlas" surface language.
 - Use `sx`, `styled`, and MUI theme overrides.
-- Keep the visual style dark navy, charcoal, and gold.
+- Keep the visual style a deep-blue stadium-at-night canvas with trophy-gold and
+  electric-cyan glow accents. Premium surfaces (homepage and similar) use rounded
+  glow cards, gradient fills, and gold/cyan neon highlights; interior archive
+  pages keep a calmer dark layout but share the same palette. See
+  `docs/UI_STYLE_GUIDE.md`.
 - Do not use official FIFA logos or imply official FIFA affiliation.
 
 ## Next.js rules

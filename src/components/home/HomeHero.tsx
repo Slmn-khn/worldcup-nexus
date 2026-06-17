@@ -1,131 +1,139 @@
-"use client";
-
-// Cinematic homepage hero (Checkpoint 7C): layered gradient atmosphere,
-// pitch lines, floating glow orbs with scroll parallax, and a staggered
-// entrance for the headline, copy, CTAs, and search. Client component by
-// design — it renders static copy only (no data fetching).
+// Homepage hero (neon pass). A cinematic deep-blue "stadium at night" panel:
+// CSS-only football glow (cyan core + gold counter-glow), faint pitch lines, and
+// a vignette — no external image, no FIFA marks. The <h1> carries the title with
+// "World Cup" in trophy gold; a glowing search bar and CTAs sit beneath.
 
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { motion, useReducedMotion } from "motion/react";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
-import GlobalSearch from "@/components/ui/GlobalSearch";
-import AtlasBackground from "@/components/visual/AtlasBackground";
-import PitchLines from "@/components/visual/PitchLines";
-import HeroOrb from "@/components/visual/HeroOrb";
-import FootballConstellation from "@/components/visual/FootballConstellation";
-import ParallaxLayer from "@/components/motion/ParallaxLayer";
+import NeonButton from "@/components/ui/NeonButton";
+import NeonChip from "@/components/ui/NeonChip";
+import GlowingSearchBar from "@/components/ui/GlowingSearchBar";
+import { atlasColors, atlasGradients, atlasGlow } from "@/theme/visualTokens";
 
-const MotionBox = motion.create(Box);
+type HomeHeroProps = {
+  /** e.g. "1930–2022" — derived from the archive, never hardcoded. */
+  span?: string | null;
+};
 
-export default function HomeHero() {
-  const reducedMotion = useReducedMotion();
-
-  const entrance = (delay: number) => ({
-    initial: { opacity: 0, y: reducedMotion ? 0 : 22 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.65, delay, ease: [0.21, 0.65, 0.36, 1] as const },
-  });
-
+export default function HomeHero({ span }: HomeHeroProps) {
   return (
     <Box
       sx={{
         position: "relative",
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        bgcolor: "#050A12",
         overflow: "hidden",
+        background: atlasGradients.hero,
+        borderBottom: `1px solid ${atlasColors.surfaceRaised}`,
       }}
     >
-      <AtlasBackground variant="hero" />
-      <PitchLines />
-      <FootballConstellation variant="hero" intensity="medium" showBallNode />
-      <ParallaxLayer
-        drift={60}
-        sx={{ position: "absolute", inset: 0, pointerEvents: "none" }}
-      >
-        <HeroOrb size={420} color="gold" sx={{ top: -140, right: "8%" }} />
-        <HeroOrb
-          size={320}
-          color="cyan"
-          duration={20}
-          sx={{ bottom: -150, left: "2%" }}
-        />
-      </ParallaxLayer>
+      {/* Faint pitch lines — CSS only, decorative. */}
+      <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          opacity: 0.5,
+          backgroundImage: `
+            linear-gradient(transparent 49.5%, ${atlasGlow.cyanSoft} 50%, transparent 50.5%),
+            radial-gradient(circle at 50% 120%, ${atlasGlow.cyanSoft}, transparent 45%)`,
+          backgroundSize: "100% 64px, 100% 100%",
+          maskImage:
+            "radial-gradient(120% 90% at 70% 20%, #000 30%, transparent 75%)",
+        }}
+      />
+      {/* Vignette to keep type readable. */}
+      <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          background:
+            "radial-gradient(120% 90% at 50% 0%, transparent 40%, rgba(2,8,18,0.7) 100%)",
+        }}
+      />
 
-      <PageContainer sx={{ position: "relative", py: { xs: 8, md: 12 } }}>
-        <MotionBox {...entrance(0)}>
-          <Typography
-            variant="overline"
+      <PageContainer
+        sx={{ position: "relative", zIndex: 1, py: { xs: 9, md: 15 } }}
+      >
+        <Box sx={{ mb: 3 }}>
+          <NeonChip
+            accent="cyan"
+            dot
+            label={span != null ? `The Archive · ${span}` : "The Archive"}
+          />
+        </Box>
+        <Typography
+          variant="h1"
+          sx={{
+            fontSize: { xs: "2.9rem", sm: "4rem", md: "5.4rem" },
+            maxWidth: 1040,
+            mb: 3,
+            color: atlasColors.textPrimary,
+            textShadow: "0 2px 40px rgba(0,0,0,0.6)",
+          }}
+        >
+          Explore the complete history of the{" "}
+          <Box
+            component="span"
             sx={{
-              color: "primary.main",
-              letterSpacing: "0.2em",
-              display: "block",
-              mb: 2,
+              color: atlasColors.goldStrong,
+              textShadow: `0 0 28px ${atlasGlow.gold}`,
             }}
           >
-            The Football Archive
-          </Typography>
-        </MotionBox>
-        <MotionBox {...entrance(0.08)}>
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: { xs: "2.25rem", sm: "3rem", md: "3.75rem" },
-              maxWidth: 820,
-              mb: 2.5,
-            }}
-          >
-            Explore the Complete History of the World Cup
-          </Typography>
-        </MotionBox>
-        <MotionBox {...entrance(0.16)}>
-          <Typography
-            variant="h6"
-            component="p"
-            sx={{
-              color: "text.secondary",
-              fontWeight: 400,
-              maxWidth: 640,
-              mb: 4,
-            }}
-          >
-            Every tournament, nation, player, match, goal, and penalty in one
-            independent historical archive.
-          </Typography>
-        </MotionBox>
-        <MotionBox {...entrance(0.24)}>
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={2}
-            sx={{ mb: 7 }}
-          >
-            <Button
-              component={Link}
-              href="/tournaments"
-              variant="contained"
-              size="large"
-            >
-              Explore Tournaments
-            </Button>
-            <Button
-              component={Link}
-              href="/records"
-              variant="outlined"
-              size="large"
-            >
-              View Records
-            </Button>
-          </Stack>
-        </MotionBox>
-        <MotionBox {...entrance(0.32)}>
-          <Box sx={{ maxWidth: 720 }}>
-            <GlobalSearch />
+            World Cup
           </Box>
-        </MotionBox>
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            color: atlasColors.textSecondary,
+            fontSize: { xs: "1rem", md: "1.12rem" },
+            maxWidth: 640,
+            mb: 5,
+          }}
+        >
+          Every tournament, nation, player, match, goal, record, and 2026
+          fixture in one independent football archive.
+        </Typography>
+
+        <Box sx={{ maxWidth: 680, mb: 4 }}>
+          <GlowingSearchBar />
+        </Box>
+
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={2}
+          sx={{ alignItems: { xs: "stretch", sm: "center" } }}
+        >
+          <NeonButton component={Link} href="/tournaments" neon="gold">
+            Explore The Archive
+          </NeonButton>
+          <NeonButton component={Link} href="/records" neon="outline">
+            Records
+          </NeonButton>
+          <Typography
+            component={Link}
+            href="/schedule/2026"
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 0.75,
+              fontSize: "0.78rem",
+              fontWeight: 700,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: atlasColors.cyanStrong,
+              transition: "text-shadow 150ms ease",
+              "&:hover": { textShadow: `0 0 16px ${atlasGlow.cyan}` },
+            }}
+          >
+            View 2026 Schedule →
+          </Typography>
+        </Stack>
       </PageContainer>
     </Box>
   );

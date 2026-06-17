@@ -1,33 +1,30 @@
-// DB-backed home page — Checkpoint 7C Revised (World Cup Vault editorial
-// redesign). All numbers and lists come from the server query layer
-// (getHomePageData + getTournamentCards) — nothing is hardcoded or mocked.
-// Sections without data render an honest empty state.
+// DB-backed home page (neon premium pass). Data comes from the server-side
+// orchestrator (getHomeViewModel), which wraps every section in its own
+// try/catch so a failed fixture/media/finals query degrades to a polished
+// fallback instead of crashing. The visuals are a deep-blue / cyan / gold
+// "stadium at night" shell (src/theme/visualTokens.ts); nothing is hardcoded.
 
 import type { Metadata } from "next";
-import Image from "next/image";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Link from "@/components/Link";
-import PageContainer from "@/components/layout/PageContainer";
-import VaultEyebrow from "@/components/vault/VaultEyebrow";
-import VaultButton from "@/components/vault/VaultButton";
-import VaultSection from "@/components/vault/VaultSection";
-import VaultSpecCell from "@/components/vault/VaultSpecCell";
-import TournamentTimelineStrip from "@/components/vault/TournamentTimelineStrip";
-import GlobalSearch from "@/components/ui/GlobalSearch";
+import HomeSection from "@/components/home/HomeSection";
+import SectionHeader from "@/components/ui/SectionHeader";
 import EmptyState from "@/components/ui/EmptyState";
-import TournamentCard from "@/components/tournaments/TournamentCard";
-import MatchRowList from "@/components/matches/MatchRowList";
 import HomeLatestMatchesSection from "@/components/fixtures/HomeLatestMatchesSection";
-import CountryCard from "@/components/countries/CountryCard";
-import PlayerCard from "@/components/players/PlayerCard";
-import RecordCard from "@/components/records/RecordCard";
-import { formatDate, formatNumber } from "@/lib/format";
-import { getHomePageData } from "@/server/queries/home";
-import { getTournamentCards } from "@/server/queries/tournaments";
-import { getHomeFixtures2026 } from "@/server/fixtures/queries";
-import { atlas } from "@/theme/tokens";
+import HomeHero from "@/components/home/HomeHero";
+import ArchiveStatsSection from "@/components/home/ArchiveStatsSection";
+import TournamentTimelineSection from "@/components/home/TournamentTimelineSection";
+import FeaturedTournamentsSection from "@/components/home/FeaturedTournamentsSection";
+import RecentFinalsSection from "@/components/home/RecentFinalsSection";
+import ExploreByCountrySection from "@/components/home/ExploreByCountrySection";
+import TopPlayerRecordsSection from "@/components/home/TopPlayerRecordsSection";
+import RecordsFirstsSection from "@/components/home/RecordsFirstsSection";
+import { getHomeViewModel } from "@/server/home/queries";
+import {
+  atlasBorders,
+  atlasColors,
+  atlasGradients,
+  atlasRadius,
+} from "@/theme/visualTokens";
 
 // Live archive data — always render from the current database state.
 export const dynamic = "force-dynamic";
@@ -38,342 +35,93 @@ export const metadata: Metadata = {
     "Explore every World Cup tournament, nation, player, match, goal, and penalty in one independent historical archive.",
 };
 
-const CARD_GRID_3 = {
-  display: "grid",
-  gap: 3,
-  gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(3, 1fr)" },
-};
-const CARD_GRID_4 = {
-  display: "grid",
-  gap: 3,
-  gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" },
-};
-
 export default async function Home() {
-  const [data, tournaments, fixtureData] = await Promise.all([
-    getHomePageData(),
-    getTournamentCards(),
-    getHomeFixtures2026(),
-  ]);
-  const { archiveStats } = data;
+  const home = await getHomeViewModel();
+  const { archiveStats } = home;
 
-  // Archive span derived from imported tournaments — never hardcoded.
-  const years = tournaments.map((tournament) => tournament.year);
-  const spanStart = years.length > 0 ? Math.min(...years) : null;
-  const spanEnd = years.length > 0 ? Math.max(...years) : null;
   const span =
-    spanStart !== null && spanEnd !== null ? `${spanStart}–${spanEnd}` : null;
-
-  const timelineEntries = [...tournaments]
-    .sort((a, b) => b.year - a.year)
-    .map((tournament) => ({
-      year: tournament.year,
-      winner: tournament.winner,
-    }));
-
-  const finalsRows = data.iconicMatches.map((match) => ({
-    key: match.id,
-    year: match.tournamentYear,
-    homeName: match.homeTeam.name,
-    awayName: match.awayTeam.name,
-    score:
-      match.penaltyScore !== null
-        ? `${match.score} (${match.penaltyScore} pens)`
-        : match.score,
-    context: match.tournamentName,
-    note: [
-      formatDate(match.matchDate),
-      match.decidedByPenalties ? "Decided on penalties" : null,
-    ]
-      .filter((part): part is string => part !== null)
-      .join(" — "),
-    href: `/matches/${match.slug}`,
-  }));
+    archiveStats.spanStart !== null && archiveStats.spanEnd !== null
+      ? `${archiveStats.spanStart}–${archiveStats.spanEnd}`
+      : null;
 
   return (
-    <Box>
-      {/* Hero — black cinematic band with the brand banner as a right-weighted
-          backdrop. The banner is a decorative support layer behind a dark
-          overlay; the real H1/subtitle below remain the source of the title. */}
+    <Box
+      sx={{
+        position: "relative",
+        minHeight: "100vh",
+        background: atlasGradients.page,
+        color: atlasColors.textPrimary,
+      }}
+    >
+      {/* 1 — Hero (full-bleed). */}
+      <HomeHero span={span} />
+
+      {/* Centered content shell with a soft rounded frame on larger screens. */}
       <Box
         sx={{
-          position: "relative",
-          overflow: "hidden",
-          borderBottom: `1px solid ${atlas.border}`,
-          bgcolor: atlas.black,
+          maxWidth: 1280,
+          mx: "auto",
+          px: { xs: 1.5, sm: 2.5, md: 4 },
+          py: { xs: 2, md: 5 },
         }}
       >
-        <Box sx={{ position: "absolute", inset: 0, zIndex: 0 }}>
-          <Image
-            src="/brand/worldcup-nexus-banner.png"
-            alt="WORLDCUP Nexus — independent World Cup archive"
-            fill
-            priority
-            sizes="100vw"
-            style={{ objectFit: "cover", objectPosition: "center right" }}
-          />
-          {/* Dark gradient keeps the headline and copy readable; on wide
-              screens it fades to the right so the artwork still reads. */}
-          <Box
-            aria-hidden
-            sx={{
-              position: "absolute",
-              inset: 0,
-              background: {
-                xs: "linear-gradient(180deg, rgba(0,0,0,0.74) 0%, rgba(0,0,0,0.9) 100%)",
-                md: `linear-gradient(90deg, ${atlas.black} 0%, rgba(0,0,0,0.92) 36%, rgba(0,0,0,0.55) 72%, rgba(0,0,0,0.32) 100%)`,
-              },
-            }}
-          />
-        </Box>
-        <PageContainer
-          sx={{ position: "relative", zIndex: 1, py: { xs: 9, md: 14 } }}
-        >
-          <VaultEyebrow
-            label={span !== null ? `The Archive · ${span}` : "The Archive"}
-            sx={{ mb: 3 }}
-          />
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: { xs: "3rem", sm: "4rem", md: "5.2rem" },
-              maxWidth: 1000,
-              mb: 3,
-            }}
-          >
-            Explore the Complete History of the World Cup
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              color: atlas.textSecondary,
-              fontSize: { xs: "1rem", md: "1.1rem" },
-              maxWidth: 620,
-              mb: 5,
-            }}
-          >
-            Every tournament, nation, player, match, goal, and penalty in one
-            independent historical archive.
-          </Typography>
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={2}
-            sx={{ mb: 7 }}
-          >
-            <VaultButton component={Link} href="/tournaments" variant="primary">
-              Explore the Archive
-            </VaultButton>
-            <VaultButton component={Link} href="/records" variant="outline">
-              Records
-            </VaultButton>
-          </Stack>
-          <Box sx={{ maxWidth: 680 }}>
-            <GlobalSearch />
-          </Box>
-        </PageContainer>
-      </Box>
-
-      {/* Archive stat strip */}
-      <VaultSection sx={{ py: { xs: 6, md: 8 } }}>
         <Box
           sx={{
-            display: "grid",
-            gap: 3,
-            gridTemplateColumns: { xs: "1fr 1fr", md: "repeat(4, 1fr)" },
+            borderRadius: {
+              xs: `${atlasRadius.lg}px`,
+              md: `${atlasRadius.xl}px`,
+            },
+            border: { md: `1px solid ${atlasBorders.soft}` },
+            background: {
+              md: "linear-gradient(180deg, rgba(8,20,32,0.5) 0%, rgba(3,12,22,0.28) 100%)",
+            },
+            boxShadow: { md: "0 40px 120px rgba(0,0,0,0.5)" },
+            px: { xs: 0, md: 4, lg: 6 },
+            overflow: "hidden",
           }}
         >
-          <VaultSpecCell
-            value={formatNumber(archiveStats.tournaments)}
-            label="Tournaments"
-          />
-          <VaultSpecCell
-            value={formatNumber(archiveStats.matches)}
-            label="Matches"
-          />
-          <VaultSpecCell
-            value={formatNumber(archiveStats.goals)}
-            label="Goals"
-          />
-          <VaultSpecCell
-            value={span ?? "—"}
-            label="Archive span"
-            sublabel={
-              span !== null
-                ? `${formatNumber(archiveStats.countries)} nations recorded`
-                : undefined
-            }
-            emphasis
-          />
+          {/* 2 — Latest 2026 Matches / Schedule (existing fixture pipeline;
+              DB-backed, no third-party calls from the browser). */}
+          <HomeSection>
+            <SectionHeader
+              eyebrow="2026 World Cup"
+              title="Latest Matches & Scores"
+              accent="cyan"
+              subtitle="Live, today's, recent, and upcoming 2026 World Cup fixtures."
+              action={{ label: "Full schedule", href: "/schedule/2026" }}
+            />
+            {home.fixtures !== null ? (
+              <HomeLatestMatchesSection data={home.fixtures} />
+            ) : (
+              <EmptyState
+                title="2026 schedule temporarily unavailable"
+                description="Fixtures appear here once the next sync runs. The rest of the archive is unaffected."
+              />
+            )}
+          </HomeSection>
+
+          {/* 3 — Archive at a Glance */}
+          <ArchiveStatsSection stats={archiveStats} />
+
+          {/* 4 — Tournament Timeline */}
+          <TournamentTimelineSection entries={home.timeline} />
+
+          {/* 5 — Featured Tournaments */}
+          <FeaturedTournamentsSection tournaments={home.featuredTournaments} />
+
+          {/* 6 — Recent Finals / Iconic Matches */}
+          <RecentFinalsSection finals={home.recentFinals} />
+
+          {/* 7 — Explore by Country */}
+          <ExploreByCountrySection countries={home.countries} />
+
+          {/* 8 — Top Player Records */}
+          <TopPlayerRecordsSection players={home.playerRecords} />
+
+          {/* 9 — Records & Firsts */}
+          <RecordsFirstsSection records={home.records} />
         </Box>
-      </VaultSection>
-
-      {/* Latest Matches / 2026 Schedule & Scores — live archive data from the
-          fixture pipeline (DB-backed; no third-party calls from the browser). */}
-      <VaultSection
-        eyebrow="2026 World Cup"
-        title="Latest Matches & Scores"
-        description="Live, today's, recent, and upcoming 2026 World Cup fixtures."
-        action={{ label: "Full schedule", href: "/schedule/2026" }}
-      >
-        <HomeLatestMatchesSection data={fixtureData} />
-      </VaultSection>
-
-      {/* Tournament timeline */}
-      <VaultSection
-        band
-        eyebrow={span ?? "The editions"}
-        title="The Tournament Timeline"
-        action={{ label: "All World Cups", href: "/tournaments" }}
-      >
-        {timelineEntries.length > 0 ? (
-          <TournamentTimelineStrip entries={timelineEntries} />
-        ) : (
-          <EmptyState
-            title="Timeline coming soon"
-            description="Tournament data has not been imported yet."
-          />
-        )}
-      </VaultSection>
-
-      {/* Featured tournaments */}
-      <VaultSection
-        eyebrow="Latest editions"
-        title="Featured Tournaments"
-        action={{ label: "All tournaments", href: "/tournaments" }}
-      >
-        {data.featuredTournaments.length > 0 ? (
-          <Box sx={CARD_GRID_3}>
-            {data.featuredTournaments.map((tournament) => (
-              <TournamentCard
-                key={tournament.id}
-                year={tournament.year}
-                name={tournament.name}
-                host={tournament.hostName}
-                winner={tournament.winner}
-                runnerUp={tournament.runnerUp}
-                finalScore={tournament.finalScore}
-                teamsCount={tournament.teamsCount}
-                matchesCount={tournament.matchesCount}
-                goalsCount={tournament.goalsCount}
-              />
-            ))}
-          </Box>
-        ) : (
-          <EmptyState
-            title="Tournaments coming soon"
-            description="Tournament data has not been imported yet."
-          />
-        )}
-      </VaultSection>
-
-      {/* Recent finals — honest label: editorial "iconic" curation is not
-          stored in the database. */}
-      <VaultSection
-        band
-        eyebrow="Deciding moments"
-        title="Recent Finals"
-        description="The most recent deciding finals in the archive."
-        action={{ label: "All matches", href: "/matches" }}
-      >
-        {finalsRows.length > 0 ? (
-          <MatchRowList rows={finalsRows} />
-        ) : (
-          <EmptyState
-            title="Finals coming soon"
-            description="Match data has not been imported yet."
-          />
-        )}
-      </VaultSection>
-
-      {/* Nations */}
-      <VaultSection
-        eyebrow="The nations"
-        title="Explore by Country"
-        description="Nations with the most tournament entries."
-        action={{ label: "All countries", href: "/countries" }}
-      >
-        {data.featuredCountries.length > 0 ? (
-          <Box sx={CARD_GRID_4}>
-            {data.featuredCountries.map((country) => (
-              <CountryCard
-                key={country.id}
-                name={country.name}
-                flagEmoji={country.flagEmoji}
-                code={country.code}
-                summary={`${formatNumber(country.tournamentsEntered)} tournament entries · ${formatNumber(country.playersCount)} players in the archive`}
-                href={`/countries/${country.slug}`}
-              />
-            ))}
-          </Box>
-        ) : (
-          <EmptyState
-            title="Countries coming soon"
-            description="Country data has not been imported yet."
-          />
-        )}
-      </VaultSection>
-
-      {/* Player records — honest label: these are the archive's leading
-          scorers, not a curated legends list. */}
-      <VaultSection
-        eyebrow="The pantheon"
-        title="Top Player Records"
-        description="The archive's all-time leading scorers."
-        action={{ label: "All players", href: "/players" }}
-      >
-        {data.featuredPlayers.length > 0 ? (
-          <Box sx={CARD_GRID_4}>
-            {data.featuredPlayers.map((player) => (
-              <PlayerCard
-                key={player.id}
-                name={player.name}
-                country={player.countryName ?? "Nation unknown"}
-                flagEmoji={player.countryFlagEmoji}
-                position={player.position}
-                href={`/players/${player.slug}`}
-              />
-            ))}
-          </Box>
-        ) : (
-          <EmptyState
-            title="Players coming soon"
-            description="Player data has not been imported yet."
-          />
-        )}
-      </VaultSection>
-
-      {/* Records & firsts */}
-      <VaultSection
-        band
-        eyebrow="Still standing"
-        title="Records & Firsts"
-        description="Database-backed leaderboards computed from imported events."
-        action={{ label: "All records", href: "/records" }}
-        sx={{ borderBottom: "none" }}
-      >
-        {data.recordsPreview.some((board) => board.items.length > 0) ? (
-          <Box sx={CARD_GRID_3}>
-            {data.recordsPreview
-              .filter((board) => board.items.length > 0)
-              .map((board) => {
-                const top = board.items[0];
-                return (
-                  <RecordCard
-                    key={board.key}
-                    title={board.title}
-                    value={`${top.label} — ${formatNumber(top.value)}`}
-                    description={board.description}
-                  />
-                );
-              })}
-          </Box>
-        ) : (
-          <EmptyState
-            title="Records coming soon"
-            description="Leaderboards appear once event data is imported."
-          />
-        )}
-      </VaultSection>
+      </Box>
     </Box>
   );
 }

@@ -2,8 +2,10 @@
 // data line. No fake photos — typography and data hierarchy carry it.
 
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import PlayerPortrait from "@/components/media/PlayerPortrait";
 import { formatNumber } from "@/lib/format";
 import {
   atlas,
@@ -18,6 +20,8 @@ type PlayerCardProps = {
   flagEmoji?: string | null;
   position?: string | null;
   summary?: string;
+  /** Approved portrait URL from the media layer; falls back to initials. */
+  portraitUrl?: string | null;
   /** Squad selections — NOT match appearances. */
   selectedTournamentsCount?: number | null;
   goalsCount?: number | null;
@@ -31,6 +35,7 @@ export default function PlayerCard({
   flagEmoji,
   position,
   summary,
+  portraitUrl,
   selectedTournamentsCount,
   goalsCount,
   awardsCount,
@@ -58,37 +63,58 @@ export default function PlayerCard({
         ...interactiveCardSx,
       }}
     >
-      <Typography
-        component="p"
-        sx={{ ...eyebrowSx, fontSize: "0.7rem", color: atlas.textMuted, mb: 1 }}
-      >
-        {flagEmoji ? `${flagEmoji} ` : ""}
-        {country}
-        {position ? (
-          <Box component="span" sx={{ color: atlas.gold, ml: 1 }}>
-            {position}
-          </Box>
-        ) : null}
-      </Typography>
-      <Typography
-        component="p"
-        sx={{
-          fontFamily: atlas.fontDisplay,
-          fontWeight: 700,
-          fontSize: "1.35rem",
-          textTransform: "uppercase",
-          letterSpacing: "0.02em",
-          color: atlas.textPrimary,
-          lineHeight: 1.15,
-          mb: counts.length > 0 || summary ? 1.25 : 0,
-        }}
-      >
-        {name}
-      </Typography>
+      <Stack direction="row" spacing={2} sx={{ alignItems: "flex-start" }}>
+        {/* Fallback-first portrait: shows the approved image when one exists,
+            otherwise initials — safe with zero media rows. */}
+        <PlayerPortrait
+          name={name}
+          imageUrl={portraitUrl}
+          countryName={country}
+          size="sm"
+        />
+        <Box sx={{ minWidth: 0, flex: 1 }}>
+          <Typography
+            component="p"
+            sx={{
+              ...eyebrowSx,
+              fontSize: "0.7rem",
+              color: atlas.textMuted,
+              mb: 1,
+            }}
+          >
+            {flagEmoji ? `${flagEmoji} ` : ""}
+            {country}
+            {position ? (
+              <Box component="span" sx={{ color: atlas.gold, ml: 1 }}>
+                {position}
+              </Box>
+            ) : null}
+          </Typography>
+          <Typography
+            component="p"
+            sx={{
+              fontFamily: atlas.fontDisplay,
+              fontWeight: 700,
+              fontSize: "1.35rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.02em",
+              color: atlas.textPrimary,
+              lineHeight: 1.15,
+            }}
+          >
+            {name}
+          </Typography>
+        </Box>
+      </Stack>
       {counts.length > 0 ? (
         <Typography
           variant="caption"
-          sx={{ ...tabularNums, color: atlas.textMuted, display: "block" }}
+          sx={{
+            ...tabularNums,
+            color: atlas.textMuted,
+            display: "block",
+            mt: 1.5,
+          }}
         >
           {counts.join(" · ")}
         </Typography>
@@ -96,7 +122,7 @@ export default function PlayerCard({
       {summary ? (
         <Typography
           variant="body2"
-          sx={{ color: atlas.textSecondary, mt: counts.length > 0 ? 1 : 0 }}
+          sx={{ color: atlas.textSecondary, mt: counts.length > 0 ? 1 : 1.5 }}
         >
           {summary}
         </Typography>

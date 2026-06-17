@@ -2,6 +2,7 @@
 
 import { createTheme } from "@mui/material/styles";
 import { atlas } from "./tokens";
+import { nexusColors, nexusGradients } from "./visualTokens";
 
 const theme = createTheme({
   cssVariables: true,
@@ -13,7 +14,8 @@ const theme = createTheme({
       contrastText: atlas.black,
     },
     secondary: {
-      main: atlas.textPrimary,
+      main: nexusColors.cyan,
+      light: nexusColors.cyanStrong,
       contrastText: atlas.black,
     },
     background: {
@@ -112,14 +114,21 @@ const theme = createTheme({
     },
   },
   shape: {
-    borderRadius: 0,
+    // Gentle rounding across inputs/cards/menus for the neon look. Components
+    // that intentionally stay square still override to 0.
+    borderRadius: 8,
   },
   components: {
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: atlas.black,
+          backgroundColor: nexusColors.background,
+          // App-wide deep-blue canvas with cyan/gold glow near the top.
+          background: nexusGradients.page,
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
           color: atlas.textPrimary,
+          minHeight: "100vh",
         },
         a: {
           color: "inherit",
@@ -152,7 +161,7 @@ const theme = createTheme({
           backgroundImage: "none",
           border: `1px solid ${atlas.border}`,
           boxShadow: "none",
-          borderRadius: 0,
+          borderRadius: 14,
         },
       },
     },
@@ -167,7 +176,7 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 0,
+          borderRadius: 8,
           paddingInline: 28,
           minHeight: 48,
           boxShadow: "none",
@@ -206,7 +215,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontWeight: 600,
-          borderRadius: 0,
+          borderRadius: 8,
         },
         sizeSmall: {
           fontSize: "0.7rem",
@@ -232,7 +241,7 @@ const theme = createTheme({
     MuiTabs: {
       styleOverrides: {
         indicator: {
-          backgroundColor: atlas.textPrimary,
+          backgroundColor: atlas.gold,
         },
       },
     },
@@ -244,7 +253,7 @@ const theme = createTheme({
           letterSpacing: "0.1em",
           color: atlas.textSecondary,
           "&.Mui-selected": {
-            color: atlas.textPrimary,
+            color: atlas.goldStrong,
           },
         },
       },
@@ -268,9 +277,9 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: atlas.surface1,
-          borderRadius: 0,
+          borderRadius: 8,
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: atlas.textPrimary,
+            borderColor: nexusColors.cyan,
             borderWidth: 1,
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -286,14 +295,14 @@ const theme = createTheme({
     MuiSelect: {
       styleOverrides: {
         root: {
-          borderRadius: 0,
+          borderRadius: 8,
         },
       },
     },
     MuiMenu: {
       styleOverrides: {
         paper: {
-          borderRadius: 0,
+          borderRadius: 10,
           border: `1px solid ${atlas.border}`,
           backgroundColor: atlas.surfaceSoft,
         },

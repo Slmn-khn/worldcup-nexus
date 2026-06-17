@@ -24,6 +24,7 @@ import {
   type RawSearchParams,
 } from "@/lib/search-params";
 import { getPlayerProfile } from "@/server/queries/players";
+import { getPrimaryPlayerPortraitsBySlug } from "@/server/media/queries";
 
 export const dynamic = "force-dynamic";
 
@@ -86,6 +87,10 @@ export default async function PlayerProfilePage({
     searchParams,
   ]);
   if (player === null) notFound();
+
+  // Decorative approved portrait — never blocks render (helper never throws).
+  const portraits = await getPrimaryPlayerPortraitsBySlug([player.slug]);
+  const portraitUrl = portraits.get(player.slug)?.url ?? null;
 
   // Local archive controls — they narrow the event sections only; hero,
   // stat grid, and the squad history always show the full career.
@@ -160,7 +165,7 @@ export default async function PlayerProfilePage({
 
   return (
     <Box>
-      <PlayerHero player={player} />
+      <PlayerHero player={player} portraitUrl={portraitUrl} />
 
       {/* Stats */}
       <PageContainer component="section" sx={SECTION_SX}>
@@ -184,7 +189,10 @@ export default async function PlayerProfilePage({
       <PageContainer component="section" sx={{ pt: { xs: 2, md: 3 } }}>
         <VaultFilterBar
           fields={[
-            { kind: "search", placeholder: "Search events — opponents, stages…" },
+            {
+              kind: "search",
+              placeholder: "Search events — opponents, stages…",
+            },
             {
               kind: "select",
               param: "tournamentYear",

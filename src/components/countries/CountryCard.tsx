@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import CountryFlag from "@/components/media/CountryFlag";
 import { formatNumber } from "@/lib/format";
 import {
   atlas,
@@ -27,7 +28,7 @@ type CountryCardProps = {
 
 export default function CountryCard({
   name,
-  flagEmoji,
+  // flagEmoji is still accepted for back-compat but superseded by the CSS flag.
   summary,
   code,
   tournamentsCount,
@@ -61,15 +62,9 @@ export default function CountryCard({
         spacing={1.5}
         sx={{ alignItems: "center", mb: 1.5 }}
       >
-        {flagEmoji ? (
-          <Typography
-            component="span"
-            sx={{ fontSize: "1.5rem", lineHeight: 1 }}
-            aria-hidden
-          >
-            {flagEmoji}
-          </Typography>
-        ) : null}
+        {/* CSS flag (flag-icons) with a built-in neutral fallback — never an
+            external image, never crashes on an unknown country. */}
+        <CountryFlag name={name} code={code} fifaCode={code} size="md" />
         <Typography
           component="p"
           sx={{

@@ -42,6 +42,67 @@ enum FixtureSource {
   MANUAL
 }
 
+// ---------------------------------------------------------------------------
+// Media asset layer (Phase 1). Media is an OPTIONAL enhancement on top of the
+// football data — nothing here is required for a page to render. See
+// docs/MEDIA_ASSET_STRATEGY.md and docs/MEDIA_LICENSE_POLICY.md.
+// ---------------------------------------------------------------------------
+
+enum MediaEntityType {
+  PLAYER
+  COUNTRY
+  TOURNAMENT
+  MATCH
+  RECORD
+  ICONIC_MOMENT
+  STADIUM
+  GENERIC
+}
+
+enum MediaAssetType {
+  PORTRAIT
+  FLAG
+  HERO
+  POSTER
+  THUMBNAIL
+  BACKGROUND
+  EVENT_COVER
+  TROPHY
+  STADIUM
+  SILHOUETTE
+  FALLBACK
+}
+
+enum MediaSourceProvider {
+  LOCAL
+  WIKIMEDIA_COMMONS
+  WIKIDATA
+  CLOUDINARY
+  SUPABASE_STORAGE
+  GENERATED
+  MANUAL
+  OTHER
+}
+
+enum MediaLicenseType {
+  PUBLIC_DOMAIN
+  CC0
+  CC_BY
+  CC_BY_SA
+  CC_BY_NC
+  RIGHTS_RESERVED
+  GENERATED_OWNED
+  UNKNOWN
+}
+
+enum MediaAssetStatus {
+  CANDIDATE
+  APPROVED
+  REJECTED
+  NEEDS_REVIEW
+  ARCHIVED
+}
+
 model Tournament {
   id           String    @id @default(cuid())
   sourceId     String?   @unique
@@ -58,6 +119,12 @@ model Tournament {
   // Resolved after import; plain scalars to avoid circular relation setup.
   winnerTeamId   String?
   runnerUpTeamId String?
+
+  // Optional visual-theme hints (Phase 1 media layer). All nullable — never
+  // required for a tournament to render.
+  themeColorPrimary   String?
+  themeColorSecondary String?
+  visualTheme         String?
 
   teams        Team[]
   matches      Match[]
@@ -78,6 +145,12 @@ model Country {
   code      String?
   fifaCode  String?
   flagEmoji String?
+
+  // Optional flag/identity codes (Phase 1 media layer). Used to resolve a
+  // CSS flag-icons code; all nullable.
+  iso2Code String?
+  iso3Code String?
+  flagCode String?
 
   teams   Team[]
   players Player[]
@@ -124,6 +197,11 @@ model Player {
   countryId   String?
   position    String?
   dateOfBirth DateTime?
+
+  // Optional external identifiers (Phase 1 media layer) used to locate
+  // license-cleared portraits; all nullable.
+  wikidataId      String?
+  commonsCategory String?
 
   country Country? @relation(fields: [countryId], references: [id])
 
@@ -445,4 +523,107 @@ model RawSourceRecord {
 
   @@index([source, entityType])
   @@index([sourceId])
+}
+
+// One row per image. Holds provider/source URLs, dimensions, render hints,
+// full license + attribution metadata, and a review status. Only APPROVED
+// assets are ever returned by the public query layer.
+model MediaAsset {
+  id String @id @default(cuid())
+
+  assetType MediaAssetType
+  status    MediaAssetStatus @default(CANDIDATE)
+
+  provider        MediaSourceProvider
+  providerAssetId String?
+  sourcePageUrl   String?
+  originalUrl     String?
+  storageUrl      String?
+  optimizedUrl    String?
+
+  title       String?
+  description String?
+  altText     String?
+
+  width       Int?
+  height      Int?
+  blurDataUrl String?
+
+  dominantColor String?
+  focalX        Float?
+  focalY        Float?
+
+  licenseType     MediaLicenseType @default(UNKNOWN)
+  licenseName     String?
+  licenseUrl      String?
+  creatorName     String?
+  creditText      String?
+  attributionHtml String?
+
+  rawMetadata Json?
+
+  reviewedAt      DateTime?
+  reviewedBy      String?
+  rejectionReason String?
+
+  entityLinks EntityMedia[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([assetType])
+  @@index([status])
+  @@index([provider])
+  @@index([licenseType])
+}
+
+// Links a MediaAsset to a domain entity (by type + id) for a given usage role.
+model EntityMedia {
+  id String @id @default(cuid())
+
+  entityType MediaEntityType
+  entityId   String
+
+  mediaAssetId String
+  mediaAsset   MediaAsset @relation(fields: [mediaAssetId], references: [id], onDelete: Cascade)
+
+  usage     MediaAssetType
+  priority  Int            @default(100)
+  isPrimary Boolean        @default(false)
+
+  caption    String?
+  displayAlt String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([entityType, entityId])
+  @@index([mediaAssetId])
+  @@index([usage])
+  @@index([isPrimary])
+}
+
+// Audit row per media import/seed run.
+model MediaImportJob {
+  id String @id @default(cuid())
+
+  provider   MediaSourceProvider
+  entityType MediaEntityType
+  entityId   String?
+  query      String?
+
+  status          String
+  recordsFound    Int    @default(0)
+  recordsImported Int    @default(0)
+
+  startedAt    DateTime  @default(now())
+  finishedAt   DateTime?
+  errorMessage String?
+  metadata     Json?
+
+  createdAt DateTime @default(now())
+
+  @@index([provider])
+  @@index([entityType, entityId])
+  @@index([status])
 }
