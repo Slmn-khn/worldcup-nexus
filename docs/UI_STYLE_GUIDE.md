@@ -3,15 +3,28 @@
 ## Neon Atlas — current visual direction
 
 WORLDCUP Nexus now leads with a **"stadium at night"** premium identity: a deep
-blue-black canvas lit by **trophy gold** and **electric cyan** glow. The homepage
-is the flagship of this language; interior archive pages keep a calmer layout but
-share the same palette and will migrate toward it over time.
+blue-black canvas lit by **trophy gold** and **electric cyan** glow. **This is now
+applied across the whole app** — every page sits on the deep-blue canvas with the
+same gold/cyan accents, glowing cards, rounded surfaces, and neon focus states.
 
-**Tokens live in `src/theme/visualTokens.ts`** (`atlasColors`, `atlasGlow`,
-`atlasBorders`, `atlasShadows`, `atlasGradients`, `atlasRadius`,
-`tournamentGradient`, `accentTextSx`). Apply them via `sx` — the base theme
-(`src/theme/theme.ts`) stays zero-radius so non-homepage routes are unaffected
-unless intentionally migrated.
+**Tokens live in `src/theme/visualTokens.ts`.** The canonical app-wide names are
+`nexusColors`, `nexusShadows`, `nexusGradients`, `nexusBorders`, `nexusRadius`
+(use these in new shared components). The homepage set — `atlasColors`,
+`atlasGlow`, `atlasBorders`, `atlasShadows`, `atlasGradients`, `atlasRadius`,
+`tournamentGradient`, `accentTextSx` — mirrors the same values.
+
+Two mechanisms apply the theme everywhere without per-page rewrites:
+
+1. **Recolored base tokens** — `src/theme/tokens.ts` (`atlas.*`) and the MUI theme
+   (`src/theme/theme.ts`) were recolored to the neon palette: deep-blue
+   `background.default`, gold `primary`, cyan `secondary`, soft-white borders,
+   gentle 8px rounding, cyan input focus, gold tab indicators, and a body glow
+   gradient. Every existing Vault surface that reads `atlas.*` or MUI palette
+   tokens inherits the new look automatically.
+2. **Shared component toolkit** — `src/components/ui/`: `PageShell`, `PageHero`,
+   `PageSection`, `SectionHeader`, `GlowCard`, `NeonButton`, `NeonChip`,
+   `DataPanel`, `FilterPanel`, `DataTableShell`, `EmptyState`, `LoadingState`,
+   `ErrorState`. Prefer wrapping content in these for new/updated pages.
 
 - **Canvas:** page `#020812`, deep blue `#061827`, surface `#0B1622`, glass
   `rgba(10,20,32,0.82)`. Full-page atmosphere is a cyan glow (top-right) + gold

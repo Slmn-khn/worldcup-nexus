@@ -118,3 +118,63 @@ export function accentTextSx(accent: AtlasAccent) {
       accent === "gold" ? atlasShadows.textGold : atlasShadows.textCyan,
   } as const;
 }
+
+// ---------------------------------------------------------------------------
+// Nexus tokens — the app-wide canonical names for the neon theme. These mirror
+// the atlas* values above and are the preferred import for new shared
+// components (PageShell, PageHero, DataPanel, …). The base theme + the recolored
+// atlas tokens (src/theme/tokens.ts) keep older surfaces on the same palette.
+// ---------------------------------------------------------------------------
+
+export const nexusColors = {
+  background: "#020812",
+  backgroundBlue: "#061827",
+  surface: "#0B1622",
+  surfaceElevated: "#102033",
+  surfaceGlass: "rgba(10, 20, 32, 0.82)",
+
+  gold: "#F4C95D",
+  goldStrong: "#FFD66B",
+  goldMuted: "#B8902E",
+
+  cyan: "#00D9FF",
+  cyanStrong: "#39E6FF",
+  cyanMuted: "#128EA8",
+
+  textPrimary: "#F8FAFC",
+  textSecondary: "#A8B3C7",
+  textMuted: "#6B7280",
+
+  borderSoft: "rgba(255, 255, 255, 0.12)",
+  borderGold: "rgba(244, 201, 93, 0.35)",
+  borderCyan: "rgba(0, 217, 255, 0.35)",
+} as const;
+
+export const nexusShadows = {
+  goldGlow: "0 0 24px rgba(244, 201, 93, 0.28)",
+  cyanGlow: "0 0 24px rgba(0, 217, 255, 0.28)",
+  softGlow: "0 20px 60px rgba(0, 217, 255, 0.08)",
+} as const;
+
+export const nexusGradients = {
+  page: "radial-gradient(circle at 20% 0%, rgba(0,217,255,0.12), transparent 30%), radial-gradient(circle at 80% 10%, rgba(244,201,93,0.08), transparent 28%), #020812",
+  card: "linear-gradient(180deg, rgba(16,32,51,0.96), rgba(6,18,30,0.96))",
+  goldCard:
+    "linear-gradient(145deg, rgba(244,201,93,0.24), rgba(11,22,34,0.96) 45%)",
+  cyanCard:
+    "linear-gradient(145deg, rgba(0,217,255,0.22), rgba(11,22,34,0.96) 45%)",
+} as const;
+
+export const nexusBorders = {
+  soft: "1px solid rgba(255,255,255,0.12)",
+  gold: "1px solid rgba(244,201,93,0.35)",
+  cyan: "1px solid rgba(0,217,255,0.35)",
+} as const;
+
+/** Shared corner radius for nexus surfaces (cards, panels, inputs). */
+export const nexusRadius = {
+  sm: 10,
+  md: 14,
+  lg: 18,
+  xl: 24,
+} as const;
