@@ -78,6 +78,37 @@ export default function PrivacyPage() {
         </Typography>
       </PageContainer>
 
+      <PageContainer component="section" sx={{ py: { xs: 4, md: 5 } }}>
+        <SectionHeading title="Feedback Submissions" />
+        <Stack spacing={2} sx={{ maxWidth: 760 }}>
+          <Typography variant="body1" sx={{ color: "text.secondary" }}>
+            When users submit feedback, WORLDCUP Nexus may store the feedback
+            message, optional contact details, related page URL, and limited
+            abuse-prevention metadata such as hashed IP/user-agent signals. This
+            information is used to improve the archive, prevent spam, and follow
+            up only when appropriate.
+          </Typography>
+          <Stack component="ul" spacing={1} sx={{ pl: 3, m: 0 }}>
+            {[
+              "Providing an email address is optional — it is only used if a reply is appropriate.",
+              "Please do not submit private personal information in feedback.",
+              "Limited technical data is used solely for spam and abuse prevention.",
+              "Raw IP addresses are not stored — only salted, hashed signals are kept.",
+              "Feedback is private by default and reviewed before any action is taken.",
+            ].map((item) => (
+              <Typography
+                key={item}
+                component="li"
+                variant="body1"
+                sx={{ color: "text.secondary" }}
+              >
+                {item}
+              </Typography>
+            ))}
+          </Stack>
+        </Stack>
+      </PageContainer>
+
       <PageContainer
         component="section"
         sx={{ py: { xs: 4, md: 5 }, pb: { xs: 7, md: 9 } }}

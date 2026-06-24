@@ -20,6 +20,7 @@ const ABOUT_LINKS = [
   ),
   { label: "Media Credits", href: "/media-credits" },
   { label: "Privacy", href: "/privacy" },
+  { label: "Feedback", href: "/feedback" },
 ];
 
 function FooterColumn({
