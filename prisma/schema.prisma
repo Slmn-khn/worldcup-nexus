@@ -18,6 +18,36 @@ enum CardType {
   RED
 }
 
+// User feedback & suggestions. Submissions are PRIVATE and moderated by
+// default — nothing here is ever published automatically. Abuse-prevention
+// signals (IP / user agent) are stored only as salted hashes, never raw.
+enum FeedbackType {
+  BUG_REPORT
+  INCORRECT_DATA
+  FEATURE_REQUEST
+  DESIGN_FEEDBACK
+  MISSING_DATA
+  SCHEDULE_ISSUE
+  OTHER
+}
+
+enum FeedbackStatus {
+  PENDING
+  REVIEWED
+  PLANNED
+  IN_PROGRESS
+  RESOLVED
+  REJECTED
+  SPAM
+}
+
+enum FeedbackPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
 enum PenaltyKickType {
   IN_MATCH
   SHOOTOUT
@@ -626,4 +656,75 @@ model MediaImportJob {
   @@index([provider])
   @@index([entityType, entityId])
   @@index([status])
+}
+
+// ---------------------------------------------------------------------------
+// User feedback & suggestions. Every submission starts PRIVATE + moderated
+// (status PENDING) — never shown publicly and never acted on automatically.
+// Sensitive abuse signals (IP / user agent) are stored only as salted hashes.
+// ---------------------------------------------------------------------------
+model FeedbackSubmission {
+  id String @id @default(cuid())
+
+  type     FeedbackType
+  status   FeedbackStatus   @default(PENDING)
+  priority FeedbackPriority @default(MEDIUM)
+
+  title   String
+  message String
+
+  // Optional context the submitter can attach (all nullable).
+  pageUrl        String?
+  tournamentYear Int?
+  countryName    String?
+  playerName     String?
+  matchLabel     String?
+
+  // Optional contact details (never required).
+  email String?
+  name  String?
+
+  // Abuse-prevention signals — salted SHA-256 hashes only, never raw values.
+  ipHash          String?
+  userAgentHash   String?
+  fingerprintHash String?
+
+  turnstileSuccess Boolean @default(false)
+  spamScore        Int     @default(0)
+  spamReasons      Json?
+
+  duplicateHash String?
+  duplicateOfId String?
+
+  adminNotes String?
+  resolvedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  events FeedbackEvent[]
+
+  @@index([type])
+  @@index([status])
+  @@index([priority])
+  @@index([createdAt])
+  @@index([duplicateHash])
+}
+
+// Append-only audit trail for moderation actions on a submission.
+model FeedbackEvent {
+  id String @id @default(cuid())
+
+  feedbackId String
+  feedback   FeedbackSubmission @relation(fields: [feedbackId], references: [id], onDelete: Cascade)
+
+  action   String
+  note     String?
+  metadata Json?
+
+  createdAt DateTime @default(now())
+
+  @@index([feedbackId])
+  @@index([action])
+  @@index([createdAt])
 }

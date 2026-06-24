@@ -7,14 +7,18 @@ import type { NextConfig } from "next";
 // Enforcement is a later checkpoint after observing violations.
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  // Cloudflare Turnstile loads its widget script and runs in an iframe on the
+  // /feedback page. The secret never touches the browser — only the public
+  // site key and the challenge UI do.
+  "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com",
   "style-src 'self' 'unsafe-inline'",
   // Keep in sync with images.remotePatterns below. Phase 1 renders no remote
   // media, but allowing the trusted media hosts here avoids CSP reports once
   // approved assets exist. Never widen this to a wildcard.
   "img-src 'self' data: https://upload.wikimedia.org https://commons.wikimedia.org",
   "font-src 'self' data:",
-  "connect-src 'self'",
+  "connect-src 'self' https://challenges.cloudflare.com",
+  "frame-src https://challenges.cloudflare.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
