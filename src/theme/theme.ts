@@ -2,7 +2,7 @@
 
 import { createTheme } from "@mui/material/styles";
 import { atlas } from "./tokens";
-import { nexusColors, nexusGradients } from "./visualTokens";
+import { nexusColors } from "./visualTokens";
 
 const theme = createTheme({
   cssVariables: true,
@@ -122,11 +122,10 @@ const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
+          // Solid deep-navy fallback. The app-wide glow gradient + subtle brand
+          // background image now live on AppShell (controlled, with responsive
+          // background-attachment); the body only needs a safe dark fill behind.
           backgroundColor: nexusColors.background,
-          // App-wide deep-blue canvas with cyan/gold glow near the top.
-          background: nexusGradients.page,
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
           color: atlas.textPrimary,
           minHeight: "100vh",
         },
