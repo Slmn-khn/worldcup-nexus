@@ -13,6 +13,7 @@ import CountryFlag from "@/components/media/CountryFlag";
 import { atlas } from "@/theme/tokens";
 import { formatNumber } from "@/lib/format";
 import {
+  atlasBorders,
   atlasColors,
   atlasGlow,
   tournamentGradient,
@@ -107,19 +108,26 @@ export default function FeaturedTournamentCard({
             {tournament.year}
           </Typography>
           {tournament.hostName ? (
-            <Typography
-              component="p"
-              sx={{
-                fontSize: "0.68rem",
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: atlasColors.textSecondary,
-                textAlign: "right",
-              }}
+            <Stack
+              direction="row"
+              spacing={0.75}
+              sx={{ alignItems: "center", minWidth: 0 }}
             >
-              {tournament.hostName}
-            </Typography>
+              <CountryFlag name={tournament.hostName} size="xs" />
+              <Typography
+                component="p"
+                sx={{
+                  fontSize: "0.68rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: atlasColors.textSecondary,
+                  textAlign: "right",
+                }}
+              >
+                {tournament.hostName}
+              </Typography>
+            </Stack>
           ) : null}
         </Box>
       </Box>
@@ -128,45 +136,126 @@ export default function FeaturedTournamentCard({
         sx={{ p: 2.75, display: "flex", flexDirection: "column", flexGrow: 1 }}
       >
         {tournament.winner ? (
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "1fr auto",
-              columnGap: 2,
-              rowGap: 1.5,
-            }}
-          >
-            <Box sx={{ minWidth: 0 }}>
-              <Typography
-                sx={{
-                  fontSize: "0.6rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: atlasColors.gold,
-                  mb: 0.75,
-                }}
-              >
-                Champion
-              </Typography>
+          <Stack spacing={1.75}>
+            {/* Prominent champion badge — flag + label + country. */}
+            <Stack
+              direction="row"
+              spacing={1.25}
+              sx={{
+                alignItems: "center",
+                alignSelf: "flex-start",
+                maxWidth: "100%",
+                px: 1.25,
+                py: 0.75,
+                borderRadius: 999,
+                border: `1px solid ${atlasBorders.gold}`,
+                background: "rgba(244, 201, 93, 0.08)",
+                boxShadow: "0 0 18px rgba(244, 201, 93, 0.12)",
+              }}
+            >
+              <CountryFlag
+                name={tournament.winner}
+                slug={tournament.winnerSlug}
+                code={tournament.winnerCode}
+                fifaCode={tournament.winnerCode}
+                size="lg"
+                label={`Champion: ${tournament.winner}`}
+              />
+              <Box sx={{ minWidth: 0 }}>
+                <Typography
+                  sx={{
+                    fontSize: "0.6rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: atlasColors.gold,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  Champion
+                </Typography>
+                <Typography
+                  noWrap
+                  sx={{ color: atlasColors.textPrimary, fontWeight: 700 }}
+                >
+                  {tournament.winner}
+                </Typography>
+              </Box>
+            </Stack>
+
+            {tournament.finalScore ? (
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: "0.6rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: atlasColors.textMuted,
+                    mb: 0.5,
+                  }}
+                >
+                  Final
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: atlas.fontDisplay,
+                    fontWeight: 700,
+                    fontVariantNumeric: "tabular-nums",
+                    fontSize: "1.4rem",
+                    lineHeight: 1.05,
+                    color: atlasColors.textPrimary,
+                  }}
+                >
+                  {tournament.finalScore}
+                </Typography>
+              </Box>
+            ) : null}
+
+            {tournament.runnerUp ? (
               <Stack
                 direction="row"
                 spacing={1}
                 sx={{ alignItems: "center", minWidth: 0 }}
               >
-                <CountryFlag name={tournament.winner} size="sm" rounded />
                 <Typography
-                  sx={{
-                    color: atlasColors.textPrimary,
-                    fontWeight: 600,
-                    minWidth: 0,
-                  }}
+                  component="span"
+                  sx={{ color: atlasColors.textMuted, fontSize: "0.82rem" }}
                 >
-                  {tournament.winner}
+                  Runner-up:
+                </Typography>
+                <CountryFlag
+                  name={tournament.runnerUp}
+                  slug={tournament.runnerUpSlug}
+                  code={tournament.runnerUpCode}
+                  fifaCode={tournament.runnerUpCode}
+                  size="sm"
+                />
+                <Typography
+                  noWrap
+                  sx={{ color: atlasColors.textSecondary, fontSize: "0.82rem" }}
+                >
+                  {tournament.runnerUp}
                 </Typography>
               </Stack>
-            </Box>
-            <Box sx={{ textAlign: "right" }}>
+            ) : null}
+          </Stack>
+        ) : (
+          <Stack
+            direction="row"
+            spacing={1.25}
+            sx={{
+              alignItems: "center",
+              alignSelf: "flex-start",
+              px: 1.25,
+              py: 0.75,
+              borderRadius: 999,
+              border: `1px solid ${atlasBorders.soft}`,
+              background: "rgba(255, 255, 255, 0.03)",
+            }}
+          >
+            <CountryFlag name={null} size="lg" label="Champion to be decided" />
+            <Box>
               <Typography
                 sx={{
                   fontSize: "0.6rem",
@@ -174,39 +263,16 @@ export default function FeaturedTournamentCard({
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   color: atlasColors.textMuted,
-                  mb: 0.75,
+                  lineHeight: 1.4,
                 }}
               >
-                Final
+                Champion
               </Typography>
-              <Typography
-                sx={{
-                  fontFamily: atlas.fontDisplay,
-                  fontWeight: 700,
-                  fontVariantNumeric: "tabular-nums",
-                  fontSize: "1.4rem",
-                  lineHeight: 1.05,
-                  color: atlasColors.textPrimary,
-                }}
-              >
-                {tournament.finalScore ?? "—"}
+              <Typography sx={{ color: atlasColors.textSecondary, fontWeight: 600 }}>
+                Champion TBD
               </Typography>
             </Box>
-            {tournament.runnerUp ? (
-              <Box sx={{ gridColumn: "1 / -1" }}>
-                <Typography
-                  component="span"
-                  sx={{ color: atlasColors.textMuted, fontSize: "0.82rem" }}
-                >
-                  Runner-up: {tournament.runnerUp}
-                </Typography>
-              </Box>
-            ) : null}
-          </Box>
-        ) : (
-          <Typography variant="body2" sx={{ color: atlasColors.textMuted }}>
-            Result not yet in the archive
-          </Typography>
+          </Stack>
         )}
 
         {counts.length > 0 ? (

@@ -2,11 +2,13 @@
 // year, host eyebrow, and a champion scoreboard block on a hairline panel.
 
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
 import VaultEyebrow from "@/components/vault/VaultEyebrow";
+import CountryFlag from "@/components/media/CountryFlag";
 import { formatDate } from "@/lib/format";
 import { atlas, eyebrowSx, tabularNums, textLinkSx } from "@/theme/tokens";
 import type { TournamentDetailDto } from "@/server/queries/types";
@@ -20,6 +22,13 @@ export default function TournamentHero({
   const endDate = formatDate(tournament.endDate);
   const dates =
     startDate !== null && endDate !== null ? `${startDate} – ${endDate}` : null;
+  // The deciding "final" match, when the archive holds one — gives the two
+  // finalists (with flags) and the scoreline. Tournaments without a single
+  // final (e.g. 1950) simply fall back to the champion + final-score string.
+  const finalMatch =
+    tournament.matches.find(
+      (match) => match.stage.toLowerCase() === "final",
+    ) ?? null;
 
   return (
     <Box sx={{ borderBottom: `1px solid ${atlas.border}`, bgcolor: atlas.black }}>
@@ -44,10 +53,14 @@ export default function TournamentHero({
           {/* Identity block */}
           <Box>
             {tournament.hostName !== null ? (
-              <VaultEyebrow
-                label={`Host · ${tournament.hostName}`}
-                sx={{ mb: 2 }}
-              />
+              <Stack
+                direction="row"
+                spacing={1}
+                sx={{ alignItems: "center", mb: 2 }}
+              >
+                <CountryFlag name={tournament.hostName} size="sm" />
+                <VaultEyebrow label={`Host · ${tournament.hostName}`} />
+              </Stack>
             ) : null}
             <Typography
               variant="h1"
@@ -84,19 +97,77 @@ export default function TournamentHero({
                   Champion
                 </Typography>
               </Box>
-              <Typography
-                sx={{
-                  fontFamily: atlas.fontDisplay,
-                  fontWeight: 700,
-                  fontSize: { xs: "1.7rem", md: "2rem" },
-                  textTransform: "uppercase",
-                  color: atlas.textPrimary,
-                  lineHeight: 1.05,
-                }}
-              >
-                {tournament.winner}
-              </Typography>
-              {tournament.finalScore !== null ? (
+              <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
+                <CountryFlag
+                  name={tournament.winner}
+                  slug={tournament.winnerSlug}
+                  code={tournament.winnerCode}
+                  fifaCode={tournament.winnerCode}
+                  size="xl"
+                  label={`Champion: ${tournament.winner}`}
+                />
+                <Typography
+                  sx={{
+                    fontFamily: atlas.fontDisplay,
+                    fontWeight: 700,
+                    fontSize: { xs: "1.7rem", md: "2rem" },
+                    textTransform: "uppercase",
+                    color: atlas.textPrimary,
+                    lineHeight: 1.05,
+                  }}
+                >
+                  {tournament.winner}
+                </Typography>
+              </Stack>
+              {finalMatch !== null ? (
+                <Box sx={{ mt: 2, pt: 2, borderTop: `1px solid ${atlas.border}` }}>
+                  <Typography
+                    sx={{ ...eyebrowSx, color: atlas.textMuted, mb: 1 }}
+                  >
+                    Final
+                  </Typography>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    sx={{ alignItems: "center", flexWrap: "wrap" }}
+                  >
+                    <CountryFlag
+                      name={finalMatch.homeTeam.name}
+                      slug={finalMatch.homeTeam.slug}
+                      size="sm"
+                    />
+                    <Typography
+                      sx={{ color: atlas.textPrimary, fontWeight: 600 }}
+                    >
+                      {finalMatch.homeTeam.name}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        ...tabularNums,
+                        fontFamily: atlas.fontDisplay,
+                        fontWeight: 700,
+                        color: atlas.gold,
+                        px: 0.5,
+                      }}
+                    >
+                      {finalMatch.score}
+                      {finalMatch.penaltyScore !== null
+                        ? ` (${finalMatch.penaltyScore} pens)`
+                        : ""}
+                    </Typography>
+                    <Typography
+                      sx={{ color: atlas.textPrimary, fontWeight: 600 }}
+                    >
+                      {finalMatch.awayTeam.name}
+                    </Typography>
+                    <CountryFlag
+                      name={finalMatch.awayTeam.name}
+                      slug={finalMatch.awayTeam.slug}
+                      size="sm"
+                    />
+                  </Stack>
+                </Box>
+              ) : tournament.finalScore !== null ? (
                 <Typography
                   sx={{
                     ...tabularNums,
@@ -115,11 +186,24 @@ export default function TournamentHero({
                   <Typography sx={{ ...eyebrowSx, color: atlas.textMuted }}>
                     Runner-up
                   </Typography>
-                  <Typography
-                    sx={{ color: atlas.textSecondary, fontWeight: 400, mt: 0.5 }}
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    sx={{ alignItems: "center", mt: 0.5 }}
                   >
-                    {tournament.runnerUp}
-                  </Typography>
+                    <CountryFlag
+                      name={tournament.runnerUp}
+                      slug={tournament.runnerUpSlug}
+                      code={tournament.runnerUpCode}
+                      fifaCode={tournament.runnerUpCode}
+                      size="md"
+                    />
+                    <Typography
+                      sx={{ color: atlas.textSecondary, fontWeight: 400 }}
+                    >
+                      {tournament.runnerUp}
+                    </Typography>
+                  </Stack>
                 </Box>
               ) : null}
             </Box>

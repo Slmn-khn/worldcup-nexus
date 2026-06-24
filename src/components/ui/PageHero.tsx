@@ -8,11 +8,12 @@ import type { SxProps, Theme } from "@mui/material/styles";
 import PageContainer from "@/components/layout/PageContainer";
 import NeonChip from "@/components/ui/NeonChip";
 import {
-  atlasGradients,
   nexusColors,
   nexusBorders,
   accentTextSx,
+  pageHeroBackground,
   type AtlasAccent,
+  type PageHeroBackgroundVariant,
 } from "@/theme/visualTokens";
 
 export type PageHeroStat = {
@@ -32,6 +33,14 @@ type PageHeroProps = {
   action?: React.ReactNode;
   /** Optional leading element (e.g. a flag or portrait). */
   leading?: React.ReactNode;
+  /**
+   * Decorative hero background. "default"/"stadium" use the stadium-glow brand
+   * image, "banner" uses the hero banner, "none" is gradient-only. Always under
+   * a strong dark overlay, so it never hurts readability.
+   */
+  backgroundVariant?: PageHeroBackgroundVariant;
+  /** Explicit decorative image URL (local/owned only); overrides the variant. */
+  backgroundImage?: string;
   sx?: SxProps<Theme>;
 };
 
@@ -43,6 +52,8 @@ export default function PageHero({
   stats,
   action,
   leading,
+  backgroundVariant = "default",
+  backgroundImage,
   sx,
 }: PageHeroProps) {
   return (
@@ -50,7 +61,13 @@ export default function PageHero({
       sx={{
         position: "relative",
         overflow: "hidden",
-        background: atlasGradients.hero,
+        // Decorative image under a strong dark overlay; gradient-only fallback
+        // keeps the band readable when the image is absent.
+        backgroundColor: nexusColors.background,
+        backgroundImage: pageHeroBackground(backgroundVariant, backgroundImage),
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
         borderBottom: `1px solid ${nexusColors.surfaceElevated}`,
         ...sx,
       }}

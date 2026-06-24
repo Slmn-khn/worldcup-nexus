@@ -11,7 +11,7 @@ import PageContainer from "@/components/layout/PageContainer";
 import NeonButton from "@/components/ui/NeonButton";
 import NeonChip from "@/components/ui/NeonChip";
 import GlowingSearchBar from "@/components/ui/GlowingSearchBar";
-import { atlasColors, atlasGradients, atlasGlow } from "@/theme/visualTokens";
+import { atlasColors, atlasGlow, nexusBackgrounds } from "@/theme/visualTokens";
 
 type HomeHeroProps = {
   /** e.g. "1930–2022" — derived from the archive, never hardcoded. */
@@ -24,7 +24,13 @@ export default function HomeHero({ span }: HomeHeroProps) {
       sx={{
         position: "relative",
         overflow: "hidden",
-        background: atlasGradients.hero,
+        // Decorative banner image under a strong dark overlay (heroWithImage);
+        // the overlay gradients carry the look if the image is missing.
+        backgroundColor: atlasColors.page,
+        backgroundImage: nexusBackgrounds.heroWithImage,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
         borderBottom: `1px solid ${atlasColors.surfaceRaised}`,
       }}
     >

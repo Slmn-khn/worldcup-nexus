@@ -31,7 +31,12 @@ export type TournamentCardDto = {
   matchesCount: number | null;
   goalsCount: number | null;
   winner: string | null;
+  /** Winner team slug/code — best-effort flag-resolution hints for CountryFlag. */
+  winnerSlug: string | null;
+  winnerCode: string | null;
   runnerUp: string | null;
+  runnerUpSlug: string | null;
+  runnerUpCode: string | null;
   /** e.g. "3–3 (4–2 pens)" — null when the tournament had no "final" stage match. */
   finalScore: string | null;
 };
