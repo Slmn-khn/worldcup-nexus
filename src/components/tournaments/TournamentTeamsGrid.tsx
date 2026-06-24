@@ -1,5 +1,7 @@
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import CountryFlag from "@/components/media/CountryFlag";
 import EmptyState from "@/components/ui/EmptyState";
 import type { TournamentTeamDto } from "@/server/queries/types";
 
@@ -45,14 +47,31 @@ export default function TournamentTeamsGrid({
             bgcolor: "background.paper",
           }}
         >
-          <Typography
-            variant="body2"
-            sx={{ color: "text.primary", fontWeight: 600 }}
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{ alignItems: "center", minWidth: 0 }}
           >
-            {team.name}
-          </Typography>
+            <CountryFlag
+              name={team.name}
+              slug={team.slug}
+              code={team.code}
+              fifaCode={team.code}
+              size="sm"
+            />
+            <Typography
+              noWrap
+              variant="body2"
+              sx={{ color: "text.primary", fontWeight: 600 }}
+            >
+              {team.name}
+            </Typography>
+          </Stack>
           {team.code !== null ? (
-            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+            <Typography
+              variant="caption"
+              sx={{ color: "text.secondary", flexShrink: 0 }}
+            >
               {team.code}
             </Typography>
           ) : null}

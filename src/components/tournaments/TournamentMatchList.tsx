@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import CountryFlag from "@/components/media/CountryFlag";
 import EmptyState from "@/components/ui/EmptyState";
 import { formatDate } from "@/lib/format";
 import type { MatchCardDto } from "@/server/queries/types";
@@ -48,13 +49,35 @@ function MatchRow({ match }: { match: MatchCardDto }) {
       >
         {date ?? "Date unknown"}
       </Typography>
-      <Typography variant="body2" sx={{ color: "text.primary" }}>
-        {match.homeTeam.name}{" "}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: 0.75,
+          minWidth: 0,
+        }}
+      >
+        <CountryFlag
+          name={match.homeTeam.name}
+          slug={match.homeTeam.slug}
+          size="xs"
+        />
+        <Typography component="span" variant="body2" sx={{ color: "text.primary" }}>
+          {match.homeTeam.name}
+        </Typography>
         <Box component="span" sx={{ color: "text.secondary" }}>
           v
-        </Box>{" "}
-        {match.awayTeam.name}
-      </Typography>
+        </Box>
+        <CountryFlag
+          name={match.awayTeam.name}
+          slug={match.awayTeam.slug}
+          size="xs"
+        />
+        <Typography component="span" variant="body2" sx={{ color: "text.primary" }}>
+          {match.awayTeam.name}
+        </Typography>
+      </Box>
       <Typography
         variant="body2"
         sx={{ color: "primary.main", fontWeight: 700, whiteSpace: "nowrap" }}

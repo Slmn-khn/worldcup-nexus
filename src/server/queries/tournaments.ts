@@ -18,17 +18,25 @@ import type {
   MatchCardDto,
 } from "./types";
 
-/** Resolves team names for the scalar winner/runner-up ids on tournaments. */
-async function teamNamesByIds(
+/** Name + flag-resolution hints for a team referenced by id. */
+type TeamFlagRef = { name: string; slug: string; code: string | null };
+
+/** Resolves team name/slug/code for the scalar winner/runner-up ids. */
+async function teamRefsByIds(
   ids: (string | null)[],
-): Promise<Map<string, string>> {
+): Promise<Map<string, TeamFlagRef>> {
   const wanted = ids.filter((id): id is string => id !== null);
   if (wanted.length === 0) return new Map();
   const teams = await prisma.team.findMany({
     where: { id: { in: wanted } },
-    select: { id: true, name: true },
+    select: { id: true, name: true, slug: true, code: true },
   });
-  return new Map(teams.map((team) => [team.id, team.name]));
+  return new Map(
+    teams.map((team) => [
+      team.id,
+      { name: team.name, slug: team.slug, code: team.code },
+    ]),
+  );
 }
 
 /** Final-match display score per tournament id (tournaments without a "final" stage are absent). */
@@ -53,26 +61,34 @@ export async function getTournamentCards(): Promise<TournamentCardDto[]> {
   const tournaments = await prisma.tournament.findMany({
     orderBy: { year: "desc" },
   });
-  const names = await teamNamesByIds(
+  const refs = await teamRefsByIds(
     tournaments.flatMap((t) => [t.winnerTeamId, t.runnerUpTeamId]),
   );
   const finalScores = await finalScoreByTournamentId();
 
-  return tournaments.map((t) => ({
-    id: t.id,
-    year: t.year,
-    name: t.name,
-    slug: t.slug,
-    hostName: t.hostName,
-    teamsCount: t.teamsCount,
-    matchesCount: t.matchesCount,
-    goalsCount: t.goalsCount,
-    winner:
-      t.winnerTeamId !== null ? (names.get(t.winnerTeamId) ?? null) : null,
-    runnerUp:
-      t.runnerUpTeamId !== null ? (names.get(t.runnerUpTeamId) ?? null) : null,
-    finalScore: finalScores.get(t.id) ?? null,
-  }));
+  return tournaments.map((t) => {
+    const winnerRef =
+      t.winnerTeamId !== null ? (refs.get(t.winnerTeamId) ?? null) : null;
+    const runnerUpRef =
+      t.runnerUpTeamId !== null ? (refs.get(t.runnerUpTeamId) ?? null) : null;
+    return {
+      id: t.id,
+      year: t.year,
+      name: t.name,
+      slug: t.slug,
+      hostName: t.hostName,
+      teamsCount: t.teamsCount,
+      matchesCount: t.matchesCount,
+      goalsCount: t.goalsCount,
+      winner: winnerRef?.name ?? null,
+      winnerSlug: winnerRef?.slug ?? null,
+      winnerCode: winnerRef?.code ?? null,
+      runnerUp: runnerUpRef?.name ?? null,
+      runnerUpSlug: runnerUpRef?.slug ?? null,
+      runnerUpCode: runnerUpRef?.code ?? null,
+      finalScore: finalScores.get(t.id) ?? null,
+    };
+  });
 }
 
 /**
@@ -223,7 +239,7 @@ export async function getTournamentByYear(
     penaltyKicks,
     bookings,
     substitutions,
-    names,
+    teamRefs,
     finalScores,
   ] = await Promise.all([
     prisma.match.findMany({
@@ -250,9 +266,18 @@ export async function getTournamentByYear(
     prisma.substitution.count({
       where: { match: { tournamentId: tournament.id } },
     }),
-    teamNamesByIds([tournament.winnerTeamId, tournament.runnerUpTeamId]),
+    teamRefsByIds([tournament.winnerTeamId, tournament.runnerUpTeamId]),
     finalScoreByTournamentId(),
   ]);
+
+  const winnerRef =
+    tournament.winnerTeamId !== null
+      ? (teamRefs.get(tournament.winnerTeamId) ?? null)
+      : null;
+  const runnerUpRef =
+    tournament.runnerUpTeamId !== null
+      ? (teamRefs.get(tournament.runnerUpTeamId) ?? null)
+      : null;
 
   return {
     id: tournament.id,
@@ -263,14 +288,12 @@ export async function getTournamentByYear(
     teamsCount: tournament.teamsCount,
     matchesCount: tournament.matchesCount,
     goalsCount: tournament.goalsCount,
-    winner:
-      tournament.winnerTeamId !== null
-        ? (names.get(tournament.winnerTeamId) ?? null)
-        : null,
-    runnerUp:
-      tournament.runnerUpTeamId !== null
-        ? (names.get(tournament.runnerUpTeamId) ?? null)
-        : null,
+    winner: winnerRef?.name ?? null,
+    winnerSlug: winnerRef?.slug ?? null,
+    winnerCode: winnerRef?.code ?? null,
+    runnerUp: runnerUpRef?.name ?? null,
+    runnerUpSlug: runnerUpRef?.slug ?? null,
+    runnerUpCode: runnerUpRef?.code ?? null,
     finalScore: finalScores.get(tournament.id) ?? null,
     startDate: toIso(tournament.startDate),
     endDate: toIso(tournament.endDate),

@@ -1,6 +1,8 @@
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import CountryFlag from "@/components/media/CountryFlag";
 import EmptyState from "@/components/ui/EmptyState";
 import { formatNumber } from "@/lib/format";
 import type { TopScorerDto } from "@/server/queries/types";
@@ -70,9 +72,20 @@ export default function TournamentTopScorers({
               {scorer.name}
             </Typography>
             {scorer.countryName !== null ? (
-              <Typography variant="caption" sx={{ color: "text.secondary" }}>
-                {scorer.countryName}
-              </Typography>
+              <Stack
+                direction="row"
+                spacing={0.75}
+                sx={{ alignItems: "center", minWidth: 0, mt: 0.25 }}
+              >
+                <CountryFlag name={scorer.countryName} size="xs" />
+                <Typography
+                  noWrap
+                  variant="caption"
+                  sx={{ color: "text.secondary" }}
+                >
+                  {scorer.countryName}
+                </Typography>
+              </Stack>
             ) : null}
           </Box>
           <Typography

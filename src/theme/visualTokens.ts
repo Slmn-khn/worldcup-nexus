@@ -6,6 +6,8 @@
 //
 // See docs/UI_STYLE_GUIDE.md for the visual system these encode.
 
+import { brandAssets, cssUrl } from "@/lib/brandAssets";
+
 export const atlasColors = {
   // Canvas — deep stadium blues fading to near-black.
   page: "#020812",
@@ -178,3 +180,63 @@ export const nexusRadius = {
   lg: 18,
   xl: 24,
 } as const;
+
+// ---------------------------------------------------------------------------
+// Decorative background image layers (brand assets in public/assets/brand/).
+//
+// Each "*WithImage" value layers a strong dark overlay (plus cyan/gold glow)
+// ABOVE a brand image, so text stays readable and the surface still looks
+// on-brand if the image is missing or fails to load — the gradient layers carry
+// the look on their own. Always pair these with:
+//   backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat".
+// On a global page background, avoid `backgroundAttachment: fixed` on mobile
+// (use { xs: "scroll", md: "fixed" }) — fixed attachment is janky on phones.
+// ---------------------------------------------------------------------------
+
+/** Near-opaque page overlay: subtle cyan/gold glow over a deep-navy wash. */
+const PAGE_OVERLAY = `radial-gradient(circle at 15% 0%, rgba(0,217,255,0.12), transparent 28%),
+radial-gradient(circle at 85% 8%, rgba(244,201,93,0.09), transparent 28%),
+linear-gradient(rgba(2,8,18,0.92), rgba(2,8,18,0.96))`;
+
+/** Hero overlay: side-darkened band with a cyan core glow for headline contrast. */
+const HERO_OVERLAY = `linear-gradient(90deg, rgba(2,8,18,0.94) 0%, rgba(2,8,18,0.70) 45%, rgba(2,8,18,0.94) 100%),
+radial-gradient(circle at 65% 35%, rgba(0,217,255,0.18), transparent 34%)`;
+
+export const nexusBackgrounds = {
+  /** Overlay-only page wash (no image) — the readable fallback layer. */
+  pageOverlay: PAGE_OVERLAY,
+  /** Global page background: overlay + subtle texture image. */
+  pageWithImage: `${PAGE_OVERLAY}, ${cssUrl(brandAssets.pageBackground)}`,
+  /** Overlay-only hero wash (no image). */
+  heroOverlay: HERO_OVERLAY,
+  /** Homepage hero: overlay + banner image. */
+  heroWithImage: `${HERO_OVERLAY}, ${cssUrl(brandAssets.heroBanner)}`,
+  /** Generic page hero: overlay + stadium-glow image. */
+  stadiumWithImage: `${HERO_OVERLAY}, ${cssUrl(brandAssets.stadiumGlow)}`,
+} as const;
+
+export type PageHeroBackgroundVariant = "default" | "stadium" | "banner" | "none";
+
+/**
+ * Background-image stack for a generic PageHero. `customUrl` (when provided)
+ * wins; otherwise the variant selects a brand image. `none` is gradient-only.
+ * Every variant keeps a strong dark overlay for text contrast.
+ */
+export function pageHeroBackground(
+  variant: PageHeroBackgroundVariant = "default",
+  customUrl?: string,
+): string {
+  if (customUrl != null && customUrl !== "") {
+    return `${HERO_OVERLAY}, ${cssUrl(customUrl)}`;
+  }
+  switch (variant) {
+    case "none":
+      return atlasGradients.hero;
+    case "banner":
+      return nexusBackgrounds.heroWithImage;
+    case "default":
+    case "stadium":
+    default:
+      return nexusBackgrounds.stadiumWithImage;
+  }
+}
