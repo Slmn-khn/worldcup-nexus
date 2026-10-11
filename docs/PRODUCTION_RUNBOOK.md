@@ -87,6 +87,36 @@ leisure.
 In the **admin environment**, export the same variables per command run.
 Never write production values into a committed file.
 
+## Dependency audit refresh (2026-10-11)
+
+New advisories (37: 3 critical, 18 high) failed CI's
+`pnpm audit --audit-level moderate`. Fixed by:
+
+- **Direct updates:** `next` / `@next/third-parties` / `eslint-config-next`
+  `16.2.12 → 16.3.8` (3 critical RCE + SSRF/cache-poisoning advisories,
+  patched in `>=16.3.8`), `vitest 4.1.9 → 4.1.11` (path traversal, dev),
+  `sharp 0.35.1 → 0.35.5` (libheif/librsvg), `csv-parse 6 → 7.0.3`
+  (prototype replacement via `columns`; sync API unchanged — the bundle
+  parser and import scripts were re-validated).
+- **Overrides raised** (old pins were holding vulnerable versions):
+  `hono 4.12.34 → 4.13.13`, `fast-uri 3.1.5 → 3.1.8`,
+  `js-yaml 4.3.1 → 4.3.2`, `brace-expansion@1 → 1.1.21`,
+  `brace-expansion@5 → 5.0.12` (now keyed by major instead of the exact
+  minimatch parent), `sharp@<0.35.5 → >=0.35.5`.
+- **Overrides added:** `mysql2@<3.23.1`, `browserslist@<4.28.7`,
+  `source-map-js@<1.2.2`, `baseline-browser-mapping@<2.11.0`.
+- **Accepted (documented) exception:** `pnpm.auditConfig.ignoreCves`
+  `CVE-2026-93687` (GHSA-vfj7-8cjw-p6xm, `braces <=3.0.3`, no patched
+  release exists). Only path: `eslint-config-next → @next/eslint-plugin-next
+  → fast-glob@3.3.1 → micromatch → braces` — lint tooling, never bundled or
+  run in production. Remove once `@next/eslint-plugin-next` drops
+  `fast-glob@3.3.1` or a patched `braces` ships. pnpm 8 still prints
+  "1 vulnerabilities found" in the summary but exits 0.
+
+Validated with `pnpm audit --audit-level moderate` (exit 0), `pnpm typecheck`,
+`pnpm lint`, `pnpm test:unit`, `pnpm build`, `pnpm security:verify`,
+`pnpm prod:preflight`.
+
 ## Dependency audit overrides (2026-08-03)
 
 `pnpm audit --audit-level moderate` is clean (all/prod/dev). Fixes applied:
