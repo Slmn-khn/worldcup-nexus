@@ -1,8 +1,0 @@
-stage_id,stage_name,is_knockout,verification_status,source_dataset
-1,Group Stage,False,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
-2,Round of 32,True,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
-3,Round of 16,True,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
-4,Quarter-finals,True,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
-5,Semi-finals,True,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
-6,Third-place match,True,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
-7,Final,True,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
