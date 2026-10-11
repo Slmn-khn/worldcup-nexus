@@ -19,6 +19,11 @@
     "data:2026:mominul:approved-pack": "tsx scripts/2026/build-mominul-approved-pack.ts",
     "data:2026:mominul:import": "tsx scripts/2026/import-mominul-2026.ts --dry-run",
     "data:2026:mominul:import:write": "tsx scripts/2026/import-mominul-2026.ts --write",
+    "data:2026:canonical:validate": "tsx scripts/2026/import-wc2026-bundle.ts validate",
+    "data:2026:canonical:dry-run": "tsx scripts/2026/import-wc2026-bundle.ts dry-run",
+    "data:2026:canonical:write": "tsx scripts/2026/import-wc2026-bundle.ts write",
+    "data:2026:canonical:resume": "tsx scripts/2026/import-wc2026-bundle.ts resume",
+    "data:2026:canonical:verify": "tsx scripts/2026/import-wc2026-bundle.ts verify",
     "data:2026:mominul:inspect": "tsx scripts/2026/inspect-mominul-provider.ts",
     "data:2026:bustami:inspect": "tsx scripts/2026/inspect-bustami-provider.ts",
     "data:2026:full-check": "pnpm data:2026:normalize && pnpm data:2026:validate",
@@ -47,7 +52,8 @@
     "search:verify": "tsx scripts/verify/verify-search.ts",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:unit": "vitest run"
+    "test:unit": "vitest run",
+    "test:integration": "tsx scripts/test/setup-integration-db.ts && vitest run --config vitest.integration.config.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

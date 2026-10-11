@@ -1,0 +1,2453 @@
+{
+  "generatedAt": "2026-10-11T06:11:04.397Z",
+  "mode": "dry-run",
+  "ok": true,
+  "refusedBy": null,
+  "target": {
+    "kind": "LOCAL",
+    "host": "localhost",
+    "port": "5432",
+    "database": "worldcup_atlas",
+    "redacted": "postgresql://***@localhost:5432/worldcup_atlas"
+  },
+  "bundle": {
+    "manifestSha256": "952c69ad900745798ede7167dc6cfbda105d6dc004cc2126f1a8d385cf74768a",
+    "validationReportSha256": "144d59d2a4b7b47176c9a1e7e5002c6fad3fabb1ff580203697a6f3c6c70dfda"
+  },
+  "validation": {
+    "ok": true,
+    "checks": [
+      {
+        "id": "staging",
+        "description": "every row maps to a reviewed canonical value",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "tournament-year",
+        "description": "tournament year is 2026",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "hosts",
+        "description": "hosts are Canada, Mexico and United States",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "team-count",
+        "description": "48 teams (candidate = official)",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "match-count",
+        "description": "104 matches (candidate = official)",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "venue-count",
+        "description": "16 venues (candidate = official)",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "player-count",
+        "description": "1,248 registered squad players",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "squad-size",
+        "description": "26 players per team",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "stage-distribution",
+        "description": "stage distribution 72/16/8/4/2/1/1",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "groups",
+        "description": "12 groups A–L, 4 teams and 6 matches each",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "unique-ids",
+        "description": "all natural keys are unique",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "foreign-keys",
+        "description": "every team, venue, stage, referee, match and player reference resolves",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "distinct-teams",
+        "description": "every match has two distinct teams, one stage and one venue",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "event-team-in-match",
+        "description": "every event's team played in that match",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "goal-total",
+        "description": "scorelines total 308 (= official goal count)",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "goals-reconcile",
+        "description": "goal + own-goal events reconcile with each team's score",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "assists-fold",
+        "description": "every assist attaches to the goal it follows",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "shootouts-separate",
+        "description": "shootout kicks are separate from goals (never counted in scores or Golden Boot)",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "shootouts-reconcile",
+        "description": "shootout events reconcile with recorded penalty scores",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "knockout-draws-have-outcome",
+        "description": "knockout draws have a valid extra-time or shootout outcome",
+        "severity": "BLOCKER",
+        "status": "KNOWN_CONFLICT",
+        "detail": "96"
+      },
+      {
+        "id": "group-no-shootouts",
+        "description": "group matches are never decided by penalties",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "podium-official",
+        "description": "FIFA podium: Spain, Argentina, England, France",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "final-official",
+        "description": "final: Spain 1–0 Argentina after extra time on 19 July 2026",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "podium-candidate-agrees",
+        "description": "candidate results agree with the FIFA podium",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "hosts-venues",
+        "description": "venue countries equal the official hosts",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "dates",
+        "description": "match dates span the official start/end dates",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "awards-official",
+        "description": "nine official awards resolve to the right player/team",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "boot-goals-agree",
+        "description": "candidate goal/assist events agree with official Boot figures",
+        "severity": "WARN",
+        "status": "PASS"
+      },
+      {
+        "id": "player-dob",
+        "description": "every player has a date of birth for identity resolution",
+        "severity": "WARN",
+        "status": "PASS"
+      },
+      {
+        "id": "player-names-unique",
+        "description": "player display names are unique (duplicates get deterministic slugs)",
+        "severity": "WARN",
+        "status": "WARN",
+        "detail": "ali ahmed ×2; mc ×7"
+      },
+      {
+        "id": "no-substitutions",
+        "description": "source has no substitution events (Substitution stays blocked)",
+        "severity": "WARN",
+        "status": "PASS"
+      }
+    ],
+    "blockers": [],
+    "knownConflicts": [
+      {
+        "id": "M96_KNOCKOUT_DRAW_WITHOUT_OUTCOME",
+        "area": "match_outcome",
+        "record": "Match 96 (Round of 16): Switzerland 0–0 Colombia",
+        "candidateValue": "result_type=Regular, no extra-time/penalty data, no shootout events",
+        "officialValue": "Not supplied in the bundle",
+        "decision": "Import the 0–0 scoreline; leave extraTime, penalty scores and winningTeamId NULL and flag the match as outcome-incomplete. Switzerland's later quarter-final is NOT used to infer a shootout result."
+      },
+      {
+        "id": "PLAYER_MINUTES_MBAPPE",
+        "area": "player_minutes",
+        "record": "Kylian Mbappé",
+        "candidateValue": "711 (lineups)",
+        "officialValue": "769 (FIFA awards)",
+        "decision": "Lineup minutes are not imported; FIFA's 769 is shown with the Golden Boot award only."
+      },
+      {
+        "id": "PLAYER_MINUTES_BELLINGHAM",
+        "area": "player_minutes",
+        "record": "Jude Bellingham",
+        "candidateValue": "596 (lineups)",
+        "officialValue": "698 (FIFA awards)",
+        "decision": "Lineup minutes are not imported; FIFA's 698 is shown with the Bronze Boot award only."
+      },
+      {
+        "id": "NO_SUBSTITUTION_EVENTS",
+        "area": "match_events",
+        "record": "All matches",
+        "candidateValue": "0 substitution events",
+        "officialValue": "Required by the Substitution model",
+        "decision": "Substitution stays empty for 2026; match pages show an explicit 'not recorded' state."
+      },
+      {
+        "id": "INCOMPLETE_BOOKINGS",
+        "area": "match_events",
+        "record": "All matches",
+        "candidateValue": "35 yellow / 12 red cards across 104 matches",
+        "officialValue": "Not supplied in the bundle",
+        "decision": "Bookings withheld from canonical tables (raw records only) until reconciled with official match reports."
+      },
+      {
+        "id": "NO_IN_MATCH_PENALTY_FLAG",
+        "area": "goals",
+        "record": "All goals",
+        "candidateValue": "Goal events do not distinguish penalties",
+        "officialValue": "Not supplied in the bundle",
+        "decision": "Goal.isPenalty is left false (schema default); documented as unrecorded for 2026 in docs/DATA_ISSUES.md."
+      }
+    ]
+  },
+  "plan": {
+    "summary": {
+      "countries": {
+        "link": 43,
+        "create": 5
+      },
+      "teams": {
+        "upsert": 48
+      },
+      "venues": {
+        "link": 4,
+        "upsert": 12
+      },
+      "referees": {
+        "link": 17,
+        "upsert": 11
+      },
+      "players": {
+        "create": 899,
+        "link:dob+country+name": 349
+      },
+      "squadPlayers": {
+        "upsert": 1248
+      },
+      "matches": {
+        "upsert": 104
+      },
+      "goals": {
+        "upsert": 308
+      },
+      "shootoutKicks": {
+        "upsert": 30
+      },
+      "awards": {
+        "upsert": 9
+      }
+    },
+    "conflicts": [],
+    "warnings": [
+      "DR Congo: Same football association as the 1974 'Zaire' entry (country slug 'zaire'); kept as a separate era name, matching the archive's West Germany/Germany convention.",
+      "referee Alireza Faghani: country differs (Iran → Australia); canonical row kept unchanged",
+      "player 290: source name \"Mc\" is truncated — stored as \"Unidentified Scotland player (source #290)\" until a reviewed override supplies the name",
+      "player 293: source name \"Mc\" is truncated — stored as \"Unidentified Scotland player (source #293)\" until a reviewed override supplies the name",
+      "player 309: source name \"Mc\" is truncated — stored as \"Unidentified Scotland player (source #309)\" until a reviewed override supplies the name",
+      "player 312: source name \"Mc\" is truncated — stored as \"Unidentified Scotland player (source #312)\" until a reviewed override supplies the name",
+      "player 334: source name \"Mc\" is truncated — stored as \"Unidentified United States player (source #334)\" until a reviewed override supplies the name",
+      "player 722: source name \"Mc\" is truncated — stored as \"Unidentified New Zealand player (source #722)\" until a reviewed override supplies the name"
+    ]
+  },
+  "identity": {
+    "linkedPlayers": [
+      {
+        "srcId": 2,
+        "candidateName": "Jorge Eduardo Sanchez",
+        "canonicalName": "Jorge Sánchez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 3,
+        "candidateName": "César Jasib Montes",
+        "canonicalName": "César Montes",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 4,
+        "candidateName": "Edson Omar Alvarez",
+        "canonicalName": "Edson Álvarez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 5,
+        "candidateName": "Johan Felipe Vasquez",
+        "canonicalName": "Johan Vásquez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 7,
+        "candidateName": "Luis Francisco Romo",
+        "canonicalName": "Luis Romo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 9,
+        "candidateName": "Raúl Alonso Jimenez",
+        "canonicalName": "Raúl Jiménez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 10,
+        "candidateName": "Ernesto Alexis Vega",
+        "canonicalName": "Alexis Vega",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 13,
+        "candidateName": "Francisco Guillermo Ochoa",
+        "canonicalName": "Guillermo Ochoa",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 17,
+        "candidateName": "Orbelín Pineda",
+        "canonicalName": "Orbelín Pineda",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 23,
+        "candidateName": "Jesús Daniel Gallardo",
+        "canonicalName": "Jesús Gallardo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 24,
+        "candidateName": "Luis Gerardo Chavez",
+        "canonicalName": "Luis Chávez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 25,
+        "candidateName": "Roberto Carlos Alvarado",
+        "canonicalName": "Roberto Alvarado",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 53,
+        "candidateName": "Seunggyu Kim",
+        "canonicalName": "Seung-gyu Kim",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 56,
+        "candidateName": "Minjae Kim",
+        "canonicalName": "Kim Min-jae",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 58,
+        "candidateName": "Inbeom Hwang",
+        "canonicalName": "Hwang In-beom",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 59,
+        "candidateName": "Heung Min Son",
+        "canonicalName": "Heung-min Son",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 60,
+        "candidateName": "Seungho Paik",
+        "canonicalName": "Paik Seung-ho",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 61,
+        "candidateName": "Guesung Cho",
+        "canonicalName": "Cho Gue-sung",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 62,
+        "candidateName": "Jae Sung Lee",
+        "canonicalName": "Jae-sung Lee",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 63,
+        "candidateName": "Hee Chan Hwang",
+        "canonicalName": "Hee-chan Hwang",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 64,
+        "candidateName": "Bumkeun Song",
+        "canonicalName": "Song Bum-keun",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 67,
+        "candidateName": "Moonhwan Kim",
+        "canonicalName": "Kim Moon-hwan",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 71,
+        "candidateName": "Kangin Lee",
+        "canonicalName": "Lee Kang-in",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 73,
+        "candidateName": "Hyeonwoo Jo",
+        "canonicalName": "Hyeon-woo Jo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 105,
+        "candidateName": "Dayne Tristan St. Clair",
+        "canonicalName": "Dayne St. Clair",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 106,
+        "candidateName": "Alistair William Johnston",
+        "canonicalName": "Alistair Johnston",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 109,
+        "candidateName": "Joel Robert Waterman",
+        "canonicalName": "Joel Waterman",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 111,
+        "candidateName": "Stephen Eustaquio",
+        "canonicalName": "Stephen Eustáquio",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 112,
+        "candidateName": "Ismaël Kenneth Jordan Kone",
+        "canonicalName": "Ismaël Koné",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 113,
+        "candidateName": "Cyle Christopher Larin",
+        "canonicalName": "Cyle Larin",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 114,
+        "candidateName": "Jonathan Christian David",
+        "canonicalName": "Jonathan David",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 115,
+        "candidateName": "Liam Alan Millar",
+        "canonicalName": "Liam Millar",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 117,
+        "candidateName": "Derek Austin Cornelius",
+        "canonicalName": "Derek Cornelius",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 121,
+        "candidateName": "Tajon Trevor Buchanan",
+        "canonicalName": "Tajon Buchanan",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 123,
+        "candidateName": "Alphonso Boyle Davies",
+        "canonicalName": "Alphonso Davies",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 125,
+        "candidateName": "Jonathan Osorio",
+        "canonicalName": "Jonathan Osorio",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 126,
+        "candidateName": "Richmond Mamah Laryea",
+        "canonicalName": "Richie Laryea",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 135,
+        "candidateName": "Sead Kolasinac",
+        "canonicalName": "Sead Kolašinac",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 141,
+        "candidateName": "Edin Dzeko",
+        "canonicalName": "Edin Džeko",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 161,
+        "candidateName": "Gaber Jassem",
+        "canonicalName": "Jassem Gaber",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 162,
+        "candidateName": "Hatim Abdulaziz Hatem",
+        "canonicalName": "Abdulaziz Hatem",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 163,
+        "candidateName": "Alaaeldin Ahmed",
+        "canonicalName": "Ahmed Alaaeldin",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 165,
+        "candidateName": "Mohammed Mohammed Muntari",
+        "canonicalName": "Mohammed Muntari",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 166,
+        "candidateName": "Khalid Hassan Alhaydos",
+        "canonicalName": "Hassan Al-Haydos",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 167,
+        "candidateName": "Hassan Akram",
+        "canonicalName": "Akram Afif",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 168,
+        "candidateName": "Karim Karim Boudiaf",
+        "canonicalName": "Karim Boudiaf",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 170,
+        "candidateName": "Elamin Homam",
+        "canonicalName": "Homam Ahmed",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 172,
+        "candidateName": "KHOUKHIBoualem Boualem",
+        "canonicalName": "Boualem Khoukhi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 175,
+        "candidateName": "Ali Zainelabdeen Almoez",
+        "canonicalName": "Almoez Ali",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 178,
+        "candidateName": "Aissa Meshaal Barsham",
+        "canonicalName": "Meshaal Barsham",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 179,
+        "candidateName": "Omer Assim Madibo",
+        "canonicalName": "Assim Madibo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 183,
+        "candidateName": "Gregor Kobel",
+        "canonicalName": "Gregor Kobel",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 185,
+        "candidateName": "Silvan Dominic Widmer",
+        "canonicalName": "Silvan Widmer",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 186,
+        "candidateName": "Nico Elvedi",
+        "canonicalName": "Nico Elvedi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 187,
+        "candidateName": "Manuel Obafemi Akanji",
+        "canonicalName": "Manuel Akanji",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 188,
+        "candidateName": "Denis Lemi Zakaria",
+        "canonicalName": "Denis Zakaria",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 189,
+        "candidateName": "Breel Donald Embolo",
+        "canonicalName": "Breel Embolo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 190,
+        "candidateName": "Remo Marco Freuler",
+        "canonicalName": "Remo Freuler",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 192,
+        "candidateName": "Granit Xhaka",
+        "canonicalName": "Granit Xhaka",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 194,
+        "candidateName": "Yvon Landry Mvogo",
+        "canonicalName": "Yvon Mvogo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 195,
+        "candidateName": "Ricardo Ivan Rodriguez",
+        "canonicalName": "Ricardo Rodríguez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 196,
+        "candidateName": "Ardon Jashari",
+        "canonicalName": "Ardon Jashari",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 197,
+        "candidateName": "Djibril Ibrahima Sow",
+        "canonicalName": "Djibril Sow",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 198,
+        "candidateName": "Christian Andreas Fassnacht",
+        "canonicalName": "Christian Fassnacht",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 199,
+        "candidateName": "Ruben Estephan Vargas",
+        "canonicalName": "Ruben Vargas",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 200,
+        "candidateName": "Eray Ervin Coemert",
+        "canonicalName": "Eray Cömert",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 201,
+        "candidateName": "Noah Arinzechukwu Okafor",
+        "canonicalName": "Noah Okafor",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 202,
+        "candidateName": "Michel Aebischer",
+        "canonicalName": "Michel Aebischer",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 204,
+        "candidateName": "Fabian Rieder",
+        "canonicalName": "Fabian Rieder",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 209,
+        "candidateName": "Ramsés Alisson",
+        "canonicalName": "Alisson",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 214,
+        "candidateName": "Sandro Alex",
+        "canonicalName": "Alex Sandro",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 215,
+        "candidateName": "José Vinicius",
+        "canonicalName": "Vinícius Júnior",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 216,
+        "candidateName": "GUIMARAESBruno Bruno",
+        "canonicalName": "Bruno Guimarães",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 218,
+        "candidateName": "Neymar Neymar Jr",
+        "canonicalName": "Neymar",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 219,
+        "candidateName": "Raphael Raphinha",
+        "canonicalName": "Raphinha",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 220,
+        "candidateName": "Weverton Weverton",
+        "canonicalName": "Weverton",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 221,
+        "candidateName": "Luiz Danilo",
+        "canonicalName": "Danilo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 222,
+        "candidateName": "Bremer Bremer",
+        "canonicalName": "Bremer",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 225,
+        "candidateName": "Henrique Fabinho",
+        "canonicalName": "Fabinho",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 228,
+        "candidateName": "Lucas Lucas Paqueta",
+        "canonicalName": "Lucas Paquetá",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 230,
+        "candidateName": "MARTINELLIGabriel Gabriel",
+        "canonicalName": "Gabriel Martinelli",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 231,
+        "candidateName": "Ederson Ederson",
+        "canonicalName": "Ederson",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 235,
+        "candidateName": "Yassine Bounou",
+        "canonicalName": "Yassine Bounou",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 236,
+        "candidateName": "Achraf Hakimi",
+        "canonicalName": "Achraf Hakimi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 237,
+        "candidateName": "Noussair Mazraoui",
+        "canonicalName": "Noussair Mazraoui",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 238,
+        "candidateName": "Sofyan Amrabat",
+        "canonicalName": "Sofyan Amrabat",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 242,
+        "candidateName": "Azz-Eddine Ounahi",
+        "canonicalName": "Azzedine Ounahi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 254,
+        "candidateName": "Ayoub El Kaabi",
+        "canonicalName": "Ayoub El Kaabi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 256,
+        "candidateName": "Ahmed Reda Tagnaouti",
+        "canonicalName": "Ahmed Reda Tagnaouti",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 257,
+        "candidateName": "Bilal El Khannouss",
+        "canonicalName": "Bilal El Khannous",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 313,
+        "candidateName": "Matthew Charles Turner",
+        "canonicalName": "Matt Turner",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 314,
+        "candidateName": "Sergiño Gianni Dest",
+        "canonicalName": "Sergiño Dest",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 316,
+        "candidateName": "Tyler Shaan Adams",
+        "canonicalName": "Tyler Adams",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 317,
+        "candidateName": "Antonee Robinson",
+        "canonicalName": "Antonee Robinson",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 319,
+        "candidateName": "Giovanni Alejandro Reyna",
+        "canonicalName": "Giovanni Reyna",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 320,
+        "candidateName": "Mc",
+        "canonicalName": "Weston McKennie",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 322,
+        "candidateName": "Christian Mate Pulisic",
+        "canonicalName": "Christian Pulisic",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 323,
+        "candidateName": "Brenden Russell Aaronson",
+        "canonicalName": "Brenden Aaronson",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 325,
+        "candidateName": "Timothy Michael Ream",
+        "canonicalName": "Tim Ream",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 327,
+        "candidateName": "Cristian Roldan",
+        "canonicalName": "Cristian Roldan",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 331,
+        "candidateName": "Haji Amir Wright",
+        "canonicalName": "Haji Wright",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 333,
+        "candidateName": "Timothy Tarpeh Weah",
+        "canonicalName": "Timothy Weah",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 335,
+        "candidateName": "Joseph Michael Scally",
+        "canonicalName": "Joe Scally",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 365,
+        "candidateName": "Mathew David Ryan",
+        "canonicalName": "Mathew Ryan",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 366,
+        "candidateName": "Milos Degenek",
+        "canonicalName": "Miloš Degenek",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 371,
+        "candidateName": "Mathew Allan Leckie",
+        "canonicalName": "Mathew Leckie",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 374,
+        "candidateName": "Ajdin Hrustic",
+        "canonicalName": "Ajdin Hrustic",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 375,
+        "candidateName": "Awer Bul Mabil",
+        "canonicalName": "Awer Mabil",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 378,
+        "candidateName": "Cameron Peter Devlin",
+        "canonicalName": "Cameron Devlin",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 380,
+        "candidateName": "Aziz Behich",
+        "canonicalName": "Aziz Behich",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 383,
+        "candidateName": "Harry James Souttar",
+        "canonicalName": "Harry Souttar",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 386,
+        "candidateName": "Jackson Alexander Irvine",
+        "canonicalName": "Jackson Irvine",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 417,
+        "candidateName": "Manuel Peter Neuer",
+        "canonicalName": "Manuel Neuer",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 418,
+        "candidateName": "Antonio Ruediger",
+        "canonicalName": "Antonio Rüdiger",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 422,
+        "candidateName": "Joshua Walter Kimmich",
+        "canonicalName": "Joshua Kimmich",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 423,
+        "candidateName": "Kai Lukas Havertz",
+        "canonicalName": "Kai Havertz",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 424,
+        "candidateName": "Leon Christoph Goretzka",
+        "canonicalName": "Leon Goretzka",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 426,
+        "candidateName": "Jamal Musiala",
+        "canonicalName": "Jamal Musiala",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 431,
+        "candidateName": "Nico Cédric Schlotterbeck",
+        "canonicalName": "Nico Schlotterbeck",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 435,
+        "candidateName": "Leroy Aziz Sane",
+        "canonicalName": "Leroy Sané",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 438,
+        "candidateName": "David Raum",
+        "canonicalName": "David Raum",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 495,
+        "candidateName": "Hernán Ismael Galindez",
+        "canonicalName": "Hernán Galíndez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 496,
+        "candidateName": "Félix Eduardo Torres",
+        "canonicalName": "Félix Torres",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 497,
+        "candidateName": "Piero Martin Hincapie",
+        "canonicalName": "Piero Hincapié",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 500,
+        "candidateName": "Willian Joel Pacho",
+        "canonicalName": "William Pacho",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 501,
+        "candidateName": "Pervis Josue Estupinan",
+        "canonicalName": "Pervis Estupiñán",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 505,
+        "candidateName": "Kevin Jose Rodriguez",
+        "canonicalName": "Kevin Rodríguez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 506,
+        "candidateName": "Wellington Moisés Ramirez",
+        "canonicalName": "Moisés Ramírez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 507,
+        "candidateName": "Enner Remberto Valencia",
+        "canonicalName": "Enner Valencia",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 511,
+        "candidateName": "Ángelo Smit Preciado",
+        "canonicalName": "Ángelo Preciado",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 513,
+        "candidateName": "Gonzalo Jordy Plata",
+        "canonicalName": "Gonzalo Plata",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 515,
+        "candidateName": "Alan Steven Franco",
+        "canonicalName": "Alan Franco",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 517,
+        "candidateName": "Moisés Isaac Caicedo",
+        "canonicalName": "Moisés Caicedo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 519,
+        "candidateName": "Jackson Gabriel Porozo",
+        "canonicalName": "Jackson Porozo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 523,
+        "candidateName": "Marten Elco De Roon",
+        "canonicalName": "Marten de Roon",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 524,
+        "candidateName": "Virgil Van Dijk",
+        "canonicalName": "Virgil van Dijk",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 525,
+        "candidateName": "Nathan Benjamin Ake",
+        "canonicalName": "Nathan Aké",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 529,
+        "candidateName": "Wout François Maria Weghorst",
+        "canonicalName": "Wout Weghorst",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 530,
+        "candidateName": "Memphis Depay",
+        "canonicalName": "Memphis Depay",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 531,
+        "candidateName": "Cody Mathès Gakpo",
+        "canonicalName": "Cody Gakpo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 537,
+        "candidateName": "Noa Noëll Lang",
+        "canonicalName": "Noa Lang",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 540,
+        "candidateName": "Teun Koopmeiners",
+        "canonicalName": "Teun Koopmeiners",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 541,
+        "candidateName": "Frenkie De Jong",
+        "canonicalName": "Frenkie de Jong",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 542,
+        "candidateName": "Denzel Justus Morris Dumfries",
+        "canonicalName": "Denzel Dumfries",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 546,
+        "candidateName": "Quinten Ryan Crispito Timber",
+        "canonicalName": "Jurriën Timber",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 549,
+        "candidateName": "Shogo Taniguchi",
+        "canonicalName": "Shogo Taniguchi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 550,
+        "candidateName": "Kou Itakura",
+        "canonicalName": "Ko Itakura",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 551,
+        "candidateName": "Yuto Nagatomo",
+        "canonicalName": "Yuto Nagatomo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 552,
+        "candidateName": "Shuto Machino",
+        "canonicalName": "Shuto Machino",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 553,
+        "candidateName": "Ao Tanaka",
+        "canonicalName": "Ao Tanaka",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 554,
+        "candidateName": "Takefusa Kubo",
+        "canonicalName": "Takefusa Kubo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 556,
+        "candidateName": "Ritsu Doan",
+        "canonicalName": "Ritsu Dōan",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 557,
+        "candidateName": "Daizen Maeda",
+        "canonicalName": "Daizen Maeda",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 560,
+        "candidateName": "Junya Ito",
+        "canonicalName": "Junya Ito",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 561,
+        "candidateName": "Daichi Kamada",
+        "canonicalName": "Daichi Kamada",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 564,
+        "candidateName": "Ayase Ueda",
+        "canonicalName": "Ayase Ueda",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 567,
+        "candidateName": "Hiroki Ito",
+        "canonicalName": "Hiroki Ito",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 568,
+        "candidateName": "Takehiro Tomiyasu",
+        "canonicalName": "Takehiro Tomiyasu",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 575,
+        "candidateName": "Victor Jörgen Lindelof",
+        "canonicalName": "Victor Lindelöf",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 595,
+        "candidateName": "Bo Kristoffer Nordfeldt",
+        "canonicalName": "Kristoffer Nordfeldt",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 600,
+        "candidateName": "Ali Abdi",
+        "canonicalName": "Ali Abdi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 601,
+        "candidateName": "Montassar Omar Talbi",
+        "canonicalName": "Montassar Talbi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 604,
+        "candidateName": "Dylan Daniel Mahmoud Bronn",
+        "canonicalName": "Dylan Bronn",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 608,
+        "candidateName": "Hannibal Mejbri",
+        "canonicalName": "Hannibal Mejbri",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 614,
+        "candidateName": "Aymen Dahmen",
+        "canonicalName": "Aymen Dahmen",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 615,
+        "candidateName": "Ellyes Joris Skhiri",
+        "canonicalName": "Ellyes Skhiri",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 623,
+        "candidateName": "Anis Slimane",
+        "canonicalName": "Anis Ben Slimane",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 625,
+        "candidateName": "Thibaut Nicolas Courtois",
+        "canonicalName": "Thibaut Courtois",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 626,
+        "candidateName": "Zeno Koen Debast",
+        "canonicalName": "Zeno Debast",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 627,
+        "candidateName": "Arthur Nicolas Theate",
+        "canonicalName": "Arthur Theate",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 630,
+        "candidateName": "Axel Laurent Witsel",
+        "canonicalName": "Axel Witsel",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 631,
+        "candidateName": "Kevin De Bruyne",
+        "canonicalName": "Kevin De Bruyne",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 632,
+        "candidateName": "Youri Marion Tielemans",
+        "canonicalName": "Youri Tielemans",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 633,
+        "candidateName": "Romelu Lukaku",
+        "canonicalName": "Romelu Lukaku",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 634,
+        "candidateName": "Leandro Trossard",
+        "canonicalName": "Leandro Trossard",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 635,
+        "candidateName": "Jeremy Baffour Doku",
+        "canonicalName": "Jérémy Doku",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 639,
+        "candidateName": "Thomas Andre Meunier",
+        "canonicalName": "Thomas Meunier",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 641,
+        "candidateName": "Charles Marc De Ketelaere",
+        "canonicalName": "Charles De Ketelaere",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 644,
+        "candidateName": "Hans Vanaken",
+        "canonicalName": "Hans Vanaken",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 645,
+        "candidateName": "Timothy Castagne",
+        "canonicalName": "Timothy Castagne",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 648,
+        "candidateName": "Amadou Ba Onana",
+        "canonicalName": "Amadou Onana",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 651,
+        "candidateName": "Elsayed Mohamed Mohamed Elshenawy",
+        "canonicalName": "Mohamed El Shenawy",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 657,
+        "candidateName": "Ahmed Ibrahim Trezeguet",
+        "canonicalName": "Trézéguet",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 660,
+        "candidateName": "Hamed Mahrous Mohamed Salah",
+        "canonicalName": "Mohamed Salah",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 677,
+        "candidateName": "Ali Reza Beiranvand",
+        "canonicalName": "Alireza Beiranvand",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 679,
+        "candidateName": "Ehsan Hajisafi",
+        "canonicalName": "Ehsan Hajsafi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 680,
+        "candidateName": "Shojae Khalilzadeh",
+        "canonicalName": "Shojae Khalilzadeh",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 681,
+        "candidateName": "Milad Mohammadi",
+        "canonicalName": "Milad Mohammadi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 682,
+        "candidateName": "Saeid Ezatolahi",
+        "canonicalName": "Saeid Ezatolahi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 683,
+        "candidateName": "Alireza Jahanbakhsh",
+        "canonicalName": "Alireza Jahanbakhsh",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 685,
+        "candidateName": "Mehdi Taremi",
+        "canonicalName": "Mehdi Taremi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 688,
+        "candidateName": "Seyedpayam Niazmand",
+        "canonicalName": "Payam Niazmand",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 690,
+        "candidateName": "Seyed Saman Ghoddos",
+        "canonicalName": "Saman Ghoddos",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 691,
+        "candidateName": "Roozbeh Cheshmi",
+        "canonicalName": "Rouzbeh Cheshmi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 692,
+        "candidateName": "Mahdi Torabi",
+        "canonicalName": "Mehdi Torabi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 698,
+        "candidateName": "Seyedhossein Hosseini",
+        "canonicalName": "Hossein Hosseini",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 699,
+        "candidateName": "Ramin Rezaeian",
+        "canonicalName": "Ramin Rezaeian",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 711,
+        "candidateName": "Christopher Grant Wood",
+        "canonicalName": "Chris Wood",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 728,
+        "candidateName": "Thomas Jefferson Smith",
+        "canonicalName": "Tommy Smith",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 729,
+        "candidateName": "David Raya",
+        "canonicalName": "David Raya",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 732,
+        "candidateName": "Eric Garcia",
+        "canonicalName": "Eric García",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 733,
+        "candidateName": "Marcos Llorente",
+        "canonicalName": "Marcos Llorente",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 735,
+        "candidateName": "Ferran Torres",
+        "canonicalName": "Ferran Torres",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 737,
+        "candidateName": "Pablo Gavi",
+        "canonicalName": "Gavi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 738,
+        "candidateName": "Daniel Olmo",
+        "canonicalName": "Dani Olmo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 739,
+        "candidateName": "Yeremy Jesús Pino",
+        "canonicalName": "Yeremy Pino",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 742,
+        "candidateName": "Aymeric Laporte",
+        "canonicalName": "Aymeric Laporte",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 744,
+        "candidateName": "Rodrigo Rodri",
+        "canonicalName": "Rodri",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 745,
+        "candidateName": "Nicholas Williams",
+        "canonicalName": "Nico Williams",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 748,
+        "candidateName": "Pedro Pedri",
+        "canonicalName": "Pedri",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 751,
+        "candidateName": "Unai Simon",
+        "canonicalName": "Unai Simón",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 781,
+        "candidateName": "Dhahi Nawaf Alaqidi",
+        "canonicalName": "Nawaf Al-Aqidi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 784,
+        "candidateName": "Ali Abdulelah Alamri",
+        "canonicalName": "Abdulelah Al-Amri",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 785,
+        "candidateName": "Mohammed Hassan Altambakti",
+        "canonicalName": "Hassan Al-Tambakti",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 786,
+        "candidateName": "Essa Nasser Aldawsari",
+        "canonicalName": "Nasser Al-Dawsari",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 790,
+        "candidateName": "Mohammed Salem Aldawsari",
+        "canonicalName": "Salem Al-Dawsari",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 791,
+        "candidateName": "Khalid Saleh",
+        "canonicalName": "Saleh Al-Shehri",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 792,
+        "candidateName": "Abdullah Saud Abdulhamid",
+        "canonicalName": "Saud Abdulhamid",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 795,
+        "candidateName": "Mohammed Abdullah Alkhaibari",
+        "canonicalName": "Abdullah Al-Khaibari",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 801,
+        "candidateName": "Khalil Mohammed Alowais",
+        "canonicalName": "Mohammed Al-Owais",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 803,
+        "candidateName": "Ibrahim Mohamed",
+        "canonicalName": "Mohamed Kanno",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 807,
+        "candidateName": "Sergio Ramón Rochet",
+        "canonicalName": "Sergio Rochet",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 808,
+        "candidateName": "José María Gimenez",
+        "canonicalName": "José Giménez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 810,
+        "candidateName": "Ronald Federico Araujo",
+        "canonicalName": "Ronald Araújo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 811,
+        "candidateName": "Manuel Ugarte",
+        "canonicalName": "Manuel Ugarte",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 812,
+        "candidateName": "Rodrigo Bentancur",
+        "canonicalName": "Rodrigo Bentancur",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 813,
+        "candidateName": "Diego Nicolás De La Cruz",
+        "canonicalName": "Nicolás de la Cruz",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 814,
+        "candidateName": "Federico Santiago Valverde",
+        "canonicalName": "Federico Valverde",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 815,
+        "candidateName": "Darwin Gabriel Nunez",
+        "canonicalName": "Darwin Núñez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 816,
+        "candidateName": "Giorgian Daniel De Arrascaeta",
+        "canonicalName": "Giorgian De Arrascaeta",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 817,
+        "candidateName": "Facundo Pellistri",
+        "canonicalName": "Facundo Pellistri",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 819,
+        "candidateName": "Guillermo Varela",
+        "canonicalName": "Guillermo Varela",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 820,
+        "candidateName": "Agustin Canobbio",
+        "canonicalName": "Agustín Canobbio",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 822,
+        "candidateName": "Mathías Olivera",
+        "canonicalName": "Mathías Olivera",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 823,
+        "candidateName": "Matías Nicolas Vina",
+        "canonicalName": "Matías Viña",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 829,
+        "candidateName": "Nestor Fernando Muslera",
+        "canonicalName": "Fernando Muslera",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 835,
+        "candidateName": "Lucas Digne",
+        "canonicalName": "Lucas Digne",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 836,
+        "candidateName": "Dayotchanculle Oswald Upamecano",
+        "canonicalName": "Dayot Upamecano",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 837,
+        "candidateName": "Jules Olivier Kounde",
+        "canonicalName": "Jules Koundé",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 839,
+        "candidateName": "Masour Ousmane Dembele",
+        "canonicalName": "Ousmane Dembélé",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 840,
+        "candidateName": "Aurélien Djani Tchouameni",
+        "canonicalName": "Aurélien Tchouaméni",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 841,
+        "candidateName": "Marcus Lilian Thuram",
+        "canonicalName": "Marcus Thuram",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 842,
+        "candidateName": "Kylian Mbappe",
+        "canonicalName": "Kylian Mbappé",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 845,
+        "candidateName": "N'golo Kante",
+        "canonicalName": "N'Golo Kanté",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 846,
+        "candidateName": "Adrien Thibault Marie Rabiot",
+        "canonicalName": "Adrien Rabiot",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 847,
+        "candidateName": "Ibrahima Konate",
+        "canonicalName": "Ibrahima Konaté",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 849,
+        "candidateName": "William Alain André Gabriel Saliba",
+        "canonicalName": "William Saliba",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 851,
+        "candidateName": "Théo Bernard François Hernandez",
+        "canonicalName": "Théo Hernandez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 853,
+        "candidateName": "Lucas Francois Bernard Hernandez",
+        "canonicalName": "Lucas Hernandez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 861,
+        "candidateName": "Kalidou Koulibaly",
+        "canonicalName": "Kalidou Koulibaly",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 863,
+        "candidateName": "Idrissa Gana Gueye",
+        "canonicalName": "Idrissa Gueye",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 864,
+        "candidateName": "Ismaila Pathe Ciss",
+        "canonicalName": "Pathé Ciss",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 867,
+        "candidateName": "Ahmadou Bamba Mbacke Dieng",
+        "canonicalName": "Bamba Dieng",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 868,
+        "candidateName": "Sadio Mane",
+        "canonicalName": "Sadio Mané",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 869,
+        "candidateName": "Nicolas Jackson",
+        "canonicalName": "Nicolas Jackson",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 871,
+        "candidateName": "Iliman Cheikh Baroy Ndiaye",
+        "canonicalName": "Iliman Ndiaye",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 872,
+        "candidateName": "Ismail Joshua Jakobs",
+        "canonicalName": "Ismail Jakobs",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 873,
+        "candidateName": "Krepin Diatta",
+        "canonicalName": "Krépin Diatta",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 874,
+        "candidateName": "Edouard Osoque Mendy",
+        "canonicalName": "Édouard Mendy",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 875,
+        "candidateName": "Pape Matar Sarr",
+        "canonicalName": "Pape Matar Sarr",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 876,
+        "candidateName": "Ismaila Sarr",
+        "canonicalName": "Ismaïla Sarr",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 884,
+        "candidateName": "Pape Alassane Gueye",
+        "canonicalName": "Pape Gueye",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 939,
+        "candidateName": "Nicolás Alejandro Tagliafico",
+        "canonicalName": "Nicolás Tagliafico",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 940,
+        "candidateName": "Gonzalo Ariel Montiel",
+        "canonicalName": "Gonzalo Montiel",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 941,
+        "candidateName": "Leandro Daniel Paredes",
+        "canonicalName": "Leandro Paredes",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 942,
+        "candidateName": "Lisandro Martinez",
+        "canonicalName": "Lisandro Martínez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 943,
+        "candidateName": "Rodrigo Javier De Paul",
+        "canonicalName": "Rodrigo De Paul",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 945,
+        "candidateName": "Julián Alvarez",
+        "canonicalName": "Julián Álvarez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 946,
+        "candidateName": "Lionel Andrés Messi",
+        "canonicalName": "Lionel Messi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 947,
+        "candidateName": "Giovani Lo Celso",
+        "canonicalName": "Giovani Lo Celso",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 948,
+        "candidateName": "Geronimo Rulli",
+        "canonicalName": "Gerónimo Rulli",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 949,
+        "candidateName": "Cristian Gabriel Romero",
+        "canonicalName": "Cristian Romero",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 950,
+        "candidateName": "Exequiel Alejandro Palacios",
+        "canonicalName": "Exequiel Palacios",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 952,
+        "candidateName": "Thiago Ezequiel Almada",
+        "canonicalName": "Thiago Almada",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 955,
+        "candidateName": "Nicolas Hernan Gonzalo Otamendi",
+        "canonicalName": "Nicolás Otamendi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 956,
+        "candidateName": "Alexis Mac Allister",
+        "canonicalName": "Alexis Mac Allister",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 958,
+        "candidateName": "Lautaro Javier Martinez",
+        "canonicalName": "Lautaro Martínez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 959,
+        "candidateName": "Damián Emiliano Martinez",
+        "canonicalName": "Emiliano Martínez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 960,
+        "candidateName": "Enzo Jeremías Fernandez",
+        "canonicalName": "Enzo Fernández",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 962,
+        "candidateName": "Nahuel Molina",
+        "canonicalName": "Nahuel Molina",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 964,
+        "candidateName": "Aissa Mandi",
+        "canonicalName": "Aïssa Mandi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 969,
+        "candidateName": "Riyad Karim Mahrez",
+        "canonicalName": "Riyad Mahrez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 981,
+        "candidateName": "Nabil Bentaleb",
+        "canonicalName": "Nabil Bentaleb",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1041,
+        "candidateName": "Diogo Diogo Costa",
+        "canonicalName": "Diogo Costa",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1043,
+        "candidateName": "Rúben Ruben Dias",
+        "canonicalName": "Rúben Dias",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1045,
+        "candidateName": "Diogo Diogo Dalot",
+        "canonicalName": "Diogo Dalot",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1046,
+        "candidateName": "Luiz Matheus",
+        "canonicalName": "Matheus Nunes",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1047,
+        "candidateName": "Ronaldo Cristiano Ronaldo",
+        "canonicalName": "Cristiano Ronaldo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1048,
+        "candidateName": "Miguel Bruno",
+        "canonicalName": "Bruno Fernandes",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1049,
+        "candidateName": "RAMOSGonçalo Goncalo",
+        "canonicalName": "Gonçalo Ramos",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1050,
+        "candidateName": "Bernardo Bernardo Silva",
+        "canonicalName": "Bernardo Silva",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1051,
+        "candidateName": "João Joao Felix",
+        "canonicalName": "João Félix",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1052,
+        "candidateName": "Pedro Jose Sa",
+        "canonicalName": "José Sá",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1057,
+        "candidateName": "Alexandre Rafael Leao",
+        "canonicalName": "Rafael Leão",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1059,
+        "candidateName": "Manuel Goncalo",
+        "canonicalName": "Gonçalo Guedes",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1060,
+        "candidateName": "Pedro Joao Cancelo",
+        "canonicalName": "João Cancelo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1061,
+        "candidateName": "Diogo Ruben",
+        "canonicalName": "Rúben Neves",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1063,
+        "candidateName": "Vitor Vitinha",
+        "canonicalName": "Vitinha",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1065,
+        "candidateName": "Alexandre Nuno",
+        "canonicalName": "Nuno Mendes",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1119,
+        "candidateName": "David Ospina",
+        "canonicalName": "David Ospina",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1122,
+        "candidateName": "Santiago Arias",
+        "canonicalName": "Santiago Arias",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1128,
+        "candidateName": "James David Rodriguez",
+        "canonicalName": "James Rodríguez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1130,
+        "candidateName": "Camilo Andres Vargas",
+        "canonicalName": "Camilo Vargas",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1131,
+        "candidateName": "Yerry Fernando Mina",
+        "canonicalName": "Yerry Mina",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1134,
+        "candidateName": "Jefferson Andrés Lerma",
+        "canonicalName": "Jefferson Lerma",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1135,
+        "candidateName": "Johan Andrés Mojica",
+        "canonicalName": "Johan Mojica",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1138,
+        "candidateName": "Juan Fernando Quintero",
+        "canonicalName": "Juan Fernando Quintero",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1141,
+        "candidateName": "Davinson Sanchez",
+        "canonicalName": "Davinson Sánchez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1145,
+        "candidateName": "Jordan Lee Pickford",
+        "canonicalName": "Jordan Pickford",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1148,
+        "candidateName": "Declan Rice",
+        "canonicalName": "Declan Rice",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1149,
+        "candidateName": "John Stones",
+        "canonicalName": "John Stones",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1151,
+        "candidateName": "Bukayo Ayoyinka Saka",
+        "canonicalName": "Bukayo Saka",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1153,
+        "candidateName": "Harry Edward Kane",
+        "canonicalName": "Harry Kane",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1154,
+        "candidateName": "Jude Victor William Bellingham",
+        "canonicalName": "Jude Bellingham",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1155,
+        "candidateName": "Marcus Rashford",
+        "canonicalName": "Marcus Rashford",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1158,
+        "candidateName": "Jordan Brian Henderson",
+        "canonicalName": "Jordan Henderson",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1171,
+        "candidateName": "Dominik Livakovic",
+        "canonicalName": "Dominik Livaković",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1172,
+        "candidateName": "Josip Stanisic",
+        "canonicalName": "Josip Stanišić",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1174,
+        "candidateName": "Joško Gvardiol",
+        "canonicalName": "Joško Gvardiol",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1175,
+        "candidateName": "Duje Caleta-Car",
+        "canonicalName": "Duje Ćaleta-Car",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1176,
+        "candidateName": "Josip Sutalo",
+        "canonicalName": "Josip Šutalo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1178,
+        "candidateName": "Mateo Kovacic",
+        "canonicalName": "Mateo Kovačić",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1179,
+        "candidateName": "Andrej Kramaric",
+        "canonicalName": "Andrej Kramarić",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1180,
+        "candidateName": "Luka Modric",
+        "canonicalName": "Luka Modrić",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1181,
+        "candidateName": "Ante Budimir",
+        "canonicalName": "Ante Budimir",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1183,
+        "candidateName": "Nikola Vlasic",
+        "canonicalName": "Nikola Vlašić",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1184,
+        "candidateName": "Ivan Perisic",
+        "canonicalName": "Ivan Perišić",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1185,
+        "candidateName": "Mario Pasalic",
+        "canonicalName": "Mario Pašalić",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1188,
+        "candidateName": "Kristijan Jakic",
+        "canonicalName": "Kristijan Jakić",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1191,
+        "candidateName": "Luka Sucic",
+        "canonicalName": "Luka Sučić",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1195,
+        "candidateName": "Martin Erlic",
+        "canonicalName": "Martin Erlić",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1197,
+        "candidateName": "Lawrence Ati Zigi",
+        "canonicalName": "Lawrence Ati-Zigi",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1198,
+        "candidateName": "Alidu Seidu",
+        "canonicalName": "Alidu Seidu",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1201,
+        "candidateName": "Thomas Teye Partey",
+        "canonicalName": "Thomas Partey",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1203,
+        "candidateName": "Abdul Fatawu Fatawu",
+        "canonicalName": "Abdul Fatawu Issahaku",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1205,
+        "candidateName": "Jordan Pierre Ayew",
+        "canonicalName": "Jordan Ayew",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1207,
+        "candidateName": "Antoine Serlom Semenyo",
+        "canonicalName": "Antoine Semenyo",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1210,
+        "candidateName": "Gideon Mensah",
+        "canonicalName": "Gideon Mensah",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1211,
+        "candidateName": "Elisha Owusu",
+        "canonicalName": "Elisha Owusu",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1213,
+        "candidateName": "Abdul Rahman Rahman",
+        "canonicalName": "Baba Rahman",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1215,
+        "candidateName": "Inaki Williams",
+        "canonicalName": "Iñaki Williams",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1218,
+        "candidateName": "Kamal Deen Sulemana",
+        "canonicalName": "Kamaldeen Sulemana",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1226,
+        "candidateName": "Fidel Escobar",
+        "canonicalName": "Fidel Escobar",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1229,
+        "candidateName": "Jose Luis Rodriguez",
+        "canonicalName": "José Luis Rodríguez",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1232,
+        "candidateName": "Ismael Diaz",
+        "canonicalName": "Ismael Díaz",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1233,
+        "candidateName": "Edgar Yoel Barcenas",
+        "canonicalName": "Édgar Bárcenas",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1237,
+        "candidateName": "Eric Javier Davis",
+        "canonicalName": "Erick Davis",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1242,
+        "candidateName": "Anibal Casis Godoy",
+        "canonicalName": "Aníbal Godoy",
+        "method": "dob+country+name"
+      },
+      {
+        "srcId": 1245,
+        "candidateName": "Michael Amir Murillo",
+        "canonicalName": "Michael Amir Murillo",
+        "method": "dob+country+name"
+      }
+    ],
+    "incompleteNames": [
+      290,
+      293,
+      309,
+      312,
+      334,
+      722
+    ]
+  },
+  "withheld": {
+    "bookings": {
+      "rows": 47,
+      "reason": "Card events are visibly incomplete (well under one yellow card per match) — kept as raw records until reconciled with official match reports."
+    },
+    "varReviews": {
+      "rows": 12,
+      "reason": "No canonical VAR model; kept as raw records."
+    },
+    "substitutions": {
+      "rows": 0,
+      "reason": "Source has no substitution events; never inferred from minutes."
+    },
+    "lineups": {
+      "rows": 5408,
+      "reason": "Per-match minutes conflict with FIFA official totals (validation/known_conflicts.csv); no canonical appearance model."
+    },
+    "teamStats": {
+      "rows": 208,
+      "reason": "Mixed fifa.com / sofascore.com provenance; usage rights unreviewed."
+    },
+    "playerOfTheMatch": {
+      "rows": 104,
+      "reason": "Candidate-only field with no canonical column; raw only."
+    },
+    "quarantine": {
+      "rows": 0,
+      "reason": "03_quarantine/* (player stats, market values, ELO/rankings, redundant match rows) is never read by this importer."
+    }
+  },
+  "load": null,
+  "verification": null,
+  "runId": null,
+  "errors": [],
+  "nextSteps": [
+    "pnpm data:2026:canonical:write"
+  ]
+}

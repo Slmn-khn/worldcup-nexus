@@ -150,6 +150,16 @@ model Tournament {
   winnerTeamId   String?
   runnerUpTeamId String?
 
+  // Additive (2026 promotion). Nullable so historical rows are untouched.
+  // Placings are plain scalars like winnerTeamId; hostCountries keeps the
+  // display names of every co-host (hostName stays the legacy joined label).
+  thirdPlaceTeamId   String?
+  fourthPlaceTeamId  String?
+  attendance         Int?
+  hostCountries      String[] @default([])
+  sourceUrl          String?
+  verificationStatus String?
+
   // Optional visual-theme hints (Phase 1 media layer). All nullable — never
   // required for a tournament to render.
   themeColorPrimary   String?
@@ -258,6 +268,11 @@ model Stadium {
   city     String?
   country  String?
 
+  // Additive (2026 promotion); NULL for historical stadiums.
+  capacity  Int?
+  latitude  Float?
+  longitude Float?
+
   matches Match[]
 
   createdAt DateTime @default(now())
@@ -298,6 +313,11 @@ model Match {
   awayScorePenalties Int?
   decidedByPenalties Boolean @default(false)
 
+  // Additive (2026 promotion). NULL = not recorded (all pre-2026 imports);
+  // never back-filled with false, which would claim "no extra time".
+  extraTime Boolean?
+  groupName String?
+
   tournament  Tournament @relation(fields: [tournamentId], references: [id])
   homeTeam    Team       @relation("MatchHomeTeam", fields: [homeTeamId], references: [id])
   awayTeam    Team       @relation("MatchAwayTeam", fields: [awayTeamId], references: [id])
@@ -318,6 +338,7 @@ model Match {
   @@index([awayTeamId])
   @@index([stage])
   @@index([matchDate])
+  @@index([tournamentId, groupName])
 }
 
 model SquadPlayer {
@@ -449,6 +470,13 @@ model Award {
   teamId       String?
   name         String
   description  String?
+
+  // Additive (2026 promotion). rank orders Golden/Silver/Bronze; details holds
+  // award-specific official figures (e.g. goals/assists/minutes) as published.
+  rank               Int?
+  sourceUrl          String?
+  verificationStatus String?
+  details            Json?
 
   tournament Tournament @relation(fields: [tournamentId], references: [id])
   player     Player?    @relation(fields: [playerId], references: [id])
@@ -592,8 +620,64 @@ model RawSourceRecord {
   payload    Json
   importedAt DateTime @default(now())
 
+  // Additive provenance (2026 promotion); NULL for the Fjelstul rows.
+  sourceUrl      String?
+  sourceChecksum String?
+  retrievedAt    DateTime?
+  importRunId    String?
+
   @@index([source, entityType])
   @@index([sourceId])
+  @@index([importRunId])
+}
+
+// Generic, resumable import audit (first used by the 2026 bundle promotion).
+// One row per CLI invocation; checkpoints are keyed by source + checksum +
+// entity so a later run with the same snapshot resumes where a failed one
+// stopped. Rows are append-only history — nothing here is ever deleted.
+model DataImportRun {
+  id String @id @default(cuid())
+
+  source         String
+  tournamentYear Int?
+  sourceChecksum String
+  mode           String
+  status         String
+  targetSummary  String?
+
+  counts   Json?
+  warnings Json?
+  errors   Json?
+
+  startedAt  DateTime  @default(now())
+  finishedAt DateTime?
+
+  checkpoints DataImportCheckpoint[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([source, tournamentYear])
+  @@index([status])
+}
+
+model DataImportCheckpoint {
+  id String @id @default(cuid())
+
+  runId String
+  run   DataImportRun @relation(fields: [runId], references: [id])
+
+  source         String
+  sourceChecksum String
+  entity         String
+  rowsCompleted  Int     @default(0)
+  completed      Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([source, sourceChecksum, entity])
+  @@index([runId])
 }
 
 // One row per image. Holds provider/source URLs, dimensions, render hints,

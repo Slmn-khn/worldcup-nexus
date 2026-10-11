@@ -153,8 +153,21 @@ export type MatchPenaltyKickDto = {
   isMissed: boolean | null;
 };
 
+/**
+ * Whether an event category exists in a tournament's imported data:
+ * "not-applicable" before 1970 (no cards or substitutes existed),
+ * "not-recorded" when a later tournament simply has none imported yet.
+ */
+export type EventCoverage = "recorded" | "not-recorded" | "not-applicable";
+
 export type MatchDetailDto = MatchCardDto & {
   matchNumber: number | null;
+  /** True/false when the source records it; null = not recorded (pre-2026 imports). */
+  extraTime: boolean | null;
+  groupName: string | null;
+  /** Knockout draw whose extra-time/shootout outcome the source does not record. */
+  outcomeIncomplete: boolean;
+  eventCoverage: { bookings: EventCoverage; substitutions: EventCoverage };
   /** Name of the winning team, null for draws (and shootout draws resolve to the shootout winner). */
   winnerName: string | null;
   homeScorePenalties: number | null;

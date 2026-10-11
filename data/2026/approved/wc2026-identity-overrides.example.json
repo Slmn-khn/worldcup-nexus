@@ -1,0 +1,14 @@
+{
+  "players": {
+    "290": {
+      "displayName": "Full name exactly as printed in the official FIFA squad list",
+      "evidenceUrl": "https://example.org/link-to-the-official-squad-list",
+      "reviewedBy": "reviewer name"
+    },
+    "999": {
+      "canonicalPlayerSlug": "existing-canonical-player-slug",
+      "evidenceUrl": "https://example.org/evidence-that-these-are-the-same-person",
+      "reviewedBy": "reviewer name"
+    }
+  }
+}

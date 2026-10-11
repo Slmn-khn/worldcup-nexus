@@ -5,7 +5,8 @@
 // /tournaments/2026/players/<sourcePlayerId>. Read-only, MUI only.
 
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import { canonicalPlayerSlugForSource } from "@/server/queries/legacy2026";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
@@ -31,6 +32,10 @@ function parsePlayerId(raw: string): number | null {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { sourcePlayerId } = await params;
   const id = parsePlayerId(sourcePlayerId);
+  if (id !== null) {
+    const slug = await canonicalPlayerSlugForSource(id);
+    if (slug !== null) permanentRedirect(`/players/${slug}`);
+  }
   const player = id === null ? null : await getWc2026PlayerDetail(id);
   if (player === null) {
     return { title: "Player not found", robots: { index: false } };
@@ -59,6 +64,9 @@ export default async function Wc2026PlayerPage({ params }: Props) {
   const { sourcePlayerId } = await params;
   const id = parsePlayerId(sourcePlayerId);
   if (id === null) notFound();
+  // After the canonical promotion the player has one public URL.
+  const canonicalSlug = await canonicalPlayerSlugForSource(id);
+  if (canonicalSlug !== null) permanentRedirect(`/players/${canonicalSlug}`);
   const player = await getWc2026PlayerDetail(id);
   if (player === null) notFound();
 

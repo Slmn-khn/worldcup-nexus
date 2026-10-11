@@ -33,6 +33,8 @@ export type SearchDocument = {
   playerName?: string;
   stage?: string;
   sortYear?: number;
+  /** Provenance label stored on the row; defaults by tournament year. */
+  source?: string;
 };
 
 /** One ranked hit from Postgres full-text/trigram search. */

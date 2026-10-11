@@ -1,6 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const BASE_URL = "http://127.0.0.1:3000";
+// PLAYWRIGHT_BASE_URL runs the suite against an already-running server (e.g.
+// a production build: `pnpm build && pnpm start`), skipping the dev server.
+const EXTERNAL_BASE_URL = process.env.PLAYWRIGHT_BASE_URL;
+const BASE_URL = EXTERNAL_BASE_URL ?? "http://127.0.0.1:3000";
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -18,10 +21,12 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
-  webServer: {
-    command: "pnpm dev",
-    url: BASE_URL,
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
-  },
+  webServer: EXTERNAL_BASE_URL
+    ? undefined
+    : {
+        command: "pnpm dev",
+        url: BASE_URL,
+        reuseExistingServer: !process.env.CI,
+        timeout: 120_000,
+      },
 });

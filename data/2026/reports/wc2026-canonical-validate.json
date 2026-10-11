@@ -1,0 +1,294 @@
+{
+  "generatedAt": "2026-10-11T06:11:01.256Z",
+  "mode": "validate",
+  "ok": true,
+  "refusedBy": null,
+  "target": null,
+  "bundle": {
+    "manifestSha256": "952c69ad900745798ede7167dc6cfbda105d6dc004cc2126f1a8d385cf74768a",
+    "validationReportSha256": "144d59d2a4b7b47176c9a1e7e5002c6fad3fabb1ff580203697a6f3c6c70dfda"
+  },
+  "validation": {
+    "ok": true,
+    "checks": [
+      {
+        "id": "staging",
+        "description": "every row maps to a reviewed canonical value",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "tournament-year",
+        "description": "tournament year is 2026",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "hosts",
+        "description": "hosts are Canada, Mexico and United States",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "team-count",
+        "description": "48 teams (candidate = official)",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "match-count",
+        "description": "104 matches (candidate = official)",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "venue-count",
+        "description": "16 venues (candidate = official)",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "player-count",
+        "description": "1,248 registered squad players",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "squad-size",
+        "description": "26 players per team",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "stage-distribution",
+        "description": "stage distribution 72/16/8/4/2/1/1",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "groups",
+        "description": "12 groups A–L, 4 teams and 6 matches each",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "unique-ids",
+        "description": "all natural keys are unique",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "foreign-keys",
+        "description": "every team, venue, stage, referee, match and player reference resolves",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "distinct-teams",
+        "description": "every match has two distinct teams, one stage and one venue",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "event-team-in-match",
+        "description": "every event's team played in that match",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "goal-total",
+        "description": "scorelines total 308 (= official goal count)",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "goals-reconcile",
+        "description": "goal + own-goal events reconcile with each team's score",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "assists-fold",
+        "description": "every assist attaches to the goal it follows",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "shootouts-separate",
+        "description": "shootout kicks are separate from goals (never counted in scores or Golden Boot)",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "shootouts-reconcile",
+        "description": "shootout events reconcile with recorded penalty scores",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "knockout-draws-have-outcome",
+        "description": "knockout draws have a valid extra-time or shootout outcome",
+        "severity": "BLOCKER",
+        "status": "KNOWN_CONFLICT",
+        "detail": "96"
+      },
+      {
+        "id": "group-no-shootouts",
+        "description": "group matches are never decided by penalties",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "podium-official",
+        "description": "FIFA podium: Spain, Argentina, England, France",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "final-official",
+        "description": "final: Spain 1–0 Argentina after extra time on 19 July 2026",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "podium-candidate-agrees",
+        "description": "candidate results agree with the FIFA podium",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "hosts-venues",
+        "description": "venue countries equal the official hosts",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "dates",
+        "description": "match dates span the official start/end dates",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "awards-official",
+        "description": "nine official awards resolve to the right player/team",
+        "severity": "BLOCKER",
+        "status": "PASS"
+      },
+      {
+        "id": "boot-goals-agree",
+        "description": "candidate goal/assist events agree with official Boot figures",
+        "severity": "WARN",
+        "status": "PASS"
+      },
+      {
+        "id": "player-dob",
+        "description": "every player has a date of birth for identity resolution",
+        "severity": "WARN",
+        "status": "PASS"
+      },
+      {
+        "id": "player-names-unique",
+        "description": "player display names are unique (duplicates get deterministic slugs)",
+        "severity": "WARN",
+        "status": "WARN",
+        "detail": "ali ahmed ×2; mc ×7"
+      },
+      {
+        "id": "no-substitutions",
+        "description": "source has no substitution events (Substitution stays blocked)",
+        "severity": "WARN",
+        "status": "PASS"
+      }
+    ],
+    "blockers": [],
+    "knownConflicts": [
+      {
+        "id": "M96_KNOCKOUT_DRAW_WITHOUT_OUTCOME",
+        "area": "match_outcome",
+        "record": "Match 96 (Round of 16): Switzerland 0–0 Colombia",
+        "candidateValue": "result_type=Regular, no extra-time/penalty data, no shootout events",
+        "officialValue": "Not supplied in the bundle",
+        "decision": "Import the 0–0 scoreline; leave extraTime, penalty scores and winningTeamId NULL and flag the match as outcome-incomplete. Switzerland's later quarter-final is NOT used to infer a shootout result."
+      },
+      {
+        "id": "PLAYER_MINUTES_MBAPPE",
+        "area": "player_minutes",
+        "record": "Kylian Mbappé",
+        "candidateValue": "711 (lineups)",
+        "officialValue": "769 (FIFA awards)",
+        "decision": "Lineup minutes are not imported; FIFA's 769 is shown with the Golden Boot award only."
+      },
+      {
+        "id": "PLAYER_MINUTES_BELLINGHAM",
+        "area": "player_minutes",
+        "record": "Jude Bellingham",
+        "candidateValue": "596 (lineups)",
+        "officialValue": "698 (FIFA awards)",
+        "decision": "Lineup minutes are not imported; FIFA's 698 is shown with the Bronze Boot award only."
+      },
+      {
+        "id": "NO_SUBSTITUTION_EVENTS",
+        "area": "match_events",
+        "record": "All matches",
+        "candidateValue": "0 substitution events",
+        "officialValue": "Required by the Substitution model",
+        "decision": "Substitution stays empty for 2026; match pages show an explicit 'not recorded' state."
+      },
+      {
+        "id": "INCOMPLETE_BOOKINGS",
+        "area": "match_events",
+        "record": "All matches",
+        "candidateValue": "35 yellow / 12 red cards across 104 matches",
+        "officialValue": "Not supplied in the bundle",
+        "decision": "Bookings withheld from canonical tables (raw records only) until reconciled with official match reports."
+      },
+      {
+        "id": "NO_IN_MATCH_PENALTY_FLAG",
+        "area": "goals",
+        "record": "All goals",
+        "candidateValue": "Goal events do not distinguish penalties",
+        "officialValue": "Not supplied in the bundle",
+        "decision": "Goal.isPenalty is left false (schema default); documented as unrecorded for 2026 in docs/DATA_ISSUES.md."
+      }
+    ]
+  },
+  "plan": null,
+  "identity": null,
+  "withheld": {
+    "bookings": {
+      "rows": 47,
+      "reason": "Card events are visibly incomplete (well under one yellow card per match) — kept as raw records until reconciled with official match reports."
+    },
+    "varReviews": {
+      "rows": 12,
+      "reason": "No canonical VAR model; kept as raw records."
+    },
+    "substitutions": {
+      "rows": 0,
+      "reason": "Source has no substitution events; never inferred from minutes."
+    },
+    "lineups": {
+      "rows": 5408,
+      "reason": "Per-match minutes conflict with FIFA official totals (validation/known_conflicts.csv); no canonical appearance model."
+    },
+    "teamStats": {
+      "rows": 208,
+      "reason": "Mixed fifa.com / sofascore.com provenance; usage rights unreviewed."
+    },
+    "playerOfTheMatch": {
+      "rows": 104,
+      "reason": "Candidate-only field with no canonical column; raw only."
+    },
+    "quarantine": {
+      "rows": 0,
+      "reason": "03_quarantine/* (player stats, market values, ELO/rankings, redundant match rows) is never read by this importer."
+    }
+  },
+  "load": null,
+  "verification": null,
+  "runId": null,
+  "errors": [],
+  "nextSteps": [
+    "pnpm data:2026:canonical:dry-run"
+  ]
+}

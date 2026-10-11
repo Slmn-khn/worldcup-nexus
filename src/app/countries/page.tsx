@@ -18,6 +18,7 @@ import {
 } from "@/lib/search-params";
 import { getCountryIndex } from "@/server/queries/countries";
 import type { CountrySort } from "@/server/queries/types";
+import { coverageSuffix, getCanonicalCoverage } from "@/server/queries/coverage";
 
 export const dynamic = "force-dynamic";
 
@@ -62,7 +63,7 @@ export default async function CountriesPage({ searchParams }: Props) {
     }),
     sort: getEnumParam(params, "sort", SORTS),
   };
-  const index = await getCountryIndex(filters);
+  const [index, coverage] = await Promise.all([getCountryIndex(filters), getCanonicalCoverage()]);
 
   const active = [
     filters.q !== undefined
@@ -89,7 +90,7 @@ export default async function CountriesPage({ searchParams }: Props) {
       <VaultPageHeader
         title="World Cup Nations"
         lede="Explore every nation and team history recorded in the WORLDCUP Nexus database."
-        meta={`${formatNumber(index.total)} nations in the historical archive (1930–2022) · 2026 squads and results live in the 2026 archive hub`}
+        meta={`${formatNumber(index.total)} nations in the archive${coverageSuffix(coverage)}${coverage.includes2026 ? "" : " · 2026 squads and results live in the 2026 archive hub"}`}
       />
 
       <PageContainer sx={{ py: { xs: 5, md: 7 } }}>

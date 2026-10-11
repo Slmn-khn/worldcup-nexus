@@ -29,8 +29,13 @@ const LAYOUT = {
 
 export default function TopPlayerRecordsSection({
   players,
+  spanLabel = null,
+  includes2026 = false,
 }: {
   players: HomePlayerRecord[];
+  /** Canonical archive span, e.g. "1930–2026" (computed, never hard-coded). */
+  spanLabel?: string | null;
+  includes2026?: boolean;
 }) {
   // Defensive cap so the homepage never shows more than five, regardless of how
   // many records the query returns. The full list lives behind "All players".
@@ -42,7 +47,7 @@ export default function TopPlayerRecordsSection({
         eyebrow="The pantheon"
         title="Top Player Records"
         accent="gold"
-        subtitle="Leading scorers of the historical archive (1930–2022), computed from imported goal data. 2026 scoring leaders live in the 2026 archive hub."
+        subtitle={`Leading scorers of the archive${spanLabel !== null ? ` (${spanLabel})` : ""}, computed from imported goal data.${includes2026 ? "" : " 2026 scoring leaders live in the 2026 archive hub."}`}
         action={{ label: "All players", href: "/players" }}
       />
       {visiblePlayers.length > 0 ? (

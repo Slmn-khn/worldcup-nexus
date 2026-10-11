@@ -27,6 +27,13 @@ async function wc2026Entries(
       select: { sourceMatchId: true },
     });
     if (matches.length === 0) return [];
+    // Post-promotion the canonical loops below list every 2026 match and
+    // player under their canonical URLs; the legacy /matches/2026/<id> and
+    // /tournaments/2026/players/<id> pages now 308-redirect there, so only
+    // the schedule page remains from this archive.
+    if (canonicalYears.has(2026)) {
+      return [{ url: `${base}/schedule/2026`, changeFrequency: "yearly" as const, priority: 0.7 }];
+    }
     const players = await prisma.worldCup2026Player.findMany({
       select: { sourcePlayerId: true },
     });

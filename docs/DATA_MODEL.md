@@ -194,6 +194,27 @@ substitutions are browsable in the data explorer instead).
 
 ---
 
+## 2026 promotion fields (migration 20261011055725)
+
+All additive and nullable — historical rows keep NULL ("not recorded"):
+
+- `Tournament.thirdPlaceTeamId`, `fourthPlaceTeamId`, `attendance`,
+  `hostCountries[]` (every co-host; `hostName` stays the joined label),
+  `sourceUrl`, `verificationStatus` (`FIFA_OFFICIAL` for 2026).
+- `Match.groupName` ("Group A"…), `Match.extraTime` (true/false when the
+  source records it; NULL otherwise — never back-filled with false).
+- `Stadium.capacity`, `latitude`, `longitude`.
+- `Award.rank` (1/2/3 for Golden/Silver/Bronze), `sourceUrl`,
+  `verificationStatus`, `details` (official figures such as goals, assists,
+  minutes, shirt number, FIFA's own award label).
+- `RawSourceRecord.sourceUrl`, `sourceChecksum`, `retrievedAt`, `importRunId`.
+- `DataImportRun` / `DataImportCheckpoint`: generic, resumable import audit
+  (checkpoints keyed by source + checksum + entity).
+
+Stage strings: 2026 adds `"round of 32"` alongside the existing lowercase
+values. Source ids are namespaced `<system>:<entity>:<id>` (`mominul2026:…`,
+`fifa2026:…`, `fifa:<FIFA code>` for new countries).
+
 ## Data verification strategy
 
 ### At import time

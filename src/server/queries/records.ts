@@ -253,13 +253,25 @@ export async function getRecordsOverview(): Promise<RecordsOverviewDto> {
       `${womensYears.length} women's editions (${Math.min(...womensYears)}–${Math.max(...womensYears)})`,
     );
   }
+  // Tournaments from the card era (1970+) with no imported bookings at all:
+  // their cards are unrecorded, not zero, so say so instead of implying it.
+  const noCardYears = (
+    await prisma.tournament.findMany({
+      where: { year: { gte: 1970 }, matches: { none: { bookings: { some: {} } } } },
+      select: { year: true },
+      orderBy: { year: "asc" },
+    })
+  ).map((t) => t.year);
   const scopeNote =
     `Leaderboards combine all ${tournaments.length} imported tournaments` +
     (scopeParts.length > 0 ? ` — ${scopeParts.join(" and ")} — ` : " ") +
     "and are computed from the imported source data only. This is an independent archive, not an official record list." +
     (tournaments.some((t) => t.year === 2026)
       ? ""
-      : " The completed 2026 tournament is archived separately; its scorers, assists, and match stats live in the 2026 archive hub and are not yet merged into these historical leaderboards.");
+      : " The completed 2026 tournament is archived separately; its scorers, assists, and match stats live in the 2026 archive hub and are not yet merged into these historical leaderboards.") +
+    (noCardYears.length > 0
+      ? ` Card data is not recorded yet for ${noCardYears.join(", ")}, so card leaderboards do not include ${noCardYears.length === 1 ? "that tournament" : "those tournaments"}.`
+      : "");
 
   // ---- Team (nation) records. ----
   const teamGoals = new Map(goalsByTeam.map((g) => [g.teamId, g._count._all]));

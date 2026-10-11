@@ -1,0 +1,96 @@
+# 2026 canonical import — verify
+
+- Generated: 2026-10-11T06:12:30.790Z
+- Outcome: OK
+- Target: postgresql://***@localhost:5432/worldcup_atlas — LOCAL
+- Bundle manifest sha256: `952c69ad900745798ede7167dc6cfbda105d6dc004cc2126f1a8d385cf74768a`
+- Import run: none (no writes)
+
+## Validation
+
+| Status | Check | Detail |
+| --- | --- | --- |
+| PASS | every row maps to a reviewed canonical value |  |
+| PASS | tournament year is 2026 |  |
+| PASS | hosts are Canada, Mexico and United States |  |
+| PASS | 48 teams (candidate = official) |  |
+| PASS | 104 matches (candidate = official) |  |
+| PASS | 16 venues (candidate = official) |  |
+| PASS | 1,248 registered squad players |  |
+| PASS | 26 players per team |  |
+| PASS | stage distribution 72/16/8/4/2/1/1 |  |
+| PASS | 12 groups A–L, 4 teams and 6 matches each |  |
+| PASS | all natural keys are unique |  |
+| PASS | every team, venue, stage, referee, match and player reference resolves |  |
+| PASS | every match has two distinct teams, one stage and one venue |  |
+| PASS | every event's team played in that match |  |
+| PASS | scorelines total 308 (= official goal count) |  |
+| PASS | goal + own-goal events reconcile with each team's score |  |
+| PASS | every assist attaches to the goal it follows |  |
+| PASS | shootout kicks are separate from goals (never counted in scores or Golden Boot) |  |
+| PASS | shootout events reconcile with recorded penalty scores |  |
+| KNOWN_CONFLICT | knockout draws have a valid extra-time or shootout outcome | 96 |
+| PASS | group matches are never decided by penalties |  |
+| PASS | FIFA podium: Spain, Argentina, England, France |  |
+| PASS | final: Spain 1–0 Argentina after extra time on 19 July 2026 |  |
+| PASS | candidate results agree with the FIFA podium |  |
+| PASS | venue countries equal the official hosts |  |
+| PASS | match dates span the official start/end dates |  |
+| PASS | nine official awards resolve to the right player/team |  |
+| PASS | candidate goal/assist events agree with official Boot figures |  |
+| PASS | every player has a date of birth for identity resolution |  |
+| WARN | player display names are unique (duplicates get deterministic slugs) | ali ahmed ×2; mc ×7 |
+| PASS | source has no substitution events (Substitution stays blocked) |  |
+
+## Known conflicts and decisions
+
+- **M96_KNOCKOUT_DRAW_WITHOUT_OUTCOME** — Match 96 (Round of 16): Switzerland 0–0 Colombia: candidate result_type=Regular, no extra-time/penalty data, no shootout events; official Not supplied in the bundle. Decision: Import the 0–0 scoreline; leave extraTime, penalty scores and winningTeamId NULL and flag the match as outcome-incomplete. Switzerland's later quarter-final is NOT used to infer a shootout result.
+- **PLAYER_MINUTES_MBAPPE** — Kylian Mbappé: candidate 711 (lineups); official 769 (FIFA awards). Decision: Lineup minutes are not imported; FIFA's 769 is shown with the Golden Boot award only.
+- **PLAYER_MINUTES_BELLINGHAM** — Jude Bellingham: candidate 596 (lineups); official 698 (FIFA awards). Decision: Lineup minutes are not imported; FIFA's 698 is shown with the Bronze Boot award only.
+- **NO_SUBSTITUTION_EVENTS** — All matches: candidate 0 substitution events; official Required by the Substitution model. Decision: Substitution stays empty for 2026; match pages show an explicit 'not recorded' state.
+- **INCOMPLETE_BOOKINGS** — All matches: candidate 35 yellow / 12 red cards across 104 matches; official Not supplied in the bundle. Decision: Bookings withheld from canonical tables (raw records only) until reconciled with official match reports.
+- **NO_IN_MATCH_PENALTY_FLAG** — All goals: candidate Goal events do not distinguish penalties; official Not supplied in the bundle. Decision: Goal.isPenalty is left false (schema default); documented as unrecorded for 2026 in docs/DATA_ISSUES.md.
+
+## Withheld from canonical tables
+
+| Data | Rows | Reason |
+| --- | ---: | --- |
+| bookings | 47 | Card events are visibly incomplete (well under one yellow card per match) — kept as raw records until reconciled with official match reports. |
+| varReviews | 12 | No canonical VAR model; kept as raw records. |
+| substitutions | 0 | Source has no substitution events; never inferred from minutes. |
+| lineups | 5408 | Per-match minutes conflict with FIFA official totals (validation/known_conflicts.csv); no canonical appearance model. |
+| teamStats | 208 | Mixed fifa.com / sofascore.com provenance; usage rights unreviewed. |
+| playerOfTheMatch | 104 | Candidate-only field with no canonical column; raw only. |
+| quarantine | 0 | 03_quarantine/* (player stats, market values, ELO/rankings, redundant match rows) is never read by this importer. |
+
+## Post-import verification
+
+| Status | Check | Detail |
+| --- | --- | --- |
+| PASS | tournament 2026 is the official-tier row |  |
+| PASS | hosts: Canada, Mexico, United States |  |
+| PASS | 48 participating teams, unique country per team |  |
+| PASS | 12 groups A–L with 4 teams each |  |
+| PASS | 1,248 registered squad players, 26 per team |  |
+| PASS | 104 matches |  |
+| PASS | stage distribution 72/16/8/4/2/1/1 with round of 32 first-class |  |
+| PASS | 16 venues used |  |
+| PASS | every match: two distinct teams of this tournament, a stage and a venue |  |
+| PASS | 308 total scoreline goals = 308 Goal rows = Tournament.goalsCount |  |
+| PASS | goal + own-goal rows reconcile with every scoreline |  |
+| PASS | shootout kicks reconcile with penalty scores and never count as goals |  |
+| KNOWN_CONFLICT | knockout draws have a valid extra-time or shootout outcome | m-2026-96-switzerland-vs-colombia (outcome NULL by design) |
+| PASS | decided matches carry the correct winner |  |
+| PASS | final: Spain 1–0 Argentina after extra time, 19 July 2026 |  |
+| PASS | champion Spain, runner-up Argentina, third England, fourth France |  |
+| PASS | knockout rounds present in order |  |
+| PASS | official award set linked to canonical player/team profiles |  |
+| PASS | FIFA official minutes kept on the Boot awards (769 / 698) |  |
+| PASS | no fabricated substitutions or unverified bookings for 2026 |  |
+| PASS | no duplicate player identities introduced (same DOB + country + name) |  |
+| PASS | 1930–2022 records unchanged by the import |  |
+
+## Next steps
+
+- `pnpm search:index`
+- `pnpm search:verify`

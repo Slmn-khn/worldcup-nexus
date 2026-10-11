@@ -81,6 +81,23 @@ export default async function MatchDetailPage({ params }: Props) {
           subtitle="Goals, cards, and substitutions in chronological order."
         />
         <MatchTimeline match={match} />
+        {match.eventCoverage.bookings === "not-recorded" ||
+        match.eventCoverage.substitutions === "not-recorded" ? (
+          <Typography
+            variant="caption"
+            sx={{ color: "text.secondary", display: "block", mt: 2 }}
+          >
+            {`${[
+              match.eventCoverage.bookings === "not-recorded" ? "cards" : null,
+              match.eventCoverage.substitutions === "not-recorded"
+                ? "substitutions"
+                : null,
+            ]
+              .filter((part) => part !== null)
+              .join(" and ")
+              .replace(/^./, (c) => c.toUpperCase())} are not recorded for the ${match.tournamentYear} tournament yet — this timeline shows goals only, and nothing here means “zero”.`}
+          </Typography>
+        ) : null}
       </PageContainer>
 
       {/* Penalty shootout */}

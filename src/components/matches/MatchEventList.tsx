@@ -154,9 +154,13 @@ export default function MatchEventList({ match }: { match: MatchDetailDto }) {
       </EventSection>
 
       <EventSection
-        title={`Cards · ${match.bookings.length}`}
+        title={match.eventCoverage.bookings === "not-recorded" ? "Cards" : `Cards · ${match.bookings.length}`}
         isEmpty={match.bookings.length === 0}
-        emptyLabel="No cards recorded in this match."
+        emptyLabel={
+          match.eventCoverage.bookings === "not-recorded"
+            ? `Cards are not recorded for the ${match.tournamentYear} tournament yet.`
+            : "No cards recorded in this match."
+        }
       >
         {match.bookings.map((booking, index) => (
           <EventRow
@@ -176,9 +180,13 @@ export default function MatchEventList({ match }: { match: MatchDetailDto }) {
       </EventSection>
 
       <EventSection
-        title={`Substitution records · ${match.substitutions.length}`}
+        title={match.eventCoverage.substitutions === "not-recorded" ? "Substitutions" : `Substitution records · ${match.substitutions.length}`}
         isEmpty={match.substitutions.length === 0}
-        emptyLabel="No substitutions recorded in this match."
+        emptyLabel={
+          match.eventCoverage.substitutions === "not-recorded"
+            ? `Substitutions are not recorded for the ${match.tournamentYear} tournament yet.`
+            : "No substitutions recorded in this match."
+        }
       >
         {match.substitutions.map((sub, index) => (
           <EventRow

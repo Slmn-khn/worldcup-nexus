@@ -1,0 +1,128 @@
+{
+  "dataset": "WorldCup Nexus 2026 preparation bundle",
+  "generated_from": "https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset",
+  "checks_passed": 27,
+  "checks_total": 27,
+  "all_structural_checks_passed": true,
+  "known_blockers": 3,
+  "event_type_counts": {
+    "Assist": 204,
+    "Goal": 294,
+    "Own Goal": 14,
+    "Penalty Shootout Goal": 18,
+    "Penalty Shootout Miss": 12,
+    "Red Card": 12,
+    "VAR Review": 12,
+    "Yellow Card": 35
+  },
+  "checks": [
+    {
+      "check": "exactly 48 teams",
+      "passed": true
+    },
+    {
+      "check": "exactly 1,248 squad players",
+      "passed": true
+    },
+    {
+      "check": "exactly 104 matches",
+      "passed": true
+    },
+    {
+      "check": "exactly 16 venues",
+      "passed": true
+    },
+    {
+      "check": "exactly 7 tournament stages",
+      "passed": true
+    },
+    {
+      "check": "exactly two team-stat rows per match",
+      "passed": true
+    },
+    {
+      "check": "scorelines total 308 goals",
+      "passed": true
+    },
+    {
+      "check": "stage distribution is 72/16/8/4/2/1/1",
+      "passed": true
+    },
+    {
+      "check": "teams.team_id values are unique",
+      "passed": true
+    },
+    {
+      "check": "venues.venue_id values are unique",
+      "passed": true
+    },
+    {
+      "check": "stages.stage_id values are unique",
+      "passed": true
+    },
+    {
+      "check": "referees.referee_id values are unique",
+      "passed": true
+    },
+    {
+      "check": "matches.match_id values are unique",
+      "passed": true
+    },
+    {
+      "check": "players.player_id values are unique",
+      "passed": true
+    },
+    {
+      "check": "events.event_id values are unique",
+      "passed": true
+    },
+    {
+      "check": "lineups.lineup_id values are unique",
+      "passed": true
+    },
+    {
+      "check": "all match teams resolve",
+      "passed": true
+    },
+    {
+      "check": "all match venues resolve",
+      "passed": true
+    },
+    {
+      "check": "all match stages resolve",
+      "passed": true
+    },
+    {
+      "check": "all match referees resolve",
+      "passed": true
+    },
+    {
+      "check": "all player teams resolve",
+      "passed": true
+    },
+    {
+      "check": "all event foreign keys resolve",
+      "passed": true
+    },
+    {
+      "check": "all lineup foreign keys resolve",
+      "passed": true
+    },
+    {
+      "check": "goal and own-goal events reconcile to every match scoreline",
+      "passed": true
+    },
+    {
+      "check": "each match/team has 26 lineup/squad rows",
+      "passed": true
+    },
+    {
+      "check": "each match/team has 11 starters",
+      "passed": true
+    },
+    {
+      "check": "substitution events are absent and must remain blocked",
+      "passed": true
+    }
+  ]
+}

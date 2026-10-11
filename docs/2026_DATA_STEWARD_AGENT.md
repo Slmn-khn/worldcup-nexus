@@ -348,6 +348,19 @@ canonical card/finals/stats read models (homepage, timeline, featured,
 `mergeWc2026TournamentCard` plus the canonical-2026 check in
 `src/server/archive/stats.ts`.
 
+## Canonical promotion (Phase 3 — implemented 2026-10-11)
+
+The completed tournament now lives in the canonical tables, imported from the
+`docs/worldcupnexus_2026_data` bundle (FIFA official tournament summary and
+awards + reconciled Mominul candidate data) by `src/server/import/wc2026/`.
+`/tournaments/2026`, `/matches`, `/players`, `/countries`, records, explorer,
+search and the sitemap read canonical rows; `/matches/2026/<id>` and
+`/tournaments/2026/players/<id>` redirect to canonical pages, and
+`/schedule/2026` prefers canonical matches. The `WorldCup2026*` tables are
+kept (never deleted) and are only read as a fallback on databases where the
+canonical import has not run. See `docs/WORLDCUP_2026_ARCHIVE_REPORT.md` and
+`docs/RUNBOOK_2026_ARCHIVE.md`.
+
 ## No production writes in Phase 1
 
 - No module under `src/server/agents/worldcup2026/` imports Prisma or any

@@ -150,11 +150,12 @@ export default function SourcesPage() {
         <SectionHeading title="Known Limitations" />
         <Bullets
           items={[
-            "The imported historical dataset covers both men's (1930–2022) and women's (1991–2019) World Cups; combined views are labeled \"all imported tournaments\". The archive now extends through 2026 via the separately imported 2026 dataset below.",
-            "2026 archive data is integrated from the approved Mominul FIFA World Cup 2026 Dataset, with source attribution and validation through the WORLDCUP Nexus Data Steward pipeline.",
+            "The imported historical dataset covers both men's (1930–2022) and women's (1991–2019) World Cups; combined views are labeled \"all imported tournaments\". The 2026 men's tournament is part of the same canonical archive (see below).",
+            "2026: dates, hosts, attendance, the podium and all nine tournament awards come from FIFA's official records. Matches, squads, goals, assists and shootout kicks come from the Mominul FIFA World Cup 2026 Dataset (CC0), reconciled against those records — goals reconcile with every scoreline.",
+            "2026 data not yet recorded: substitutions, yellow/red cards (the source is visibly incomplete), minutes played, lineups and xG. One Round of 16 match (Switzerland 0–0 Colombia) has no recorded extra-time or shootout outcome and is shown as such.",
             "Squad membership means a player was selected for a tournament squad — it is not match appearance data. No appearances, caps, or minutes are claimed.",
-            "Assist, lineup, referee-to-match, and attendance data are not part of the imported subset.",
-            "Penalty shootout kicks are listed in source order; the source does not record the true kick sequence or distinguish missed from saved.",
+            "For 1930–2022, assist, lineup, referee-to-match, and attendance data are not part of the imported subset (2026 includes assists and referees).",
+            "For 1930–2022, penalty shootout kicks are listed in source order; that source does not record the true kick sequence or distinguish missed from saved. 2026 kicks keep the dataset's kick order.",
             "Some source fields may be incomplete; missing values are shown as missing rather than estimated.",
           ]}
         />

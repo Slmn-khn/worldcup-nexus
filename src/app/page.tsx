@@ -20,6 +20,7 @@ import ExploreByCountrySection from "@/components/home/ExploreByCountrySection";
 import TopPlayerRecordsSection from "@/components/home/TopPlayerRecordsSection";
 import RecordsFirstsSection from "@/components/home/RecordsFirstsSection";
 import { getHomeViewModel } from "@/server/home/queries";
+import { getCanonicalCoverage } from "@/server/queries/coverage";
 import { isLatestMatchesSectionEnabled } from "@/config/features";
 import {
   atlasBorders,
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const home = await getHomeViewModel();
+  const [home, coverage] = await Promise.all([getHomeViewModel(), getCanonicalCoverage()]);
   const { archiveStats } = home;
 
   const span =
@@ -124,10 +125,10 @@ export default async function Home() {
           <ExploreByCountrySection countries={home.countries} />
 
           {/* 8 — Top Player Records */}
-          <TopPlayerRecordsSection players={home.playerRecords} />
+          <TopPlayerRecordsSection players={home.playerRecords} spanLabel={coverage.label} includes2026={coverage.includes2026} />
 
           {/* 9 — Records & Firsts */}
-          <RecordsFirstsSection records={home.records} />
+          <RecordsFirstsSection records={home.records} spanLabel={coverage.label} includes2026={coverage.includes2026} />
         </Box>
       </Box>
     </Box>
