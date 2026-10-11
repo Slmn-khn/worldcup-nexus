@@ -1,8 +1,8 @@
 # 2026 canonical import — verify
 
-- Generated: 2026-10-11T06:12:30.790Z
+- Generated: 2026-10-11T09:18:35.066Z
 - Outcome: OK
-- Target: postgresql://***@localhost:5432/worldcup_atlas — LOCAL
+- Target: postgresql://***@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres — PRODUCTION
 - Bundle manifest sha256: `952c69ad900745798ede7167dc6cfbda105d6dc004cc2126f1a8d385cf74768a`
 - Import run: none (no writes)
 

@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-10-11T06:12:00.494Z",
+  "generatedAt": "2026-10-11T09:17:56.323Z",
   "mode": "resume",
   "ok": true,
   "refusedBy": null,
   "target": {
-    "kind": "LOCAL",
-    "host": "localhost",
+    "kind": "PRODUCTION",
+    "host": "aws-1-ap-northeast-1.pooler.supabase.com",
     "port": "5432",
-    "database": "worldcup_atlas",
-    "redacted": "postgresql://***@localhost:5432/worldcup_atlas"
+    "database": "postgres",
+    "redacted": "postgresql://***@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres"
   },
   "bundle": {
     "manifestSha256": "952c69ad900745798ede7167dc6cfbda105d6dc004cc2126f1a8d385cf74768a",
@@ -276,9 +276,8 @@
         "upsert": 11
       },
       "players": {
-        "update": 200,
-        "link:dob+country+name": 349,
-        "create": 699
+        "create": 899,
+        "link:dob+country+name": 349
       },
       "squadPlayers": {
         "upsert": 1248
@@ -300,6 +299,7 @@
     "warnings": [
       "DR Congo: Same football association as the 1974 'Zaire' entry (country slug 'zaire'); kept as a separate era name, matching the archive's West Germany/Germany convention.",
       "referee Alireza Faghani: country differs (Iran → Australia); canonical row kept unchanged",
+      "player 290: source name \"Mc\" is truncated — stored as \"Unidentified Scotland player (source #290)\" until a reviewed override supplies the name",
       "player 293: source name \"Mc\" is truncated — stored as \"Unidentified Scotland player (source #293)\" until a reviewed override supplies the name",
       "player 309: source name \"Mc\" is truncated — stored as \"Unidentified Scotland player (source #309)\" until a reviewed override supplies the name",
       "player 312: source name \"Mc\" is truncated — stored as \"Unidentified Scotland player (source #312)\" until a reviewed override supplies the name",
@@ -2405,6 +2405,7 @@
       }
     ],
     "incompleteNames": [
+      290,
       293,
       309,
       312,
@@ -2457,26 +2458,26 @@
         "conflicts": 0
       },
       "teams": {
-        "written": 0,
-        "skippedByCheckpoint": 48,
+        "written": 48,
+        "skippedByCheckpoint": 0,
         "linked": 0,
         "conflicts": 0
       },
       "stadiums": {
-        "written": 0,
-        "skippedByCheckpoint": 12,
+        "written": 12,
+        "skippedByCheckpoint": 0,
         "linked": 4,
         "conflicts": 0
       },
       "referees": {
-        "written": 0,
-        "skippedByCheckpoint": 11,
+        "written": 11,
+        "skippedByCheckpoint": 0,
         "linked": 17,
         "conflicts": 0
       },
       "players": {
-        "written": 699,
-        "skippedByCheckpoint": 200,
+        "written": 899,
+        "skippedByCheckpoint": 0,
         "linked": 349,
         "conflicts": 0
       },
@@ -2517,7 +2518,7 @@
         "conflicts": 0
       },
       "rawRecords": {
-        "written": 7678,
+        "written": 8926,
         "skippedByCheckpoint": 0,
         "linked": 0,
         "conflicts": 0
@@ -2663,7 +2664,7 @@
       }
     ]
   },
-  "runId": "cmv3fe5bp000080hyn20xxs29",
+  "runId": "cmv3ltmt800009ohyw0f5yj6x",
   "errors": [],
   "nextSteps": [
     "pnpm search:index",

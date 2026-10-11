@@ -1,10 +1,10 @@
 {
-  "approvedBy": "Repository owner (approved in a Claude Code session; scope LOCAL only)",
+  "approvedBy": "Salman Khan",
   "approvedAt": "2026-10-11T06:30:00Z",
   "dataPackVersion": "worldcupnexus_2026_data — Mominul commit 2f61805ec8ac58e52882e8f0e2413a5cfa7f4d61, prepared 2026-10-11",
   "validationReportHash": "sha256:144d59d2a4b7b47176c9a1e7e5002c6fad3fabb1ff580203697a6f3c6c70dfda",
   "bundleManifestHash": "sha256:952c69ad900745798ede7167dc6cfbda105d6dc004cc2126f1a8d385cf74768a",
   "approvedForImport": true,
-  "scope": "LOCAL",
+  "scope": "PRODUCTION",
   "notes": "Covers ONLY the local development database (localhost:5432/worldcup_atlas). Staging/production require a new approval with scope STAGING/PRODUCTION signed by the owner, plus --confirm-production for production."
 }

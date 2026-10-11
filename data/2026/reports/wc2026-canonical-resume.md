@@ -1,10 +1,10 @@
 # 2026 canonical import — resume
 
-- Generated: 2026-10-11T06:12:00.494Z
+- Generated: 2026-10-11T09:17:56.323Z
 - Outcome: OK
-- Target: postgresql://***@localhost:5432/worldcup_atlas — LOCAL
+- Target: postgresql://***@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres — PRODUCTION
 - Bundle manifest sha256: `952c69ad900745798ede7167dc6cfbda105d6dc004cc2126f1a8d385cf74768a`
-- Import run: cmv3fe5bp000080hyn20xxs29
+- Import run: cmv3ltmt800009ohyw0f5yj6x
 
 ## Validation
 
@@ -71,7 +71,7 @@
 | teams | upsert: 48 |
 | venues | link: 4, upsert: 12 |
 | referees | link: 17, upsert: 11 |
-| players | update: 200, link:dob+country+name: 349, create: 699 |
+| players | create: 899, link:dob+country+name: 349 |
 | squadPlayers | upsert: 1248 |
 | matches | upsert: 104 |
 | goals | upsert: 308 |
@@ -82,6 +82,7 @@
 
 - DR Congo: Same football association as the 1974 'Zaire' entry (country slug 'zaire'); kept as a separate era name, matching the archive's West Germany/Germany convention.
 - referee Alireza Faghani: country differs (Iran → Australia); canonical row kept unchanged
+- player 290: source name "Mc" is truncated — stored as "Unidentified Scotland player (source #290)" until a reviewed override supplies the name
 - player 293: source name "Mc" is truncated — stored as "Unidentified Scotland player (source #293)" until a reviewed override supplies the name
 - player 309: source name "Mc" is truncated — stored as "Unidentified Scotland player (source #309)" until a reviewed override supplies the name
 - player 312: source name "Mc" is truncated — stored as "Unidentified Scotland player (source #312)" until a reviewed override supplies the name
@@ -90,7 +91,7 @@
 
 ## Identity resolution
 
-349 candidate players linked to existing canonical profiles (no duplicates created); 5 truncated source names stored as "Unidentified …" pending review.
+349 candidate players linked to existing canonical profiles (no duplicates created); 6 truncated source names stored as "Unidentified …" pending review.
 
 ## Written
 
@@ -98,17 +99,17 @@
 | --- | ---: | ---: | ---: |
 | countries | 0 | 5 | 43 |
 | tournament | 0 | 1 | 0 |
-| teams | 0 | 48 | 0 |
-| stadiums | 0 | 12 | 4 |
-| referees | 0 | 11 | 17 |
-| players | 699 | 200 | 349 |
+| teams | 48 | 0 | 0 |
+| stadiums | 12 | 0 | 4 |
+| referees | 11 | 0 | 17 |
+| players | 899 | 0 | 349 |
 | squadPlayers | 1248 | 0 | 0 |
 | matches | 104 | 0 | 0 |
 | goals | 308 | 0 | 0 |
 | shootoutKicks | 30 | 0 | 0 |
 | awards | 9 | 0 | 0 |
 | placings | 1 | 0 | 0 |
-| rawRecords | 7678 | 0 | 0 |
+| rawRecords | 8926 | 0 | 0 |
 
 ## Post-import verification
 

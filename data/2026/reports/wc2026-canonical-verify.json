@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-10-11T06:12:30.790Z",
+  "generatedAt": "2026-10-11T09:18:35.066Z",
   "mode": "verify",
   "ok": true,
   "refusedBy": null,
   "target": {
-    "kind": "LOCAL",
-    "host": "localhost",
+    "kind": "PRODUCTION",
+    "host": "aws-1-ap-northeast-1.pooler.supabase.com",
     "port": "5432",
-    "database": "worldcup_atlas",
-    "redacted": "postgresql://***@localhost:5432/worldcup_atlas"
+    "database": "postgres",
+    "redacted": "postgresql://***@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres"
   },
   "bundle": {
     "manifestSha256": "952c69ad900745798ede7167dc6cfbda105d6dc004cc2126f1a8d385cf74768a",
