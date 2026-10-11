@@ -60,6 +60,8 @@ export type HomeTimelineEntry = {
 export type HomeFeaturedTournament = TournamentCardDto & {
   /** Approved HERO media for the tournament, or null (CSS fallback). */
   heroMedia: MediaAssetDto | null;
+  /** Recorded coordinates of the final's stadium (decorative map marker), or null. */
+  finalVenue: { latitude: number; longitude: number } | null;
 };
 
 export type HomeFinal = {
@@ -182,16 +184,55 @@ async function getFeaturedTournamentsSection(
 ): Promise<HomeFeaturedTournament[]> {
   const featured = tournamentCards.slice(0, FEATURED_TOURNAMENTS_LIMIT);
   if (featured.length === 0) return [];
-  try {
-    const media = await getMediaForEntities({
+  const [media, venues] = await Promise.all([
+    getMediaForEntities({
       entityType: MediaEntityType.TOURNAMENT,
       entityIds: featured.map((t) => t.id),
       usage: MediaAssetType.HERO,
+    }).catch((error: unknown) => {
+      console.error("[home] failed to load featured tournament media", error);
+      return new Map<string, MediaAssetDto>();
+    }),
+    getFinalVenueCoordinates(featured.map((t) => t.id)),
+  ]);
+  return featured.map((t) => ({
+    ...t,
+    heroMedia: media.get(t.id) ?? null,
+    finalVenue: venues.get(t.id) ?? null,
+  }));
+}
+
+/**
+ * Final-stadium coordinates per tournament, for the decorative host-map
+ * marker. One query for all featured cards; only stadiums with recorded
+ * latitude/longitude contribute. Failure degrades to "no markers".
+ */
+async function getFinalVenueCoordinates(
+  tournamentIds: string[],
+): Promise<Map<string, { latitude: number; longitude: number }>> {
+  try {
+    const finals = await prisma.match.findMany({
+      where: {
+        tournamentId: { in: tournamentIds },
+        stage: finalStageFilter,
+        stadium: { latitude: { not: null }, longitude: { not: null } },
+      },
+      select: {
+        tournamentId: true,
+        stadium: { select: { latitude: true, longitude: true } },
+      },
     });
-    return featured.map((t) => ({ ...t, heroMedia: media.get(t.id) ?? null }));
+    const out = new Map<string, { latitude: number; longitude: number }>();
+    for (const final of finals) {
+      const { latitude, longitude } = final.stadium ?? {};
+      if (typeof latitude === "number" && typeof longitude === "number") {
+        out.set(final.tournamentId, { latitude, longitude });
+      }
+    }
+    return out;
   } catch (error) {
-    console.error("[home] failed to load featured tournament media", error);
-    return featured.map((t) => ({ ...t, heroMedia: null }));
+    console.error("[home] failed to load final venue coordinates", error);
+    return new Map();
   }
 }
 

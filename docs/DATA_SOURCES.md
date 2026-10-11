@@ -213,6 +213,21 @@ The following are acceptable as reference for verification only. They must not b
 - RSSSF (Rec.Sport.Soccer Statistics Foundation) historical records
 - Official FIFA match reports (where publicly accessible)
 
+## Decorative map geometry: Natural Earth
+
+- **What:** Admin 0 – Countries, version 4.1.0, 1:110m (1:50m where
+  `hostMapConfig.ts` sets `detail: "50m"`), via the `world-atlas@2.0.2`
+  TopoJSON redistribution (dev dependency, pinned in the lockfile).
+- **Licence:** public domain (Natural Earth terms of use); credited on
+  `/sources` anyway.
+- **Use:** build-time only. `pnpm assets:host-maps`
+  (`scripts/assets/generate-host-maps.ts`) projects, clips and simplifies the
+  configured host compositions into
+  `src/components/home/hostMaps/hostMapGeometry.generated.ts` (header records
+  the source). No geometry, d3 or TopoJSON is loaded at runtime.
+- **Worldview:** Natural Earth's default; disputed borders are not edited.
+  The maps are decoration, never a source of facts.
+
 ---
 
 ## Attribution requirements
