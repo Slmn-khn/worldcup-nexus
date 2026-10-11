@@ -1,0 +1,3 @@
+# The 2026 data bundle is checksum-pinned (source_manifest.csv + approval.json):
+# store and check out its bytes exactly, never convert line endings.
+docs/worldcupnexus_2026_data/** -text

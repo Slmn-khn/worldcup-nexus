@@ -1,0 +1,1249 @@
+player_id,player_name,market_value_eur,reason
+1,José Raúl Rangel,8933646,Dataset documentation states some values are heuristic estimates.
+2,Jorge Eduardo Sanchez,24628639,Dataset documentation states some values are heuristic estimates.
+3,César Jasib Montes,10912552,Dataset documentation states some values are heuristic estimates.
+4,Edson Omar Alvarez,10875943,Dataset documentation states some values are heuristic estimates.
+5,Johan Felipe Vasquez,18265363,Dataset documentation states some values are heuristic estimates.
+6,Erik Antonio Lira,21520963,Dataset documentation states some values are heuristic estimates.
+7,Luis Francisco Romo,12552748,Dataset documentation states some values are heuristic estimates.
+8,Álvaro Fidalgo,10697494,Dataset documentation states some values are heuristic estimates.
+9,Raúl Alonso Jimenez,15211168,Dataset documentation states some values are heuristic estimates.
+10,Ernesto Alexis Vega,17281661,Dataset documentation states some values are heuristic estimates.
+11,Santiago Tomás Gimenez,18000000,Dataset documentation states some values are heuristic estimates.
+12,Carlos Acevedo,15432043,Dataset documentation states some values are heuristic estimates.
+13,Francisco Guillermo Ochoa,11314518,Dataset documentation states some values are heuristic estimates.
+14,Armando Gonzalez,8407678,Dataset documentation states some values are heuristic estimates.
+15,Israel Reyes,24804521,Dataset documentation states some values are heuristic estimates.
+16,Julián Andrés Quinones,14000000,Dataset documentation states some values are heuristic estimates.
+17,Orbelín Pineda,16337698,Dataset documentation states some values are heuristic estimates.
+18,Obed Goméz Vargas,10000000,Dataset documentation states some values are heuristic estimates.
+19,Gilberto Rafael Mora,19301116,Dataset documentation states some values are heuristic estimates.
+20,Mateo Chavez,23666035,Dataset documentation states some values are heuristic estimates.
+21,César Saúl Huerta,9517865,Dataset documentation states some values are heuristic estimates.
+22,Guillermo Martinez,24670186,Dataset documentation states some values are heuristic estimates.
+23,Jesús Daniel Gallardo,24033269,Dataset documentation states some values are heuristic estimates.
+24,Luis Gerardo Chavez,19973810,Dataset documentation states some values are heuristic estimates.
+25,Roberto Carlos Alvarado,13567593,Dataset documentation states some values are heuristic estimates.
+26,Brian Gutierrez,8000000,Dataset documentation states some values are heuristic estimates.
+27,Ronwen Hayden Williams,800000,Dataset documentation states some values are heuristic estimates.
+28,Tholo Thabang Matuludi,1200000,Dataset documentation states some values are heuristic estimates.
+29,Khulumani Ndamane,1200000,Dataset documentation states some values are heuristic estimates.
+30,Teboho Mokoena,2800000,Dataset documentation states some values are heuristic estimates.
+31,Thalente Wandile Mbatha,2000000,Dataset documentation states some values are heuristic estimates.
+32,Aubrey Maphosa Modiba,1800000,Dataset documentation states some values are heuristic estimates.
+33,Oswin Reagan Appollis,2500000,Dataset documentation states some values are heuristic estimates.
+34,Tshepang Moremi,1400000,Dataset documentation states some values are heuristic estimates.
+35,Lyle Brent Foster,8000000,Dataset documentation states some values are heuristic estimates.
+36,Relebohile Mofokeng,3000000,Dataset documentation states some values are heuristic estimates.
+37,Themba Zwane,250000,Dataset documentation states some values are heuristic estimates.
+38,Thapelo Maseko,1200000,Dataset documentation states some values are heuristic estimates.
+39,Sphephelo S'miso Sithole,600000,Dataset documentation states some values are heuristic estimates.
+40,Mbekezeli Mfanufikile Mbokazi,3500000,Dataset documentation states some values are heuristic estimates.
+41,Iqraam Rayners,2800000,Dataset documentation states some values are heuristic estimates.
+42,Sipho Justin Chaine,1600000,Dataset documentation states some values are heuristic estimates.
+43,Sekotori Evidence Makgopa,1400000,Dataset documentation states some values are heuristic estimates.
+44,Samukele Alucious Kabini,2500000,Dataset documentation states some values are heuristic estimates.
+45,Nkosinathi Emmanuel Sibisi,1600000,Dataset documentation states some values are heuristic estimates.
+46,Khuliso Johnson Mudau,1200000,Dataset documentation states some values are heuristic estimates.
+47,Ime Daniel Okon,450000,Dataset documentation states some values are heuristic estimates.
+48,Stuart Ricardo Goss,350000,Dataset documentation states some values are heuristic estimates.
+49,Jayden Oswin Adams,1800000,Dataset documentation states some values are heuristic estimates.
+50,Olwethu Mpilwenhle Makhanya,2000000,Dataset documentation states some values are heuristic estimates.
+51,Kamogelo Michael Sebelebele,1200000,Dataset documentation states some values are heuristic estimates.
+52,Bradley Paul Cross,550000,Dataset documentation states some values are heuristic estimates.
+53,Seunggyu Kim,500000,Dataset documentation states some values are heuristic estimates.
+54,Hanbeom Lee,3000000,Dataset documentation states some values are heuristic estimates.
+55,Gihyuk Lee,800000,Dataset documentation states some values are heuristic estimates.
+56,Minjae Kim,20000000,Dataset documentation states some values are heuristic estimates.
+57,Taehyeon Kim,1200000,Dataset documentation states some values are heuristic estimates.
+58,Inbeom Hwang,7000000,Dataset documentation states some values are heuristic estimates.
+59,Heung Min Son,15000000,Dataset documentation states some values are heuristic estimates.
+60,Seungho Paik,2000000,Dataset documentation states some values are heuristic estimates.
+61,Guesung Cho,2500000,Dataset documentation states some values are heuristic estimates.
+62,Jae Sung Lee,2000000,Dataset documentation states some values are heuristic estimates.
+63,Hee Chan Hwang,6000000,Dataset documentation states some values are heuristic estimates.
+64,Bumkeun Song,1000000,Dataset documentation states some values are heuristic estimates.
+65,Taeseok Lee,2000000,Dataset documentation states some values are heuristic estimates.
+66,Wije Cho,550000,Dataset documentation states some values are heuristic estimates.
+67,Moonhwan Kim,750000,Dataset documentation states some values are heuristic estimates.
+68,Jinseob Park,1000000,Dataset documentation states some values are heuristic estimates.
+69,Junho Bae,4000000,Dataset documentation states some values are heuristic estimates.
+70,Hyeongyu Oh,15000000,Dataset documentation states some values are heuristic estimates.
+71,Kangin Lee,28000000,Dataset documentation states some values are heuristic estimates.
+72,Hyunjun Yang,5000000,Dataset documentation states some values are heuristic estimates.
+73,Hyeonwoo Jo,650000,Dataset documentation states some values are heuristic estimates.
+74,Youngwoo Seol,6500000,Dataset documentation states some values are heuristic estimates.
+75,Jens Castrop,10000000,Dataset documentation states some values are heuristic estimates.
+76,Jingyu Kim,1200000,Dataset documentation states some values are heuristic estimates.
+77,Jisung Eom,1800000,Dataset documentation states some values are heuristic estimates.
+78,Donggyeong Lee,1600000,Dataset documentation states some values are heuristic estimates.
+79,Mat ě j Kovar,3745909,Dataset documentation states some values are heuristic estimates.
+80,David Zima,7000000,Dataset documentation states some values are heuristic estimates.
+81,Tomáš Holes,1000000,Dataset documentation states some values are heuristic estimates.
+82,Robin Hranac,10000000,Dataset documentation states some values are heuristic estimates.
+83,Vladimír Coufal,2500000,Dataset documentation states some values are heuristic estimates.
+84,ě pán Chaloupek,8333277,Dataset documentation states some values are heuristic estimates.
+85,Ladislav Krejci,22000000,Dataset documentation states some values are heuristic estimates.
+86,Vladimír Darida,375000,Dataset documentation states some values are heuristic estimates.
+87,Adam Hlozek,10000000,Dataset documentation states some values are heuristic estimates.
+88,Patrik Schick,18000000,Dataset documentation states some values are heuristic estimates.
+89,Jan Kuchta,2700000,Dataset documentation states some values are heuristic estimates.
+90,Lukáš Cerv,6000000,Dataset documentation states some values are heuristic estimates.
+91,Mojmír Chytil,4000000,Dataset documentation states some values are heuristic estimates.
+92,David Jurasek,5000000,Dataset documentation states some values are heuristic estimates.
+93,Pavel Sulc,20000000,Dataset documentation states some values are heuristic estimates.
+94,Jind ř ich Stanek,6887644,Dataset documentation states some values are heuristic estimates.
+95,Lukáš Provod,8000000,Dataset documentation states some values are heuristic estimates.
+96,Michal Sadilek,8000000,Dataset documentation states some values are heuristic estimates.
+97,Tomáš Chory,2700000,Dataset documentation states some values are heuristic estimates.
+98,Jaroslav Zeleny,600000,Dataset documentation states some values are heuristic estimates.
+99,David Doudera,3500000,Dataset documentation states some values are heuristic estimates.
+100,Tomáš Soucek,10000000,Dataset documentation states some values are heuristic estimates.
+101,Lukáš Hornicek,18000000,Dataset documentation states some values are heuristic estimates.
+102,Alexandr Sojka,2300000,Dataset documentation states some values are heuristic estimates.
+103,Hugo Sochurek,3500000,Dataset documentation states some values are heuristic estimates.
+104,Denis Visinsky,3000000,Dataset documentation states some values are heuristic estimates.
+105,Dayne Tristan St. Clair,3500000,Dataset documentation states some values are heuristic estimates.
+106,Alistair William Johnston,8000000,Dataset documentation states some values are heuristic estimates.
+107,Alfie Charles Jones,6000000,Dataset documentation states some values are heuristic estimates.
+108,Luc De Fougerolles,4274807,Dataset documentation states some values are heuristic estimates.
+109,Joel Robert Waterman,2000000,Dataset documentation states some values are heuristic estimates.
+110,Mathieu Choiniere,800000,Dataset documentation states some values are heuristic estimates.
+111,Stephen Eustaquio,6000000,Dataset documentation states some values are heuristic estimates.
+112,Ismaël Kenneth Jordan Kone,25000000,Dataset documentation states some values are heuristic estimates.
+113,Cyle Christopher Larin,3500000,Dataset documentation states some values are heuristic estimates.
+114,Jonathan Christian David,30000000,Dataset documentation states some values are heuristic estimates.
+115,Liam Alan Millar,1700000,Dataset documentation states some values are heuristic estimates.
+116,Tanitoluwa Oluwatimilehin Oluwaseyi,7000000,Dataset documentation states some values are heuristic estimates.
+117,Derek Austin Cornelius,2500000,Dataset documentation states some values are heuristic estimates.
+118,Jacob Everett Shaffelburg,2500000,Dataset documentation states some values are heuristic estimates.
+119,Moïse Bombito Bombito,11608716,Dataset documentation states some values are heuristic estimates.
+120,Maxime Crepeau,1800000,Dataset documentation states some values are heuristic estimates.
+121,Tajon Trevor Buchanan,12000000,Dataset documentation states some values are heuristic estimates.
+122,Owen Olamidayo Goodman,550000,Dataset documentation states some values are heuristic estimates.
+123,Alphonso Boyle Davies,40000000,Dataset documentation states some values are heuristic estimates.
+124,Ali Ahmed,3000000,Dataset documentation states some values are heuristic estimates.
+125,Jonathan Osorio,1000000,Dataset documentation states some values are heuristic estimates.
+126,Richmond Mamah Laryea,1000000,Dataset documentation states some values are heuristic estimates.
+127,Niko Kristian Sigur,4000000,Dataset documentation states some values are heuristic estimates.
+128,Promise Oluwatobi Emmanuel David,17000000,Dataset documentation states some values are heuristic estimates.
+129,Nathan-Dylan Saliba,7500000,Dataset documentation states some values are heuristic estimates.
+130,Jayden Nelson,2000000,Dataset documentation states some values are heuristic estimates.
+131,Nikola Vasilj,4500000,Dataset documentation states some values are heuristic estimates.
+132,Nihad Mujakic,1200000,Dataset documentation states some values are heuristic estimates.
+133,Dennis Hadzikadunic,1200000,Dataset documentation states some values are heuristic estimates.
+134,Tarik Muharemovic,25000000,Dataset documentation states some values are heuristic estimates.
+135,Sead Kolasinac,4000000,Dataset documentation states some values are heuristic estimates.
+136,Benjamin Tahirovic,4500000,Dataset documentation states some values are heuristic estimates.
+137,Amar Dedic,16000000,Dataset documentation states some values are heuristic estimates.
+138,Armin Gigovic,2500000,Dataset documentation states some values are heuristic estimates.
+139,Samed Bazdar,1500000,Dataset documentation states some values are heuristic estimates.
+140,Ermedin Demirovic,22000000,Dataset documentation states some values are heuristic estimates.
+141,Edin Dzeko,1000000,Dataset documentation states some values are heuristic estimates.
+142,Mladen Jurkas,700000,Dataset documentation states some values are heuristic estimates.
+143,Ivan Basic,1500000,Dataset documentation states some values are heuristic estimates.
+144,Ivan Sunjic,2000000,Dataset documentation states some values are heuristic estimates.
+145,Amar Memic,4500000,Dataset documentation states some values are heuristic estimates.
+146,Amir Hadziahmetovic,4000000,Dataset documentation states some values are heuristic estimates.
+147,Dzenis Burnic,1200000,Dataset documentation states some values are heuristic estimates.
+148,Nikola Katic,1800000,Dataset documentation states some values are heuristic estimates.
+149,Kerim Alajbegovic,22000000,Dataset documentation states some values are heuristic estimates.
+150,Esmir Bajraktarevic,8000000,Dataset documentation states some values are heuristic estimates.
+151,Stjepan Radeljic,2800000,Dataset documentation states some values are heuristic estimates.
+152,Martin Zlomislic,2000000,Dataset documentation states some values are heuristic estimates.
+153,Haris Tabakovic,3500000,Dataset documentation states some values are heuristic estimates.
+154,Arjan Malic,1800000,Dataset documentation states some values are heuristic estimates.
+155,Jovo Lukic,2200000,Dataset documentation states some values are heuristic estimates.
+156,Ermin Mahmic,5000000,Dataset documentation states some values are heuristic estimates.
+157,Ibrahim Mahmoud Abunada,5555635,Dataset documentation states some values are heuristic estimates.
+158,Miguel Pedro,5982512,Dataset documentation states some values are heuristic estimates.
+159,Michel Lucas,4279139,Dataset documentation states some values are heuristic estimates.
+160,Gueye Issa Laye,2680118,Dataset documentation states some values are heuristic estimates.
+161,Gaber Jassem,5006329,Dataset documentation states some values are heuristic estimates.
+162,Hatim Abdulaziz Hatem,2275441,Dataset documentation states some values are heuristic estimates.
+163,Alaaeldin Ahmed,5142787,Dataset documentation states some values are heuristic estimates.
+164,Junior Edmilson,2520193,Dataset documentation states some values are heuristic estimates.
+165,Mohammed Mohammed Muntari,2058624,Dataset documentation states some values are heuristic estimates.
+166,Khalid Hassan Alhaydos,3010391,Dataset documentation states some values are heuristic estimates.
+167,Hassan Akram,3305021,Dataset documentation states some values are heuristic estimates.
+168,Karim Karim Boudiaf,6342945,Dataset documentation states some values are heuristic estimates.
+169,Mohamed Ayoub Aloui,3461985,Dataset documentation states some values are heuristic estimates.
+170,Elamin Homam,6588938,Dataset documentation states some values are heuristic estimates.
+171,Abdurisag Yusuf Abdurisag,6554586,Dataset documentation states some values are heuristic estimates.
+172,KHOUKHIBoualem Boualem,4032215,Dataset documentation states some values are heuristic estimates.
+173,Mohamed Ahmed Alganehi,3865289,Dataset documentation states some values are heuristic estimates.
+174,Hussain Sultan,6687129,Dataset documentation states some values are heuristic estimates.
+175,Ali Zainelabdeen Almoez,4569800,Dataset documentation states some values are heuristic estimates.
+176,Fathy Ahmed Fathy,2134313,Dataset documentation states some values are heuristic estimates.
+177,Zakaria Salah Zakaria,7649760,Dataset documentation states some values are heuristic estimates.
+178,Aissa Meshaal Barsham,7536773,Dataset documentation states some values are heuristic estimates.
+179,Omer Assim Madibo,7259746,Dataset documentation states some values are heuristic estimates.
+180,Mohammad Tahsin,2807711,Dataset documentation states some values are heuristic estimates.
+181,Alhussein Alhashmi,5375137,Dataset documentation states some values are heuristic estimates.
+182,Naceur Mohamed Manai,4617459,Dataset documentation states some values are heuristic estimates.
+183,Gregor Kobel,40000000,Dataset documentation states some values are heuristic estimates.
+184,Miro Max Maria Muheim,5000000,Dataset documentation states some values are heuristic estimates.
+185,Silvan Dominic Widmer,800000,Dataset documentation states some values are heuristic estimates.
+186,Nico Elvedi,8000000,Dataset documentation states some values are heuristic estimates.
+187,Manuel Obafemi Akanji,17000000,Dataset documentation states some values are heuristic estimates.
+188,Denis Lemi Zakaria,16546670,Dataset documentation states some values are heuristic estimates.
+189,Breel Donald Embolo,15000000,Dataset documentation states some values are heuristic estimates.
+190,Remo Marco Freuler,3000000,Dataset documentation states some values are heuristic estimates.
+191,Johan Kula Manzambi,50000000,Dataset documentation states some values are heuristic estimates.
+192,Granit Xhaka,8000000,Dataset documentation states some values are heuristic estimates.
+193,Dan Ndoye,32000000,Dataset documentation states some values are heuristic estimates.
+194,Yvon Landry Mvogo,16918384,Dataset documentation states some values are heuristic estimates.
+195,Ricardo Ivan Rodriguez,13686061,Dataset documentation states some values are heuristic estimates.
+196,Ardon Jashari,25000000,Dataset documentation states some values are heuristic estimates.
+197,Djibril Ibrahima Sow,12866209,Dataset documentation states some values are heuristic estimates.
+198,Christian Andreas Fassnacht,2000000,Dataset documentation states some values are heuristic estimates.
+199,Ruben Estephan Vargas,9983709,Dataset documentation states some values are heuristic estimates.
+200,Eray Ervin Coemert,5583485,Dataset documentation states some values are heuristic estimates.
+201,Noah Arinzechukwu Okafor,25000000,Dataset documentation states some values are heuristic estimates.
+202,Michel Aebischer,4000000,Dataset documentation states some values are heuristic estimates.
+203,Marvin Keller,6000000,Dataset documentation states some values are heuristic estimates.
+204,Fabian Rieder,12000000,Dataset documentation states some values are heuristic estimates.
+205,Mohamed Zeki Amdouni,7000000,Dataset documentation states some values are heuristic estimates.
+206,Aurèle Florian Amenda,10000000,Dataset documentation states some values are heuristic estimates.
+207,Luca Antony Jaquez,10000000,Dataset documentation states some values are heuristic estimates.
+208,Cedric Jan Itten,1800000,Dataset documentation states some values are heuristic estimates.
+209,Ramsés Alisson,34947424,Dataset documentation states some values are heuristic estimates.
+210,José Ederson Silva,28183265,Dataset documentation states some values are heuristic estimates.
+211,Gabriel Gabriel Magalhaes,35255847,Dataset documentation states some values are heuristic estimates.
+212,MARQUINHOSMarcos,28000000,Dataset documentation states some values are heuristic estimates.
+213,Henrique,19055262,Dataset documentation states some values are heuristic estimates.
+214,Sandro Alex,33387037,Dataset documentation states some values are heuristic estimates.
+215,José Vinicius,14812332,Dataset documentation states some values are heuristic estimates.
+216,GUIMARAESBruno Bruno,46789953,Dataset documentation states some values are heuristic estimates.
+217,Matheus Matheus Cunha,50776605,Dataset documentation states some values are heuristic estimates.
+218,Neymar Neymar Jr,8000000,Dataset documentation states some values are heuristic estimates.
+219,Raphael Raphinha,70000000,Dataset documentation states some values are heuristic estimates.
+220,Weverton Weverton,42423364,Dataset documentation states some values are heuristic estimates.
+221,Luiz Danilo,22718179,Dataset documentation states some values are heuristic estimates.
+222,Bremer Bremer,43652307,Dataset documentation states some values are heuristic estimates.
+223,PEREIRALeonardo Leo,26118600,Dataset documentation states some values are heuristic estimates.
+224,Douglas Douglas Santos,15586988,Dataset documentation states some values are heuristic estimates.
+225,Henrique Fabinho,40560501,Dataset documentation states some values are heuristic estimates.
+226,Danilo Danilo Santos,32082648,Dataset documentation states some values are heuristic estimates.
+227,Felipe Endrick,40000000,Dataset documentation states some values are heuristic estimates.
+228,Lucas Lucas Paqueta,49178835,Dataset documentation states some values are heuristic estimates.
+229,Henrique André Luiz,33839304,Dataset documentation states some values are heuristic estimates.
+230,MARTINELLIGabriel Gabriel,40754816,Dataset documentation states some values are heuristic estimates.
+231,Ederson Ederson,46623295,Dataset documentation states some values are heuristic estimates.
+232,IBANEZRoger Roger,24113577,Dataset documentation states some values are heuristic estimates.
+233,Thiago Igor Thiago,39870944,Dataset documentation states some values are heuristic estimates.
+234,Vitor Rayan,26501330,Dataset documentation states some values are heuristic estimates.
+235,Yassine Bounou,3000000,Dataset documentation states some values are heuristic estimates.
+236,Achraf Hakimi,80000000,Dataset documentation states some values are heuristic estimates.
+237,Noussair Mazraoui,18000000,Dataset documentation states some values are heuristic estimates.
+238,Sofyan Amrabat,10000000,Dataset documentation states some values are heuristic estimates.
+239,Marwane Saadane,400000,Dataset documentation states some values are heuristic estimates.
+240,Ayyoub Bouaddi,50000000,Dataset documentation states some values are heuristic estimates.
+241,Chemsdine Talbi,25000000,Dataset documentation states some values are heuristic estimates.
+242,Azz-Eddine Ounahi,10000000,Dataset documentation states some values are heuristic estimates.
+243,Soufiane Rahimi,6000000,Dataset documentation states some values are heuristic estimates.
+244,Brahim Diaz,44054154,Dataset documentation states some values are heuristic estimates.
+245,Ismael Saibari,40000000,Dataset documentation states some values are heuristic estimates.
+246,Monir El Kajoui,600000,Dataset documentation states some values are heuristic estimates.
+247,Zakaria El Ouahdi,17000000,Dataset documentation states some values are heuristic estimates.
+248,Issa Laye Lucas Jean Diop,8000000,Dataset documentation states some values are heuristic estimates.
+249,Samir El Mourabet,22000000,Dataset documentation states some values are heuristic estimates.
+250,Gessime Ben Youssef Mustapha Yassine,12000000,Dataset documentation states some values are heuristic estimates.
+251,Mohamed Amine Sbai,4000000,Dataset documentation states some values are heuristic estimates.
+252,Chadi Riad,15000000,Dataset documentation states some values are heuristic estimates.
+253,Youssef Belammari,1200000,Dataset documentation states some values are heuristic estimates.
+254,Ayoub El Kaabi,4500000,Dataset documentation states some values are heuristic estimates.
+255,Ayoube Amaimouni,10000000,Dataset documentation states some values are heuristic estimates.
+256,Ahmed Reda Tagnaouti,1000000,Dataset documentation states some values are heuristic estimates.
+257,Bilal El Khannouss,35000000,Dataset documentation states some values are heuristic estimates.
+258,Neil Yoni El Aynaoui,23000000,Dataset documentation states some values are heuristic estimates.
+259,Redouane Halhal,5000000,Dataset documentation states some values are heuristic estimates.
+260,Anass Salah Eddine,12000000,Dataset documentation states some values are heuristic estimates.
+261,Johny Placide,250000,Dataset documentation states some values are heuristic estimates.
+262,Carlens Jean Fedlaire Ruby Arcus,1800000,Dataset documentation states some values are heuristic estimates.
+263,Keeto Thermoncy,100000,Dataset documentation states some values are heuristic estimates.
+264,Ricardo Ade,300000,Dataset documentation states some values are heuristic estimates.
+265,Hannes Piterson Delcroix,4808049,Dataset documentation states some values are heuristic estimates.
+266,Carl Fred Sainte,125000,Dataset documentation states some values are heuristic estimates.
+267,Derrick Burckley Etienne,2234420,Dataset documentation states some values are heuristic estimates.
+268,Martin Yves Roberns Didier Experience,400000,Dataset documentation states some values are heuristic estimates.
+269,Duckens Nazon,1600000,Dataset documentation states some values are heuristic estimates.
+270,Jean Ricner Bellegarde,16000000,Dataset documentation states some values are heuristic estimates.
+271,Don Deedson Deedson,3437369,Dataset documentation states some values are heuristic estimates.
+272,Alexandre Jr Pierre,100000,Dataset documentation states some values are heuristic estimates.
+273,Markhus Lacroix,125000,Dataset documentation states some values are heuristic estimates.
+274,Garven-Michee Metusala,200000,Dataset documentation states some values are heuristic estimates.
+275,Ruben Fritzner Providence,300000,Dataset documentation states some values are heuristic estimates.
+276,Lenny Alvin Pico Joseph,500000,Dataset documentation states some values are heuristic estimates.
+277,Danley Jean Jacques,3000000,Dataset documentation states some values are heuristic estimates.
+278,Wilson Isidor,18000000,Dataset documentation states some values are heuristic estimates.
+279,Yassin Enzo Fortune,400000,Dataset documentation states some values are heuristic estimates.
+280,Frantzdy Pierrot,1500000,Dataset documentation states some values are heuristic estimates.
+281,Josue Jeremie Casimir,3000000,Dataset documentation states some values are heuristic estimates.
+282,Jean-Kévin Duverne,2000000,Dataset documentation states some values are heuristic estimates.
+283,Josue Duverger,125000,Dataset documentation states some values are heuristic estimates.
+284,Wilguens Raphael Polynice Paugain,800000,Dataset documentation states some values are heuristic estimates.
+285,Dominique Celidor Simon,125000,Dataset documentation states some values are heuristic estimates.
+286,Olivier Woodensky Pierre,100000,Dataset documentation states some values are heuristic estimates.
+287,Angus Fraser James Gunn,1000000,Dataset documentation states some values are heuristic estimates.
+288,Aaron Buchanan Hickey,16000000,Dataset documentation states some values are heuristic estimates.
+289,Andrew Henry Robertson,7000000,Dataset documentation states some values are heuristic estimates.
+290,Mc,7865734,Dataset documentation states some values are heuristic estimates.
+291,Grant Campbell Hanley,200000,Dataset documentation states some values are heuristic estimates.
+292,Kieran Tierney,8000000,Dataset documentation states some values are heuristic estimates.
+293,Mc,7865734,Dataset documentation states some values are heuristic estimates.
+294,Tyler Robert Fletcher,1000000,Dataset documentation states some values are heuristic estimates.
+295,Lyndon John Dykes,800000,Dataset documentation states some values are heuristic estimates.
+296,Che Sac Everton Fred Adams,5000000,Dataset documentation states some values are heuristic estimates.
+297,Ryan Christie,8000000,Dataset documentation states some values are heuristic estimates.
+298,Liam Patrick Kelly,800000,Dataset documentation states some values are heuristic estimates.
+299,Jack William Hendry,2500000,Dataset documentation states some values are heuristic estimates.
+300,Ross Cameron Stewart,2800000,Dataset documentation states some values are heuristic estimates.
+301,John Francis Souttar,2000000,Dataset documentation states some values are heuristic estimates.
+302,Dominic John Hyam,2000000,Dataset documentation states some values are heuristic estimates.
+303,Ben Gannon Gannon-Doak,2918431,Dataset documentation states some values are heuristic estimates.
+304,George David Eric Hirst,10000000,Dataset documentation states some values are heuristic estimates.
+305,Lewis Ferguson,14000000,Dataset documentation states some values are heuristic estimates.
+306,Lawrence Shankland,3000000,Dataset documentation states some values are heuristic estimates.
+307,Craig Sinclair Gordon,50000,Dataset documentation states some values are heuristic estimates.
+308,Nathan Kenneth Patterson,10000000,Dataset documentation states some values are heuristic estimates.
+309,Mc,7865734,Dataset documentation states some values are heuristic estimates.
+310,Anthony Ralston,1500000,Dataset documentation states some values are heuristic estimates.
+311,Findlay Kenneth Curtis,2000000,Dataset documentation states some values are heuristic estimates.
+312,Mc,7865734,Dataset documentation states some values are heuristic estimates.
+313,Matthew Charles Turner,2500000,Dataset documentation states some values are heuristic estimates.
+314,Sergiño Gianni Dest,18000000,Dataset documentation states some values are heuristic estimates.
+315,Christopher Jeffrey Richards,28000000,Dataset documentation states some values are heuristic estimates.
+316,Tyler Shaan Adams,25000000,Dataset documentation states some values are heuristic estimates.
+317,Antonee Robinson,22000000,Dataset documentation states some values are heuristic estimates.
+318,Auston Levi-Jesaiah Trusty,6000000,Dataset documentation states some values are heuristic estimates.
+319,Giovanni Alejandro Reyna,4000000,Dataset documentation states some values are heuristic estimates.
+320,Mc,20375657,Dataset documentation states some values are heuristic estimates.
+321,Ricardo Daniel Pepi,30000000,Dataset documentation states some values are heuristic estimates.
+322,Christian Mate Pulisic,40000000,Dataset documentation states some values are heuristic estimates.
+323,Brenden Russell Aaronson,22000000,Dataset documentation states some values are heuristic estimates.
+324,Miles Gordon Robinson,3500000,Dataset documentation states some values are heuristic estimates.
+325,Timothy Michael Ream,150000,Dataset documentation states some values are heuristic estimates.
+326,Sebastian Matthew Berhalter,8000000,Dataset documentation states some values are heuristic estimates.
+327,Cristian Roldan,3500000,Dataset documentation states some values are heuristic estimates.
+328,Alexander Michael Freeman,3500000,Dataset documentation states some values are heuristic estimates.
+329,Malik Leon Tillman,30000000,Dataset documentation states some values are heuristic estimates.
+330,Maximilian Michael Arfsten,5000000,Dataset documentation states some values are heuristic estimates.
+331,Haji Amir Wright,16000000,Dataset documentation states some values are heuristic estimates.
+332,Folarin Jolaoluwa Balogun,40000000,Dataset documentation states some values are heuristic estimates.
+333,Timothy Tarpeh Weah,20000000,Dataset documentation states some values are heuristic estimates.
+334,Mc,20375657,Dataset documentation states some values are heuristic estimates.
+335,Joseph Michael Scally,7000000,Dataset documentation states some values are heuristic estimates.
+336,Matthew Andrew Geary Freese,2000000,Dataset documentation states some values are heuristic estimates.
+337,Christopher Keith Brady,2500000,Dataset documentation states some values are heuristic estimates.
+338,Alejandro Zendejas,7172409,Dataset documentation states some values are heuristic estimates.
+339,Roberto Junior Fernandez,2877652,Dataset documentation states some values are heuristic estimates.
+340,Victor Gustavo Velazquez,4446693,Dataset documentation states some values are heuristic estimates.
+341,Omar Federico Alderete,5552187,Dataset documentation states some values are heuristic estimates.
+342,Juan Jose Caceres,5000000,Dataset documentation states some values are heuristic estimates.
+343,Fabián Cornelio Balbuena,3158476,Dataset documentation states some values are heuristic estimates.
+344,Júnior Osmar Ignacio Alonso,4302887,Dataset documentation states some values are heuristic estimates.
+345,Ramón Sosa,6694280,Dataset documentation states some values are heuristic estimates.
+346,Diego Alexander Gomez,5416942,Dataset documentation states some values are heuristic estimates.
+347,Arnaldo Antonio Sanabria,4145033,Dataset documentation states some values are heuristic estimates.
+348,Miguel Angel Almiron,7309787,Dataset documentation states some values are heuristic estimates.
+349,Mauricio Mauricio,4506196,Dataset documentation states some values are heuristic estimates.
+350,Orlando Daniel Gill,7417578,Dataset documentation states some values are heuristic estimates.
+351,Jose Maria Canale,7223563,Dataset documentation states some values are heuristic estimates.
+352,Adrián Andrés Cubas,4500000,Dataset documentation states some values are heuristic estimates.
+353,Gustavo Raul Gomez,2612757,Dataset documentation states some values are heuristic estimates.
+354,Damián Josue Bobadilla,3318143,Dataset documentation states some values are heuristic estimates.
+355,Alejandro Sebastian Romero Gamarra,3500000,Dataset documentation states some values are heuristic estimates.
+356,Alex Adrian Arce,5962068,Dataset documentation states some values are heuristic estimates.
+357,Julio Cesar Enciso,3137207,Dataset documentation states some values are heuristic estimates.
+358,Braian Oscar Ojeda,6658672,Dataset documentation states some values are heuristic estimates.
+359,Gabriel Avalos,2585416,Dataset documentation states some values are heuristic estimates.
+360,Gastón Hernán Olveira,7598750,Dataset documentation states some values are heuristic estimates.
+361,Matias Galarza,7556755,Dataset documentation states some values are heuristic estimates.
+362,Gustavo Ruben Caballero,6673780,Dataset documentation states some values are heuristic estimates.
+363,Isidro Miguel Pitta,6753451,Dataset documentation states some values are heuristic estimates.
+364,Alexandro Maidana,6775453,Dataset documentation states some values are heuristic estimates.
+365,Mathew David Ryan,1800000,Dataset documentation states some values are heuristic estimates.
+366,Milos Degenek,450000,Dataset documentation states some values are heuristic estimates.
+367,Alessandro Circati,12000000,Dataset documentation states some values are heuristic estimates.
+368,Jacob Michael Italiano,600000,Dataset documentation states some values are heuristic estimates.
+369,Jordan Jacob Bos,12000000,Dataset documentation states some values are heuristic estimates.
+370,Jason Kato Geria,350000,Dataset documentation states some values are heuristic estimates.
+371,Mathew Allan Leckie,300000,Dataset documentation states some values are heuristic estimates.
+372,Connor Isaac Metcalfe,1500000,Dataset documentation states some values are heuristic estimates.
+373,Mohamed Toure,4015299,Dataset documentation states some values are heuristic estimates.
+374,Ajdin Hrustic,600000,Dataset documentation states some values are heuristic estimates.
+375,Awer Bul Mabil,1300000,Dataset documentation states some values are heuristic estimates.
+376,Paul David Izzo,500000,Dataset documentation states some values are heuristic estimates.
+377,Aiden Connor Oneill,6273594,Dataset documentation states some values are heuristic estimates.
+378,Cameron Peter Devlin,2000000,Dataset documentation states some values are heuristic estimates.
+379,Kai Clifton Trewin,1800000,Dataset documentation states some values are heuristic estimates.
+380,Aziz Behich,250000,Dataset documentation states some values are heuristic estimates.
+381,Nestory Irankunda,8000000,Dataset documentation states some values are heuristic estimates.
+382,Patrick Thomas Beach,1000000,Dataset documentation states some values are heuristic estimates.
+383,Harry James Souttar,6000000,Dataset documentation states some values are heuristic estimates.
+384,Cristian Volpato,10000000,Dataset documentation states some values are heuristic estimates.
+385,Cameron Robert Burgess,1500000,Dataset documentation states some values are heuristic estimates.
+386,Jackson Alexander Irvine,1000000,Dataset documentation states some values are heuristic estimates.
+387,Nishan Matthew Velupillay,650000,Dataset documentation states some values are heuristic estimates.
+388,Paul Michael Junior Okon-Engstler,1200000,Dataset documentation states some values are heuristic estimates.
+389,Lucas Herrington,4500000,Dataset documentation states some values are heuristic estimates.
+390,Tete Owen Yengi,450000,Dataset documentation states some values are heuristic estimates.
+391,Fehmi Mert Gunok,500000,Dataset documentation states some values are heuristic estimates.
+392,Mehmet Zeki Celik,14000000,Dataset documentation states some values are heuristic estimates.
+393,Merih Demiral,12000000,Dataset documentation states some values are heuristic estimates.
+394,Ça ğ lar Soyuncu,14812148,Dataset documentation states some values are heuristic estimates.
+395,Salih Ozcan,3500000,Dataset documentation states some values are heuristic estimates.
+396,Orkun Kokcu,25000000,Dataset documentation states some values are heuristic estimates.
+397,Muhammed Kerem Akturkoglu,20000000,Dataset documentation states some values are heuristic estimates.
+398,Arda Guler,90000000,Dataset documentation states some values are heuristic estimates.
+399,Deniz Daniel Gul,5000000,Dataset documentation states some values are heuristic estimates.
+400,Hakan Calhanoglu,16000000,Dataset documentation states some values are heuristic estimates.
+401,Kenan Yildiz,75000000,Dataset documentation states some values are heuristic estimates.
+402,Altay Bayindir,5000000,Dataset documentation states some values are heuristic estimates.
+403,Evren Eren Elmali,5000000,Dataset documentation states some values are heuristic estimates.
+404,Abdülker Bardakci,4748975,Dataset documentation states some values are heuristic estimates.
+405,Ozan Muhammed Kabak,15000000,Dataset documentation states some values are heuristic estimates.
+406,Ismailİsma Yuksek,8513692,Dataset documentation states some values are heuristic estimates.
+407,Can İrfan Kahveci,11191281,Dataset documentation states some values are heuristic estimates.
+408,Mert Muldur,7000000,Dataset documentation states some values are heuristic estimates.
+409,Yunus Akgun,18000000,Dataset documentation states some values are heuristic estimates.
+410,Ferdi Erenay Kadioglu,35000000,Dataset documentation states some values are heuristic estimates.
+411,Barı ş Alper Yilmaz,6205279,Dataset documentation states some values are heuristic estimates.
+412,Kaan Ayhan,1500000,Dataset documentation states some values are heuristic estimates.
+413,Ugurcan Cakir,15000000,Dataset documentation states some values are heuristic estimates.
+414,Oguz Aydin,7000000,Dataset documentation states some values are heuristic estimates.
+415,Samet Akaydin,1200000,Dataset documentation states some values are heuristic estimates.
+416,Can Yılmaz Uzun,45000000,Dataset documentation states some values are heuristic estimates.
+417,Manuel Peter Neuer,4000000,Dataset documentation states some values are heuristic estimates.
+418,Antonio Ruediger,16677344,Dataset documentation states some values are heuristic estimates.
+419,Waldemar Anton,18000000,Dataset documentation states some values are heuristic estimates.
+420,Jonathan Glao Tah,28000000,Dataset documentation states some values are heuristic estimates.
+421,Aleksandar Pavlovic,90000000,Dataset documentation states some values are heuristic estimates.
+422,Joshua Walter Kimmich,35000000,Dataset documentation states some values are heuristic estimates.
+423,Kai Lukas Havertz,55000000,Dataset documentation states some values are heuristic estimates.
+424,Leon Christoph Goretzka,12000000,Dataset documentation states some values are heuristic estimates.
+425,Jamie Jaleel Jeremy Leweling,40000000,Dataset documentation states some values are heuristic estimates.
+426,Jamal Musiala,100000000,Dataset documentation states some values are heuristic estimates.
+427,Nick Woltemade,55000000,Dataset documentation states some values are heuristic estimates.
+428,Oliver Baumann,2500000,Dataset documentation states some values are heuristic estimates.
+429,Pascal Alexander GROß GROß Gross,23591065,Dataset documentation states some values are heuristic estimates.
+430,Maximilian Beier,40000000,Dataset documentation states some values are heuristic estimates.
+431,Nico Cédric Schlotterbeck,55000000,Dataset documentation states some values are heuristic estimates.
+432,Angelo Nicolas Stiller,45000000,Dataset documentation states some values are heuristic estimates.
+433,Florian Richard Wirtz,100000000,Dataset documentation states some values are heuristic estimates.
+434,Nathaniel Christopher Brown,40000000,Dataset documentation states some values are heuristic estimates.
+435,Leroy Aziz Sane,20000000,Dataset documentation states some values are heuristic estimates.
+436,Nadiem Amiri,17000000,Dataset documentation states some values are heuristic estimates.
+437,Alexander Nuebel,21973220,Dataset documentation states some values are heuristic estimates.
+438,David Raum,25000000,Dataset documentation states some values are heuristic estimates.
+439,Felix Kalu Nmecha,50000000,Dataset documentation states some values are heuristic estimates.
+440,Malick Thiaw,45000000,Dataset documentation states some values are heuristic estimates.
+441,Forzan Assan Ouedraogo,28000000,Dataset documentation states some values are heuristic estimates.
+442,Deniz Undav,22000000,Dataset documentation states some values are heuristic estimates.
+443,Eloy Victor Room,200000,Dataset documentation states some values are heuristic estimates.
+444,Shurandy Ruggerio Sambo,1300000,Dataset documentation states some values are heuristic estimates.
+445,Juriën Godfried Juan Gaari,450000,Dataset documentation states some values are heuristic estimates.
+446,Róshón Felix Romar Jordan Van Eijma,375000,Dataset documentation states some values are heuristic estimates.
+447,Sherel Constancio Floranus,800000,Dataset documentation states some values are heuristic estimates.
+448,Godfried Roemeratoe,400000,Dataset documentation states some values are heuristic estimates.
+449,Juninho Gracielo Bacuna,1700000,Dataset documentation states some values are heuristic estimates.
+450,Livano Shyron Liomar Comenencia,500000,Dataset documentation states some values are heuristic estimates.
+451,Jürgen Leonardo Locadia,1800000,Dataset documentation states some values are heuristic estimates.
+452,Leandro Jones Johan Bacuna,900000,Dataset documentation states some values are heuristic estimates.
+453,Jeremy Cornelis Jacobus Antonisse,800000,Dataset documentation states some values are heuristic estimates.
+454,Juniffer Naigelino Hansen,2705885,Dataset documentation states some values are heuristic estimates.
+455,Tyrese Yurvencey Noslin,750000,Dataset documentation states some values are heuristic estimates.
+456,Kenji Joël Gorre,800000,Dataset documentation states some values are heuristic estimates.
+457,Jainel Archenir Martha,4611989,Dataset documentation states some values are heuristic estimates.
+458,Jearl Erwin Margaritha,1500000,Dataset documentation states some values are heuristic estimates.
+459,Brandley Mack-Olien Kuwas,250000,Dataset documentation states some values are heuristic estimates.
+460,Armando Maria Obispo,4000000,Dataset documentation states some values are heuristic estimates.
+461,Gervane Zjandric Adonnis Kastaneer,200000,Dataset documentation states some values are heuristic estimates.
+462,Joshua Benjamin Brenet,1000000,Dataset documentation states some values are heuristic estimates.
+463,Tahith Jose Girigorio Djorkaef Chong,6000000,Dataset documentation states some values are heuristic estimates.
+464,Kevin Antonio Felida,350000,Dataset documentation states some values are heuristic estimates.
+465,Riechedly Guillermo Bazoer,1500000,Dataset documentation states some values are heuristic estimates.
+466,Deveron Lenny Fonville,1500000,Dataset documentation states some values are heuristic estimates.
+467,Tyrick Jeremy Bodak,25000,Dataset documentation states some values are heuristic estimates.
+468,Trevor Irving Doornbusch,5650213,Dataset documentation states some values are heuristic estimates.
+469,Yahia Fofana,5000000,Dataset documentation states some values are heuristic estimates.
+470,Ousmane Diomande,42000000,Dataset documentation states some values are heuristic estimates.
+471,N'clomande Ghislain Konan,3000000,Dataset documentation states some values are heuristic estimates.
+472,Jean Michael Seri,1500000,Dataset documentation states some values are heuristic estimates.
+473,Wilfried Stephane Singo,23000000,Dataset documentation states some values are heuristic estimates.
+474,Seko Mohamed Fofana,8000000,Dataset documentation states some values are heuristic estimates.
+475,Odilon Dorgeless Kossounou,10688600,Dataset documentation states some values are heuristic estimates.
+476,Franck Yannick Kessie,12000000,Dataset documentation states some values are heuristic estimates.
+477,Ange-Yoan Laurent Bonny,35000000,Dataset documentation states some values are heuristic estimates.
+478,Simon Adingra,22000000,Dataset documentation states some values are heuristic estimates.
+479,Yan Diomande,90000000,Dataset documentation states some values are heuristic estimates.
+480,Elye Delmas Wahi,5936106,Dataset documentation states some values are heuristic estimates.
+481,Christopher Tea Domoraud Operi,4000000,Dataset documentation states some values are heuristic estimates.
+482,Oumar Diakite,5000000,Dataset documentation states some values are heuristic estimates.
+483,Amad Diallo,45000000,Dataset documentation states some values are heuristic estimates.
+484,Mohamed Kone,2000000,Dataset documentation states some values are heuristic estimates.
+485,Guela Maho-Lewis Doue,20000000,Dataset documentation states some values are heuristic estimates.
+486,Ibrahim Sangare,20000000,Dataset documentation states some values are heuristic estimates.
+487,Nicolas Pepe,6000000,Dataset documentation states some values are heuristic estimates.
+488,Emmanuel Elysee Djedje Agbadou,3641636,Dataset documentation states some values are heuristic estimates.
+489,Obite Evan Ndicka,35000000,Dataset documentation states some values are heuristic estimates.
+490,Evann Ludovic Vidjannagni Guessand,25000000,Dataset documentation states some values are heuristic estimates.
+491,Alban-Marc Lafont,3000000,Dataset documentation states some values are heuristic estimates.
+492,Bazoumana Toure,40000000,Dataset documentation states some values are heuristic estimates.
+493,Parfait Guiagon,5000000,Dataset documentation states some values are heuristic estimates.
+494,Christ Ravynel Inao Oulai,23000000,Dataset documentation states some values are heuristic estimates.
+495,Hernán Ismael Galindez,300000,Dataset documentation states some values are heuristic estimates.
+496,Félix Eduardo Torres,13319015,Dataset documentation states some values are heuristic estimates.
+497,Piero Martin Hincapie,7459595,Dataset documentation states some values are heuristic estimates.
+498,Joel Leandro Ordonez,10213280,Dataset documentation states some values are heuristic estimates.
+499,Jordy Jose Alcivar,5599619,Dataset documentation states some values are heuristic estimates.
+500,Willian Joel Pacho,14162504,Dataset documentation states some values are heuristic estimates.
+501,Pervis Josue Estupinan,12184475,Dataset documentation states some values are heuristic estimates.
+502,Anthony Lenin Valencia,10507076,Dataset documentation states some values are heuristic estimates.
+503,John Yeboah,6316718,Dataset documentation states some values are heuristic estimates.
+504,Ray Kendry Paez,9973651,Dataset documentation states some values are heuristic estimates.
+505,Kevin Jose Rodriguez,6049189,Dataset documentation states some values are heuristic estimates.
+506,Wellington Moisés Ramirez,13662114,Dataset documentation states some values are heuristic estimates.
+507,Enner Remberto Valencia,10214695,Dataset documentation states some values are heuristic estimates.
+508,Alan Steve Minda,10962005,Dataset documentation states some values are heuristic estimates.
+509,Pedro Jeampierre Vite,13002779,Dataset documentation states some values are heuristic estimates.
+510,Jordy Josue Caicedo,12750109,Dataset documentation states some values are heuristic estimates.
+511,Ángelo Smit Preciado,5533861,Dataset documentation states some values are heuristic estimates.
+512,Denil Daniel Castillo,4413076,Dataset documentation states some values are heuristic estimates.
+513,Gonzalo Jordy Plata,4381410,Dataset documentation states some values are heuristic estimates.
+514,Nilson David Angulo,8661312,Dataset documentation states some values are heuristic estimates.
+515,Alan Steven Franco,6237924,Dataset documentation states some values are heuristic estimates.
+516,Gonzalo Roberto Valle,14382507,Dataset documentation states some values are heuristic estimates.
+517,Moisés Isaac Caicedo,14347943,Dataset documentation states some values are heuristic estimates.
+518,Jeremy Alberto Arevalo,15938236,Dataset documentation states some values are heuristic estimates.
+519,Jackson Gabriel Porozo,11733933,Dataset documentation states some values are heuristic estimates.
+520,Yaimar Abel Medina,16480262,Dataset documentation states some values are heuristic estimates.
+521,Bart Verbruggen,40000000,Dataset documentation states some values are heuristic estimates.
+522,Lutsharel Emiliano Geertruida,20000000,Dataset documentation states some values are heuristic estimates.
+523,Marten Elco De Roon,3200000,Dataset documentation states some values are heuristic estimates.
+524,Virgil Van Dijk,15000000,Dataset documentation states some values are heuristic estimates.
+525,Nathan Benjamin Ake,12000000,Dataset documentation states some values are heuristic estimates.
+526,Paul Jan-Paul Van Hecke,40926235,Dataset documentation states some values are heuristic estimates.
+527,Justin Dean Kluivert,25000000,Dataset documentation states some values are heuristic estimates.
+528,Ryan Jiro Gravenberch,80000000,Dataset documentation states some values are heuristic estimates.
+529,Wout François Maria Weghorst,2000000,Dataset documentation states some values are heuristic estimates.
+530,Memphis Depay,7000000,Dataset documentation states some values are heuristic estimates.
+531,Cody Mathès Gakpo,60000000,Dataset documentation states some values are heuristic estimates.
+532,Mats Henrik Berne Wieffer,25000000,Dataset documentation states some values are heuristic estimates.
+533,Robin Gerardus Petrus Roefs,28000000,Dataset documentation states some values are heuristic estimates.
+534,Tijjani Martinus Jan Reijnders,50000000,Dataset documentation states some values are heuristic estimates.
+535,Micky Van De Ven,50000000,Dataset documentation states some values are heuristic estimates.
+536,Guus Berend Til,15000000,Dataset documentation states some values are heuristic estimates.
+537,Noa Noëll Lang,22000000,Dataset documentation states some values are heuristic estimates.
+538,Donyell Malen,45000000,Dataset documentation states some values are heuristic estimates.
+539,Brian Ebenezer Adjei Brobbey,30000000,Dataset documentation states some values are heuristic estimates.
+540,Teun Koopmeiners,29091311,Dataset documentation states some values are heuristic estimates.
+541,Frenkie De Jong,35000000,Dataset documentation states some values are heuristic estimates.
+542,Denzel Justus Morris Dumfries,25000000,Dataset documentation states some values are heuristic estimates.
+543,Mark Maria Hubertus Flekken,6000000,Dataset documentation states some values are heuristic estimates.
+544,Crysencio Jilbert Sylverio Cir Summerville,35000000,Dataset documentation states some values are heuristic estimates.
+545,Jorrel Evan Hato,40000000,Dataset documentation states some values are heuristic estimates.
+546,Quinten Ryan Crispito Timber,25000000,Dataset documentation states some values are heuristic estimates.
+547,Zion Suzuki,20000000,Dataset documentation states some values are heuristic estimates.
+548,Yukinari Sugawara,5500000,Dataset documentation states some values are heuristic estimates.
+549,Shogo Taniguchi,750000,Dataset documentation states some values are heuristic estimates.
+550,Kou Itakura,8000000,Dataset documentation states some values are heuristic estimates.
+551,Yuto Nagatomo,100000,Dataset documentation states some values are heuristic estimates.
+552,Shuto Machino,4000000,Dataset documentation states some values are heuristic estimates.
+553,Ao Tanaka,13000000,Dataset documentation states some values are heuristic estimates.
+554,Takefusa Kubo,20000000,Dataset documentation states some values are heuristic estimates.
+555,Keisuke Goto,10000000,Dataset documentation states some values are heuristic estimates.
+556,Ritsu Doan,17000000,Dataset documentation states some values are heuristic estimates.
+557,Daizen Maeda,13000000,Dataset documentation states some values are heuristic estimates.
+558,Keisuke Osako,2000000,Dataset documentation states some values are heuristic estimates.
+559,Keito Nakamura,10000000,Dataset documentation states some values are heuristic estimates.
+560,Junya Ito,3000000,Dataset documentation states some values are heuristic estimates.
+561,Daichi Kamada,10000000,Dataset documentation states some values are heuristic estimates.
+562,Tsuyoshi Watanabe,10000000,Dataset documentation states some values are heuristic estimates.
+563,Yuito Suzuki,24000000,Dataset documentation states some values are heuristic estimates.
+564,Ayase Ueda,17000000,Dataset documentation states some values are heuristic estimates.
+565,Koki Ogawa,2000000,Dataset documentation states some values are heuristic estimates.
+566,Ayumu Seko,5000000,Dataset documentation states some values are heuristic estimates.
+567,Hiroki Ito,18000000,Dataset documentation states some values are heuristic estimates.
+568,Takehiro Tomiyasu,5000000,Dataset documentation states some values are heuristic estimates.
+569,Tomoki Hayakawa,2000000,Dataset documentation states some values are heuristic estimates.
+570,Kaishu Sano,40000000,Dataset documentation states some values are heuristic estimates.
+571,Junnosuke Suzuki,3500000,Dataset documentation states some values are heuristic estimates.
+572,Kento Shiogai,8000000,Dataset documentation states some values are heuristic estimates.
+573,Jacob Mikael Widell Zetterstrom,2500000,Dataset documentation states some values are heuristic estimates.
+574,Gustaf Johan Lagerbielke,10000000,Dataset documentation states some values are heuristic estimates.
+575,Victor Jörgen Lindelof,7447445,Dataset documentation states some values are heuristic estimates.
+576,Isak Malcolm Kwaku Hien,22000000,Dataset documentation states some values are heuristic estimates.
+577,Gabriel Johan Gudmundsson,20000000,Dataset documentation states some values are heuristic estimates.
+578,Herman Nils Johansson,1800000,Dataset documentation states some values are heuristic estimates.
+579,Lucas Erik Holger Bergvall,35000000,Dataset documentation states some values are heuristic estimates.
+580,Daniel Jonathan Svensson,22000000,Dataset documentation states some values are heuristic estimates.
+581,Alexander Isak,85000000,Dataset documentation states some values are heuristic estimates.
+582,Erik Benjamin Nygren,14000000,Dataset documentation states some values are heuristic estimates.
+583,Anthony David Junior Elanga,32000000,Dataset documentation states some values are heuristic estimates.
+584,Tobias Viktor Johansson,12000000,Dataset documentation states some values are heuristic estimates.
+585,Ken Sema,800000,Dataset documentation states some values are heuristic estimates.
+586,Hjalmar Ekdal,5000000,Dataset documentation states some values are heuristic estimates.
+587,Carl Anders Theodor Starfelt,4500000,Dataset documentation states some values are heuristic estimates.
+588,Jesper Kewe Karlstrom,4000000,Dataset documentation states some values are heuristic estimates.
+589,Viktor Einar Gyokeres,65000000,Dataset documentation states some values are heuristic estimates.
+590,Yasin Ayari,35000000,Dataset documentation states some values are heuristic estimates.
+591,Mattias Olof Svanberg,8000000,Dataset documentation states some values are heuristic estimates.
+592,Eric Anders Smith,5000000,Dataset documentation states some values are heuristic estimates.
+593,Alexander Olof Bernhardsson,3000000,Dataset documentation states some values are heuristic estimates.
+594,Besfort Zeneli,6000000,Dataset documentation states some values are heuristic estimates.
+595,Bo Kristoffer Nordfeldt,175000,Dataset documentation states some values are heuristic estimates.
+596,Elliot Karl Stroud,5000000,Dataset documentation states some values are heuristic estimates.
+597,Håkan Gustaf Nilsson,1800000,Dataset documentation states some values are heuristic estimates.
+598,Taha Abdi Ali,1500000,Dataset documentation states some values are heuristic estimates.
+599,Abdelmouhib Chamakh,600000,Dataset documentation states some values are heuristic estimates.
+600,Ali Abdi,9019352,Dataset documentation states some values are heuristic estimates.
+601,Montassar Omar Talbi,8000000,Dataset documentation states some values are heuristic estimates.
+602,Omar Rekik,600000,Dataset documentation states some values are heuristic estimates.
+603,Adam Arous,4000000,Dataset documentation states some values are heuristic estimates.
+604,Dylan Daniel Mahmoud Bronn,600000,Dataset documentation states some values are heuristic estimates.
+605,Mohamed Elyes Achouri,3000000,Dataset documentation states some values are heuristic estimates.
+606,Elias Saad,3000000,Dataset documentation states some values are heuristic estimates.
+607,Hazem Mastouri,900000,Dataset documentation states some values are heuristic estimates.
+608,Hannibal Mejbri,15000000,Dataset documentation states some values are heuristic estimates.
+609,Ismael Seifallah Gharbi,5000000,Dataset documentation states some values are heuristic estimates.
+610,Ahmed Mortadha Ben Ouanes,1500000,Dataset documentation states some values are heuristic estimates.
+611,Rani Khedira,2000000,Dataset documentation states some values are heuristic estimates.
+612,Khalil Ayari,200000,Dataset documentation states some values are heuristic estimates.
+613,Mohamed Hadj Mahmoud,4322938,Dataset documentation states some values are heuristic estimates.
+614,Aymen Dahmen,800000,Dataset documentation states some values are heuristic estimates.
+615,Ellyes Joris Skhiri,5000000,Dataset documentation states some values are heuristic estimates.
+616,Rayan Elloumi,800000,Dataset documentation states some values are heuristic estimates.
+617,Firas Chaouat,350000,Dataset documentation states some values are heuristic estimates.
+618,Yan Valery,1500000,Dataset documentation states some values are heuristic estimates.
+619,Mohamed Amine Ben Hmida,700000,Dataset documentation states some values are heuristic estimates.
+620,Sabri Ben Hessen,3941856,Dataset documentation states some values are heuristic estimates.
+621,Moutaz Neffati,250000,Dataset documentation states some values are heuristic estimates.
+622,Raed Chikhaoui,150000,Dataset documentation states some values are heuristic estimates.
+623,Anis Slimane,2680368,Dataset documentation states some values are heuristic estimates.
+624,Sebastian Tounekti,5000000,Dataset documentation states some values are heuristic estimates.
+625,Thibaut Nicolas Courtois,15000000,Dataset documentation states some values are heuristic estimates.
+626,Zeno Koen Debast,28000000,Dataset documentation states some values are heuristic estimates.
+627,Arthur Nicolas Theate,35104832,Dataset documentation states some values are heuristic estimates.
+628,Brandon Erik Mechele,2800000,Dataset documentation states some values are heuristic estimates.
+629,Maxim Peter De Cuyper,10770288,Dataset documentation states some values are heuristic estimates.
+630,Axel Laurent Witsel,36911237,Dataset documentation states some values are heuristic estimates.
+631,Kevin De Bruyne,8000000,Dataset documentation states some values are heuristic estimates.
+632,Youri Marion Tielemans,19479392,Dataset documentation states some values are heuristic estimates.
+633,Romelu Lukaku,22000000,Dataset documentation states some values are heuristic estimates.
+634,Leandro Trossard,18000000,Dataset documentation states some values are heuristic estimates.
+635,Jeremy Baffour Doku,75000000,Dataset documentation states some values are heuristic estimates.
+636,Senne Lammens,35000000,Dataset documentation states some values are heuristic estimates.
+637,Mike Louis Penders,25000000,Dataset documentation states some values are heuristic estimates.
+638,Dodi Lukebakio,26818771,Dataset documentation states some values are heuristic estimates.
+639,Thomas Andre Meunier,28954891,Dataset documentation states some values are heuristic estimates.
+640,Koni De Winter,23000000,Dataset documentation states some values are heuristic estimates.
+641,Charles Marc De Ketelaere,19898799,Dataset documentation states some values are heuristic estimates.
+642,Joaquin Ronny Seys,20000000,Dataset documentation states some values are heuristic estimates.
+643,Diego Manuel Moreira,24580742,Dataset documentation states some values are heuristic estimates.
+644,Hans Vanaken,5000000,Dataset documentation states some values are heuristic estimates.
+645,Timothy Castagne,8000000,Dataset documentation states some values are heuristic estimates.
+646,Alexis Jesse Saelemaekers,25194117,Dataset documentation states some values are heuristic estimates.
+647,Nicolas Thierry Raskin,34430929,Dataset documentation states some values are heuristic estimates.
+648,Amadou Ba Onana,27121973,Dataset documentation states some values are heuristic estimates.
+649,Nathan Ngoy,25000000,Dataset documentation states some values are heuristic estimates.
+650,Matias Fernandez-Pardo,35000000,Dataset documentation states some values are heuristic estimates.
+651,Elsayed Mohamed Mohamed Elshenawy,3226767,Dataset documentation states some values are heuristic estimates.
+652,Ahmed Ibrahim Yasser,4084367,Dataset documentation states some values are heuristic estimates.
+653,Hany Gamal Mohamed Hany,9185220,Dataset documentation states some values are heuristic estimates.
+654,Abdelmegeed Abdelsalam Hossam Abdelmaguid,8500477,Dataset documentation states some values are heuristic estimates.
+655,Abdelaziz Moustafa Ramy Rabia,9869546,Dataset documentation states some values are heuristic estimates.
+656,Abdelmoneim Elsayed Mohamed,8549809,Dataset documentation states some values are heuristic estimates.
+657,Ahmed Ibrahim Trezeguet,7946604,Dataset documentation states some values are heuristic estimates.
+658,Ashour Metwaly Emam,4161395,Dataset documentation states some values are heuristic estimates.
+659,Mohamed Abdelkarim Hamza,9057086,Dataset documentation states some values are heuristic estimates.
+660,Hamed Mahrous Mohamed Salah,22000000,Dataset documentation states some values are heuristic estimates.
+661,Mohamed Zaky Mostafa Zico,10781673,Dataset documentation states some values are heuristic estimates.
+662,Yousry Fouad Haissem Hassan,8284369,Dataset documentation states some values are heuristic estimates.
+663,Mohamed Aboelfetouh Ahmed Fatouh,10458281,Dataset documentation states some values are heuristic estimates.
+664,Fathy Abdelhalim Hamdy Fathy,9580178,Dataset documentation states some values are heuristic estimates.
+665,Hafez Ramadan Karim Hafez,7314242,Dataset documentation states some values are heuristic estimates.
+666,Mohamed Soliman Mahdy Soliman,6756808,Dataset documentation states some values are heuristic estimates.
+667,Mostafa Ahmed Mohanad Lashin,3736043,Dataset documentation states some values are heuristic estimates.
+668,Aly Elmahdy Nabil,6807358,Dataset documentation states some values are heuristic estimates.
+669,Attia Fahim Marawan Attia,5436592,Dataset documentation states some values are heuristic estimates.
+670,Adel Aly Mohamed Ibrahim,7688182,Dataset documentation states some values are heuristic estimates.
+671,Saber Abdelmohsen Mahmoud,9717210,Dataset documentation states some values are heuristic estimates.
+672,Mohamed Abdelsalam Omar,3005275,Dataset documentation states some values are heuristic estimates.
+673,Abdelaziz Mohame Mostafa,7386810,Dataset documentation states some values are heuristic estimates.
+674,Abdelghaffar Abdel Tarek Alaa,6326828,Dataset documentation states some values are heuristic estimates.
+675,Mostafa Mohamed Zizo,4620676,Dataset documentation states some values are heuristic estimates.
+676,Alaaeldin Soliman Mohamed Alaa,3110003,Dataset documentation states some values are heuristic estimates.
+677,Ali Reza Beiranvand,13579782,Dataset documentation states some values are heuristic estimates.
+678,Saleh Hardani,6250097,Dataset documentation states some values are heuristic estimates.
+679,Ehsan Hajisafi,17606596,Dataset documentation states some values are heuristic estimates.
+680,Shojae Khalilzadeh,200000,Dataset documentation states some values are heuristic estimates.
+681,Milad Mohammadi,10538861,Dataset documentation states some values are heuristic estimates.
+682,Saeid Ezatolahi,12163085,Dataset documentation states some values are heuristic estimates.
+683,Alireza Jahanbakhsh,10308691,Dataset documentation states some values are heuristic estimates.
+684,Mohammad Mohebbi,2500000,Dataset documentation states some values are heuristic estimates.
+685,Mehdi Taremi,2000000,Dataset documentation states some values are heuristic estimates.
+686,Mehdi Ghayedi,4500000,Dataset documentation states some values are heuristic estimates.
+687,Ali Alipour,10423449,Dataset documentation states some values are heuristic estimates.
+688,Seyedpayam Niazmand,750000,Dataset documentation states some values are heuristic estimates.
+689,Mohammadhossein Kanani,13284748,Dataset documentation states some values are heuristic estimates.
+690,Seyed Saman Ghoddos,9307706,Dataset documentation states some values are heuristic estimates.
+691,Roozbeh Cheshmi,300000,Dataset documentation states some values are heuristic estimates.
+692,Mahdi Torabi,1800000,Dataset documentation states some values are heuristic estimates.
+693,Arya Yousefi,450000,Dataset documentation states some values are heuristic estimates.
+694,Amirhossein Hosseinzadeh,14618632,Dataset documentation states some values are heuristic estimates.
+695,Ali Nemati,25000,Dataset documentation states some values are heuristic estimates.
+696,Shahriyar Moghanloo,900000,Dataset documentation states some values are heuristic estimates.
+697,Mohammad Ghorbani,1200000,Dataset documentation states some values are heuristic estimates.
+698,Seyedhossein Hosseini,550000,Dataset documentation states some values are heuristic estimates.
+699,Ramin Rezaeian,9879173,Dataset documentation states some values are heuristic estimates.
+700,Dennis Dargahi,2000000,Dataset documentation states some values are heuristic estimates.
+701,Danial Iri,150000,Dataset documentation states some values are heuristic estimates.
+702,Amirmohammad Razaghinia,150000,Dataset documentation states some values are heuristic estimates.
+703,Maxime Teremoana Crocombe,1000000,Dataset documentation states some values are heuristic estimates.
+704,Timothy John Payne,350000,Dataset documentation states some values are heuristic estimates.
+705,Francis De Vries,600000,Dataset documentation states some values are heuristic estimates.
+706,Tyler Grant Bindon,3500000,Dataset documentation states some values are heuristic estimates.
+707,Michael Joseph Boxall,150000,Dataset documentation states some values are heuristic estimates.
+708,Joe Zen Robert Bell,3500000,Dataset documentation states some values are heuristic estimates.
+709,Logan Tipene Rogerson,400000,Dataset documentation states some values are heuristic estimates.
+710,Marko Seufatu Nikola Stamenic,3000000,Dataset documentation states some values are heuristic estimates.
+711,Christopher Grant Wood,5000000,Dataset documentation states some values are heuristic estimates.
+712,Sarpreet Singh,500000,Dataset documentation states some values are heuristic estimates.
+713,Elijah Henry Just,2500000,Dataset documentation states some values are heuristic estimates.
+714,Alexander Noah Paulsen,500000,Dataset documentation states some values are heuristic estimates.
+715,Liberato Gianpaolo Cacace,2500000,Dataset documentation states some values are heuristic estimates.
+716,Alex Arthur Rufer,600000,Dataset documentation states some values are heuristic estimates.
+717,Nando Zen Pijnaker,400000,Dataset documentation states some values are heuristic estimates.
+718,Finn Surman,1800000,Dataset documentation states some values are heuristic estimates.
+719,Kosta Barbarouses,2514216,Dataset documentation states some values are heuristic estimates.
+720,Benjamin Peter Waine,400000,Dataset documentation states some values are heuristic estimates.
+721,Benjamin Craig Old,1800000,Dataset documentation states some values are heuristic estimates.
+722,Mc,3891480,Dataset documentation states some values are heuristic estimates.
+723,Jesse Carmichael Randall,900000,Dataset documentation states some values are heuristic estimates.
+724,Michael Cornelis Woud,400000,Dataset documentation states some values are heuristic estimates.
+725,Ryan Jared Thomas,650000,Dataset documentation states some values are heuristic estimates.
+726,Callan Rennie Elliot,450000,Dataset documentation states some values are heuristic estimates.
+727,Lachlan Ryan Bayliss,550000,Dataset documentation states some values are heuristic estimates.
+728,Thomas Jefferson Smith,50000,Dataset documentation states some values are heuristic estimates.
+729,David Raya,30000000,Dataset documentation states some values are heuristic estimates.
+730,Marc Pubill,63571647,Dataset documentation states some values are heuristic estimates.
+731,Alejandro Grimaldo,105387534,Dataset documentation states some values are heuristic estimates.
+732,Eric Garcia,99421304,Dataset documentation states some values are heuristic estimates.
+733,Marcos Llorente,74918931,Dataset documentation states some values are heuristic estimates.
+734,Mikel Merino,101203363,Dataset documentation states some values are heuristic estimates.
+735,Ferran Torres,75804430,Dataset documentation states some values are heuristic estimates.
+736,Fabian Ruiz,58551285,Dataset documentation states some values are heuristic estimates.
+737,Pablo Gavi,30000000,Dataset documentation states some values are heuristic estimates.
+738,Daniel Olmo,118381173,Dataset documentation states some values are heuristic estimates.
+739,Yeremy Jesús Pino,52741595,Dataset documentation states some values are heuristic estimates.
+740,Pedro Antonio Porro,90689035,Dataset documentation states some values are heuristic estimates.
+741,Joan Garcia,55340404,Dataset documentation states some values are heuristic estimates.
+742,Aymeric Laporte,74740097,Dataset documentation states some values are heuristic estimates.
+743,Alejandro Baena,103201022,Dataset documentation states some values are heuristic estimates.
+744,Rodrigo Rodri,64140986,Dataset documentation states some values are heuristic estimates.
+745,Nicholas Williams,55314594,Dataset documentation states some values are heuristic estimates.
+746,Martin Zubimendi,75607454,Dataset documentation states some values are heuristic estimates.
+747,Lamine Yamal Yamal,200000000,Dataset documentation states some values are heuristic estimates.
+748,Pedro Pedri,150000000,Dataset documentation states some values are heuristic estimates.
+749,Mikel Oyarzabal,35000000,Dataset documentation states some values are heuristic estimates.
+750,Pau Cubarsi,65912987,Dataset documentation states some values are heuristic estimates.
+751,Unai Simon,108528435,Dataset documentation states some values are heuristic estimates.
+752,Marc Cucurella,84859270,Dataset documentation states some values are heuristic estimates.
+753,Victor Munoz,109657580,Dataset documentation states some values are heuristic estimates.
+754,Borja Iglesias,51199903,Dataset documentation states some values are heuristic estimates.
+755,José Vozinha,6093165,Dataset documentation states some values are heuristic estimates.
+756,Ianique Stopira,4000564,Dataset documentation states some values are heuristic estimates.
+757,Alberto Diney,3683541,Dataset documentation states some values are heuristic estimates.
+758,Carlos Pico Lopes,3354880,Dataset documentation states some values are heuristic estimates.
+759,Evans Logan Costa,1980703,Dataset documentation states some values are heuristic estimates.
+760,Lenini Kevin Pina,2359912,Dataset documentation states some values are heuristic estimates.
+761,Eduardo Jovane,2818590,Dataset documentation states some values are heuristic estimates.
+762,Paulo Joao Paulo,6534349,Dataset documentation states some values are heuristic estimates.
+763,BENCHIMOLGilson Gilson,4816424,Dataset documentation states some values are heuristic estimates.
+764,Gregory Jamiro Monteiro,6722740,Dataset documentation states some values are heuristic estimates.
+765,RODRIGUESGarry Garry,1851678,Dataset documentation states some values are heuristic estimates.
+766,Salomão Marcio,3088031,Dataset documentation states some values are heuristic estimates.
+767,CABRALSidny Sidny Lopes,5929945,Dataset documentation states some values are heuristic estimates.
+768,Deroy Deroy Duarte,2124154,Dataset documentation states some values are heuristic estimates.
+769,Michael Laros Duarte,1740475,Dataset documentation states some values are heuristic estimates.
+770,SEMEDOJair Yannick,3606772,Dataset documentation states some values are heuristic estimates.
+771,Johnson Willy,6596233,Dataset documentation states some values are heuristic estimates.
+772,Emanuel Telmo,2210275,Dataset documentation states some values are heuristic estimates.
+773,Dailon Dailon Livramento,2550605,Dataset documentation states some values are heuristic estimates.
+774,Isaac Ryan,3205680,Dataset documentation states some values are heuristic estimates.
+775,Miguel Nuno Da Costa,4137438,Dataset documentation states some values are heuristic estimates.
+776,MOREIRASteven Steven,3956667,Dataset documentation states some values are heuristic estimates.
+777,Joaquim Cj Dos Santos,2840276,Dataset documentation states some values are heuristic estimates.
+778,Fabricio Wagner Pina,1897398,Dataset documentation states some values are heuristic estimates.
+779,PIRESKelvin Kelvin,4525251,Dataset documentation states some values are heuristic estimates.
+780,Sandro Helio Varela,2700705,Dataset documentation states some values are heuristic estimates.
+781,Dhahi Nawaf Alaqidi,3121699,Dataset documentation states some values are heuristic estimates.
+782,Hassan Ali Majrashi,5720290,Dataset documentation states some values are heuristic estimates.
+783,Mohammed Ali Lajami,5037792,Dataset documentation states some values are heuristic estimates.
+784,Ali Abdulelah Alamri,4371885,Dataset documentation states some values are heuristic estimates.
+785,Mohammed Hassan Altambakti,4842620,Dataset documentation states some values are heuristic estimates.
+786,Essa Nasser Aldawsari,6510709,Dataset documentation states some values are heuristic estimates.
+787,Fahad Musab Aljuwayr,3650357,Dataset documentation states some values are heuristic estimates.
+788,Yahya Aiman Yahya,5249832,Dataset documentation states some values are heuristic estimates.
+789,Tariq Feras,4633539,Dataset documentation states some values are heuristic estimates.
+790,Mohammed Salem Aldawsari,5551491,Dataset documentation states some values are heuristic estimates.
+791,Khalid Saleh,5756198,Dataset documentation states some values are heuristic estimates.
+792,Abdullah Saud Abdulhamid,5163218,Dataset documentation states some values are heuristic estimates.
+793,Meshari Nawaf Bu Washl,6459488,Dataset documentation states some values are heuristic estimates.
+794,Kadish Hassan,3657719,Dataset documentation states some values are heuristic estimates.
+795,Mohammed Abdullah Alkhaibari,4189131,Dataset documentation states some values are heuristic estimates.
+796,Mubarak Ziyad Aljohani,5104225,Dataset documentation states some values are heuristic estimates.
+797,Essa Khalid Alghannam,7060029,Dataset documentation states some values are heuristic estimates.
+798,Mohsen Ala Alhajji,4250106,Dataset documentation states some values are heuristic estimates.
+799,Abdulrahman Abdullah Alhamddan,6888825,Dataset documentation states some values are heuristic estimates.
+800,Ahmed Sultan Mandash,5733150,Dataset documentation states some values are heuristic estimates.
+801,Khalil Mohammed Alowais,2502052,Dataset documentation states some values are heuristic estimates.
+802,Ali Ahmed,5032883,Dataset documentation states some values are heuristic estimates.
+803,Ibrahim Mohamed,2525082,Dataset documentation states some values are heuristic estimates.
+804,Saad Moteb Alharbi,4634772,Dataset documentation states some values are heuristic estimates.
+805,Abdullatif Jehad Thikri,4721565,Dataset documentation states some values are heuristic estimates.
+806,Waheeb Mohammed Abu Alshamat,7172554,Dataset documentation states some values are heuristic estimates.
+807,Sergio Ramón Rochet,11951490,Dataset documentation states some values are heuristic estimates.
+808,José María Gimenez,11897295,Dataset documentation states some values are heuristic estimates.
+809,Sebastián Enzo Caceres,6541600,Dataset documentation states some values are heuristic estimates.
+810,Ronald Federico Araujo,17869812,Dataset documentation states some values are heuristic estimates.
+811,Manuel Ugarte,7236734,Dataset documentation states some values are heuristic estimates.
+812,Rodrigo Bentancur,6218107,Dataset documentation states some values are heuristic estimates.
+813,Diego Nicolás De La Cruz,20939811,Dataset documentation states some values are heuristic estimates.
+814,Federico Santiago Valverde,15930790,Dataset documentation states some values are heuristic estimates.
+815,Darwin Gabriel Nunez,20956263,Dataset documentation states some values are heuristic estimates.
+816,Giorgian Daniel De Arrascaeta,8415319,Dataset documentation states some values are heuristic estimates.
+817,Facundo Pellistri,7858419,Dataset documentation states some values are heuristic estimates.
+818,Santiago Andres Mele,13696698,Dataset documentation states some values are heuristic estimates.
+819,Guillermo Varela,11888803,Dataset documentation states some values are heuristic estimates.
+820,Agustin Canobbio,8000000,Dataset documentation states some values are heuristic estimates.
+821,Emiliano Martinez,12000000,Dataset documentation states some values are heuristic estimates.
+822,Mathías Olivera,21369652,Dataset documentation states some values are heuristic estimates.
+823,Matías Nicolas Vina,11419482,Dataset documentation states some values are heuristic estimates.
+824,Paul Brian Rodriguez,16680069,Dataset documentation states some values are heuristic estimates.
+825,Rodrigo Sebastian Aguirre,10296030,Dataset documentation states some values are heuristic estimates.
+826,Maximiliano Javier Araujo,15118771,Dataset documentation states some values are heuristic estimates.
+827,Federico Sebastian Vinas,11769867,Dataset documentation states some values are heuristic estimates.
+828,Joaquin Piquerez,9074323,Dataset documentation states some values are heuristic estimates.
+829,Nestor Fernando Muslera,9200709,Dataset documentation states some values are heuristic estimates.
+830,Santiago Ignacio Bueno,7486470,Dataset documentation states some values are heuristic estimates.
+831,Juan Manuel Sanabria,8367423,Dataset documentation states some values are heuristic estimates.
+832,Radrigo Zalazar,18162393,Dataset documentation states some values are heuristic estimates.
+833,Brice Lauriche Samba,7000000,Dataset documentation states some values are heuristic estimates.
+834,Malo Arthur Gusto,35000000,Dataset documentation states some values are heuristic estimates.
+835,Lucas Digne,6000000,Dataset documentation states some values are heuristic estimates.
+836,Dayotchanculle Oswald Upamecano,70000000,Dataset documentation states some values are heuristic estimates.
+837,Jules Olivier Kounde,60000000,Dataset documentation states some values are heuristic estimates.
+838,Emmanuel Boris Kone,59527837,Dataset documentation states some values are heuristic estimates.
+839,Masour Ousmane Dembele,100000000,Dataset documentation states some values are heuristic estimates.
+840,Aurélien Djani Tchouameni,70000000,Dataset documentation states some values are heuristic estimates.
+841,Marcus Lilian Thuram,64453524,Dataset documentation states some values are heuristic estimates.
+842,Kylian Mbappe,180000000,Dataset documentation states some values are heuristic estimates.
+843,Michael Akpovie Olise,150000000,Dataset documentation states some values are heuristic estimates.
+844,Bradley Jean-Manuel Essolisa Barcola,69223108,Dataset documentation states some values are heuristic estimates.
+845,N'golo Kante,4000000,Dataset documentation states some values are heuristic estimates.
+846,Adrien Thibault Marie Rabiot,18000000,Dataset documentation states some values are heuristic estimates.
+847,Ibrahima Konate,45000000,Dataset documentation states some values are heuristic estimates.
+848,Mike Peterson Maignan,20000000,Dataset documentation states some values are heuristic estimates.
+849,William Alain André Gabriel Saliba,100000000,Dataset documentation states some values are heuristic estimates.
+850,Warren Marie Jean-Pierre Zaire-Emery,80000000,Dataset documentation states some values are heuristic estimates.
+851,Théo Bernard François Hernandez,20000000,Dataset documentation states some values are heuristic estimates.
+852,Désiré Nonka-Maho Doue,120000000,Dataset documentation states some values are heuristic estimates.
+853,Lucas Francois Bernard Hernandez,18000000,Dataset documentation states some values are heuristic estimates.
+854,Jean-Philippe Mateta,30000000,Dataset documentation states some values are heuristic estimates.
+855,Robin François Philippe Risser,30000000,Dataset documentation states some values are heuristic estimates.
+856,Mathis Rayan Cherki,90000000,Dataset documentation states some values are heuristic estimates.
+857,Maghnes Akliouche,50000000,Dataset documentation states some values are heuristic estimates.
+858,Maxence Guy Lacroix,50000000,Dataset documentation states some values are heuristic estimates.
+859,Yehvann Djibril Victor Diouf,7000000,Dataset documentation states some values are heuristic estimates.
+860,Mamadou Sarr,22000000,Dataset documentation states some values are heuristic estimates.
+861,Kalidou Koulibaly,4500000,Dataset documentation states some values are heuristic estimates.
+862,Abdoulaye Seck,400000,Dataset documentation states some values are heuristic estimates.
+863,Idrissa Gana Gueye,500000,Dataset documentation states some values are heuristic estimates.
+864,Ismaila Pathe Ciss,1800000,Dataset documentation states some values are heuristic estimates.
+865,Assane Diao,30000000,Dataset documentation states some values are heuristic estimates.
+866,Lamine Camara,40000000,Dataset documentation states some values are heuristic estimates.
+867,Ahmadou Bamba Mbacke Dieng,20840266,Dataset documentation states some values are heuristic estimates.
+868,Sadio Mane,6000000,Dataset documentation states some values are heuristic estimates.
+869,Nicolas Jackson,40000000,Dataset documentation states some values are heuristic estimates.
+870,Pape Cherif Ndiaye,5000000,Dataset documentation states some values are heuristic estimates.
+871,Iliman Cheikh Baroy Ndiaye,55000000,Dataset documentation states some values are heuristic estimates.
+872,Ismail Joshua Jakobs,8000000,Dataset documentation states some values are heuristic estimates.
+873,Krepin Diatta,6000000,Dataset documentation states some values are heuristic estimates.
+874,Edouard Osoque Mendy,4000000,Dataset documentation states some values are heuristic estimates.
+875,Pape Matar Sarr,30000000,Dataset documentation states some values are heuristic estimates.
+876,Ismaila Sarr,40000000,Dataset documentation states some values are heuristic estimates.
+877,Moussa Niakhate,15000000,Dataset documentation states some values are heuristic estimates.
+878,Ibrahim Mbaye,30000000,Dataset documentation states some values are heuristic estimates.
+879,Habib Mbacke Diarra,7404851,Dataset documentation states some values are heuristic estimates.
+880,Bara Sapoko Ndiaye,4000000,Dataset documentation states some values are heuristic estimates.
+881,Mory Diaw,900000,Dataset documentation states some values are heuristic estimates.
+882,Antoine Alpha Mendy,10000000,Dataset documentation states some values are heuristic estimates.
+883,El Hadji Malick Diouf,28000000,Dataset documentation states some values are heuristic estimates.
+884,Pape Alassane Gueye,40000000,Dataset documentation states some values are heuristic estimates.
+885,Talib Raheem Fahad Talib,4191494,Dataset documentation states some values are heuristic estimates.
+886,Ghareeb Solaka Rebin Sulaka,3130321,Dataset documentation states some values are heuristic estimates.
+887,Haydar Hussein Hussein,4940702,Dataset documentation states some values are heuristic estimates.
+888,Tahseen Abd Zaid Zaid,2466618,Dataset documentation states some values are heuristic estimates.
+889,Hashim Rahman Akam Hashim,5802861,Dataset documentation states some values are heuristic estimates.
+890,Younus Hashim Munaf Younus,2278760,Dataset documentation states some values are heuristic estimates.
+891,Wali Faeq Youssef Amyn,7933218,Dataset documentation states some values are heuristic estimates.
+892,Bayesh Kamil Ibrahim Bayesh,3339731,Dataset documentation states some values are heuristic estimates.
+893,Ibrahim Karim Ali Alhamadi,4997506,Dataset documentation states some values are heuristic estimates.
+894,Ali Kadhim Mohanad Ali,4631293,Dataset documentation states some values are heuristic estimates.
+895,Ihab Ahmed Ahmed,5858031,Dataset documentation states some values are heuristic estimates.
+896,Hasan Hachim Jalal Hassan,3176574,Dataset documentation states some values are heuristic estimates.
+897,Yousif Hashim Ali Yousif,2275529,Dataset documentation states some values are heuristic estimates.
+898,Aamar Iqbal Zidane,4486768,Dataset documentation states some values are heuristic estimates.
+899,Hasan Maknazi Ahmed Maknazi,6828960,Dataset documentation states some values are heuristic estimates.
+900,Fouad Aboud Amir Alammari,7581781,Dataset documentation states some values are heuristic estimates.
+901,Jasim Elaibi Ali Jasim,4564274,Dataset documentation states some values are heuristic estimates.
+902,Hussein Ghadhban Aymen,7872504,Dataset documentation states some values are heuristic estimates.
+903,Yakob William Kevin Yakob,2241455,Dataset documentation states some values are heuristic estimates.
+904,Hazar Anwar Aimar,6237716,Dataset documentation states some values are heuristic estimates.
+905,Jabbar Hussein Marko Farji,6073820,Dataset documentation states some values are heuristic estimates.
+906,Basil Fadhil Ahmed,1997031,Dataset documentation states some values are heuristic estimates.
+907,Ghazi Salih Merchas,6178241,Dataset documentation states some values are heuristic estimates.
+908,Ismael Khaleel Zaid Ismael,5849632,Dataset documentation states some values are heuristic estimates.
+909,Saadoon Abbood Mustafa,3219520,Dataset documentation states some values are heuristic estimates.
+910,Dhia Jirjis Frans,5714241,Dataset documentation states some values are heuristic estimates.
+911,Ørjan Haskjold Nyland,800000,Dataset documentation states some values are heuristic estimates.
+912,Morten Thorsby,2800000,Dataset documentation states some values are heuristic estimates.
+913,Kristoffer Vassbakk Köpp Ajer,18000000,Dataset documentation states some values are heuristic estimates.
+914,Leo Skiri Ostigard,2823601,Dataset documentation states some values are heuristic estimates.
+915,David Møller Moller Wolfe,3655296,Dataset documentation states some values are heuristic estimates.
+916,Patrick Berg,8000000,Dataset documentation states some values are heuristic estimates.
+917,Alexander Sorloth,8599491,Dataset documentation states some values are heuristic estimates.
+918,Sander Gard Bolin Berge,25000000,Dataset documentation states some values are heuristic estimates.
+919,Erling Braut Haaland,200000000,Dataset documentation states some values are heuristic estimates.
+920,Martín Odegaard,6777131,Dataset documentation states some values are heuristic estimates.
+921,Jørgen Strand Strand Larsen,9498964,Dataset documentation states some values are heuristic estimates.
+922,Sander Tangvik,3000000,Dataset documentation states some values are heuristic estimates.
+923,Egil Selvik,1500000,Dataset documentation states some values are heuristic estimates.
+924,Fredrik Aursnes,15000000,Dataset documentation states some values are heuristic estimates.
+925,Fredrik André Bjorkan,9608913,Dataset documentation states some values are heuristic estimates.
+926,Marcus Holmgren Holmgren Pedersen,7064063,Dataset documentation states some values are heuristic estimates.
+927,Torbjørn Lysaker Heggem,13000000,Dataset documentation states some values are heuristic estimates.
+928,Kristian Thorstvedt,12000000,Dataset documentation states some values are heuristic estimates.
+929,Thelonious Gerard Aasgaard,2800000,Dataset documentation states some values are heuristic estimates.
+930,Antonio Eromonsele Nordby Nusa,32000000,Dataset documentation states some values are heuristic estimates.
+931,Andreas Rædergård Schjelderup,8222363,Dataset documentation states some values are heuristic estimates.
+932,Oscar Bobb,28000000,Dataset documentation states some values are heuristic estimates.
+933,Jens Petter Hauge,12000000,Dataset documentation states some values are heuristic estimates.
+934,Sondre Klingen Langas,4000000,Dataset documentation states some values are heuristic estimates.
+935,Henrik Sælebakke Falchener,6000000,Dataset documentation states some values are heuristic estimates.
+936,Julian Ryerson,25000000,Dataset documentation states some values are heuristic estimates.
+937,Juan Agustín Musso,3000000,Dataset documentation states some values are heuristic estimates.
+938,Marcos Nicolás Senesi,140833138,Dataset documentation states some values are heuristic estimates.
+939,Nicolás Alejandro Tagliafico,4000000,Dataset documentation states some values are heuristic estimates.
+940,Gonzalo Ariel Montiel,4500000,Dataset documentation states some values are heuristic estimates.
+941,Leandro Daniel Paredes,5000000,Dataset documentation states some values are heuristic estimates.
+942,Lisandro Martinez,40000000,Dataset documentation states some values are heuristic estimates.
+943,Rodrigo Javier De Paul,14000000,Dataset documentation states some values are heuristic estimates.
+944,Valentin Barco,40000000,Dataset documentation states some values are heuristic estimates.
+945,Julián Alvarez,100000000,Dataset documentation states some values are heuristic estimates.
+946,Lionel Andrés Messi,15000000,Dataset documentation states some values are heuristic estimates.
+947,Giovani Lo Celso,8000000,Dataset documentation states some values are heuristic estimates.
+948,Geronimo Rulli,6000000,Dataset documentation states some values are heuristic estimates.
+949,Cristian Gabriel Romero,45000000,Dataset documentation states some values are heuristic estimates.
+950,Exequiel Alejandro Palacios,25000000,Dataset documentation states some values are heuristic estimates.
+951,Nicolas Ivan Gonzalez,22000000,Dataset documentation states some values are heuristic estimates.
+952,Thiago Ezequiel Almada,15000000,Dataset documentation states some values are heuristic estimates.
+953,Giuliano Simeone,40000000,Dataset documentation states some values are heuristic estimates.
+954,Nicolas Paz,91126651,Dataset documentation states some values are heuristic estimates.
+955,Nicolas Hernan Gonzalo Otamendi,1000000,Dataset documentation states some values are heuristic estimates.
+956,Alexis Mac Allister,70000000,Dataset documentation states some values are heuristic estimates.
+957,Jose Manuel Alberto Lopez,25000000,Dataset documentation states some values are heuristic estimates.
+958,Lautaro Javier Martinez,85000000,Dataset documentation states some values are heuristic estimates.
+959,Damián Emiliano Martinez,12000000,Dataset documentation states some values are heuristic estimates.
+960,Enzo Jeremías Fernandez,90000000,Dataset documentation states some values are heuristic estimates.
+961,Facundo Axel Medina,18000000,Dataset documentation states some values are heuristic estimates.
+962,Nahuel Molina,105579655,Dataset documentation states some values are heuristic estimates.
+963,Melvin Feycal Mastil,300000,Dataset documentation states some values are heuristic estimates.
+964,Aissa Mandi,1000000,Dataset documentation states some values are heuristic estimates.
+965,Achref Abada,1000000,Dataset documentation states some values are heuristic estimates.
+966,Mohamed Amine Tougai,1300000,Dataset documentation states some values are heuristic estimates.
+967,Zineddine Belaid,1800000,Dataset documentation states some values are heuristic estimates.
+968,Ramiz Larbi Zerrouki,6500000,Dataset documentation states some values are heuristic estimates.
+969,Riyad Karim Mahrez,5000000,Dataset documentation states some values are heuristic estimates.
+970,Houssem-Eddine Chaabane Aouar,8000000,Dataset documentation states some values are heuristic estimates.
+971,Amine Ferid Gouiri,6320339,Dataset documentation states some values are heuristic estimates.
+972,Fares Chaibi,15000000,Dataset documentation states some values are heuristic estimates.
+973,Anis Hadj Moussa,23000000,Dataset documentation states some values are heuristic estimates.
+974,Ahmed Nadhir Benbouali,600000,Dataset documentation states some values are heuristic estimates.
+975,Jaouen Djimmy Hadjam,7000000,Dataset documentation states some values are heuristic estimates.
+976,Hicham Boudaoui,12000000,Dataset documentation states some values are heuristic estimates.
+977,Rayan Ait-Nouri,40000000,Dataset documentation states some values are heuristic estimates.
+978,Oussama Benbot,850000,Dataset documentation states some values are heuristic estimates.
+979,Rafik Belghali,7000000,Dataset documentation states some values are heuristic estimates.
+980,Mohammed Elamine Amoura,20000000,Dataset documentation states some values are heuristic estimates.
+981,Nabil Bentaleb,4500000,Dataset documentation states some values are heuristic estimates.
+982,Adil Boulbina,3000000,Dataset documentation states some values are heuristic estimates.
+983,Selmane Rami Bensebaini,10557657,Dataset documentation states some values are heuristic estimates.
+984,Ibrahim Maza,45000000,Dataset documentation states some values are heuristic estimates.
+985,Luca Zinedine Zidane,1000000,Dataset documentation states some values are heuristic estimates.
+986,Yassine Titraoui,4812864,Dataset documentation states some values are heuristic estimates.
+987,Fares Ghedjemis,600000,Dataset documentation states some values are heuristic estimates.
+988,Samir Sophian Chergui,3000000,Dataset documentation states some values are heuristic estimates.
+989,Alexander Schlager,2000000,Dataset documentation states some values are heuristic estimates.
+990,David Leopold Affengruber,20000000,Dataset documentation states some values are heuristic estimates.
+991,Kevin Danso,20000000,Dataset documentation states some values are heuristic estimates.
+992,Xaver Schlager,10000000,Dataset documentation states some values are heuristic estimates.
+993,Stefan Posch,6000000,Dataset documentation states some values are heuristic estimates.
+994,Nicolas Seiwald,25000000,Dataset documentation states some values are heuristic estimates.
+995,Marko Arnautovic,2000000,Dataset documentation states some values are heuristic estimates.
+996,David Alaba,3000000,Dataset documentation states some values are heuristic estimates.
+997,Marcel Sabitzer,6000000,Dataset documentation states some values are heuristic estimates.
+998,Florian Grillitsch,2500000,Dataset documentation states some values are heuristic estimates.
+999,Michael Gregoritsch,1500000,Dataset documentation states some values are heuristic estimates.
+1000,Florian Wiegele,2200000,Dataset documentation states some values are heuristic estimates.
+1001,Patrick Pentz,2200000,Dataset documentation states some values are heuristic estimates.
+1002,Saša Kalajdzic,4000000,Dataset documentation states some values are heuristic estimates.
+1003,Philipp Lienhart,10000000,Dataset documentation states some values are heuristic estimates.
+1004,Phillip Mwene,1500000,Dataset documentation states some values are heuristic estimates.
+1005,Carney Chibueze Chukwuemeka,9863230,Dataset documentation states some values are heuristic estimates.
+1006,Romano Schmid,15000000,Dataset documentation states some values are heuristic estimates.
+1007,Dejan Ljubicic,5000000,Dataset documentation states some values are heuristic estimates.
+1008,Konrad Laimer,32000000,Dataset documentation states some values are heuristic estimates.
+1009,Patrick Wimmer,12000000,Dataset documentation states some values are heuristic estimates.
+1010,Alexander Prass,9000000,Dataset documentation states some values are heuristic estimates.
+1011,Marco Friedl,10000000,Dataset documentation states some values are heuristic estimates.
+1012,Paul Wanner,22000000,Dataset documentation states some values are heuristic estimates.
+1013,Michael Svoboda,900000,Dataset documentation states some values are heuristic estimates.
+1014,Alessandro Andre Schoepf,10255013,Dataset documentation states some values are heuristic estimates.
+1015,Mo'ien Hasan Yazeed Abulaila,2324916,Dataset documentation states some values are heuristic estimates.
+1016,Ali Hasan Mohammad,3713575,Dataset documentation states some values are heuristic estimates.
+1017,Mousa Musallam Abdallah Nasib,4333148,Dataset documentation states some values are heuristic estimates.
+1018,Ali Mohammad Husam Abudahab,3868569,Dataset documentation states some values are heuristic estimates.
+1019,Mousa Mahmoud Yazan Alarab,1955254,Dataset documentation states some values are heuristic estimates.
+1020,Rasem Adel Amer Jamous,2372465,Dataset documentation states some values are heuristic estimates.
+1021,Faisal Yousef Mohammad,4598054,Dataset documentation states some values are heuristic estimates.
+1022,Mahmoud Ali Noor Alrawabdeh,2477372,Dataset documentation states some values are heuristic estimates.
+1023,Iyad Ali Ali Olwan,4371693,Dataset documentation states some values are heuristic estimates.
+1024,Mohammad Mousa Mousa Altamari,6012559,Dataset documentation states some values are heuristic estimates.
+1025,Burhan Shehadeh Odeh Fakhoury,2889178,Dataset documentation states some values are heuristic estimates.
+1026,Zaid Khaleel Nour Baniateyah,1909067,Dataset documentation states some values are heuristic estimates.
+1027,Nayef Ahmad Mahmoud Almardi,1880939,Dataset documentation states some values are heuristic estimates.
+1028,Ayed Fadel Rajaei Ayed,4233608,Dataset documentation states some values are heuristic estimates.
+1029,Mohammad Sami Ibrahim,4988036,Dataset documentation states some values are heuristic estimates.
+1030,Majed Jamil Mohammad Abualnadi,6868044,Dataset documentation states some values are heuristic estimates.
+1031,Amer Saleem Saleem,5501173,Dataset documentation states some values are heuristic estimates.
+1032,Ahmed Mohammad Mohammad,3830062,Dataset documentation states some values are heuristic estimates.
+1033,Ahmad Salameh Saed,6871766,Dataset documentation states some values are heuristic estimates.
+1034,Mahmoud Saleh Mohannad Abutaha,6151046,Dataset documentation states some values are heuristic estimates.
+1035,Mahmoud Ahmed Nizar Alrashdan,5818965,Dataset documentation states some values are heuristic estimates.
+1036,Ra'ed Mahmoud Abdallah Alfakhori,3985266,Dataset documentation states some values are heuristic estimates.
+1037,Manel Farhan Ehsan Haddad,2221236,Dataset documentation states some values are heuristic estimates.
+1038,Ahmad Ali Ali Azaizeh,2374004,Dataset documentation states some values are heuristic estimates.
+1039,Ratib Mohammad Mohammad Aldaoud,5368311,Dataset documentation states some values are heuristic estimates.
+1040,Said Ghazi Anas Badawi,3393660,Dataset documentation states some values are heuristic estimates.
+1041,Diogo Diogo Costa,25000000,Dataset documentation states some values are heuristic estimates.
+1042,SEMEDONélson Nelson,26711630,Dataset documentation states some values are heuristic estimates.
+1043,Rúben Ruben Dias,59075240,Dataset documentation states some values are heuristic estimates.
+1044,Tomás Tomas Araujo,51844007,Dataset documentation states some values are heuristic estimates.
+1045,Diogo Diogo Dalot,57423538,Dataset documentation states some values are heuristic estimates.
+1046,Luiz Matheus,36409816,Dataset documentation states some values are heuristic estimates.
+1047,Ronaldo Cristiano Ronaldo,10000000,Dataset documentation states some values are heuristic estimates.
+1048,Miguel Bruno,27556372,Dataset documentation states some values are heuristic estimates.
+1049,RAMOSGonçalo Goncalo,61031905,Dataset documentation states some values are heuristic estimates.
+1050,Bernardo Bernardo Silva,22000000,Dataset documentation states some values are heuristic estimates.
+1051,João Joao Felix,17430671,Dataset documentation states some values are heuristic estimates.
+1052,Pedro Jose Sa,58279443,Dataset documentation states some values are heuristic estimates.
+1053,Renato Renato Veiga,49776200,Dataset documentation states some values are heuristic estimates.
+1054,Gonçalo Goncalo Inacio,20977953,Dataset documentation states some values are heuristic estimates.
+1055,Pedro Joao Neves,140000000,Dataset documentation states some values are heuristic estimates.
+1056,António Francisco Trincao,20400208,Dataset documentation states some values are heuristic estimates.
+1057,Alexandre Rafael Leao,50000000,Dataset documentation states some values are heuristic estimates.
+1058,Pedro Pedro Neto,29098003,Dataset documentation states some values are heuristic estimates.
+1059,Manuel Goncalo,17183625,Dataset documentation states some values are heuristic estimates.
+1060,Pedro Joao Cancelo,26500207,Dataset documentation states some values are heuristic estimates.
+1061,Diogo Ruben,39746889,Dataset documentation states some values are heuristic estimates.
+1062,Tiago Rui Silva,20596872,Dataset documentation states some values are heuristic estimates.
+1063,Vitor Vitinha,140000000,Dataset documentation states some values are heuristic estimates.
+1064,Samuel Samu Costa,26660545,Dataset documentation states some values are heuristic estimates.
+1065,Alexandre Nuno,56220388,Dataset documentation states some values are heuristic estimates.
+1066,Francisco Francisco Conceicao,55985253,Dataset documentation states some values are heuristic estimates.
+1067,Lionel Nzau Mpasi,400000,Dataset documentation states some values are heuristic estimates.
+1068,Wan Wan-Bissaka,4122558,Dataset documentation states some values are heuristic estimates.
+1069,Steve Nkanu Kapuadi,2500000,Dataset documentation states some values are heuristic estimates.
+1070,Axel Tuanzebe,5000000,Dataset documentation states some values are heuristic estimates.
+1071,Dylan Buduka Batubinsika,600000,Dataset documentation states some values are heuristic estimates.
+1072,Ngal’ayel Mukau,15000000,Dataset documentation states some values are heuristic estimates.
+1073,Nathanaël Mbuku,2000000,Dataset documentation states some values are heuristic estimates.
+1074,Samuel Alain Moutoussamy,1200000,Dataset documentation states some values are heuristic estimates.
+1075,Kibambe Brian Cipenga,2000000,Dataset documentation states some values are heuristic estimates.
+1076,Theo Mbulofeko Batombo Bongonda,3000000,Dataset documentation states some values are heuristic estimates.
+1077,Gaël Roméo Kakuta,5503691,Dataset documentation states some values are heuristic estimates.
+1078,Joris Kayembe,2340458,Dataset documentation states some values are heuristic estimates.
+1079,Meschack Lina Elia,1500000,Dataset documentation states some values are heuristic estimates.
+1080,Noah Junior Sadiki,35000000,Dataset documentation states some values are heuristic estimates.
+1081,Tshibola Tshibola,4416794,Dataset documentation states some values are heuristic estimates.
+1082,Timothy Bruce Munzoko Fayulu,800000,Dataset documentation states some values are heuristic estimates.
+1083,Cedric Bakambu,1200000,Dataset documentation states some values are heuristic estimates.
+1084,Charles Monginda Pickel,2500000,Dataset documentation states some values are heuristic estimates.
+1085,Mayele Fiston Mayele,5339714,Dataset documentation states some values are heuristic estimates.
+1086,Yoane Wissa,25000000,Dataset documentation states some values are heuristic estimates.
+1087,Matthieu Luka Epolo,8000000,Dataset documentation states some values are heuristic estimates.
+1088,Mangulu Chancel Mbemba,2000000,Dataset documentation states some values are heuristic estimates.
+1089,Simon Bokote Banza,11000000,Dataset documentation states some values are heuristic estimates.
+1090,Gédéon Tchingoma Kyatengwa Kalulu,3500000,Dataset documentation states some values are heuristic estimates.
+1091,Edo Kayembe Kayembe,4000000,Dataset documentation states some values are heuristic estimates.
+1092,Arthur Fuka Masuaku,5114623,Dataset documentation states some values are heuristic estimates.
+1093,Utkir Yusupov,500000,Dataset documentation states some values are heuristic estimates.
+1094,Abdukodir Khusanov,50000000,Dataset documentation states some values are heuristic estimates.
+1095,Khojiakbar Alijonov,1300000,Dataset documentation states some values are heuristic estimates.
+1096,Farrukh Sayfiev,225000,Dataset documentation states some values are heuristic estimates.
+1097,Rustamjon Ashurmatov,750000,Dataset documentation states some values are heuristic estimates.
+1098,Akmal Mozgovoy,1400000,Dataset documentation states some values are heuristic estimates.
+1099,Otabek Shukurov,1500000,Dataset documentation states some values are heuristic estimates.
+1100,Jamshid Iskanderov,1000000,Dataset documentation states some values are heuristic estimates.
+1101,Odiljon Xamrobekov,1000000,Dataset documentation states some values are heuristic estimates.
+1102,Ruslanbek Jiyanov,800000,Dataset documentation states some values are heuristic estimates.
+1103,Oston Urunov,2000000,Dataset documentation states some values are heuristic estimates.
+1104,Abduvakhid Nematov,1500000,Dataset documentation states some values are heuristic estimates.
+1105,Sherzod Nasrullaev,1200000,Dataset documentation states some values are heuristic estimates.
+1106,Eldor Shomurodov,7000000,Dataset documentation states some values are heuristic estimates.
+1107,Umarbek Eshmurodov,450000,Dataset documentation states some values are heuristic estimates.
+1108,Botirali Ergashev,500000,Dataset documentation states some values are heuristic estimates.
+1109,Dostonbek Khamdamov,900000,Dataset documentation states some values are heuristic estimates.
+1110,Abdulla Abdullaev,500000,Dataset documentation states some values are heuristic estimates.
+1111,Azizjon Ganiev,2000000,Dataset documentation states some values are heuristic estimates.
+1112,Azizbek Amonov,500000,Dataset documentation states some values are heuristic estimates.
+1113,Igor Sergeev,1200000,Dataset documentation states some values are heuristic estimates.
+1114,Abbosbek Fayzullaev,7000000,Dataset documentation states some values are heuristic estimates.
+1115,Sherzod Esanov,450000,Dataset documentation states some values are heuristic estimates.
+1116,Behruzjon Karimov,350000,Dataset documentation states some values are heuristic estimates.
+1117,Avazbek Ulmasaliyev,500000,Dataset documentation states some values are heuristic estimates.
+1118,Jakhongir Urozov,600000,Dataset documentation states some values are heuristic estimates.
+1119,David Ospina,7934073,Dataset documentation states some values are heuristic estimates.
+1120,Daniel Munoz,18918178,Dataset documentation states some values are heuristic estimates.
+1121,Jhon Janer Lucumi,19289403,Dataset documentation states some values are heuristic estimates.
+1122,Santiago Arias,16223392,Dataset documentation states some values are heuristic estimates.
+1123,Kevin Duvan Castano,12480297,Dataset documentation states some values are heuristic estimates.
+1124,Richard Rios,25316192,Dataset documentation states some values are heuristic estimates.
+1125,Luis Fernando Diaz,50000000,Dataset documentation states some values are heuristic estimates.
+1126,Jorge Andres Carrascal,12205018,Dataset documentation states some values are heuristic estimates.
+1127,Jhon Andrés Cordoba,16910822,Dataset documentation states some values are heuristic estimates.
+1128,James David Rodriguez,8304482,Dataset documentation states some values are heuristic estimates.
+1129,Jhon Adolfo Arias,24767140,Dataset documentation states some values are heuristic estimates.
+1130,Camilo Andres Vargas,17816016,Dataset documentation states some values are heuristic estimates.
+1131,Yerry Fernando Mina,26019704,Dataset documentation states some values are heuristic estimates.
+1132,Gustavo Adolfo Puerta,17774632,Dataset documentation states some values are heuristic estimates.
+1133,Juan Camilo Portilla,15070035,Dataset documentation states some values are heuristic estimates.
+1134,Jefferson Andrés Lerma,27021837,Dataset documentation states some values are heuristic estimates.
+1135,Johan Andrés Mojica,17857738,Dataset documentation states some values are heuristic estimates.
+1136,Willer Emilio Ditta,7452566,Dataset documentation states some values are heuristic estimates.
+1137,Juan Camilo Hernandez,14899221,Dataset documentation states some values are heuristic estimates.
+1138,Juan Fernando Quintero,12654849,Dataset documentation states some values are heuristic estimates.
+1139,Jaminton Leandro Campaz,5500000,Dataset documentation states some values are heuristic estimates.
+1140,Deiver Machado,25905532,Dataset documentation states some values are heuristic estimates.
+1141,Davinson Sanchez,14979336,Dataset documentation states some values are heuristic estimates.
+1142,Álvaro David Montero,8143442,Dataset documentation states some values are heuristic estimates.
+1143,Luis Javier Suarez,20333903,Dataset documentation states some values are heuristic estimates.
+1144,Carlos Andrés Gomez,17165551,Dataset documentation states some values are heuristic estimates.
+1145,Jordan Lee Pickford,13000000,Dataset documentation states some values are heuristic estimates.
+1146,Ezri Ngoyo Konsa,40000000,Dataset documentation states some values are heuristic estimates.
+1147,Nico Oreilly,67443617,Dataset documentation states some values are heuristic estimates.
+1148,Declan Rice,120000000,Dataset documentation states some values are heuristic estimates.
+1149,John Stones,12000000,Dataset documentation states some values are heuristic estimates.
+1150,Keaninkin Marc-Isreal Guehi,26097995,Dataset documentation states some values are heuristic estimates.
+1151,Bukayo Ayoyinka Saka,110000000,Dataset documentation states some values are heuristic estimates.
+1152,Elliot Junior Anderson,75000000,Dataset documentation states some values are heuristic estimates.
+1153,Harry Edward Kane,60000000,Dataset documentation states some values are heuristic estimates.
+1154,Jude Victor William Bellingham,130000000,Dataset documentation states some values are heuristic estimates.
+1155,Marcus Rashford,40000000,Dataset documentation states some values are heuristic estimates.
+1156,Trevoh Tom Chalobah,40000000,Dataset documentation states some values are heuristic estimates.
+1157,Dean Bradley Henderson,28000000,Dataset documentation states some values are heuristic estimates.
+1158,Jordan Brian Henderson,1200000,Dataset documentation states some values are heuristic estimates.
+1159,Daniel Johnson Burn,4000000,Dataset documentation states some values are heuristic estimates.
+1160,Kobbie Boateng Mainoo,70000000,Dataset documentation states some values are heuristic estimates.
+1161,Morgan Elliot Rogers,90000000,Dataset documentation states some values are heuristic estimates.
+1162,Anthony Michael Gordon,65000000,Dataset documentation states some values are heuristic estimates.
+1163,George Arthur Watkins,21916589,Dataset documentation states some values are heuristic estimates.
+1164,Azuka Tristan Madueke,27690961,Dataset documentation states some values are heuristic estimates.
+1165,Eberechi Oluchi Eze,65000000,Dataset documentation states some values are heuristic estimates.
+1166,Ivan Benjamin Elijah Toney,20000000,Dataset documentation states some values are heuristic estimates.
+1167,James Harrington Trafford,25000000,Dataset documentation states some values are heuristic estimates.
+1168,Reece Lewis James,60000000,Dataset documentation states some values are heuristic estimates.
+1169,Tehuti Djed-Hotep Spence,65469734,Dataset documentation states some values are heuristic estimates.
+1170,Jarell Amorin Quansah,45000000,Dataset documentation states some values are heuristic estimates.
+1171,Dominik Livakovic,4000000,Dataset documentation states some values are heuristic estimates.
+1172,Josip Stanisic,40000000,Dataset documentation states some values are heuristic estimates.
+1173,Marin Pongracic,6500000,Dataset documentation states some values are heuristic estimates.
+1174,Joško Gvardiol,70000000,Dataset documentation states some values are heuristic estimates.
+1175,Duje Caleta-Car,2800000,Dataset documentation states some values are heuristic estimates.
+1176,Josip Sutalo,12000000,Dataset documentation states some values are heuristic estimates.
+1177,Nikola Moro,7000000,Dataset documentation states some values are heuristic estimates.
+1178,Mateo Kovacic,10000000,Dataset documentation states some values are heuristic estimates.
+1179,Andrej Kramaric,2500000,Dataset documentation states some values are heuristic estimates.
+1180,Luka Modric,3500000,Dataset documentation states some values are heuristic estimates.
+1181,Ante Budimir,2800000,Dataset documentation states some values are heuristic estimates.
+1182,Ivor Pandur,4500000,Dataset documentation states some values are heuristic estimates.
+1183,Nikola Vlasic,10000000,Dataset documentation states some values are heuristic estimates.
+1184,Ivan Perisic,1200000,Dataset documentation states some values are heuristic estimates.
+1185,Mario Pasalic,6000000,Dataset documentation states some values are heuristic estimates.
+1186,Martin Baturina,30000000,Dataset documentation states some values are heuristic estimates.
+1187,Petar Sucic,40000000,Dataset documentation states some values are heuristic estimates.
+1188,Kristijan Jakic,6000000,Dataset documentation states some values are heuristic estimates.
+1189,Toni Fruk,9000000,Dataset documentation states some values are heuristic estimates.
+1190,Igor Matanovic,22000000,Dataset documentation states some values are heuristic estimates.
+1191,Luka Sucic,10000000,Dataset documentation states some values are heuristic estimates.
+1192,Luka Vuskovic,60000000,Dataset documentation states some values are heuristic estimates.
+1193,Dominik Kotarski,5000000,Dataset documentation states some values are heuristic estimates.
+1194,Marco Pasalic,6500000,Dataset documentation states some values are heuristic estimates.
+1195,Martin Erlic,4000000,Dataset documentation states some values are heuristic estimates.
+1196,Petar Musa,12000000,Dataset documentation states some values are heuristic estimates.
+1197,Lawrence Ati Zigi,1500000,Dataset documentation states some values are heuristic estimates.
+1198,Alidu Seidu,6000000,Dataset documentation states some values are heuristic estimates.
+1199,Caleb Marfo Yirenkyi,10000000,Dataset documentation states some values are heuristic estimates.
+1200,Jonas Adjei Adjetey,6000000,Dataset documentation states some values are heuristic estimates.
+1201,Thomas Teye Partey,2000000,Dataset documentation states some values are heuristic estimates.
+1202,Abdul Mumin Mumin,4241887,Dataset documentation states some values are heuristic estimates.
+1203,Abdul Fatawu Fatawu,7555311,Dataset documentation states some values are heuristic estimates.
+1204,Kwasi Sibo,1400000,Dataset documentation states some values are heuristic estimates.
+1205,Jordan Pierre Ayew,1800000,Dataset documentation states some values are heuristic estimates.
+1206,Brandon Michael Clarke Thomas-Asante,4396065,Dataset documentation states some values are heuristic estimates.
+1207,Antoine Serlom Semenyo,80000000,Dataset documentation states some values are heuristic estimates.
+1208,Joseph Tetteh Anang,350000,Dataset documentation states some values are heuristic estimates.
+1209,Christopher Bonsu Bonsu Baah,7649098,Dataset documentation states some values are heuristic estimates.
+1210,Gideon Mensah,4000000,Dataset documentation states some values are heuristic estimates.
+1211,Elisha Owusu,4000000,Dataset documentation states some values are heuristic estimates.
+1212,Benjamin Asare,100000,Dataset documentation states some values are heuristic estimates.
+1213,Abdul Rahman Rahman,5582511,Dataset documentation states some values are heuristic estimates.
+1214,Jerome Opoku,5000000,Dataset documentation states some values are heuristic estimates.
+1215,Inaki Williams,5099385,Dataset documentation states some values are heuristic estimates.
+1216,Augustine Boakye,4000000,Dataset documentation states some values are heuristic estimates.
+1217,Kojo Peprah Oppong,10000000,Dataset documentation states some values are heuristic estimates.
+1218,Kamal Deen Sulemana,17000000,Dataset documentation states some values are heuristic estimates.
+1219,Derrick Luckassen,1200000,Dataset documentation states some values are heuristic estimates.
+1220,Ernest Nuamah Nuamah,3963480,Dataset documentation states some values are heuristic estimates.
+1221,Prince Kwabena Adu,3000000,Dataset documentation states some values are heuristic estimates.
+1222,Marvin Elom Senaya,3000000,Dataset documentation states some values are heuristic estimates.
+1223,Luis Ricardo Mejia,11521424,Dataset documentation states some values are heuristic estimates.
+1224,Cesar Rodolfo Blackman,3927703,Dataset documentation states some values are heuristic estimates.
+1225,Jose Angel Cordoba,6373119,Dataset documentation states some values are heuristic estimates.
+1226,Fidel Escobar,7099067,Dataset documentation states some values are heuristic estimates.
+1227,Edgardo Issac Farina,8512682,Dataset documentation states some values are heuristic estimates.
+1228,Cristian Jesus Martinez,800000,Dataset documentation states some values are heuristic estimates.
+1229,Jose Luis Rodriguez,4137985,Dataset documentation states some values are heuristic estimates.
+1230,Adalberto Eliecer Carrasquilla,7966885,Dataset documentation states some values are heuristic estimates.
+1231,Tomas Abdiel Rodriguez,6398309,Dataset documentation states some values are heuristic estimates.
+1232,Ismael Diaz,8182784,Dataset documentation states some values are heuristic estimates.
+1233,Edgar Yoel Barcenas,5818242,Dataset documentation states some values are heuristic estimates.
+1234,Cesar Jair Samudio,11678513,Dataset documentation states some values are heuristic estimates.
+1235,Jiovany Javier Ramos,11158259,Dataset documentation states some values are heuristic estimates.
+1236,Carlos Miguel Harvey,7787286,Dataset documentation states some values are heuristic estimates.
+1237,Eric Javier Davis,4330871,Dataset documentation states some values are heuristic estimates.
+1238,Andres Alberto Andrade,3229804,Dataset documentation states some values are heuristic estimates.
+1239,Jose Fajardo,3666045,Dataset documentation states some values are heuristic estimates.
+1240,Cecilio Alfonso Waterman,8816235,Dataset documentation states some values are heuristic estimates.
+1241,Alberto Abdiel Quintero,8402030,Dataset documentation states some values are heuristic estimates.
+1242,Anibal Casis Godoy,3706253,Dataset documentation states some values are heuristic estimates.
+1243,Cesar Augusto Yanis,9547230,Dataset documentation states some values are heuristic estimates.
+1244,Orlando Mosquera,700000,Dataset documentation states some values are heuristic estimates.
+1245,Michael Amir Murillo,7830169,Dataset documentation states some values are heuristic estimates.
+1246,Azarías Emmanuel Londono,4490434,Dataset documentation states some values are heuristic estimates.
+1247,Roderick Alonso Miller,9948860,Dataset documentation states some values are heuristic estimates.
+1248,Jorge Abdiel Gutierrez,8097757,Dataset documentation states some values are heuristic estimates.
