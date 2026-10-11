@@ -3,6 +3,10 @@
 // RawSourceRecord payloads. Dates are ISO strings, everything is
 // JSON-serializable.
 
+import type { HostCountryRef } from "./hostCountries";
+
+export type { HostCountryRef };
+
 export type ArchiveStatsDto = {
   tournaments: number;
   countries: number;
@@ -27,6 +31,8 @@ export type TournamentCardDto = {
   name: string;
   slug: string;
   hostName: string | null;
+  /** Host countries resolved against the Country table (see hostCountries.ts). */
+  hostCountries: HostCountryRef[];
   teamsCount: number | null;
   matchesCount: number | null;
   goalsCount: number | null;

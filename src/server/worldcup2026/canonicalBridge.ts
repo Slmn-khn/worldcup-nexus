@@ -65,6 +65,8 @@ export function buildWc2026TournamentCard(
     name: "FIFA World Cup 2026",
     slug: "fifa-world-cup-2026",
     hostName: wc2026HostLabel(overview.hosts),
+    // Venue-country codes (CAN/MEX/USA) are the canonical Country codes.
+    hostCountries: overview.hosts.map((code) => ({ name: HOST_LABELS[code] ?? code, slug: null, code })),
     teamsCount: overview.teamsCount,
     matchesCount: overview.matchesCount,
     goalsCount: overview.goalsCount,

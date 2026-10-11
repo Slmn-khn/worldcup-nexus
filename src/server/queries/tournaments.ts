@@ -1,6 +1,7 @@
 // Tournament queries for DB-backed pages (Checkpoint 4D).
 
 import { prisma } from "@/server/db/prisma";
+import { getCountryDirectory, resolveHostCountries } from "./hostCountries";
 import {
   buildWc2026TournamentCard,
   mergeWc2026TournamentCard,
@@ -70,6 +71,7 @@ export async function getTournamentCards(): Promise<TournamentCardDto[]> {
     tournaments.flatMap((t) => [t.winnerTeamId, t.runnerUpTeamId]),
   );
   const finalScores = await finalScoreByTournamentId();
+  const countryDirectory = await getCountryDirectory();
 
   const cards = tournaments.map((t) => {
     const winnerRef =
@@ -82,6 +84,7 @@ export async function getTournamentCards(): Promise<TournamentCardDto[]> {
       name: t.name,
       slug: t.slug,
       hostName: t.hostName,
+      hostCountries: resolveHostCountries(t.hostName, t.hostCountries, countryDirectory),
       teamsCount: t.teamsCount,
       matchesCount: t.matchesCount,
       goalsCount: t.goalsCount,
@@ -308,6 +311,7 @@ export async function getTournamentByYear(
     name: tournament.name,
     slug: tournament.slug,
     hostName: tournament.hostName,
+    hostCountries: resolveHostCountries(tournament.hostName, tournament.hostCountries, await getCountryDirectory()),
     teamsCount: tournament.teamsCount,
     matchesCount: tournament.matchesCount,
     goalsCount: tournament.goalsCount,

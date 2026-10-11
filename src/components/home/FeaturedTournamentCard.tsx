@@ -1,6 +1,7 @@
 // Featured tournament card (neon pass). Taller, image-first: a media band on
 // top — approved HERO image when one exists, otherwise a deterministic per-year
-// CSS theme gradient (never a broken image) — with the year + host overlaid,
+// CSS theme gradient with a decorative host-country map (never a broken image)
+// — with the year + host overlaid,
 // then winner / final / runner-up and a View Tournament CTA. Hover lifts + glows.
 
 import Box from "@mui/material/Box";
@@ -19,6 +20,7 @@ import {
   tournamentGradient,
 } from "@/theme/visualTokens";
 import type { HomeFeaturedTournament } from "@/server/home/queries";
+import TournamentHostMap from "@/components/maps/hostMap/TournamentHostMap";
 
 export default function FeaturedTournamentCard({
   tournament,
@@ -65,10 +67,21 @@ export default function FeaturedTournamentCard({
           <Box
             aria-hidden
             sx={{
+              position: "relative",
               aspectRatio: "16 / 8",
               background: tournamentGradient(tournament.year),
+              // Contain the map's glow/filter to this card.
+              isolation: "isolate",
+              overflow: "hidden",
             }}
-          />
+          >
+            <TournamentHostMap
+              year={tournament.year}
+              hosts={tournament.hostCountries}
+              variant="featured-card"
+              finalVenue={tournament.finalVenue}
+            />
+          </Box>
         )}
         {/* Readability scrim + year/host. */}
         <Box

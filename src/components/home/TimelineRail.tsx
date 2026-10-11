@@ -113,9 +113,18 @@ export default function TimelineRail({
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   color: atlasColors.textMuted,
-                  whiteSpace: "nowrap",
+                  // Multi-host editions (2026) wrap instead of overflowing the
+                  // card; every card reserves two lines so heights and the
+                  // winner rows stay aligned across the rail.
+                  lineHeight: 1.4,
+                  minHeight: "2.8em",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
                   mb: 1.5,
                 }}
+                title={entry.host ?? undefined}
               >
                 {entry.host ?? "Host —"}
               </Typography>

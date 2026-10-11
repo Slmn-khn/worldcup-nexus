@@ -1,11 +1,13 @@
-// Tournament card (PDF page 3): top band with huge condensed year + host,
-// winner/final/runner-up blocks, "VIEW TOURNAMENT →" text link. Zero
-// radius, hairline borders, no shadow.
+// Tournament card (PDF page 3): top band with huge condensed year + host
+// over a faint decorative host map, winner/final/runner-up blocks,
+// "VIEW TOURNAMENT →" text link. Zero radius, hairline borders, no shadow.
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
+import TournamentHostMap from "@/components/maps/hostMap/TournamentHostMap";
+import type { HostIdentity } from "@/components/maps/hostMap/config";
 import { formatNumber } from "@/lib/format";
 import {
   atlas,
@@ -19,6 +21,8 @@ type TournamentCardProps = {
   year: number;
   name?: string | null;
   host?: string | null;
+  /** Canonical host countries — drive the decorative header map. */
+  hostCountries?: readonly HostIdentity[];
   winner?: string | null;
   runnerUp?: string | null;
   finalScore?: string | null;
@@ -33,6 +37,7 @@ export default function TournamentCard({
   year,
   name,
   host,
+  hostCountries = [],
   winner,
   runnerUp,
   finalScore,
@@ -60,7 +65,7 @@ export default function TournamentCard({
         ...interactiveCardSx,
       }}
     >
-      {/* Top band: year + host */}
+      {/* Top band: year + host over the decorative host map */}
       <Box
         sx={{
           px: 3,
@@ -71,8 +76,25 @@ export default function TournamentCard({
           alignItems: "baseline",
           justifyContent: "space-between",
           gap: 2,
+          // Map layers stay inside this band and never bleed into the body.
+          position: "relative",
+          overflow: "hidden",
+          isolation: "isolate",
+          "& > p": { position: "relative", zIndex: 1 },
         }}
       >
+        <TournamentHostMap year={year} hosts={hostCountries} variant="archive-card" />
+        {/* Readability layer: clears the map behind the year (left) and host (right). */}
+        <Box
+          aria-hidden
+          sx={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            background:
+              "linear-gradient(90deg, rgba(3,16,28,0.92) 0%, rgba(3,16,28,0.55) 26%, rgba(3,16,28,0) 44%, rgba(3,16,28,0) 62%, rgba(3,16,28,0.6) 84%, rgba(3,16,28,0.85) 100%), linear-gradient(0deg, rgba(3,16,28,0.7) 0%, rgba(3,16,28,0) 55%)",
+          }}
+        />
         <Typography
           component="p"
           sx={{

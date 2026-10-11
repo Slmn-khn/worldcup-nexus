@@ -213,6 +213,27 @@ The following are acceptable as reference for verification only. They must not b
 - RSSSF (Rec.Sport.Soccer Statistics Foundation) historical records
 - Official FIFA match reports (where publicly accessible)
 
+## Decorative map geometry: Natural Earth
+
+- **What:** Admin 0 – Countries, version 4.1.0, 1:110m and 1:50m, via the
+  `world-atlas@2.0.2` TopoJSON redistribution (pinned dependency, bundled
+  with the server build — never fetched at runtime).
+- **Licence:** public domain (Natural Earth terms of use); credited on
+  `/sources` anyway.
+- **Use:** decorative host maps on Featured Tournament cards, `/tournaments`
+  archive cards and `/tournaments/[year]` heroes. Hosts come from canonical
+  data (`Tournament.hostCountries` / `hostName` resolved against `Country`,
+  see `src/server/queries/hostCountries.ts`); presentation presets (crops,
+  scale, tone, variants) live in `src/components/maps/hostMap/config.ts`; the
+  server-only engine `src/server/maps/hostMapGeometry.ts` projects, clips and
+  simplifies each composition once per server process (memoised). d3-geo,
+  TopoJSON and the topology never reach the client bundle.
+- **Historical borders:** Natural Earth has no England-only or West Germany
+  polygon; those hosts get a regional composition with no highlighted
+  border rather than a misleading modern outline.
+- **Worldview:** Natural Earth's default; disputed borders are not edited.
+  The maps are decoration, never a source of facts.
+
 ---
 
 ## Attribution requirements

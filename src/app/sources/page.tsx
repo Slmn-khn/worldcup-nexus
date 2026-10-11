@@ -126,6 +126,7 @@ export default function SourcesPage() {
             "Mominul FIFA World Cup 2026 Dataset (github.com/mominullptr/FIFA-World-Cup-2026-Dataset) — the approved, user-verified source of the imported 2026 tournament archive: teams, venues, matches, squads, events, lineups, and statistics. The only source imported for 2026; its ML prediction features are excluded.",
             "OpenFootball World Cup data (public domain) — reserved for cross-referencing results and filling confirmed gaps; not currently used in production data.",
             "Wikipedia match articles and RSSSF records — manual verification reference only.",
+            "Natural Earth (naturalearthdata.com) Admin 0 country boundaries, version 4.1.0, 1:110m and 1:50m (public domain) — the decorative host-country maps on tournament cards and tournament pages. Boundaries follow Natural Earth's default worldview and are illustrative only.",
           ]}
         />
       </PageContainer>
