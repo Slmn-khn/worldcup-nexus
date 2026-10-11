@@ -7,7 +7,8 @@
 //   pnpm data:2026:canonical:resume     continue a failed run from checkpoints
 //   pnpm data:2026:canonical:verify     read-only post-import checks
 //
-// Flags: --bundle <dir>  --batch-size <n>  --confirm-production
+// Flags: --bundle <dir>  --batch-size <n>  --transaction-timeout-ms <ms>
+//        --confirm-production
 //        --accept-official-changes  --simulate-failure-at <entity>:<rows>
 // Reports: data/2026/reports/wc2026-canonical-<mode>.{json,md}. Credentials
 // are never printed — only a redacted host/port/database summary.
@@ -95,6 +96,11 @@ async function main(): Promise<void> {
   if (batchSize !== undefined && (!Number.isSafeInteger(batchSize) || batchSize < 1 || batchSize > 500)) {
     throw new Error("--batch-size must be an integer between 1 and 500.");
   }
+  const timeoutRaw = flagValue(args, "--transaction-timeout-ms");
+  const transactionTimeoutMs = timeoutRaw === undefined ? undefined : Number(timeoutRaw);
+  if (transactionTimeoutMs !== undefined && (!Number.isSafeInteger(transactionTimeoutMs) || transactionTimeoutMs < 5_000 || transactionTimeoutMs > 600_000)) {
+    throw new Error("--transaction-timeout-ms must be an integer between 5000 and 600000.");
+  }
   const failRaw = flagValue(args, "--simulate-failure-at");
   let simulateFailureAt: { entity: LoadEntity; rows: number } | undefined;
   if (failRaw !== undefined) {
@@ -119,6 +125,7 @@ async function main(): Promise<void> {
       confirmProduction: args.includes("--confirm-production"),
       acceptOfficialChanges: args.includes("--accept-official-changes"),
       ...(batchSize !== undefined ? { batchSize } : {}),
+      ...(transactionTimeoutMs !== undefined ? { transactionTimeoutMs } : {}),
       ...(simulateFailureAt !== undefined ? { simulateFailureAt } : {}),
       log: (line) => console.log(line),
     });

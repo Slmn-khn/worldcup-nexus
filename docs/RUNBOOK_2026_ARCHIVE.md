@@ -26,6 +26,9 @@ pnpm search:index && pnpm search:verify   # ONLY after verify is OK
 ```
 
 Flags: `--bundle <dir>`, `--batch-size <1-500>` (default 50),
+`--transaction-timeout-ms <5000-600000>` (default 120000 — each batch is one
+short transaction; Prisma's own 5 s default is too short for a 50-row batch
+against a distant database such as Supabase ap-northeast-1),
 `--confirm-production`, `--accept-official-changes`,
 `--simulate-failure-at <entity>:<rows>` (LOCAL only, for testing resume).
 

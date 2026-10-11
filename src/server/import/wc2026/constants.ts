@@ -201,5 +201,13 @@ export const CANONICAL_TOURNAMENT_NAME = "2026 FIFA Men's World Cup";
 
 /** Rows per write batch (each batch is one short, non-interactive transaction). */
 export const DEFAULT_BATCH_SIZE = 50;
+/**
+ * Per-batch transaction budget. Prisma's driver-adapter batch transactions
+ * default to 5 s, which a 50-row batch exceeds against a distant database
+ * (~100 ms per upsert to Supabase ap-northeast-1). Each batch stays a short,
+ * bounded transaction; this only stops a slow network from aborting it.
+ */
+export const DEFAULT_TRANSACTION_TIMEOUT_MS = 120_000;
+export const TRANSACTION_MAX_WAIT_MS = 20_000;
 /** A RUNNING import whose heartbeat is older than this is considered stale. */
 export const STALE_RUN_MS = 10 * 60 * 1000;

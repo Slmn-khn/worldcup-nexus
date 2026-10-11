@@ -17,7 +17,7 @@ import { z } from "zod";
 import type { Prisma, PrismaClient } from "../../../generated/prisma/client";
 import { checkApproval, readApprovalFile } from "./approval";
 import { BundleError, loadBundle, type ParsedBundle } from "./bundle";
-import { DEFAULT_BATCH_SIZE, IMPORT_SOURCE, STALE_RUN_MS, TOURNAMENT_YEAR } from "./constants";
+import { DEFAULT_BATCH_SIZE, DEFAULT_TRANSACTION_TIMEOUT_MS, IMPORT_SOURCE, STALE_RUN_MS, TOURNAMENT_YEAR } from "./constants";
 import { LOAD_ENTITIES, loadPlan, SimulatedFailure, type LoadEntity, type LoadResult } from "./load";
 import { buildPlan, candidatePlayerSlugs, type ImportPlan } from "./plan";
 import { findTakenPlayerSlugs, loadSnapshot, type IdentityOverrides } from "./resolve";
@@ -38,6 +38,7 @@ export type RunOptions = {
   confirmProduction?: boolean;
   acceptOfficialChanges?: boolean;
   batchSize?: number;
+  transactionTimeoutMs?: number;
   simulateFailureAt?: { entity: LoadEntity; rows: number };
   log?: (line: string) => void;
 };
@@ -215,12 +216,13 @@ export async function runWc2026Import(prisma: PrismaClient | null, options: RunO
     },
   });
   report.runId = run.id;
-  log(`Import run ${run.id} (${resume ? "resume" : "write"}, batch ${options.batchSize ?? DEFAULT_BATCH_SIZE})`);
+  log(`Import run ${run.id} (${resume ? "resume" : "write"}, batch ${options.batchSize ?? DEFAULT_BATCH_SIZE}, tx timeout ${options.transactionTimeoutMs ?? DEFAULT_TRANSACTION_TIMEOUT_MS} ms)`);
 
   try {
     report.load = await loadPlan({
       prisma, bundle, staged, plan, runId: run.id,
       batchSize: options.batchSize ?? DEFAULT_BATCH_SIZE,
+      transactionTimeoutMs: options.transactionTimeoutMs ?? DEFAULT_TRANSACTION_TIMEOUT_MS,
       resume,
       acceptOfficialChanges: options.acceptOfficialChanges === true,
       ...(options.simulateFailureAt !== undefined ? { simulateFailureAt: options.simulateFailureAt } : {}),

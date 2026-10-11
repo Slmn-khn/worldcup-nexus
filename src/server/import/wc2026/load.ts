@@ -11,7 +11,7 @@
 
 import type { Prisma, PrismaClient } from "../../../generated/prisma/client";
 import { BUNDLE_FILES, type ParsedBundle } from "./bundle";
-import { CANDIDATE_DATASET_URL, IMPORT_SOURCE, sourceIdFor } from "./constants";
+import { CANDIDATE_DATASET_URL, IMPORT_SOURCE, TRANSACTION_MAX_WAIT_MS, sourceIdFor } from "./constants";
 import type { ImportPlan } from "./plan";
 import type { StagedBundle } from "./stage";
 
@@ -41,6 +41,8 @@ export type LoadContext = {
   plan: ImportPlan;
   runId: string;
   batchSize: number;
+  /** Timeout for each batch's transaction (ms). */
+  transactionTimeoutMs: number;
   resume: boolean;
   acceptOfficialChanges: boolean;
   /** Testing aid (local targets only): throw after this many rows of an entity. */
@@ -100,7 +102,7 @@ async function runBatches(
   for (let offset = start; offset < ops.length; offset += ctx.batchSize) {
     batchNo += 1;
     const slice = ops.slice(offset, offset + ctx.batchSize).map((op) => op());
-    await ctx.prisma.$transaction(slice);
+    await ctx.prisma.$transaction(slice, { maxWait: TRANSACTION_MAX_WAIT_MS, timeout: ctx.transactionTimeoutMs });
     const done = Math.min(offset + ctx.batchSize, ops.length);
     entry.written += slice.length;
     await saveCheckpoint(ctx, entity, done, done === ops.length);
