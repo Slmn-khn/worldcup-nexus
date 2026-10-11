@@ -20,7 +20,7 @@ import {
   tournamentGradient,
 } from "@/theme/visualTokens";
 import type { HomeFeaturedTournament } from "@/server/home/queries";
-import TournamentHostMap from "./hostMaps/TournamentHostMap";
+import TournamentHostMap from "@/components/maps/hostMap/TournamentHostMap";
 
 export default function FeaturedTournamentCard({
   tournament,
@@ -77,6 +77,8 @@ export default function FeaturedTournamentCard({
           >
             <TournamentHostMap
               year={tournament.year}
+              hosts={tournament.hostCountries}
+              variant="featured-card"
               finalVenue={tournament.finalVenue}
             />
           </Box>

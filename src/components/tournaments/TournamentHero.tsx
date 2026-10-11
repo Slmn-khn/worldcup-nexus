@@ -1,5 +1,6 @@
 // Tournament dossier hero (PPTX slides 8–9): back link, huge condensed
-// year, host eyebrow, and a champion scoreboard block on a hairline panel.
+// year, host eyebrow, and a champion scoreboard block on a hairline panel,
+// over a decorative host-map backdrop confined to the hero.
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -9,6 +10,7 @@ import Link from "@/components/Link";
 import PageContainer from "@/components/layout/PageContainer";
 import VaultEyebrow from "@/components/vault/VaultEyebrow";
 import CountryFlag from "@/components/media/CountryFlag";
+import HostMapHeroBackdrop from "@/components/maps/hostMap/HostMapHeroBackdrop";
 import { formatDate } from "@/lib/format";
 import { atlas, eyebrowSx, tabularNums, textLinkSx } from "@/theme/tokens";
 import type { TournamentDetailDto } from "@/server/queries/types";
@@ -31,8 +33,17 @@ export default function TournamentHero({
     ) ?? null;
 
   return (
-    <Box sx={{ borderBottom: `1px solid ${atlas.border}`, bgcolor: atlas.black }}>
-      <PageContainer sx={{ py: { xs: 6, md: 9 } }}>
+    <Box
+      sx={{
+        borderBottom: `1px solid ${atlas.border}`,
+        bgcolor: atlas.black,
+        position: "relative",
+        overflow: "hidden",
+        isolation: "isolate",
+      }}
+    >
+      <HostMapHeroBackdrop year={tournament.year} hosts={tournament.hostCountries} placement="centre" />
+      <PageContainer sx={{ py: { xs: 6, md: 9 }, position: "relative", zIndex: 1 }}>
         <Typography
           component={Link}
           href="/tournaments"

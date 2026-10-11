@@ -14,6 +14,7 @@ import EmptyState from "@/components/ui/EmptyState";
 import VaultEyebrow from "@/components/vault/VaultEyebrow";
 import VaultButton from "@/components/vault/VaultButton";
 import CountryFlag from "@/components/media/CountryFlag";
+import HostMapHeroBackdrop from "@/components/maps/hostMap/HostMapHeroBackdrop";
 import ArchiveMatchRows from "./archive/ArchiveMatchRows";
 import ArchiveGroupTables from "./archive/ArchiveGroupTables";
 import ArchiveBracket from "./archive/ArchiveBracket";
@@ -129,8 +130,9 @@ export default async function TournamentArchiveHub({ archive, rawParams }: { arc
   return (
     <Box>
       {/* Hero */}
-      <Box component="header" sx={{ borderBottom: `1px solid ${atlas.border}`, bgcolor: atlas.black }}>
-        <PageContainer sx={{ py: { xs: 7, md: 10 } }}>
+      <Box component="header" sx={{ borderBottom: `1px solid ${atlas.border}`, bgcolor: atlas.black, position: "relative", overflow: "hidden", isolation: "isolate" }}>
+        <HostMapHeroBackdrop year={archive.year} hosts={archive.hostCountries} />
+        <PageContainer sx={{ py: { xs: 7, md: 10 }, position: "relative", zIndex: 1 }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexWrap: "wrap", mb: 2.5 }}>
             <VaultEyebrow label={archive.hosts.length > 1 ? "Co-hosts" : "Host"} />
             {archive.hosts.map((host) => (

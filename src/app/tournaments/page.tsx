@@ -146,6 +146,7 @@ export default async function TournamentsPage({ searchParams }: Props) {
                   year={tournament.year}
                   name={tournament.name}
                   host={tournament.hostName}
+                  hostCountries={tournament.hostCountries}
                   winner={tournament.winner}
                   runnerUp={tournament.runnerUp}
                   finalScore={tournament.finalScore}

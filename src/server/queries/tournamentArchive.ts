@@ -8,6 +8,7 @@ import { cache } from "react";
 
 import { prisma } from "@/server/db/prisma";
 import { foldDiacritics } from "@/server/search/indexing";
+import { getCountryDirectory, resolveHostCountries, type HostCountryRef } from "./hostCountries";
 import {
   buildBracket,
   computeArchiveGroups,
@@ -41,6 +42,8 @@ export type TournamentArchive = {
   year: number;
   name: string;
   hosts: string[];
+  /** Hosts resolved against the Country table (drives the hero host map). */
+  hostCountries: HostCountryRef[];
   startDate: string | null;
   endDate: string | null;
   attendance: number | null;
@@ -194,6 +197,7 @@ export const getTournamentArchive = cache(async (year: number): Promise<Tourname
     year: tournament.year,
     name: tournament.name,
     hosts: tournament.hostCountries.length > 0 ? tournament.hostCountries : tournament.hostName !== null ? [tournament.hostName] : [],
+    hostCountries: resolveHostCountries(tournament.hostName, tournament.hostCountries, await getCountryDirectory()),
     startDate: isoDay(tournament.startDate),
     endDate: isoDay(tournament.endDate),
     attendance: tournament.attendance,

@@ -74,6 +74,7 @@ function canonicalCard(year: number, winner: string | null): TournamentCardDto {
     name: `${year} FIFA World Cup`,
     slug: `world-cup-${year}`,
     hostName: "Somewhere",
+    hostCountries: [],
     teamsCount: 32,
     matchesCount: 64,
     goalsCount: 170,
