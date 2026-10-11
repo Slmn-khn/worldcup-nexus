@@ -1,0 +1,14 @@
+-- Manual rollback for 20261011055725_add_tournament_archive_promotion_fields.
+-- NOT run by Prisma. Only use on a database where the 2026 promotion has been
+-- abandoned AND its rows removed per docs/RUNBOOK_2026_ARCHIVE.md — dropping
+-- these columns discards the 2026 provenance/placing data stored in them.
+-- Prefer restoring the pre-import backup over running this by hand.
+DROP TABLE IF EXISTS "DataImportCheckpoint";
+DROP TABLE IF EXISTS "DataImportRun";
+DROP INDEX IF EXISTS "Match_tournamentId_groupName_idx";
+DROP INDEX IF EXISTS "RawSourceRecord_importRunId_idx";
+ALTER TABLE "Award" DROP COLUMN IF EXISTS "details", DROP COLUMN IF EXISTS "rank", DROP COLUMN IF EXISTS "sourceUrl", DROP COLUMN IF EXISTS "verificationStatus";
+ALTER TABLE "Match" DROP COLUMN IF EXISTS "extraTime", DROP COLUMN IF EXISTS "groupName";
+ALTER TABLE "RawSourceRecord" DROP COLUMN IF EXISTS "importRunId", DROP COLUMN IF EXISTS "retrievedAt", DROP COLUMN IF EXISTS "sourceChecksum", DROP COLUMN IF EXISTS "sourceUrl";
+ALTER TABLE "Stadium" DROP COLUMN IF EXISTS "capacity", DROP COLUMN IF EXISTS "latitude", DROP COLUMN IF EXISTS "longitude";
+ALTER TABLE "Tournament" DROP COLUMN IF EXISTS "attendance", DROP COLUMN IF EXISTS "fourthPlaceTeamId", DROP COLUMN IF EXISTS "hostCountries", DROP COLUMN IF EXISTS "sourceUrl", DROP COLUMN IF EXISTS "thirdPlaceTeamId", DROP COLUMN IF EXISTS "verificationStatus";

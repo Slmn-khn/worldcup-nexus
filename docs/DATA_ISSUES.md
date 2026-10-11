@@ -24,6 +24,66 @@ See `docs/DATA_SOURCES.md` for source definitions and conflict resolution policy
 
 <!-- Log issues below this line. Newest first. -->
 
+### ISSUE-016: 2026 Round of 16 match 96 has no recorded extra-time/shootout outcome
+
+- **Date logged:** 2026-10-11
+- **Entity:** match
+- **Identifier:** `mominul2026:match:96` (Switzerland 0–0 Colombia, 7 July 2026)
+- **Source A:** Mominul 2026 dataset — `result_type=Regular`, no penalty scores, no shootout events
+- **Source B:** worldcupnexus_2026_data bundle official tier — not covered
+- **Resolution:** pending. Imported with the 0–0 scoreline; `extraTime`, penalty scores and `winningTeamId` stay NULL and every surface says "outcome not recorded". Switzerland's later quarter-final is deliberately NOT used to infer the result. Registered as known conflict `M96_KNOCKOUT_DRAW_WITHOUT_OUTCOME` (src/server/import/wc2026/validate.ts).
+- **Notes:** Fix by adding the official FIFA match report values to a future bundle; the import will then fill the fields (official tier wins).
+
+### ISSUE-015: 2026 card events are visibly incomplete — bookings withheld
+
+- **Date logged:** 2026-10-11
+- **Entity:** card
+- **Identifier:** all 2026 matches
+- **Source A:** Mominul 2026 dataset — 35 yellow and 12 red cards across 104 matches
+- **Source B:** none supplied
+- **Resolution:** withheld from `Booking`; rows kept in `RawSourceRecord` (source `wcn-2026-bundle`, entityType `events`). Match pages, the explorer and records state that 2026 cards are not recorded instead of implying zero.
+
+### ISSUE-014: 2026 substitutions and minutes are not available
+
+- **Date logged:** 2026-10-11
+- **Entity:** substitution / lineup
+- **Identifier:** all 2026 matches
+- **Source A:** Mominul 2026 dataset — no substitution events; lineup minutes conflict with FIFA (Mbappé 711 vs 769, Bellingham 596 vs 698)
+- **Source B:** FIFA official awards document (minutes for the Boot winners only)
+- **Resolution:** `Substitution` stays empty for 2026 and lineups/minutes are not imported (raw only). FIFA's official minutes are shown on the Golden/Bronze Boot awards only. Never inferred from minutes played.
+
+### ISSUE-013: Truncated player names in the 2026 source ("Mc")
+
+- **Date logged:** 2026-10-11
+- **Entity:** player
+- **Identifier:** candidate player ids 290, 293, 309, 312 (Scotland), 334 (United States), 722 (New Zealand); 320 resolved
+- **Source A:** Mominul 2026 dataset — `player_name = "Mc"`
+- **Source B:** none in the bundle
+- **Resolution:** 320 linked to the existing canonical Weston McKennie by DOB + nationality. The other six are stored as "Unidentified <Country> player (source #N)" — real names are not guessed. A reviewer can supply the name with evidence in `data/2026/approved/wc2026-identity-overrides.json` (see the `.example.json`) and re-run the import.
+
+### ISSUE-012: 2026 goals do not distinguish in-match penalties
+
+- **Date logged:** 2026-10-11
+- **Entity:** goal
+- **Identifier:** all 2026 goals
+- **Source A:** Mominul 2026 dataset — `Goal` events only, no penalty flag
+- **Resolution:** `Goal.isPenalty` stays at its schema default (false); "(pen)" labels are therefore absent for 2026 until a source supplies them. Shootout kicks are separate `PenaltyKick` rows (type SHOOTOUT) and never count as goals.
+
+### ISSUE-011: DR Congo vs Zaire era naming
+
+- **Date logged:** 2026-10-11
+- **Entity:** country
+- **Identifier:** `zaire` (1974) / `dr-congo` (2026)
+- **Resolution:** a new `DR Congo` country row was created rather than reusing `Zaire`, matching the archive's existing era-naming convention (West Germany/Germany, Soviet Union/Russia). The lineage is recorded in the import report.
+
+### ISSUE-010: 2026 referee/venue identities shared with older tournaments
+
+- **Date logged:** 2026-10-11
+- **Entity:** referee / stadium
+- **Identifier:** 17 referees (e.g. Alireza Faghani), 4 stadiums (Estadio Azteca, BC Place, Gillette Stadium, Lincoln Financial Field)
+- **Resolution:** linked to the existing canonical rows (referees by full accent-folded name; stadiums only when name, city and country all agree). Existing rows are never modified — e.g. Faghani's canonical country stays "Iran" although the 2026 source lists Australia; the difference is reported as a warning.
+
+
 ### ISSUE-009: Player nationality is derived from squad membership
 
 - **Date logged:** 2026-06-10

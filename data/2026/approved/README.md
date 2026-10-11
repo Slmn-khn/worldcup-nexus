@@ -37,3 +37,27 @@ Do **not** create `approval.json` in Phase 1. It must be written by a human
 reviewer after reading `data/2026/reports/2026-data-steward-report.md` and the
 conflict reports — a report that says "NOT READY FOR IMPORT" means exactly
 that.
+
+## Canonical promotion import (implemented 2026-10-11)
+
+`pnpm data:2026:canonical:*` (see `docs/RUNBOOK_2026_ARCHIVE.md`) imports the
+`docs/worldcupnexus_2026_data` bundle into the canonical tables and enforces
+this gate with an extended `approval.json`:
+
+```json
+{
+  "approvedBy": "human reviewer name",
+  "approvedAt": "2026-10-11T06:30:00Z",
+  "dataPackVersion": "worldcupnexus_2026_data …",
+  "validationReportHash": "sha256:<bundle validation/validation_report.json>",
+  "bundleManifestHash": "sha256:<bundle source_manifest.csv>",
+  "approvedForImport": true,
+  "scope": "LOCAL"
+}
+```
+
+`scope` is the highest target the approval covers (`LOCAL` < `STAGING` <
+`PRODUCTION`); a changed bundle invalidates the approval. The approval in this
+folder is scoped to the LOCAL development database only. Reviewed identity
+decisions go in `wc2026-identity-overrides.json` (see the `.example.json`).
+

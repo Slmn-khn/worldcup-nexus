@@ -20,6 +20,13 @@ import { getStringParam, type RawSearchParams } from "@/lib/search-params";
 import { getTournamentByYear } from "@/server/queries/tournaments";
 import { getWc2026Overview } from "@/server/worldcup2026/queries";
 import Wc2026Hub from "@/components/worldcup2026/Wc2026Hub";
+import TournamentArchiveHub from "@/components/tournaments/TournamentArchiveHub";
+import {
+  getTournamentArchive,
+  hasTournamentArchiveHub,
+} from "@/server/queries/tournamentArchive";
+import { formatArchiveScore } from "@/server/queries/tournamentArchiveModel";
+import { siteConfig } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -38,6 +45,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const year = parseYear(rawYear);
   if (year === null) {
     return { title: "Tournament not found", robots: { index: false } };
+  }
+  if (await hasTournamentArchiveHub(year)) {
+    const archive = await getTournamentArchive(year);
+    if (archive !== null) {
+      const final = archive.finalMatch;
+      return {
+        title: `${year} World Cup — Tournament Archive`,
+        description: [
+          `The ${year} World Cup: ${archive.counts.teams} teams, ${archive.counts.matches} matches, ${archive.counts.goals} goals.`,
+          archive.podium.champion !== null ? `Champions ${archive.podium.champion.name}.` : null,
+          final !== null ? `Final: ${final.homeTeam.name} ${formatArchiveScore(final)} ${final.awayTeam.name}.` : null,
+          "Groups, bracket, matches, squads, venues and official awards.",
+        ]
+          .filter((part) => part !== null)
+          .join(" "),
+        alternates: { canonical: `/tournaments/${year}` },
+      };
+    }
   }
   if (year === 2026) {
     return {
@@ -62,9 +87,46 @@ export default async function TournamentDetailPage({
   const year = parseYear(rawYear);
   if (year === null) notFound();
 
-  // 2026 — the imported Mominul archive hub (quarantined WorldCup2026*
-  // tables), not the canonical historical Tournament model. Falls through to
-  // the standard page (and its 404) when the import has not run.
+  // Canonical tournaments with group-labelled matches (2026 after the
+  // canonical promotion) render the archive hub from canonical tables.
+  if (await hasTournamentArchiveHub(year)) {
+    const [archive, rawParamsHub] = await Promise.all([
+      getTournamentArchive(year),
+      searchParams,
+    ]);
+    if (archive !== null) {
+      const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "SportsEvent",
+        name: archive.name,
+        sport: "Association football",
+        startDate: archive.startDate,
+        endDate: archive.endDate,
+        eventStatus: "https://schema.org/EventScheduled",
+        url: `${siteConfig.siteUrl}/tournaments/${year}`,
+        location: archive.hosts.map((host) => ({ "@type": "Country", name: host })),
+        ...(archive.podium.champion !== null
+          ? { winner: { "@type": "SportsTeam", name: archive.podium.champion.name } }
+          : {}),
+      };
+      return (
+        <>
+          <script
+            type="application/ld+json"
+            // JSON.stringify output with "<" escaped cannot break out of the tag.
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+            }}
+          />
+          <TournamentArchiveHub archive={archive} rawParams={rawParamsHub} />
+        </>
+      );
+    }
+  }
+
+  // Pre-promotion fallback: the quarantined Mominul archive hub
+  // (WorldCup2026* tables) for databases where the canonical 2026 import has
+  // not run yet. Falls through to the standard page (and its 404) otherwise.
   if (year === 2026) {
     const [overview, rawParams2026] = await Promise.all([
       getWc2026Overview(),

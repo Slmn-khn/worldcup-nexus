@@ -175,6 +175,7 @@ export default function Footer() {
             >
               Mominul FIFA World Cup 2026 Dataset
             </Typography>
+            {" + FIFA official records"}
           </Typography>
           <Typography
             variant="caption"

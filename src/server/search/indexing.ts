@@ -46,6 +46,50 @@ export function isWorldCup2026Doc(doc: SearchDocument): boolean {
   return doc.id.startsWith("wc2026-");
 }
 
+/**
+ * Accent-folded spelling of a name ("Mbappé" → "Mbappe", "Cubarsí" →
+ * "Cubarsi"), or null when folding changes nothing. Added to keywords so
+ * diacritic-free queries hit the full-text vector — no unaccent extension.
+ */
+export function foldDiacritics(value: string): string | null {
+  const folded = value
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/ß/g, "ss")
+    .replace(/ø/g, "o")
+    .replace(/Ø/g, "O")
+    .replace(/ł/g, "l")
+    .replace(/Ł/g, "L")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D")
+    .replace(/ı/g, "i")
+    .replace(/İ/g, "I");
+  return folded === value ? null : folded;
+}
+
+/**
+ * One keyword holding each accented word's folded spelling exactly once
+ * ("Mbappe Simon"), so folding adds recall without inflating the text rank of
+ * documents that repeat a name in several fields.
+ */
+export function foldedKeyword(doc: SearchDocument): string[] {
+  const words = new Set<string>();
+  for (const value of [doc.title, ...doc.keywords, doc.playerName, doc.countryName]) {
+    if (value === undefined) continue;
+    for (const word of value.split(/\s+/)) {
+      const folded = foldDiacritics(word);
+      if (folded !== null) words.add(folded);
+    }
+  }
+  return words.size === 0 ? [] : [[...words].join(" ")];
+}
+
+function defaultSource(doc: SearchDocument): string {
+  if (doc.source !== undefined) return doc.source;
+  if (isWorldCup2026Doc(doc)) return "mominul_2026_dataset";
+  return (doc.tournamentYear ?? doc.sortYear) === 2026 ? "wcn-2026-bundle" : "fjelstul";
+}
+
 export function toSearchDocumentRow(doc: SearchDocument): SearchDocumentRow {
   const basePriority = SEARCH_PRIORITY_BY_TYPE[doc.type] ?? 100;
   const priority = isWorldCup2026Doc(doc)
@@ -53,10 +97,12 @@ export function toSearchDocumentRow(doc: SearchDocument): SearchDocumentRow {
     : basePriority;
   const keywords = [
     ...new Set(
-      [...doc.keywords, doc.playerName, doc.countryName, doc.stage].filter(
-        (keyword): keyword is string =>
-          keyword !== undefined && keyword !== null && keyword.trim() !== "",
-      ),
+      [...doc.keywords, doc.playerName, doc.countryName, doc.stage]
+        .filter(
+          (keyword): keyword is string =>
+            keyword !== undefined && keyword !== null && keyword.trim() !== "",
+        )
+        .concat(foldedKeyword(doc)),
     ),
   ];
   return {
@@ -71,7 +117,7 @@ export function toSearchDocumentRow(doc: SearchDocument): SearchDocumentRow {
     year: doc.tournamentYear ?? doc.sortYear ?? null,
     countryCode: emptyToNull(doc.countryCode),
     imageUrl: null,
-    source: isWorldCup2026Doc(doc) ? "mominul_2026_dataset" : "fjelstul",
+    source: defaultSource(doc),
     priority,
   };
 }

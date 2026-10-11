@@ -1,0 +1,29 @@
+referee_id,name,country,verification_status,source_dataset
+1,Szymon Marciniak,Poland,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+2,Daniele Orsato,Italy,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+3,Michael Oliver,England,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+4,Anthony Taylor,England,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+5,Clément Turpin,France,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+6,Danny Makkelie,Netherlands,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+7,Jesús Valenzuela,Venezuela,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+8,Wilton Sampaio,Brazil,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+9,César Arturo Ramos,Mexico,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+10,Ivan Barton,El Salvador,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+11,Mustapha Ghorbal,Algeria,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+12,Victor Gomes,South Africa,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+13,Ma Ning,China,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+14,Alireza Faghani,Australia,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+15,Yoshimi Yamashita,Japan,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+16,Facundo Tello,Argentina,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+17,João Pinheiro,Portugal,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+18,Maurizio Mariani,Italy,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+19,Jalal Jayed,Morocco,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+20,Slavko Vinčić,Slovenia,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+21,Adham Makhadmeh,Jordan,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+22,Saíd Martínez,Honduras,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+23,Raphael Claus,Brazil,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+24,Glenn Nyberg,Sweden,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+25,Espen Eskås,Norway,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+26,Yael Falcón,Argentina,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+27,Gustavo Tejera,Uruguay,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+28,Drew Fischer,Canada,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset

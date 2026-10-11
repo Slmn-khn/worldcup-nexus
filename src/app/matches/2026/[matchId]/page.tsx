@@ -7,7 +7,8 @@
 // Server component, read-only, MUI only.
 
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import { canonicalMatchSlugForSource } from "@/server/queries/legacy2026";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@/components/Link";
@@ -36,6 +37,10 @@ function parseMatchId(raw: string): number | null {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { matchId } = await params;
   const id = parseMatchId(matchId);
+  if (id !== null) {
+    const slug = await canonicalMatchSlugForSource(id);
+    if (slug !== null) permanentRedirect(`/matches/${slug}`);
+  }
   const match = id === null ? null : await getWc2026MatchDetail(id);
   if (match === null) {
     return { title: "Match not found", robots: { index: false } };
@@ -171,6 +176,11 @@ function LineupColumn({
 export default async function Wc2026MatchDetailPage({ params }: Props) {
   const { matchId } = await params;
   const id = parseMatchId(matchId);
+  // After the canonical promotion the match has one public URL.
+  if (id !== null) {
+    const slug = await canonicalMatchSlugForSource(id);
+    if (slug !== null) permanentRedirect(`/matches/${slug}`);
+  }
   if (id === null) notFound();
   const match = await getWc2026MatchDetail(id);
   if (match === null) notFound();

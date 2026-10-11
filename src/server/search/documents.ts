@@ -7,7 +7,17 @@ import { formatMinute } from "@/lib/format";
 import { formatScore } from "@/server/queries/helpers";
 import { getCountryCards } from "@/server/queries/countries";
 import { getRecordsOverview } from "@/server/queries/records";
+import { COUNTRY_BY_FIFA_CODE } from "@/server/import/wc2026/constants";
 import type { SearchDocument } from "./types";
+
+/** Reviewed alternative names per country slug ("Türkiye", "Korea Republic"…). */
+const COUNTRY_ALIASES: Map<string, string[]> = (() => {
+  const map = new Map<string, string[]>();
+  for (const [fifaCode, { resolution, aliases }] of Object.entries(COUNTRY_BY_FIFA_CODE)) {
+    map.set(resolution.slug, [...(map.get(resolution.slug) ?? []), fifaCode, ...aliases]);
+  }
+  return map;
+})();
 
 function compactKeywords(parts: (string | null | undefined)[]): string[] {
   return [
@@ -112,6 +122,7 @@ export async function buildCountrySearchDocuments(): Promise<SearchDocument[]> {
     href: `/countries/${country.slug}`,
     keywords: compactKeywords([
       country.code,
+      ...(COUNTRY_ALIASES.get(country.slug) ?? []),
       "nation",
       "country",
       "national team",
@@ -156,7 +167,44 @@ export async function buildPlayerSearchDocuments(): Promise<SearchDocument[]> {
     ]),
     playerName: player.name,
     countryName: player.country?.name ?? undefined,
+    // People first created by the 2026 promotion carry its provenance.
+    ...(player.sourceId?.startsWith("mominul2026:") ? { source: "wcn-2026-bundle" } : {}),
   }));
+}
+
+// Stadiums of tournaments rendered by the archive hub (tournaments whose
+// group-stage matches carry group labels — 2026 so far). Older stadiums are
+// reachable through their matches and stay unindexed as before.
+export async function buildVenueSearchDocuments(): Promise<SearchDocument[]> {
+  const matches = await prisma.match.findMany({
+    where: { groupName: { not: null }, stadiumId: { not: null } },
+    distinct: ["stadiumId", "tournamentId"],
+    select: {
+      tournament: { select: { year: true } },
+      stadium: { select: { id: true, name: true, city: true, country: true, capacity: true } },
+    },
+  });
+  return matches.flatMap(({ tournament, stadium }) =>
+    stadium === null
+      ? []
+      : [
+          {
+            id: `venue-${stadium.id}-${tournament.year}`,
+            type: "venue" as const,
+            title: stadium.name,
+            subtitle: `${tournament.year} World Cup venue`,
+            description: compactKeywords([
+              stadium.city,
+              stadium.country,
+              stadium.capacity !== null ? `capacity ${stadium.capacity.toLocaleString("en-US")}` : null,
+            ]).join(" · "),
+            href: `/tournaments/${tournament.year}#venues`,
+            keywords: compactKeywords([stadium.name, stadium.city, stadium.country, String(tournament.year), "stadium", "venue"]),
+            tournamentYear: tournament.year,
+            sortYear: tournament.year,
+          },
+        ],
+  );
 }
 
 export async function buildMatchSearchDocuments(): Promise<SearchDocument[]> {
@@ -431,6 +479,11 @@ export async function buildWorldCup2026SearchDocuments(): Promise<
 > {
   const matchCount = await prisma.worldCup2026Match.count().catch(() => 0);
   if (matchCount === 0) return [];
+  // Once 2026 is promoted into the canonical tables, the canonical builders
+  // index it (same URLs as every other tournament) — the quarantined copy
+  // must not add a second, divergent set of documents.
+  const canonical2026 = await prisma.tournament.count({ where: { year: 2026 } }).catch(() => 0);
+  if (canonical2026 > 0) return [];
 
   const [teams, venues, matches, players] = await Promise.all([
     prisma.worldCup2026Team.findMany(),
@@ -566,6 +619,7 @@ export async function buildAllSearchDocuments(): Promise<SearchDocument[]> {
     records,
     events,
     facts,
+    venues,
     wc2026,
   ] = await Promise.all([
     buildTournamentSearchDocuments(),
@@ -575,6 +629,7 @@ export async function buildAllSearchDocuments(): Promise<SearchDocument[]> {
     buildRecordSearchDocuments(),
     buildEventSearchDocuments(),
     buildFactSearchDocuments(),
+    buildVenueSearchDocuments(),
     buildWorldCup2026SearchDocuments(),
   ]);
   return [
@@ -585,6 +640,7 @@ export async function buildAllSearchDocuments(): Promise<SearchDocument[]> {
     ...records,
     ...events,
     ...facts,
+    ...venues,
     ...wc2026,
   ];
 }

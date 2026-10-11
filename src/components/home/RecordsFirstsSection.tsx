@@ -19,8 +19,13 @@ const GRID = {
 
 export default function RecordsFirstsSection({
   records,
+  spanLabel = null,
+  includes2026 = false,
 }: {
   records: RecordLeaderboardDto[];
+  /** Canonical archive span, e.g. "1930–2026" (computed, never hard-coded). */
+  spanLabel?: string | null;
+  includes2026?: boolean;
 }) {
   const cards = records
     .map((board) => {
@@ -42,7 +47,7 @@ export default function RecordsFirstsSection({
         eyebrow="Still standing"
         title="Records & Firsts"
         accent="gold"
-        subtitle="Database-backed leaderboards computed from imported historical events (1930–2022); 2026 tournament stats live in the 2026 archive hub."
+        subtitle={`Database-backed leaderboards computed from imported events${spanLabel !== null ? ` (${spanLabel})` : ""}${includes2026 ? "." : "; 2026 tournament stats live in the 2026 archive hub."}`}
         action={{ label: "All records", href: "/records" }}
       />
       {cards.length > 0 ? (

@@ -175,3 +175,6 @@ vite.config.ts.timestamp-*
 graphify-out
 ./graphify-out
 /graphify-out
+# Local DB dumps and throwaway probe scripts (never commit)
+/backups/
+/tmp/

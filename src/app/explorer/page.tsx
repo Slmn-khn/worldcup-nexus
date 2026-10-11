@@ -17,6 +17,8 @@ import {
   searchParamsGetter,
 } from "@/server/queries/parseExplorerParams";
 
+import { coverageSuffix, getCanonicalCoverage } from "@/server/queries/coverage";
+
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -31,16 +33,21 @@ type Props = {
 
 export default async function ExplorerPage({ searchParams }: Props) {
   const params = await searchParams;
-  const data = await getExplorerData(
-    parseExplorerOptions(searchParamsGetter(params)),
-  );
+  const [data, coverage] = await Promise.all([
+    getExplorerData(parseExplorerOptions(searchParamsGetter(params))),
+    getCanonicalCoverage(),
+  ]);
 
   return (
     <Box>
       <VaultPageHeader
         title="Data Explorer"
         lede="Browse imported World Cup records and events across tournaments, matches, players, and teams."
-        meta="This explorer covers the normalized historical archive (1930–2022). The separately imported 2026 archive is browsable via the 2026 hub, schedule, and search. Raw source rows are not exposed."
+        meta={
+          coverage.includes2026
+            ? `This explorer covers the normalized archive${coverageSuffix(coverage)}. 2026 goals, shootout kicks and awards are included; 2026 cards and substitutions are not recorded yet. Raw source rows are not exposed.`
+            : `This explorer covers the normalized historical archive${coverageSuffix(coverage)}. The separately imported 2026 archive is browsable via the 2026 hub, schedule, and search. Raw source rows are not exposed.`
+        }
       />
 
       <PageContainer sx={{ py: { xs: 5, md: 7 } }}>

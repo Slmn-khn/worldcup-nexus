@@ -4,6 +4,7 @@ import { prisma } from "@/server/db/prisma";
 import type { Prisma } from "@/generated/prisma/client";
 import { finalStageFilter, matchCardInclude, toMatchCardDto } from "./helpers";
 import type {
+  EventCoverage,
   FilterOptionDto,
   MatchCardDto,
   MatchDetailDto,
@@ -219,8 +220,12 @@ const matchDetailInclude = {
       player: { select: { name: true, slug: true } },
       team: { select: { name: true } },
     },
-    // Source provides no kick order (ISSUE-008); source-id order is file order.
-    orderBy: { sourceId: "asc" as const },
+    // Fjelstul provides no kick order (ISSUE-008): source-id order is file
+    // order. 2026 kicks carry an explicit order, which wins when present.
+    orderBy: [
+      { order: { sort: "asc" as const, nulls: "last" as const } },
+      { sourceId: "asc" as const },
+    ],
   },
 };
 
@@ -236,9 +241,32 @@ export async function getMatchByIdOrSlug(
   });
   if (match === null) return null;
 
+  const [tournamentBookings, tournamentSubstitutions, extraTimeRecorded] = await Promise.all([
+    prisma.booking.count({ where: { match: { tournamentId: match.tournamentId } } }),
+    prisma.substitution.count({ where: { match: { tournamentId: match.tournamentId } } }),
+    prisma.match.count({ where: { tournamentId: match.tournamentId, extraTime: { not: null } } }),
+  ]);
+  const coverage = (rows: number): EventCoverage =>
+    rows > 0 ? "recorded" : match.tournament.year < 1970 ? "not-applicable" : "not-recorded";
+
   return {
     ...toMatchCardDto(match),
     matchNumber: match.matchNumber,
+    extraTime: match.extraTime,
+    groupName: match.groupName,
+    outcomeIncomplete:
+      !/group|final round/i.test(match.stage) &&
+      match.homeScore === match.awayScore &&
+      !match.decidedByPenalties &&
+      match.winningTeamId === null &&
+      match.extraTime === null &&
+      // Only tournaments whose import records extra time can flag a missing
+      // outcome; older imports never recorded it (e.g. 1934/38 replays).
+      extraTimeRecorded > 0,
+    eventCoverage: {
+      bookings: coverage(tournamentBookings),
+      substitutions: coverage(tournamentSubstitutions),
+    },
     winnerName: match.winningTeam?.name ?? null,
     homeScorePenalties: match.homeScorePenalties,
     awayScorePenalties: match.awayScorePenalties,

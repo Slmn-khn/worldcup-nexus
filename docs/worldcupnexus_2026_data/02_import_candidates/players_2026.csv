@@ -1,0 +1,1249 @@
+player_id,team_id,player_name,position,club_team,caps,date_of_birth,height_cm,goals,verification_status,source_dataset
+1,1,José Raúl Rangel,GK,CD Guadalajara,15,2000-02-25,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+2,1,Jorge Eduardo Sanchez,DEF,PAOK Saloniki,59,1997-12-10,176,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+3,1,César Jasib Montes,DEF,FC Lokomotiv Moscow,69,1997-02-24,191,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+4,1,Edson Omar Alvarez,DEF,Fenerbahçe SK,100,1997-10-24,180,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+5,1,Johan Felipe Vasquez,DEF,Genoa CFC,47,1998-10-22,182,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+6,1,Erik Antonio Lira,MID,CF Cruz Azul,26,2000-05-08,172,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+7,1,Luis Francisco Romo,MID,CD Guadalajara,62,1995-06-05,183,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+8,1,Álvaro Fidalgo,MID,Real Betis,5,1997-04-09,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+9,1,Raúl Alonso Jimenez,FWD,Fulham FC,127,1991-05-05,188,46,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+10,1,Ernesto Alexis Vega,FWD,Deportivo Toluca FC,53,1997-11-25,175,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+11,1,Santiago Tomás Gimenez,FWD,AC Milan,47,2001-04-18,180,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+12,1,Carlos Acevedo,GK,Club Santos Laguna,7,1996-04-19,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+13,1,Francisco Guillermo Ochoa,GK,AEL Limassol,153,1985-07-13,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+14,1,Armando Gonzalez,FWD,CD Guadalajara,8,2003-04-20,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+15,1,Israel Reyes,DEF,Club América,35,2000-05-23,181,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+16,1,Julián Andrés Quinones,FWD,Al Qadsiah FC,23,1997-03-24,177,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+17,1,Orbelín Pineda,MID,AEK Athens,92,1996-03-24,169,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+18,1,Obed Goméz Vargas,MID,Atlético De Madrid,6,2005-08-05,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+19,1,Gilberto Rafael Mora,MID,Club Tijuana,9,2008-10-14,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+20,1,Mateo Chavez,DEF,AZ Alkmaar,10,2004-05-12,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+21,1,César Saúl Huerta,FWD,RSC Anderlecht,26,2000-12-03,171,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+22,1,Guillermo Martinez,FWD,Pumas UNAM,12,1995-03-15,191,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+23,1,Jesús Daniel Gallardo,DEF,Deportivo Toluca FC,123,1994-08-15,174,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+24,1,Luis Gerardo Chavez,MID,FC Dynamo Moscow,46,1996-01-15,178,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+25,1,Roberto Carlos Alvarado,FWD,CD Guadalajara,69,1998-09-07,176,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+26,1,Brian Gutierrez,MID,CD Guadalajara,8,2003-06-17,178,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+27,2,Ronwen Hayden Williams,GK,Mamelodi Sundowns FC,65,1992-01-21,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+28,2,Tholo Thabang Matuludi,DEF,Polokwane City FC,3,1999-01-14,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+29,2,Khulumani Ndamane,DEF,Mamelodi Sundowns FC,5,2004-02-05,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+30,2,Teboho Mokoena,MID,Mamelodi Sundowns FC,58,1997-01-24,177,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+31,2,Thalente Wandile Mbatha,MID,Orlando Pirates FC,17,2000-03-06,179,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+32,2,Aubrey Maphosa Modiba,DEF,Mamelodi Sundowns FC,49,1995-07-22,171,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+33,2,Oswin Reagan Appollis,FWD,Orlando Pirates FC,28,2001-08-25,171,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+34,2,Tshepang Moremi,FWD,Orlando Pirates FC,10,2000-10-02,169,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+35,2,Lyle Brent Foster,FWD,Burnley FC,32,2000-09-03,185,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+36,2,Relebohile Mofokeng,FWD,Orlando Pirates FC,14,2004-10-23,168,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+37,2,Themba Zwane,MID,Mamelodi Sundowns FC,56,1989-08-03,178,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+38,2,Thapelo Maseko,FWD,AEL Limassol,8,2003-11-11,178,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+39,2,Sphephelo S'miso Sithole,MID,CD Tondela,30,1999-03-03,197,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+40,2,Mbekezeli Mfanufikile Mbokazi,DEF,Chicago Fire FC,11,2005-09-19,177,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+41,2,Iqraam Rayners,FWD,Mamelodi Sundowns FC,21,1995-12-19,174,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+42,2,Sipho Justin Chaine,GK,Orlando Pirates FC,4,1996-12-14,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+43,2,Sekotori Evidence Makgopa,FWD,Orlando Pirates FC,28,2000-06-05,183,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+44,2,Samukele Alucious Kabini,DEF,Molde FK,6,2004-03-15,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+45,2,Nkosinathi Emmanuel Sibisi,DEF,Orlando Pirates FC,22,1995-09-22,172,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+46,2,Khuliso Johnson Mudau,DEF,Mamelodi Sundowns FC,35,1995-04-26,179,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+47,2,Ime Daniel Okon,DEF,Hannover 96,9,2004-02-20,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+48,2,Stuart Ricardo Goss,GK,Siwelele FC,7,1994-04-02,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+49,2,Jayden Oswin Adams,MID,Mamelodi Sundowns FC,9,2001-05-05,177,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+50,2,Olwethu Mpilwenhle Makhanya,DEF,Philadelphia Union,1,2004-04-30,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+51,2,Kamogelo Michael Sebelebele,FWD,Orlando Pirates FC,9,2002-07-21,166,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+52,2,Bradley Paul Cross,DEF,Kaizer Chiefs FC,1,2001-01-30,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+53,3,Seunggyu Kim,GK,FC Tokyo,87,1990-09-30,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+54,3,Hanbeom Lee,DEF,FC Midtjylland,9,2002-06-17,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+55,3,Gihyuk Lee,MID,Gangwon FC,4,2000-07-07,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+56,3,Minjae Kim,DEF,FC Bayern München,80,1996-11-15,190,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+57,3,Taehyeon Kim,DEF,Kashima Antlers,7,2000-09-17,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+58,3,Inbeom Hwang,MID,Feyenoord Rotterdam,74,1996-09-20,177,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+59,3,Heung Min Son,FWD,LAFC,145,1992-07-08,183,56,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+60,3,Seungho Paik,MID,Birmingham City FC,28,1997-03-17,182,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+61,3,Guesung Cho,FWD,FC Midtjylland,44,1998-01-25,188,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+62,3,Jae Sung Lee,MID,1. FSV Mainz 05,106,1992-08-10,180,15,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+63,3,Hee Chan Hwang,MID,Wolverhampton Wanderers FC,80,1996-01-26,177,17,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+64,3,Bumkeun Song,GK,Jeonbuk Hyundai Motors FC,3,1997-10-15,196,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+65,3,Taeseok Lee,DEF,FK Austria Wien,16,2002-07-28,174,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+66,3,Wije Cho,DEF,Jeonbuk Hyundai Motors FC,1,2001-08-25,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+67,3,Moonhwan Kim,DEF,Daejeon Hana Citizen FC,36,1995-08-01,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+68,3,Jinseob Park,DEF,Zhejiang FC,15,1995-10-23,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+69,3,Junho Bae,MID,Stoke City FC,13,2003-08-21,180,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+70,3,Hyeongyu Oh,FWD,Be ş ikta ş  JK,28,2001-04-12,183,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+71,3,Kangin Lee,MID,Paris Saint-Germain,48,2001-02-19,174,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+72,3,Hyunjun Yang,MID,Celtic FC,9,2002-05-25,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+73,3,Hyeonwoo Jo,GK,Ulsan HD,48,1991-09-25,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+74,3,Youngwoo Seol,DEF,FK Crvena Zvezda,35,1998-12-05,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+75,3,Jens Castrop,DEF,Borussia Mönchengladbach,7,2003-07-29,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+76,3,Jingyu Kim,MID,Jeonbuk Hyundai Motors FC,23,1997-02-24,177,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+77,3,Jisung Eom,MID,Swansea City AFC,10,2002-05-09,177,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+78,3,Donggyeong Lee,MID,Ulsan HD,18,1997-09-20,175,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+79,4,Mat ě j Kovar,GK,PSV Eindhoven,21,2000-05-17,196,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+80,4,David Zima,DEF,SK Slavia Praha,25,2000-11-08,190,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+81,4,Tomáš Holes,DEF,SK Slavia Praha,41,1993-03-31,180,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+82,4,Robin Hranac,DEF,TSG Hoffenheim,15,2000-01-29,189,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+83,4,Vladimír Coufal,DEF,TSG Hoffenheim,63,1992-08-22,175,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+84,4,ě pán Chaloupek,DEF,SK Slavia Praha,6,2003-03-08,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+85,4,Ladislav Krejci,DEF,Wolverhampton Wanderers FC,28,1999-04-20,191,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+86,4,Vladimír Darida,MID,FC Hradec Králové,79,1990-08-08,172,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+87,4,Adam Hlozek,FWD,TSG Hoffenheim,44,2002-07-25,188,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+88,4,Patrik Schick,FWD,Bayer 04 Leverkusen,54,1996-01-24,191,26,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+89,4,Jan Kuchta,FWD,AC Sparta Praha,31,1997-01-08,185,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+90,4,Lukáš Cerv,MID,FC Viktoria Plze ň,17,2001-04-10,182,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+91,4,Mojmír Chytil,FWD,SK Slavia Praha,23,1999-04-29,187,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+92,4,David Jurasek,DEF,SK Slavia Praha,18,2000-08-07,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+93,4,Pavel Sulc,FWD,Olympique Lyonnais,22,2000-12-29,177,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+94,4,Jind ř ich Stanek,GK,SK Slavia Praha,14,1996-04-27,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+95,4,Lukáš Provod,MID,SK Slavia Praha,39,1996-10-23,191,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+96,4,Michal Sadilek,MID,SK Slavia Praha,36,1999-05-31,169,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+97,4,Tomáš Chory,FWD,SK Slavia Praha,23,1995-01-26,199,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+98,4,Jaroslav Zeleny,DEF,AC Sparta Praha,24,1992-08-20,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+99,4,David Doudera,DEF,SK Slavia Praha,17,1998-05-31,175,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+100,4,Tomáš Soucek,MID,West Ham United FC,91,1995-02-27,192,17,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+101,4,Lukáš Hornicek,GK,SC Braga,1,2002-07-13,198,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+102,4,Alexandr Sojka,MID,FC Viktoria Plze ň,3,2003-04-02,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+103,4,Hugo Sochurek,MID,AC Sparta Praha,1,2008-06-07,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+104,4,Denis Visinsky,FWD,FC Viktoria Plze ň,2,2003-03-21,178,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+105,5,Dayne Tristan St. Clair,GK,Inter Miami CF,20,1997-05-09,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+106,5,Alistair William Johnston,DEF,Celtic FC,59,1998-10-08,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+107,5,Alfie Charles Jones,DEF,Middlesbrough FC,2,1997-10-07,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+108,5,Luc De Fougerolles,DEF,FCV Dender EH,14,2005-10-12,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+109,5,Joel Robert Waterman,DEF,Chicago Fire FC,17,1996-01-24,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+110,5,Mathieu Choiniere,MID,LAFC,24,1999-02-07,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+111,5,Stephen Eustaquio,MID,LAFC,57,1996-12-21,175,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+112,5,Ismaël Kenneth Jordan Kone,MID,US Sassuolo,41,2002-06-16,188,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+113,5,Cyle Christopher Larin,FWD,Southampton FC,91,1995-04-17,188,31,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+114,5,Jonathan Christian David,FWD,Juventus FC,78,2000-01-14,175,39,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+115,5,Liam Alan Millar,MID,Hull City FC,42,1999-09-27,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+116,5,Tanitoluwa Oluwatimilehin Oluwaseyi,FWD,Villarreal CF,25,2000-05-15,187,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+117,5,Derek Austin Cornelius,DEF,Rangers FC,45,1997-11-25,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+118,5,Jacob Everett Shaffelburg,MID,LAFC,32,1999-11-26,181,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+119,5,Moïse Bombito Bombito,DEF,OGC Nice,20,2000-03-30,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+120,5,Maxime Crepeau,GK,Orlando City SC,33,1994-05-11,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+121,5,Tajon Trevor Buchanan,FWD,Villarreal CF,61,1999-02-08,183,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+122,5,Owen Olamidayo Goodman,GK,Barnsley,0,2003-11-27,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+123,5,Alphonso Boyle Davies,DEF,FC Bayern München,58,2000-11-02,183,15,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+124,5,Ali Ahmed,FWD,Norwich City FC,25,2000-10-10,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+125,5,Jonathan Osorio,MID,Toronto FC,92,1992-06-12,175,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+126,5,Richmond Mamah Laryea,DEF,Toronto FC,77,1995-01-07,175,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+127,5,Niko Kristian Sigur,DEF,HNK Hajduk Split,19,2003-09-09,178,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+128,5,Promise Oluwatobi Emmanuel David,FWD,Royale Union Saint-Gilloise,11,2001-07-03,195,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+129,5,Nathan-Dylan Saliba,MID,RSC Anderlecht,15,2004-02-07,174,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+130,5,Jayden Nelson,FWD,Austin FC,15,2002-09-26,170,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+131,6,Nikola Vasilj,GK,FC St. Pauli,27,1995-12-02,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+132,6,Nihad Mujakic,DEF,Gaziantep FK,12,1998-04-15,189,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+133,6,Dennis Hadzikadunic,DEF,UC Sampdoria,32,1998-07-09,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+134,6,Tarik Muharemovic,DEF,US Sassuolo,15,2003-02-28,192,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+135,6,Sead Kolasinac,DEF,Atalanta Bergamo,66,1993-06-20,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+136,6,Benjamin Tahirovic,MID,Brøndby IF,29,2003-03-03,191,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+137,6,Amar Dedic,DEF,SL Benfica,29,2002-08-18,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+138,6,Armin Gigovic,MID,BSC Young Boys,21,2002-04-06,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+139,6,Samed Bazdar,FWD,Jagiellonia Bia ł ystok,14,2004-01-31,189,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+140,6,Ermedin Demirovic,FWD,VfB Stuttgart,41,1998-03-25,185,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+141,6,Edin Dzeko,FWD,FC Schalke 04,148,1986-03-17,192,73,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+142,6,Mladen Jurkas,GK,FK Borac Banja Luka,0,2007-10-07,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+143,6,Ivan Basic,MID,FC Astana,18,2002-04-30,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+144,6,Ivan Sunjic,MID,Pafos FC,12,1996-10-09,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+145,6,Amar Memic,MID,FC Viktoria Plze ň,14,2001-01-20,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+146,6,Amir Hadziahmetovic,MID,Hull City FC,36,1997-03-08,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+147,6,Dzenis Burnic,MID,Karlsruher SC,21,1998-05-22,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+148,6,Nikola Katic,DEF,FC Schalke 04,18,1996-10-10,194,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+149,6,Kerim Alajbegovic,FWD,FC Red Bull Salzburg,11,2007-09-21,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+150,6,Esmir Bajraktarevic,FWD,PSV Eindhoven,17,2005-03-10,175,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+151,6,Stjepan Radeljic,DEF,HNK Rijeka,5,1997-09-05,201,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+152,6,Martin Zlomislic,GK,HNK Rijeka,3,1998-08-16,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+153,6,Haris Tabakovic,FWD,Borussia Mönchengladbach,10,1994-06-20,196,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+154,6,Arjan Malic,DEF,SK Sturm Graz,8,2005-08-28,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+155,6,Jovo Lukic,FWD,Universitatea Cluj,4,1998-11-28,190,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+156,6,Ermin Mahmic,MID,FC Slovan Liberec,2,2005-03-14,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+157,7,Ibrahim Mahmoud Abunada,GK,Al Rayyan SC,7,2000-02-05,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+158,7,Miguel Pedro,DEF,Al Sadd SC,112,1990-08-06,180,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+159,7,Michel Lucas,DEF,Al Wakrah SC,28,1990-07-03,179,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+160,7,Gueye Issa Laye,DEF,Al Arabi SC,5,1997-12-22,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+161,7,Gaber Jassem,DEF,Al Rayyan SC,38,2002-02-20,181,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+162,7,Hatim Abdulaziz Hatem,MID,Al Rayyan SC,132,1990-01-01,179,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+163,7,Alaaeldin Ahmed,FWD,Al Rayyan SC,78,1993-01-31,179,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+164,7,Junior Edmilson,FWD,Al Duhail SC,17,1994-08-19,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+165,7,Mohammed Mohammed Muntari,FWD,Al Gharafa SC,74,1993-12-20,192,17,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+166,7,Khalid Hassan Alhaydos,FWD,Al Sadd SC,190,1990-12-11,174,39,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+167,7,Hassan Akram,FWD,Al Sadd SC,137,1996-11-18,176,40,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+168,7,Karim Karim Boudiaf,MID,Al Duhail SC,129,1990-09-16,190,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+169,7,Mohamed Ayoub Aloui,DEF,Al Gharafa SC,8,2005-03-11,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+170,7,Elamin Homam,DEF,Cultural Leonesa,77,1999-08-25,188,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+171,7,Abdurisag Yusuf Abdurisag,FWD,Al Wakrah SC,45,1999-08-06,171,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+172,7,KHOUKHIBoualem Boualem,DEF,Al Sadd SC,129,1990-07-09,185,21,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+173,7,Mohamed Ahmed Alganehi,MID,Al Gharafa SC,15,2000-09-22,175,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+174,7,Hussain Sultan,DEF,Al Duhail SC,20,1996-04-07,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+175,7,Ali Zainelabdeen Almoez,FWD,Al Duhail SC,128,1996-08-19,180,58,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+176,7,Fathy Ahmed Fathy,MID,Al Arabi SC,55,1993-01-25,171,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+177,7,Zakaria Salah Zakaria,GK,Al Duhail SC,10,1999-04-24,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+178,7,Aissa Meshaal Barsham,GK,Al Sadd SC,60,1998-02-14,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+179,7,Omer Assim Madibo,MID,Al Wakrah SC,65,1996-10-22,168,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+180,7,Mohammad Tahsin,FWD,Al Duhail SC,5,2006-06-16,166,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+181,7,Alhussein Alhashmi,DEF,Al Arabi SC,10,2003-08-15,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+182,7,Naceur Mohamed Manai,FWD,Al Shamal SC,12,2002-10-25,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+183,8,Gregor Kobel,GK,Borussia Dortmund,22,1997-12-06,196,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+184,8,Miro Max Maria Muheim,DEF,Hamburger SV,11,1998-03-24,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+185,8,Silvan Dominic Widmer,DEF,1. FSV Mainz 05,60,1993-03-05,183,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+186,8,Nico Elvedi,DEF,Borussia Mönchengladbach,68,1996-09-30,189,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+187,8,Manuel Obafemi Akanji,DEF,FC Internazionale Milano,82,1995-07-19,188,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+188,8,Denis Lemi Zakaria,MID,AS Monaco,66,1996-11-20,189,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+189,8,Breel Donald Embolo,FWD,Stade Rennais FC,87,1997-02-14,184,25,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+190,8,Remo Marco Freuler,MID,Bologna FC,89,1992-04-15,181,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+191,8,Johan Kula Manzambi,MID,SC Freiburg,13,2005-10-14,182,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+192,8,Granit Xhaka,MID,Sunderland AFC,147,1992-09-27,183,17,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+193,8,Dan Ndoye,FWD,Nottingham Forest FC,32,2000-10-25,184,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+194,8,Yvon Landry Mvogo,GK,FC Lorient,13,1994-06-06,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+195,8,Ricardo Ivan Rodriguez,DEF,Real Betis,139,1992-08-25,182,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+196,8,Ardon Jashari,MID,AC Milan,9,2002-07-30,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+197,8,Djibril Ibrahima Sow,MID,Sevilla FC,52,1997-02-06,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+198,8,Christian Andreas Fassnacht,FWD,BSC Young Boys,23,1993-11-11,185,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+199,8,Ruben Estephan Vargas,FWD,Sevilla FC,62,1998-08-05,179,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+200,8,Eray Ervin Coemert,DEF,Valencia CF,22,1998-02-04,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+201,8,Noah Arinzechukwu Okafor,FWD,Leeds United FC,25,2000-05-24,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+202,8,Michel Aebischer,MID,Pisa SC,41,1997-01-06,183,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+203,8,Marvin Keller,GK,BSC Young Boys,1,2002-07-03,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+204,8,Fabian Rieder,MID,FC Augsburg,29,2002-02-16,181,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+205,8,Mohamed Zeki Amdouni,FWD,Burnley FC,30,2000-12-04,183,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+206,8,Aurèle Florian Amenda,DEF,Eintracht Frankfurt,7,2003-07-31,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+207,8,Luca Antony Jaquez,DEF,VfB Stuttgart,3,2003-06-02,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+208,8,Cedric Jan Itten,FWD,Fortuna Düsseldorf,15,1996-12-27,190,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+209,9,Ramsés Alisson,GK,Liverpool FC,79,1992-10-02,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+210,9,José Ederson Silva,MID,Atalanta Bergamo,3,1999-07-07,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+211,9,Gabriel Gabriel Magalhaes,DEF,Arsenal FC,18,1997-12-19,190,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+212,9,MARQUINHOSMarcos,DEF,Paris Saint-Germain,106,1994-05-14,183,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+213,9,Henrique,MID,Manchester United FC,87,1992-02-23,185,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+214,9,Sandro Alex,DEF,CR Flamengo,45,1991-01-26,180,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+215,9,José Vinicius,FWD,Real Madrid C. F.,50,2000-07-12,176,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+216,9,GUIMARAESBruno Bruno,MID,Newcastle United FC,44,1997-11-16,182,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+217,9,Matheus Matheus Cunha,FWD,Manchester United FC,24,1999-05-27,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+218,9,Neymar Neymar Jr,FWD,Santos FC,128,1992-02-05,175,79,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+219,9,Raphael Raphinha,FWD,FC Barcelona,40,1996-12-14,176,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+220,9,Weverton Weverton,GK,Grêmio FBPA,11,1987-12-13,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+221,9,Luiz Danilo,DEF,CR Flamengo,71,1991-07-15,184,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+222,9,Bremer Bremer,DEF,Juventus FC,8,1997-03-18,188,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+223,9,PEREIRALeonardo Leo,DEF,CR Flamengo,4,1996-01-31,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+224,9,Douglas Douglas Santos,DEF,FC Zenit St. Petersburg,8,1994-03-22,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+225,9,Henrique Fabinho,MID,Al Ittihad,34,1993-10-23,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+226,9,Danilo Danilo Santos,MID,Botafogo,5,2001-04-29,177,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+227,9,Felipe Endrick,FWD,Olympique Lyonnais,17,2006-07-21,172,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+228,9,Lucas Lucas Paqueta,MID,CR Flamengo,64,1997-08-27,183,13,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+229,9,Henrique André Luiz,FWD,FC Zenit St. Petersburg,16,2001-01-02,182,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+230,9,MARTINELLIGabriel Gabriel,FWD,Arsenal FC,23,2001-06-18,178,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+231,9,Ederson Ederson,GK,Fenerbahçe SK,32,1993-08-17,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+232,9,IBANEZRoger Roger,DEF,Al Ahli FC,8,1998-11-23,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+233,9,Thiago Igor Thiago,FWD,Brentford FC,5,2001-06-26,190,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+234,9,Vitor Rayan,FWD,AFC Bournemouth,2,2006-08-03,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+235,10,Yassine Bounou,GK,Al Hilal SC,91,1991-04-05,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+236,10,Achraf Hakimi,DEF,Paris Saint-Germain,97,1998-11-04,180,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+237,10,Noussair Mazraoui,DEF,Manchester United FC,46,1997-11-14,183,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+238,10,Sofyan Amrabat,MID,Real Betis,75,1996-08-21,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+239,10,Marwane Saadane,DEF,Al Fateh SC,17,1992-01-17,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+240,10,Ayyoub Bouaddi,MID,Lille OSC,4,2007-10-02,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+241,10,Chemsdine Talbi,MID,Sunderland AFC,6,2005-05-09,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+242,10,Azz-Eddine Ounahi,MID,Girona FC,50,2000-04-19,182,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+243,10,Soufiane Rahimi,FWD,Al Ain FC,38,1996-06-02,180,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+244,10,Brahim Diaz,FWD,Real Madrid C. F.,27,1999-08-03,170,15,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+245,10,Ismael Saibari,MID,PSV Eindhoven,31,2001-01-28,185,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+246,10,Monir El Kajoui,GK,RS Berkane,52,1989-05-10,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+247,10,Zakaria El Ouahdi,DEF,KRC Genk,3,2001-12-31,171,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+248,10,Issa Laye Lucas Jean Diop,DEF,Fulham FC,5,1997-01-09,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+249,10,Samir El Mourabet,MID,RC Strasbourg,5,2005-10-06,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+250,10,Gessime Ben Youssef Mustapha Yassine,MID,RC Strasbourg,4,2005-11-22,172,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+251,10,Mohamed Amine Sbai,FWD,Angers SCO,2,2000-11-05,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+252,10,Chadi Riad,DEF,Crystal Palace FC,7,2003-06-17,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+253,10,Youssef Belammari,DEF,Al Ahly FC,18,1998-09-20,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+254,10,Ayoub El Kaabi,FWD,Olympiacos FC,71,1993-06-25,182,36,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+255,10,Ayoube Amaimouni,FWD,Eintracht Frankfurt,3,2004-11-30,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+256,10,Ahmed Reda Tagnaouti,GK,ASFAR,3,1996-04-05,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+257,10,Bilal El Khannouss,MID,VfB Stuttgart,38,2004-05-10,180,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+258,10,Neil Yoni El Aynaoui,MID,AS Roma,17,2001-07-02,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+259,10,Redouane Halhal,DEF,KV Mechelen,3,2003-03-05,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+260,10,Anass Salah Eddine,DEF,PSV Eindhoven,10,2002-01-18,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+261,11,Johny Placide,GK,SC Bastia,84,1988-01-29,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+262,11,Carlens Jean Fedlaire Ruby Arcus,DEF,Angers SCO,57,1996-06-28,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+263,11,Keeto Thermoncy,DEF,BSC Young Boys,1,2006-03-29,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+264,11,Ricardo Ade,DEF,LDU Quito,62,1990-05-21,190,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+265,11,Hannes Piterson Delcroix,DEF,FC Lugano,8,1999-02-28,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+266,11,Carl Fred Sainte,MID,El Paso Locomotive FC,26,2002-08-09,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+267,11,Derrick Burckley Etienne,FWD,Toronto FC,50,1996-11-25,178,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+268,11,Martin Yves Roberns Didier Experience,DEF,AS Nancy,22,1999-03-09,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+269,11,Duckens Nazon,FWD,Esteghlal Tehran FC,83,1994-04-07,181,44,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+270,11,Jean Ricner Bellegarde,MID,Wolverhampton Wanderers FC,11,1998-06-27,170,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+271,11,Don Deedson Deedson,FWD,FC Dallas,33,2001-02-11,178,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+272,11,Alexandre Jr Pierre,GK,FC Sochaux-Montbéliard,17,2001-02-25,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+273,11,Markhus Lacroix,DEF,Colorado Springs Switchbacks FC,16,1993-10-14,175,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+274,11,Garven-Michee Metusala,DEF,Colorado Springs Switchbacks FC,15,1999-12-31,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+275,11,Ruben Fritzner Providence,FWD,Almere City FC,16,2001-07-07,178,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+276,11,Lenny Alvin Pico Joseph,FWD,Ferencvárosi TC,3,2000-10-12,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+277,11,Danley Jean Jacques,MID,Philadelphia Union,32,2000-05-20,182,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+278,11,Wilson Isidor,FWD,Sunderland AFC,5,2000-08-27,184,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+279,11,Yassin Enzo Fortune,FWD,FC Vizela,5,1999-01-30,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+280,11,Frantzdy Pierrot,FWD,Çaykur Rizespor,54,1995-03-29,194,34,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+281,11,Josue Jeremie Casimir,FWD,AJ Auxerre,8,2001-09-24,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+282,11,Jean-Kévin Duverne,DEF,KAA Gent,17,1997-07-12,184,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+283,11,Josue Duverger,GK,FC Cosmos Koblenz,7,2000-04-27,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+284,11,Wilguens Raphael Polynice Paugain,DEF,SV Zulte Waregem,8,2001-08-24,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+285,11,Dominique Celidor Simon,MID,FC Tatran Pre š ov,2,2000-07-29,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+286,11,Olivier Woodensky Pierre,MID,Violette AC,1,2004-12-30,177,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+287,12,Angus Fraser James Gunn,GK,Nottingham Forest FC,23,1996-01-22,196,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+288,12,Aaron Buchanan Hickey,DEF,Brentford FC,22,2002-06-10,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+289,12,Andrew Henry Robertson,DEF,Liverpool FC,95,1994-03-11,178,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+290,12,Mc,MID,SSC Napoli,71,1996-12-08,193,15,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+291,12,Grant Campbell Hanley,DEF,Hibernian FC,69,1991-11-20,188,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+292,12,Kieran Tierney,DEF,Celtic FC,56,1997-06-05,180,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+293,12,Mc,MID,Aston Villa FC,87,1994-10-18,178,21,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+294,12,Tyler Robert Fletcher,MID,Manchester United FC,2,2007-03-19,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+295,12,Lyndon John Dykes,FWD,Charlton Athletic FC,52,1995-10-07,188,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+296,12,Che Sac Everton Fred Adams,FWD,Torino FC,48,1996-07-13,175,13,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+297,12,Ryan Christie,MID,AFC Bournemouth,69,1995-02-22,178,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+298,12,Liam Patrick Kelly,GK,Rangers FC,3,1996-01-23,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+299,12,Jack William Hendry,DEF,Al Ettifaq FC,39,1995-05-07,192,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+300,12,Ross Cameron Stewart,FWD,Southampton FC,3,1996-07-11,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+301,12,John Francis Souttar,DEF,Rangers FC,24,1996-09-25,186,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+302,12,Dominic John Hyam,DEF,Wrexham AFC,4,1995-12-20,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+303,12,Ben Gannon Gannon-Doak,FWD,AFC Bournemouth,15,2005-11-11,173,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+304,12,George David Eric Hirst,FWD,Ipswich Town FC,10,1999-02-15,191,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+305,12,Lewis Ferguson,MID,Bologna FC,25,1999-08-24,181,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+306,12,Lawrence Shankland,FWD,Heart Of Midlothian FC,21,1995-08-10,185,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+307,12,Craig Sinclair Gordon,GK,Heart Of Midlothian FC,84,1982-12-31,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+308,12,Nathan Kenneth Patterson,DEF,Everton FC,27,2001-10-16,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+309,12,Mc,MID,Norwich City FC,59,1992-01-08,183,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+310,12,Anthony Ralston,DEF,Celtic FC,27,1998-11-16,178,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+311,12,Findlay Kenneth Curtis,FWD,Kilmarnock FC,4,2006-06-09,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+312,12,Mc,DEF,GNK Dinamo Zagreb,50,1996-11-12,189,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+313,13,Matthew Charles Turner,GK,New England Revolution,54,1994-06-24,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+314,13,Sergiño Gianni Dest,DEF,PSV Eindhoven,40,2000-11-03,173,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+315,13,Christopher Jeffrey Richards,DEF,Crystal Palace FC,37,2000-03-28,189,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+316,13,Tyler Shaan Adams,MID,AFC Bournemouth,55,1999-02-14,175,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+317,13,Antonee Robinson,DEF,Fulham FC,55,1997-08-08,183,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+318,13,Auston Levi-Jesaiah Trusty,DEF,Celtic FC,8,1998-08-12,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+319,13,Giovanni Alejandro Reyna,MID,Borussia Mönchengladbach,39,2002-11-13,187,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+320,13,Mc,MID,Juventus FC,67,1998-08-28,180,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+321,13,Ricardo Daniel Pepi,FWD,PSV Eindhoven,38,2003-01-09,185,13,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+322,13,Christian Mate Pulisic,FWD,AC Milan,87,1998-09-18,177,33,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+323,13,Brenden Russell Aaronson,FWD,Leeds United FC,58,2000-10-22,177,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+324,13,Miles Gordon Robinson,DEF,FC Cincinnatti,40,1997-03-14,187,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+325,13,Timothy Michael Ream,DEF,Charlotte FC,83,1987-10-05,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+326,13,Sebastian Matthew Berhalter,MID,Vancouver Whitecaps FC,14,2001-05-10,175,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+327,13,Cristian Roldan,MID,Seattle Sounders FC,47,1995-06-03,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+328,13,Alexander Michael Freeman,DEF,Villarreal CF,18,2004-08-09,188,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+329,13,Malik Leon Tillman,MID,Bayer 04 Leverkusen,31,2002-05-28,187,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+330,13,Maximilian Michael Arfsten,DEF,Columbus Crew,20,2001-04-19,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+331,13,Haji Amir Wright,FWD,Coventry City FC,20,1998-03-27,191,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+332,13,Folarin Jolaoluwa Balogun,FWD,AS Monaco,28,2001-07-03,179,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+333,13,Timothy Tarpeh Weah,FWD,Olympique Marseille,52,2000-02-22,183,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+334,13,Mc,DEF,Toulouse FC,29,1999-02-25,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+335,13,Joseph Michael Scally,DEF,Borussia Mönchengladbach,26,2002-12-31,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+336,13,Matthew Andrew Geary Freese,GK,New York City FC,16,1998-09-02,198,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+337,13,Christopher Keith Brady,GK,Chicago Fire FC,1,2004-03-03,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+338,13,Alejandro Zendejas,FWD,Club América,14,1998-02-07,167,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+339,14,Roberto Junior Fernandez,GK,Cerro Porteño,30,1988-03-29,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+340,14,Victor Gustavo Velazquez,DEF,Cerro Porteño,14,1991-04-17,189,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+341,14,Omar Federico Alderete,DEF,Sunderland AFC,37,1996-12-26,190,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+342,14,Juan Jose Caceres,DEF,FC Dynamo Moscow,18,2000-06-01,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+343,14,Fabián Cornelio Balbuena,DEF,Grêmio FBPA,47,1991-08-23,188,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+344,14,Júnior Osmar Ignacio Alonso,DEF,Atlético Mineiro,72,1993-02-09,184,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+345,14,Ramón Sosa,MID,SE Palmeiras,30,1999-08-31,178,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+346,14,Diego Alexander Gomez,MID,Brighton & Hove Albion FC,25,2003-03-27,183,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+347,14,Arnaldo Antonio Sanabria,FWD,US Cremonese,49,1996-03-04,180,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+348,14,Miguel Angel Almiron,MID,Atlanta United FC,77,1994-02-10,178,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+349,14,Mauricio Mauricio,MID,SE Palmeiras,4,2001-06-22,175,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+350,14,Orlando Daniel Gill,GK,CA San Lorenzo,7,2000-06-11,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+351,14,Jose Maria Canale,DEF,CA Lanús,2,1996-07-20,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+352,14,Adrián Andrés Cubas,MID,Vancouver Whitecaps FC,34,1996-05-11,166,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+353,14,Gustavo Raul Gomez,DEF,SE Palmeiras,90,1993-05-06,179,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+354,14,Damián Josue Bobadilla,MID,São Paulo FC,20,2001-07-11,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+355,14,Alejandro Sebastian Romero Gamarra,FWD,Al Ain FC,35,1995-01-11,165,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+356,14,Alex Adrian Arce,FWD,CS Independiente Rivadavia,16,1995-06-16,188,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+357,14,Julio Cesar Enciso,FWD,RC Strasbourg,33,2004-01-23,168,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+358,14,Braian Oscar Ojeda,MID,Orlando City SC,17,2000-06-27,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+359,14,Gabriel Avalos,FWD,CA Independiente,23,1991-07-09,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+360,14,Gastón Hernán Olveira,GK,Club Olimpia,1,1993-04-21,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+361,14,Matias Galarza,MID,Atlanta United FC,15,2002-02-11,175,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+362,14,Gustavo Ruben Caballero,MID,Portsmouth FC,2,2001-09-21,189,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+363,14,Isidro Miguel Pitta,FWD,Red Bull Bragantino,5,1999-08-14,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+364,14,Alexandro Maidana,DEF,CA Talleres,2,2005-07-26,173,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+365,15,Mathew David Ryan,GK,Levante UD,104,1992-04-08,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+366,15,Milos Degenek,DEF,APOEL FC,57,1994-04-28,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+367,15,Alessandro Circati,DEF,Parma,14,2003-10-10,191,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+368,15,Jacob Michael Italiano,DEF,Grazer AK,6,2001-07-30,177,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+369,15,Jordan Jacob Bos,DEF,Feyenoord Rotterdam,28,2002-10-29,180,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+370,15,Jason Kato Geria,DEF,Albirex Niigata,15,1993-05-10,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+371,15,Mathew Allan Leckie,FWD,Melbourne City FC,81,1991-02-04,181,14,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+372,15,Connor Isaac Metcalfe,MID,FC St. Pauli,37,1999-11-05,183,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+373,15,Mohamed Toure,FWD,Norwich City FC,11,2004-03-26,186,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+374,15,Ajdin Hrustic,FWD,SC Heracles Almelo,37,1996-07-05,180,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+375,15,Awer Bul Mabil,FWD,CD Castellón,38,1995-09-15,178,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+376,15,Paul David Izzo,GK,Randers FC,4,1995-01-06,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+377,15,Aiden Connor Oneill,MID,New York City FC,32,1998-07-04,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+378,15,Cameron Peter Devlin,MID,Heart Of Midlothian FC,5,1998-06-07,170,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+379,15,Kai Clifton Trewin,DEF,New York City FC,6,2001-05-18,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+380,15,Aziz Behich,DEF,Melbourne City FC,85,1990-12-16,170,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+381,15,Nestory Irankunda,FWD,Watford FC,16,2006-02-09,165,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+382,15,Patrick Thomas Beach,GK,Melbourne City FC,3,2003-08-06,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+383,15,Harry James Souttar,DEF,Leicester City FC,39,1998-10-22,198,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+384,15,Cristian Volpato,FWD,US Sassuolo,1,2003-11-15,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+385,15,Cameron Robert Burgess,DEF,Swansea City AFC,28,1995-10-21,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+386,15,Jackson Alexander Irvine,MID,FC St. Pauli,83,1993-03-07,189,14,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+387,15,Nishan Matthew Velupillay,FWD,Melbourne Victory FC,8,2001-05-07,181,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+388,15,Paul Michael Junior Okon-Engstler,MID,Sydney FC,7,2005-01-24,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+389,15,Lucas Herrington,DEF,Colorado Rapids,4,2007-09-05,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+390,15,Tete Owen Yengi,FWD,FC Machida Zelvia,2,2000-11-28,197,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+391,16,Fehmi Mert Gunok,GK,Fenerbahçe SK,37,1989-03-01,196,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+392,16,Mehmet Zeki Celik,DEF,AS Roma,62,1997-02-17,180,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+393,16,Merih Demiral,DEF,Al Ahli FC,64,1998-03-05,190,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+394,16,Ça ğ lar Soyuncu,DEF,Fenerbahçe SK,60,1996-05-23,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+395,16,Salih Ozcan,MID,Borussia Dortmund,31,1998-01-11,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+396,16,Orkun Kokcu,MID,Be ş ikta ş  JK,51,2000-12-29,175,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+397,16,Muhammed Kerem Akturkoglu,FWD,Fenerbahçe SK,53,1998-10-21,172,15,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+398,16,Arda Guler,FWD,Real Madrid C. F.,31,2005-02-25,175,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+399,16,Deniz Daniel Gul,FWD,FC Porto,9,2004-07-02,192,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+400,16,Hakan Calhanoglu,MID,FC Internazionale Milano,107,1994-02-08,178,22,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+401,16,Kenan Yildiz,FWD,Juventus FC,29,2005-05-04,187,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+402,16,Altay Bayindir,GK,Manchester United FC,12,1998-04-14,198,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+403,16,Evren Eren Elmali,DEF,Galatasaray SK,23,2000-07-07,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+404,16,Abdülker Bardakci,DEF,Galatasaray SK,28,1994-09-07,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+405,16,Ozan Muhammed Kabak,DEF,TSG Hoffenheim,30,2000-03-25,187,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+406,16,Ismailİsma Yuksek,MID,Fenerbahçe SK,33,1999-01-26,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+407,16,Can İrfan Kahveci,FWD,Kasımpa ş a SK,47,1995-07-15,180,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+408,16,Mert Muldur,DEF,Fenerbahçe SK,46,1999-04-03,184,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+409,16,Yunus Akgun,FWD,Galatasaray SK,20,2000-07-07,173,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+410,16,Ferdi Erenay Kadioglu,DEF,Brighton & Hove Albion FC,31,1999-10-07,174,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+411,16,Barı ş Alper Yilmaz,FWD,Galatasaray SK,36,2000-05-23,186,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+412,16,Kaan Ayhan,MID,Galatasaray SK,73,1994-11-10,185,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+413,16,Ugurcan Cakir,GK,Galatasaray SK,40,1996-04-05,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+414,16,Oguz Aydin,FWD,Fenerbahçe SK,11,2000-10-27,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+415,16,Samet Akaydin,DEF,Çaykur Rizespor,19,1994-03-13,190,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+416,16,Can Yılmaz Uzun,FWD,Eintracht Frankfurt,6,2005-11-11,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+417,17,Manuel Peter Neuer,GK,FC Bayern München,125,1986-03-27,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+418,17,Antonio Ruediger,DEF,Real Madrid C. F.,83,1993-03-03,190,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+419,17,Waldemar Anton,DEF,Borussia Dortmund,14,1996-07-20,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+420,17,Jonathan Glao Tah,DEF,FC Bayern München,48,1996-02-11,195,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+421,17,Aleksandar Pavlovic,MID,FC Bayern München,12,2004-05-03,188,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+422,17,Joshua Walter Kimmich,DEF,FC Bayern München,111,1995-02-08,177,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+423,17,Kai Lukas Havertz,FWD,Arsenal FC,59,1999-06-11,190,24,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+424,17,Leon Christoph Goretzka,MID,FC Bayern München,71,1995-02-06,189,15,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+425,17,Jamie Jaleel Jeremy Leweling,MID,VfB Stuttgart,5,2001-02-26,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+426,17,Jamal Musiala,MID,FC Bayern München,43,2003-02-26,180,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+427,17,Nick Woltemade,FWD,Newcastle United FC,11,2002-02-14,198,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+428,17,Oliver Baumann,GK,TSG Hoffenheim,13,1990-06-02,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+429,17,Pascal Alexander GROß GROß Gross,MID,Brighton & Hove Albion FC,18,1991-06-15,181,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+430,17,Maximilian Beier,FWD,Borussia Dortmund,9,2002-10-17,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+431,17,Nico Cédric Schlotterbeck,DEF,Borussia Dortmund,28,1999-12-01,191,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+432,17,Angelo Nicolas Stiller,MID,VfB Stuttgart,8,2001-04-04,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+433,17,Florian Richard Wirtz,MID,Liverpool FC,42,2003-05-03,176,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+434,17,Nathaniel Christopher Brown,DEF,Eintracht Frankfurt,6,2003-06-16,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+435,17,Leroy Aziz Sane,MID,Galatasaray SK,77,1996-01-11,183,17,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+436,17,Nadiem Amiri,MID,1. FSV Mainz 05,11,1996-10-27,178,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+437,17,Alexander Nuebel,GK,VfB Stuttgart,3,1996-09-30,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+438,17,David Raum,DEF,RB Leipzig,38,1998-04-22,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+439,17,Felix Kalu Nmecha,MID,Borussia Dortmund,9,2000-10-10,190,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+440,17,Malick Thiaw,DEF,Newcastle United FC,5,2001-08-08,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+441,17,Forzan Assan Ouedraogo,MID,RB Leipzig,1,2006-05-09,191,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+442,17,Deniz Undav,FWD,VfB Stuttgart,10,1996-07-19,179,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+443,18,Eloy Victor Room,GK,Miami FC,73,1989-02-06,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+444,18,Shurandy Ruggerio Sambo,DEF,Sparta Rotterdam,8,2001-08-19,174,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+445,18,Juriën Godfried Juan Gaari,DEF,Abha Club,60,1993-12-23,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+446,18,Róshón Felix Romar Jordan Van Eijma,DEF,RKC Waalwijk,28,1998-06-09,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+447,18,Sherel Constancio Floranus,DEF,PEC Zwolle,28,1998-08-23,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+448,18,Godfried Roemeratoe,MID,RKC Waalwijk,29,1999-08-19,178,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+449,18,Juninho Gracielo Bacuna,MID,FC Volendam,51,1997-08-07,178,14,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+450,18,Livano Shyron Liomar Comenencia,MID,FC Zürich,21,2004-02-03,185,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+451,18,Jürgen Leonardo Locadia,FWD,Miami FC,14,1993-11-07,193,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+452,18,Leandro Jones Johan Bacuna,MID,I ğ dır FK,73,1991-08-21,180,16,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+453,18,Jeremy Cornelis Jacobus Antonisse,FWD,AE Kifisia FC,28,2002-03-29,164,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+454,18,Juniffer Naigelino Hansen,FWD,Middlesbrough FC,7,2002-05-18,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+455,18,Tyrese Yurvencey Noslin,FWD,SC Telstar,7,2002-09-11,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+456,18,Kenji Joël Gorre,FWD,Maccabi Haifa FC,38,1994-09-29,174,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+457,18,Jainel Archenir Martha,MID,Rotherham United FC,9,2003-09-04,180,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+458,18,Jearl Erwin Margaritha,FWD,SK Beveren,23,2000-04-10,181,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+459,18,Brandley Mack-Olien Kuwas,FWD,FC Volendam,36,1992-09-19,181,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+460,18,Armando Maria Obispo,DEF,PSV Eindhoven,7,1999-03-05,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+461,18,Gervane Zjandric Adonnis Kastaneer,FWD,Terengganu FC,30,1996-06-09,189,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+462,18,Joshua Benjamin Brenet,DEF,Kayserispor,18,1994-03-20,181,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+463,18,Tahith Jose Girigorio Djorkaef Chong,MID,Shefield United FC,7,1999-12-04,185,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+464,18,Kevin Antonio Felida,MID,FC Den Bosch,19,1999-11-11,174,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+465,18,Riechedly Guillermo Bazoer,DEF,Konyaspor,6,1996-10-12,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+466,18,Deveron Lenny Fonville,DEF,NEC Nijmegen,3,2003-05-16,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+467,18,Tyrick Jeremy Bodak,GK,SC Telstar,4,2002-05-15,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+468,18,Trevor Irving Doornbusch,GK,VVV Venlo,8,1999-07-06,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+469,19,Yahia Fofana,GK,Çaykur Rizespor,37,2000-08-21,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+470,19,Ousmane Diomande,DEF,Sporting CP,16,2003-12-04,190,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+471,19,N'clomande Ghislain Konan,DEF,Gil Vicente FC,55,1995-12-27,176,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+472,19,Jean Michael Seri,MID,NK Maribor,65,1991-07-19,168,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+473,19,Wilfried Stephane Singo,DEF,Galatasaray SK,36,2000-12-25,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+474,19,Seko Mohamed Fofana,MID,FC Porto,33,1995-05-07,185,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+475,19,Odilon Dorgeless Kossounou,DEF,Atalanta Bergamo,37,2001-01-04,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+476,19,Franck Yannick Kessie,MID,Al Ahli FC,105,1996-12-19,183,15,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+477,19,Ange-Yoan Laurent Bonny,FWD,FC Internazionale Milano,2,2003-10-25,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+478,19,Simon Adingra,FWD,AS Monaco,29,2002-01-01,175,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+479,19,Yan Diomande,FWD,RB Leipzig,11,2006-11-14,180,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+480,19,Elye Delmas Wahi,FWD,OGC Nice,3,2003-01-02,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+481,19,Christopher Tea Domoraud Operi,DEF,Ba ş ak ş ehir FK,12,1997-04-29,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+482,19,Oumar Diakite,FWD,Cercle Brugge,29,2003-12-20,182,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+483,19,Amad Diallo,FWD,Manchester United FC,20,2002-07-11,173,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+484,19,Mohamed Kone,GK,Sporting Charleroi,0,2002-03-07,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+485,19,Guela Maho-Lewis Doue,DEF,RC Strasbourg,21,2002-10-17,187,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+486,19,Ibrahim Sangare,MID,Nottingham Forest FC,56,1997-12-02,191,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+487,19,Nicolas Pepe,FWD,Villarreal CF,57,1995-05-29,183,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+488,19,Emmanuel Elysee Djedje Agbadou,DEF,Be ş ikta ş  JK,22,1997-06-17,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+489,19,Obite Evan Ndicka,DEF,AS Roma,29,1999-08-20,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+490,19,Evann Ludovic Vidjannagni Guessand,FWD,Crystal Palace FC,21,2001-07-01,188,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+491,19,Alban-Marc Lafont,GK,Panathinaikos FC,4,1999-01-23,196,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+492,19,Bazoumana Toure,FWD,TSG Hoffenheim,7,2006-03-02,178,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+493,19,Parfait Guiagon,MID,Sporting Charleroi,5,2001-02-22,165,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+494,19,Christ Ravynel Inao Oulai,MID,Trabzonspor,10,2006-04-06,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+495,20,Hernán Ismael Galindez,GK,CA Huracán,36,1987-03-30,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+496,20,Félix Eduardo Torres,DEF,SC Internacional,49,1997-01-11,187,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+497,20,Piero Martin Hincapie,DEF,Arsenal FC,53,2002-01-09,183,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+498,20,Joel Leandro Ordonez,DEF,Club Brugge,18,2004-04-21,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+499,20,Jordy Jose Alcivar,MID,Independiente Del Valle,11,1999-08-05,168,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+500,20,Willian Joel Pacho,DEF,Paris Saint-Germain,35,2001-10-16,188,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+501,20,Pervis Josue Estupinan,DEF,AC Milan,54,1998-01-21,175,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+502,20,Anthony Lenin Valencia,MID,Royal Antwerp FC,3,2003-07-21,173,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+503,20,John Yeboah,FWD,Venezia FC,23,2000-06-23,170,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+504,20,Ray Kendry Paez,MID,CA River Plate,26,2007-05-04,178,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+505,20,Kevin Jose Rodriguez,FWD,Royale Union Saint-Gilloise,32,2000-03-04,190,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+506,20,Wellington Moisés Ramirez,GK,AE Kifisia FC,7,2000-09-09,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+507,20,Enner Remberto Valencia,FWD,CF Pachuca,106,1989-11-04,177,49,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+508,20,Alan Steve Minda,MID,Atlético Mineiro,21,2003-05-14,174,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+509,20,Pedro Jeampierre Vite,MID,Pumas UNAM,18,2002-03-09,172,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+510,20,Jordy Josue Caicedo,FWD,CA Huracán,20,1997-11-18,186,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+511,20,Ángelo Smit Preciado,DEF,Atlético Mineiro,57,1998-02-18,174,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+512,20,Denil Daniel Castillo,MID,FC Midtjylland,5,2004-03-24,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+513,20,Gonzalo Jordy Plata,FWD,CR Flamengo,51,2000-11-01,178,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+514,20,Nilson David Angulo,FWD,Sunderland AFC,15,2003-06-19,184,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+515,20,Alan Steven Franco,MID,Atlético Mineiro,59,1998-08-21,175,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+516,20,Gonzalo Roberto Valle,GK,LDU Quito,4,1996-02-28,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+517,20,Moisés Isaac Caicedo,MID,Chelsea FC,62,2001-11-02,178,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+518,20,Jeremy Alberto Arevalo,FWD,VfB Stuttgart,4,2005-03-19,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+519,20,Jackson Gabriel Porozo,DEF,Club Tijuana,10,2000-08-04,192,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+520,20,Yaimar Abel Medina,DEF,KRC Genk,6,2004-11-05,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+521,21,Bart Verbruggen,GK,Brighton & Hove Albion FC,30,2002-08-18,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+522,21,Lutsharel Emiliano Geertruida,DEF,Sunderland AFC,21,2000-07-18,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+523,21,Marten Elco De Roon,MID,Atalanta Bergamo,43,1991-03-29,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+524,21,Virgil Van Dijk,DEF,Liverpool FC,93,1991-07-08,195,13,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+525,21,Nathan Benjamin Ake,DEF,Manchester City FC,60,1995-02-18,180,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+526,21,Paul Jan-Paul Van Hecke,DEF,Brighton & Hove Albion FC,13,2000-06-08,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+527,21,Justin Dean Kluivert,MID,AFC Bournemouth,12,1999-05-05,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+528,21,Ryan Jiro Gravenberch,MID,Liverpool FC,28,2002-05-16,190,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+529,21,Wout François Maria Weghorst,FWD,AFC Ajax,52,1992-08-07,197,14,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+530,21,Memphis Depay,FWD,SC Corinthians,110,1994-02-13,178,55,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+531,21,Cody Mathès Gakpo,FWD,Liverpool FC,51,1999-05-07,193,21,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+532,21,Mats Henrik Berne Wieffer,DEF,Brighton & Hove Albion FC,15,1999-11-16,189,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+533,21,Robin Gerardus Petrus Roefs,GK,Sunderland AFC,1,2003-01-17,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+534,21,Tijjani Martinus Jan Reijnders,MID,Manchester City FC,33,1998-07-29,178,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+535,21,Micky Van De Ven,DEF,Tottenham Hotspur FC,22,2001-04-19,193,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+536,21,Guus Berend Til,MID,PSV Eindhoven,7,1997-12-22,188,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+537,21,Noa Noëll Lang,FWD,Galatasaray SK,15,1999-06-17,176,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+538,21,Donyell Malen,FWD,AS Roma,54,1999-01-19,178,13,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+539,21,Brian Ebenezer Adjei Brobbey,FWD,Sunderland AFC,13,2002-02-01,181,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+540,21,Teun Koopmeiners,MID,Juventus FC,29,1998-02-28,185,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+541,21,Frenkie De Jong,MID,FC Barcelona,67,1997-05-12,181,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+542,21,Denzel Justus Morris Dumfries,DEF,FC Internazionale Milano,73,1996-04-18,188,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+543,21,Mark Maria Hubertus Flekken,GK,Bayer 04 Leverkusen,12,1993-06-13,195,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+544,21,Crysencio Jilbert Sylverio Cir Summerville,FWD,West Ham United FC,3,2001-10-30,172,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+545,21,Jorrel Evan Hato,DEF,Chelsea FC,8,2006-03-07,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+546,21,Quinten Ryan Crispito Timber,MID,Olympique Marseille,12,2001-06-17,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+547,22,Zion Suzuki,GK,Parma,26,2002-08-21,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+548,22,Yukinari Sugawara,DEF,SV Werder Bremen,23,2000-06-28,179,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+549,22,Shogo Taniguchi,DEF,Sint-Truiden VV,40,1991-07-15,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+550,22,Kou Itakura,DEF,AFC Ajax,41,1997-01-27,188,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+551,22,Yuto Nagatomo,DEF,FC Tokyo,145,1986-09-12,170,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+552,22,Shuto Machino,FWD,Borussia Mönchengladbach,14,1999-09-30,185,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+553,22,Ao Tanaka,MID,Leeds United FC,38,1998-09-10,180,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+554,22,Takefusa Kubo,MID,Real Sociedad,50,2001-06-04,173,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+555,22,Keisuke Goto,FWD,Sint-Truiden VV,4,2005-06-03,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+556,22,Ritsu Doan,MID,Eintracht Frankfurt,67,1998-06-16,172,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+557,22,Daizen Maeda,MID,Celtic FC,29,1997-10-20,173,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+558,22,Keisuke Osako,GK,Sanfrecce Hiroshima,11,1999-07-28,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+559,22,Keito Nakamura,MID,Stade Reims,27,2000-07-28,180,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+560,22,Junya Ito,MID,KRC Genk,70,1993-03-09,177,15,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+561,22,Daichi Kamada,MID,Crystal Palace FC,50,1996-08-05,180,13,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+562,22,Tsuyoshi Watanabe,DEF,Feyenoord Rotterdam,13,1997-02-05,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+563,22,Yuito Suzuki,MID,SC Freiburg,6,2001-10-25,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+564,22,Ayase Ueda,FWD,Feyenoord Rotterdam,41,1998-08-28,182,16,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+565,22,Koki Ogawa,FWD,NEC Nijmegen,16,1997-08-08,186,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+566,22,Ayumu Seko,DEF,Le Havre AC,14,2000-06-07,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+567,22,Hiroki Ito,DEF,FC Bayern München,26,1999-05-12,188,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+568,22,Takehiro Tomiyasu,DEF,AFC Ajax,44,1998-11-05,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+569,22,Tomoki Hayakawa,GK,Kashima Antlers,4,1999-03-03,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+570,22,Kaishu Sano,MID,1. FSV Mainz 05,15,2000-12-30,176,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+571,22,Junnosuke Suzuki,DEF,FC København,6,2003-07-12,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+572,22,Kento Shiogai,FWD,VfL Wolfsburg,3,2005-03-26,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+573,23,Jacob Mikael Widell Zetterstrom,GK,Derby County FC,3,1998-07-11,197,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+574,23,Gustaf Johan Lagerbielke,DEF,SC Braga,12,2000-04-10,193,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+575,23,Victor Jörgen Lindelof,DEF,Aston Villa FC,77,1994-07-17,187,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+576,23,Isak Malcolm Kwaku Hien,DEF,Atalanta Bergamo,30,1999-01-13,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+577,23,Gabriel Johan Gudmundsson,DEF,Leeds United FC,25,1999-04-29,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+578,23,Herman Nils Johansson,DEF,FC Dallas,3,1997-10-16,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+579,23,Lucas Erik Holger Bergvall,MID,Tottenham Hotspur FC,11,2006-02-02,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+580,23,Daniel Jonathan Svensson,DEF,Borussia Dortmund,14,2002-02-12,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+581,23,Alexander Isak,FWD,Liverpool FC,59,1999-09-21,190,18,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+582,23,Erik Benjamin Nygren,MID,Celtic FC,12,2001-07-08,187,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+583,23,Anthony David Junior Elanga,FWD,Newcastle United FC,31,2002-04-27,178,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+584,23,Tobias Viktor Johansson,GK,Stoke City FC,12,1998-09-14,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+585,23,Ken Sema,MID,Pafos FC,32,1993-09-30,180,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+586,23,Hjalmar Ekdal,DEF,Burnley FC,13,1998-10-21,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+587,23,Carl Anders Theodor Starfelt,DEF,RC Celta Vigo,18,1995-06-01,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+588,23,Jesper Kewe Karlstrom,MID,Udinese,25,1995-06-21,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+589,23,Viktor Einar Gyokeres,FWD,Arsenal FC,34,1998-06-04,189,21,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+590,23,Yasin Ayari,MID,Brighton & Hove Albion FC,22,2003-10-06,172,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+591,23,Mattias Olof Svanberg,MID,VfL Wolfsburg,41,1999-01-05,186,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+592,23,Eric Anders Smith,DEF,FC St. Pauli,2,1997-01-08,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+593,23,Alexander Olof Bernhardsson,DEF,Holstein Kiel,12,1998-09-08,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+594,23,Besfort Zeneli,MID,Royale Union Saint-Gilloise,8,2002-11-21,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+595,23,Bo Kristoffer Nordfeldt,GK,AIK Stockholm,22,1989-06-23,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+596,23,Elliot Karl Stroud,DEF,Mjällby AIF,2,2002-06-22,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+597,23,Håkan Gustaf Nilsson,FWD,Club Brugge,9,1997-05-23,197,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+598,23,Taha Abdi Ali,FWD,Malmö FF,2,1998-07-01,174,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+599,24,Abdelmouhib Chamakh,GK,Club Africain,4,2001-08-25,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+600,24,Ali Abdi,DEF,OGC Nice,47,1993-12-20,177,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+601,24,Montassar Omar Talbi,DEF,FC Lorient,65,1998-05-26,190,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+602,24,Omar Rekik,DEF,NK Maribor,7,2001-12-20,188,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+603,24,Adam Arous,DEF,Kasımpa ş a SK,2,2004-07-17,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+604,24,Dylan Daniel Mahmoud Bronn,DEF,Servette FC,52,1995-06-19,186,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+605,24,Mohamed Elyes Achouri,FWD,FC København,31,1999-02-10,187,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+606,24,Elias Saad,FWD,Hannover 96,16,1999-12-27,185,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+607,24,Hazem Mastouri,FWD,FC Dynamo Makhachkala,19,1997-06-18,191,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+608,24,Hannibal Mejbri,MID,Burnley FC,46,2003-01-21,177,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+609,24,Ismael Seifallah Gharbi,MID,FC Augsburg,18,2004-04-10,180,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+610,24,Ahmed Mortadha Ben Ouanes,DEF,Kasımpa ş a SK,18,1994-07-02,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+611,24,Rani Khedira,MID,1. FC Union Berlin,4,1994-01-27,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+612,24,Khalil Ayari,MID,Paris Saint-Germain,4,2005-02-02,174,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+613,24,Mohamed Hadj Mahmoud,MID,FC Lugano,10,2000-04-24,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+614,24,Aymen Dahmen,GK,CS Sfaxien,37,1997-01-28,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+615,24,Ellyes Joris Skhiri,MID,Eintracht Frankfurt,84,1995-05-10,185,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+616,24,Rayan Elloumi,FWD,Vancouver Whitecaps FC,4,2007-09-17,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+617,24,Firas Chaouat,FWD,Club Africain,31,1996-05-08,185,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+618,24,Yan Valery,DEF,BSC Young Boys,23,1999-02-22,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+619,24,Mohamed Amine Ben Hmida,DEF,Espérance De Tunisie,14,1995-12-15,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+620,24,Sabri Ben Hessen,GK,Étoile Du Sahel,1,1996-06-13,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+621,24,Moutaz Neffati,DEF,IFK Norrköping FK,5,2004-09-04,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+622,24,Raed Chikhaoui,DEF,US Monastir,0,2004-06-09,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+623,24,Anis Slimane,MID,Norwich City FC,41,2001-03-16,188,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+624,24,Sebastian Tounekti,MID,Celtic FC,13,2002-07-13,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+625,25,Thibaut Nicolas Courtois,GK,Real Madrid C. F.,110,1992-05-11,199,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+626,25,Zeno Koen Debast,DEF,Sporting CP,26,2003-10-24,189,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+627,25,Arthur Nicolas Theate,DEF,Eintracht Frankfurt,33,2000-05-25,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+628,25,Brandon Erik Mechele,DEF,Club Brugge,10,1993-01-28,190,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+629,25,Maxim Peter De Cuyper,DEF,Brighton & Hove Albion FC,20,2000-12-22,182,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+630,25,Axel Laurent Witsel,MID,Girona FC,138,1989-01-12,186,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+631,25,Kevin De Bruyne,MID,SSC Napoli,120,1991-06-28,181,37,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+632,25,Youri Marion Tielemans,MID,Aston Villa FC,86,1997-05-07,176,13,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+633,25,Romelu Lukaku,FWD,SSC Napoli,127,1993-05-13,190,90,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+634,25,Leandro Trossard,FWD,Arsenal FC,52,1994-12-04,172,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+635,25,Jeremy Baffour Doku,FWD,Manchester City FC,44,2002-05-27,173,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+636,25,Senne Lammens,GK,Manchester United FC,2,2002-07-07,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+637,25,Mike Louis Penders,GK,RC Strasbourg,0,2005-07-31,200,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+638,25,Dodi Lukebakio,FWD,SL Benfica,30,1997-09-24,184,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+639,25,Thomas Andre Meunier,DEF,Lille OSC,81,1991-09-12,190,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+640,25,Koni De Winter,DEF,AC Milan,8,2002-06-12,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+641,25,Charles Marc De Ketelaere,FWD,Atalanta Bergamo,31,2001-03-10,192,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+642,25,Joaquin Ronny Seys,DEF,Club Brugge,5,2005-03-28,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+643,25,Diego Manuel Moreira,MID,RC Strasbourg,3,2004-08-06,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+644,25,Hans Vanaken,MID,Club Brugge,35,1992-08-24,195,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+645,25,Timothy Castagne,DEF,Fulham FC,64,1995-12-05,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+646,25,Alexis Jesse Saelemaekers,MID,AC Milan,24,1999-06-27,180,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+647,25,Nicolas Thierry Raskin,MID,Rangers FC,14,2001-02-23,178,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+648,25,Amadou Ba Onana,MID,Aston Villa FC,30,2001-08-16,192,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+649,25,Nathan Ngoy,DEF,Lille OSC,5,2003-06-10,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+650,25,Matias Fernandez-Pardo,FWD,Lille OSC,3,2005-02-03,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+651,26,Elsayed Mohamed Mohamed Elshenawy,GK,Al Ahly FC,77,1988-12-18,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+652,26,Ahmed Ibrahim Yasser,DEF,Al Ahly FC,19,1993-02-10,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+653,26,Hany Gamal Mohamed Hany,DEF,Al Ahly FC,44,1996-02-02,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+654,26,Abdelmegeed Abdelsalam Hossam Abdelmaguid,DEF,Zamalek SC,13,2001-04-30,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+655,26,Abdelaziz Moustafa Ramy Rabia,DEF,Al Ain FC,48,1993-05-20,183,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+656,26,Abdelmoneim Elsayed Mohamed,DEF,OGC Nice,36,1999-02-01,184,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+657,26,Ahmed Ibrahim Trezeguet,FWD,Al Ahly FC,96,1994-10-01,181,23,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+658,26,Ashour Metwaly Emam,MID,Al Ahly FC,30,1998-02-20,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+659,26,Mohamed Abdelkarim Hamza,FWD,FC Barcelona,3,2008-01-01,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+660,26,Hamed Mahrous Mohamed Salah,FWD,Liverpool FC,117,1992-06-15,175,67,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+661,26,Mohamed Zaky Mostafa Zico,MID,Pyramids FC,3,1997-04-27,179,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+662,26,Yousry Fouad Haissem Hassan,FWD,Real Oviedo,4,2002-02-08,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+663,26,Mohamed Aboelfetouh Ahmed Fatouh,DEF,Zamalek SC,40,1998-03-22,177,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+664,26,Fathy Abdelhalim Hamdy Fathy,MID,Al Wakrah SC,65,1994-09-29,183,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+665,26,Hafez Ramadan Karim Hafez,DEF,Pyramids FC,10,1996-03-12,174,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+666,26,Mohamed Soliman Mahdy Soliman,GK,Zamalek SC,0,1987-06-08,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+667,26,Mostafa Ahmed Mohanad Lashin,MID,Pyramids FC,24,1996-05-29,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+668,26,Aly Elmahdy Nabil,MID,Al Najmah SC,12,1996-04-06,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+669,26,Attia Fahim Marawan Attia,MID,Al Ahly FC,36,1998-08-01,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+670,26,Adel Aly Mohamed Ibrahim,FWD,FC Nordsjælland,25,2001-04-23,178,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+671,26,Saber Abdelmohsen Mahmoud,MID,ZED FC,15,2001-07-30,170,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+672,26,Mohamed Abdelsalam Omar,FWD,Manchester City FC,51,1999-02-07,180,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+673,26,Abdelaziz Mohame Mostafa,GK,Al Ahly FC,11,2000-05-15,195,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+674,26,Abdelghaffar Abdel Tarek Alaa,DEF,ZED FC,3,2002-01-05,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+675,26,Mostafa Mohamed Zizo,FWD,Al Ahly FC,65,1996-01-10,175,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+676,26,Alaaeldin Soliman Mohamed Alaa,GK,El Gouna FC,0,1999-01-01,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+677,27,Ali Reza Beiranvand,GK,Tractor Sazi Tabriz FC,88,1992-09-21,195,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+678,27,Saleh Hardani,DEF,Esteghlal Tehran FC,18,1998-12-26,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+679,27,Ehsan Hajisafi,DEF,Sepahan SC,147,1990-02-25,178,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+680,27,Shojae Khalilzadeh,DEF,Tractor Sazi Tabriz FC,59,1989-05-14,183,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+681,27,Milad Mohammadi,DEF,Persepolis FC,78,1993-09-29,175,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+682,27,Saeid Ezatolahi,MID,Shabab Al Ahli Club,85,1996-10-01,189,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+683,27,Alireza Jahanbakhsh,MID,FCV Dender EH,99,1993-08-11,180,17,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+684,27,Mohammad Mohebbi,MID,FC Rostov,38,1998-12-20,187,14,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+685,27,Mehdi Taremi,FWD,Olympiacos FC,107,1992-07-18,187,59,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+686,27,Mehdi Ghayedi,FWD,Al Nasr SC,31,1998-12-05,166,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+687,27,Ali Alipour,FWD,Persepolis FC,15,1995-11-11,181,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+688,27,Seyedpayam Niazmand,GK,Persepolis FC,15,1995-04-06,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+689,27,Mohammadhossein Kanani,DEF,Persepolis FC,65,1994-03-23,188,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+690,27,Seyed Saman Ghoddos,MID,Al Ittihad Kalba SCC,69,1993-09-06,176,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+691,27,Roozbeh Cheshmi,MID,Esteghlal Tehran FC,41,1993-07-24,192,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+692,27,Mahdi Torabi,MID,Tractor Sazi Tabriz FC,52,1994-09-10,185,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+693,27,Arya Yousefi,DEF,Sepahan SC,15,2002-04-22,181,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+694,27,Amirhossein Hosseinzadeh,FWD,Tractor Sazi Tabriz FC,19,2000-10-30,178,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+695,27,Ali Nemati,DEF,Foolad Khuzestan FC,19,1996-02-08,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+696,27,Shahriyar Moghanloo,FWD,Al Ittihad Kalba SCC,22,1994-12-21,189,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+697,27,Mohammad Ghorbani,MID,Al Wahda SC,16,2001-10-07,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+698,27,Seyedhossein Hosseini,GK,Sepahan SC,14,1992-06-30,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+699,27,Ramin Rezaeian,DEF,Foolad Khuzestan FC,75,1990-03-21,184,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+700,27,Dennis Dargahi,FWD,Standard Liège,0,1997-01-09,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+701,27,Danial Iri,DEF,Malavan Anzali FC,0,2003-10-26,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+702,27,Amirmohammad Razaghinia,MID,Esteghlal Tehran FC,4,2006-04-11,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+703,28,Maxime Teremoana Crocombe,GK,Millwall FC,25,1993-08-12,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+704,28,Timothy John Payne,DEF,Wellington Phoenix FC,53,1994-01-10,179,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+705,28,Francis De Vries,DEF,Auckland FC,20,1994-11-28,181,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+706,28,Tyler Grant Bindon,DEF,Shefield United FC,26,2005-01-27,190,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+707,28,Michael Joseph Boxall,DEF,Minnesota United FC,65,1988-08-18,191,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+708,28,Joe Zen Robert Bell,MID,Viking Stavanger,33,1999-04-27,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+709,28,Logan Tipene Rogerson,FWD,Auckland FC,18,1998-05-28,182,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+710,28,Marko Seufatu Nikola Stamenic,MID,Swansea City AFC,41,2002-02-19,188,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+711,28,Christopher Grant Wood,FWD,Nottingham Forest FC,91,1991-12-07,191,45,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+712,28,Sarpreet Singh,MID,Wellington Phoenix FC,29,1999-02-20,180,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+713,28,Elijah Henry Just,MID,Motherwell FC,45,2000-05-01,176,11,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+714,28,Alexander Noah Paulsen,GK,Lechia Gda ń sk,8,2002-07-04,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+715,28,Liberato Gianpaolo Cacace,DEF,Wrexham AFC,38,2000-09-27,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+716,28,Alex Arthur Rufer,MID,Wellington Phoenix FC,26,1996-06-12,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+717,28,Nando Zen Pijnaker,DEF,Auckland FC,26,1999-02-25,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+718,28,Finn Surman,DEF,Portland Timbers,20,2003-09-23,190,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+719,28,Kosta Barbarouses,FWD,WS Wanderers FC,76,1990-02-19,171,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+720,28,Benjamin Peter Waine,FWD,Port Vale FC,31,2001-06-11,185,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+721,28,Benjamin Craig Old,MID,AS Saint-Etienne,25,2002-08-13,173,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+722,28,Mc,MID,Silkeborg IF,34,1999-04-30,180,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+723,28,Jesse Carmichael Randall,FWD,Auckland FC,12,2002-08-19,176,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+724,28,Michael Cornelis Woud,GK,Auckland FC,7,1999-01-16,196,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+725,28,Ryan Jared Thomas,MID,PEC Zwolle,26,1994-12-20,176,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+726,28,Callan Rennie Elliot,DEF,Auckland FC,12,1999-07-07,177,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+727,28,Lachlan Ryan Bayliss,MID,Newcastle United Jets FC,4,2002-07-24,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+728,28,Thomas Jefferson Smith,DEF,Braintree Town FC,57,1990-03-31,188,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+729,29,David Raya,GK,Arsenal FC,13,1995-09-15,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+730,29,Marc Pubill,DEF,Atlético De Madrid,2,2003-06-20,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+731,29,Alejandro Grimaldo,DEF,Bayer 04 Leverkusen,14,1995-09-20,171,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+732,29,Eric Garcia,DEF,FC Barcelona,21,2001-01-09,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+733,29,Marcos Llorente,DEF,Atlético De Madrid,25,1995-01-30,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+734,29,Mikel Merino,MID,Arsenal FC,44,1996-06-22,188,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+735,29,Ferran Torres,FWD,FC Barcelona,58,2000-02-29,183,24,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+736,29,Fabian Ruiz,MID,Paris Saint-Germain,43,1996-04-03,188,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+737,29,Pablo Gavi,MID,FC Barcelona,31,2004-08-05,173,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+738,29,Daniel Olmo,FWD,FC Barcelona,51,1998-05-07,179,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+739,29,Yeremy Jesús Pino,FWD,Crystal Palace FC,23,2002-10-20,174,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+740,29,Pedro Antonio Porro,DEF,Tottenham Hotspur FC,18,1999-09-13,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+741,29,Joan Garcia,GK,FC Barcelona,2,2001-05-04,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+742,29,Aymeric Laporte,DEF,Athletic Club,47,1994-05-27,191,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+743,29,Alejandro Baena,MID,Atlético De Madrid,17,2001-07-20,172,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+744,29,Rodrigo Rodri,MID,Manchester City FC,63,1996-06-22,190,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+745,29,Nicholas Williams,FWD,Athletic Club,31,2002-07-12,181,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+746,29,Martin Zubimendi,MID,Arsenal FC,26,1999-02-02,181,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+747,29,Lamine Yamal Yamal,FWD,FC Barcelona,26,2007-07-13,183,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+748,29,Pedro Pedri,MID,FC Barcelona,42,2002-11-25,174,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+749,29,Mikel Oyarzabal,FWD,Real Sociedad,54,1997-04-21,181,25,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+750,29,Pau Cubarsi,DEF,FC Barcelona,13,2007-01-22,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+751,29,Unai Simon,GK,Athletic Club,59,1997-06-11,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+752,29,Marc Cucurella,DEF,Chelsea FC,25,1998-07-22,173,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+753,29,Victor Munoz,FWD,CA Osasuna,2,2003-07-13,173,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+754,29,Borja Iglesias,FWD,RC Celta Vigo,8,1993-01-17,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+755,30,José Vozinha,GK,GD Chaves,91,1986-06-03,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+756,30,Ianique Stopira,DEF,SCU Torreense,61,1988-05-20,178,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+757,30,Alberto Diney,DEF,Al Bataeh Club,33,1995-01-17,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+758,30,Carlos Pico Lopes,DEF,Shamrock Rovers FC,46,1992-06-17,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+759,30,Evans Logan Costa,DEF,Villarreal CF,28,2001-04-01,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+760,30,Lenini Kevin Pina,MID,FC Krasnodar,32,1997-01-27,177,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+761,30,Eduardo Jovane,MID,CF Estrela Da Amadora,30,1998-06-14,174,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+762,30,Paulo Joao Paulo,MID,FC FCSB,42,1998-05-26,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+763,30,BENCHIMOLGilson Gilson,FWD,FC Akron Tolyatti,21,2001-12-29,187,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+764,30,Gregory Jamiro Monteiro,MID,PEC Zwolle,56,1993-11-23,175,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+765,30,RODRIGUESGarry Garry,MID,Apollon Limassol,61,1990-11-27,173,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+766,30,Salomão Marcio,GK,PFC Montana,11,1997-02-23,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+767,30,CABRALSidny Sidny Lopes,DEF,SL Benfica,12,2002-09-18,176,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+768,30,Deroy Deroy Duarte,MID,PFC Ludogorets Razgrad,34,1999-07-04,177,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+769,30,Michael Laros Duarte,MID,Puskás Akadémia FC,21,1997-02-28,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+770,30,SEMEDOJair Yannick,MID,SC Farense,11,1995-12-29,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+771,30,Johnson Willy,MID,AC Omonia,39,1994-04-27,185,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+772,30,Emanuel Telmo,MID,Vitória SC,17,2001-06-21,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+773,30,Dailon Dailon Livramento,FWD,Casa Pia AC,23,2001-05-04,185,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+774,30,Isaac Ryan,FWD,I ğ dır FK,99,1990-01-08,178,22,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+775,30,Miguel Nuno Da Costa,MID,Ba ş ak ş ehir FK,10,1991-02-10,182,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+776,30,MOREIRASteven Steven,DEF,Columbus Crew,21,1994-08-13,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+777,30,Joaquim Cj Dos Santos,GK,San Diego FC,1,2000-08-24,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+778,30,Fabricio Wagner Pina,DEF,Trabzonspor,14,2002-11-03,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+779,30,PIRESKelvin Kelvin,DEF,SJK,6,2000-06-05,193,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+780,30,Sandro Helio Varela,MID,Maccabi Tel-Aviv FC,21,2002-05-03,176,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+781,31,Dhahi Nawaf Alaqidi,GK,Al Nassr FC,24,2000-05-10,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+782,31,Hassan Ali Majrashi,DEF,Al Ahli FC,21,1999-10-02,169,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+783,31,Mohammed Ali Lajami,DEF,Al Hilal SC,25,1996-04-24,177,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+784,31,Ali Abdulelah Alamri,DEF,Al Nassr FC,45,1997-01-15,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+785,31,Mohammed Hassan Altambakti,DEF,Al Hilal SC,55,1999-02-09,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+786,31,Essa Nasser Aldawsari,MID,Al Hilal SC,48,1998-12-19,178,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+787,31,Fahad Musab Aljuwayr,MID,Al Qadsiah FC,38,2003-06-20,175,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+788,31,Yahya Aiman Yahya,FWD,Al Nassr FC,26,2001-05-14,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+789,31,Tariq Feras,FWD,Al Ahli FC,73,2000-05-14,185,16,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+790,31,Mohammed Salem Aldawsari,FWD,Al Hilal SC,112,1991-08-19,173,27,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+791,31,Khalid Saleh,FWD,Al Ittihad,59,1993-11-01,184,17,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+792,31,Abdullah Saud Abdulhamid,DEF,RC Lens,56,1999-07-18,172,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+793,31,Meshari Nawaf Bu Washl,DEF,Al Nassr FC,28,1999-09-16,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+794,31,Kadish Hassan,DEF,Al Ittihad,21,1992-09-26,179,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+795,31,Mohammed Abdullah Alkhaibari,MID,Al Nassr FC,43,1996-08-16,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+796,31,Mubarak Ziyad Aljohani,MID,Al Ahli FC,12,2001-11-11,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+797,31,Essa Khalid Alghannam,FWD,Al Ettifaq FC,7,2000-11-08,171,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+798,31,Mohsen Ala Alhajji,MID,Neom SC,4,1995-12-03,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+799,31,Abdulrahman Abdullah Alhamddan,FWD,Al Nassr FC,53,1999-09-13,186,13,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+800,31,Ahmed Sultan Mandash,FWD,Al Hilal SC,7,1994-10-17,172,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+801,31,Khalil Mohammed Alowais,GK,Al Ula Saudi FC,66,1991-10-10,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+802,31,Ali Ahmed,GK,Al Qadsiah FC,9,1991-05-08,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+803,31,Ibrahim Mohamed,MID,Al Hilal SC,80,1994-09-22,191,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+804,31,Saad Moteb Alharbi,DEF,Al Hilal SC,14,2000-02-20,177,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+805,31,Abdullatif Jehad Thikri,DEF,Al Qadsiah FC,8,2001-07-21,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+806,31,Waheeb Mohammed Abu Alshamat,DEF,Al Qadsiah FC,9,2002-08-11,170,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+807,32,Sergio Ramón Rochet,GK,SC Internacional,35,1993-03-23,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+808,32,José María Gimenez,DEF,Atlético De Madrid,99,1995-01-20,186,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+809,32,Sebastián Enzo Caceres,DEF,Club América,24,1999-08-18,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+810,32,Ronald Federico Araujo,DEF,FC Barcelona,27,1999-03-07,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+811,32,Manuel Ugarte,MID,Manchester United FC,36,2001-04-11,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+812,32,Rodrigo Bentancur,MID,Tottenham Hotspur FC,74,1997-06-25,187,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+813,32,Diego Nicolás De La Cruz,MID,CR Flamengo,35,1997-06-01,167,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+814,32,Federico Santiago Valverde,MID,Real Madrid C. F.,74,1998-07-22,182,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+815,32,Darwin Gabriel Nunez,FWD,Al Hilal SC,39,1999-06-24,185,13,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+816,32,Giorgian Daniel De Arrascaeta,MID,CR Flamengo,59,1994-06-01,177,13,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+817,32,Facundo Pellistri,FWD,Panathinaikos FC,39,2001-12-20,174,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+818,32,Santiago Andres Mele,GK,CF Monterrey,8,1997-09-06,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+819,32,Guillermo Varela,DEF,CR Flamengo,28,1993-03-24,174,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+820,32,Agustin Canobbio,MID,Fluminense FC,15,1998-10-01,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+821,32,Emiliano Martinez,MID,SE Palmeiras,10,1999-08-17,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+822,32,Mathías Olivera,DEF,SSC Napoli,36,1997-10-31,174,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+823,32,Matías Nicolas Vina,DEF,CA River Plate,44,1997-11-09,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+824,32,Paul Brian Rodriguez,FWD,Club América,34,2000-05-20,175,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+825,32,Rodrigo Sebastian Aguirre,FWD,Tigres UANL,11,1994-10-01,182,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+826,32,Maximiliano Javier Araujo,MID,Sporting CP,29,2000-02-15,176,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+827,32,Federico Sebastian Vinas,FWD,Real Oviedo,12,1998-06-30,181,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+828,32,Joaquin Piquerez,MID,SE Palmeiras,19,1998-08-24,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+829,32,Nestor Fernando Muslera,GK,Estudiantes LP,135,1986-06-16,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+830,32,Santiago Ignacio Bueno,DEF,Wolverhampton Wanderers FC,8,1998-11-09,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+831,32,Juan Manuel Sanabria,MID,Real Salt Lake,6,2000-03-29,170,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+832,32,Radrigo Zalazar,MID,SC Braga,7,1999-08-12,175,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+833,33,Brice Lauriche Samba,GK,Stade Rennais FC,4,1994-04-25,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+834,33,Malo Arthur Gusto,DEF,Chelsea FC,11,2003-05-19,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+835,33,Lucas Digne,DEF,Aston Villa FC,58,1993-07-20,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+836,33,Dayotchanculle Oswald Upamecano,DEF,FC Bayern München,39,1998-10-27,186,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+837,33,Jules Olivier Kounde,DEF,FC Barcelona,49,1998-11-12,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+838,33,Emmanuel Boris Kone,MID,AS Roma,14,2001-05-17,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+839,33,Masour Ousmane Dembele,FWD,Paris Saint-Germain,60,1997-05-15,179,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+840,33,Aurélien Djani Tchouameni,MID,Real Madrid C. F.,47,2000-01-27,188,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+841,33,Marcus Lilian Thuram,FWD,FC Internazionale Milano,34,1997-08-06,192,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+842,33,Kylian Mbappe,FWD,Real Madrid C. F.,99,1998-12-20,180,58,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+843,33,Michael Akpovie Olise,FWD,FC Bayern München,18,2001-12-12,184,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+844,33,Bradley Jean-Manuel Essolisa Barcola,FWD,Paris Saint-Germain,21,2002-09-02,187,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+845,33,N'golo Kante,MID,Fenerbahçe SK,69,1991-03-29,171,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+846,33,Adrien Thibault Marie Rabiot,MID,AC Milan,60,1995-04-03,191,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+847,33,Ibrahima Konate,DEF,Liverpool FC,28,1999-05-25,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+848,33,Mike Peterson Maignan,GK,AC Milan,41,1995-07-03,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+849,33,William Alain André Gabriel Saliba,DEF,Arsenal FC,33,2001-03-24,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+850,33,Warren Marie Jean-Pierre Zaire-Emery,MID,Paris Saint-Germain,11,2006-03-08,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+851,33,Théo Bernard François Hernandez,DEF,Al Hilal SC,45,1997-10-06,184,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+852,33,Désiré Nonka-Maho Doue,FWD,Paris Saint-Germain,8,2005-06-03,182,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+853,33,Lucas Francois Bernard Hernandez,DEF,Paris Saint-Germain,42,1996-02-14,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+854,33,Jean-Philippe Mateta,FWD,Crystal Palace FC,4,1997-06-28,192,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+855,33,Robin François Philippe Risser,GK,RC Lens,0,2004-12-02,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+856,33,Mathis Rayan Cherki,MID,Manchester City FC,8,2003-08-17,180,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+857,33,Maghnes Akliouche,MID,AS Monaco,9,2002-02-25,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+858,33,Maxence Guy Lacroix,DEF,Crystal Palace FC,4,2000-04-06,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+859,34,Yehvann Djibril Victor Diouf,GK,OGC Nice,2,1999-11-16,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+860,34,Mamadou Sarr,DEF,Chelsea FC,8,2005-08-29,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+861,34,Kalidou Koulibaly,DEF,Al Hilal SC,105,1991-06-20,186,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+862,34,Abdoulaye Seck,DEF,Maccabi Haifa FC,23,1992-06-04,192,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+863,34,Idrissa Gana Gueye,MID,Everton FC,137,1989-09-26,174,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+864,34,Ismaila Pathe Ciss,MID,Rayo Vallecano,32,1994-03-16,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+865,34,Assane Diao,FWD,Como,5,2005-09-07,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+866,34,Lamine Camara,MID,AS Monaco,46,2004-01-01,174,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+867,34,Ahmadou Bamba Mbacke Dieng,FWD,FC Lorient,24,2000-03-23,178,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+868,34,Sadio Mane,FWD,Al Nassr FC,131,1992-04-10,175,54,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+869,34,Nicolas Jackson,FWD,FC Bayern München,35,2001-06-20,187,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+870,34,Pape Cherif Ndiaye,FWD,Samsunspor,19,1996-01-23,190,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+871,34,Iliman Cheikh Baroy Ndiaye,FWD,Everton FC,42,2000-03-06,180,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+872,34,Ismail Joshua Jakobs,DEF,Galatasaray SK,31,1999-08-17,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+873,34,Krepin Diatta,DEF,AS Monaco,63,1999-02-25,173,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+874,34,Edouard Osoque Mendy,GK,Al Ahli FC,59,1992-03-01,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+875,34,Pape Matar Sarr,MID,Tottenham Hotspur FC,41,2002-09-14,185,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+876,34,Ismaila Sarr,FWD,Crystal Palace FC,85,1998-02-25,185,19,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+877,34,Moussa Niakhate,DEF,Olympique Lyonnais,33,1996-03-08,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+878,34,Ibrahim Mbaye,FWD,Paris Saint-Germain,12,2008-01-24,175,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+879,34,Habib Mbacke Diarra,MID,Sunderland AFC,22,2004-01-03,178,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+880,34,Bara Sapoko Ndiaye,MID,FC Bayern München,1,2007-12-31,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+881,34,Mory Diaw,GK,Le Havre AC,5,1993-06-22,197,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+882,34,Antoine Alpha Mendy,DEF,OGC Nice,7,2004-05-27,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+883,34,El Hadji Malick Diouf,DEF,West Ham United FC,21,2004-12-29,177,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+884,34,Pape Alassane Gueye,MID,Villarreal CF,43,1999-01-24,189,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+885,35,Talib Raheem Fahad Talib,GK,Al Talaba SC,21,1994-10-21,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+886,35,Ghareeb Solaka Rebin Sulaka,DEF,Port FC,56,1992-04-12,193,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+887,35,Haydar Hussein Hussein,DEF,Pogo ń  Szczecin,28,2002-03-01,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+888,35,Tahseen Abd Zaid Zaid,DEF,Pakhtakor Tashkent FK,29,2001-01-29,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+889,35,Hashim Rahman Akam Hashim,DEF,Al Zawra'a SC,15,1998-08-16,184,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+890,35,Younus Hashim Munaf Younus,DEF,Al Shorta SC,34,1996-11-16,184,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+891,35,Wali Faeq Youssef Amyn,MID,AEK Larnaca FC,27,2003-08-21,172,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+892,35,Bayesh Kamil Ibrahim Bayesh,MID,Al Dhafra SCC,77,2000-05-01,180,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+893,35,Ibrahim Karim Ali Alhamadi,FWD,Luton Town FC,21,2002-03-01,187,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+894,35,Ali Kadhim Mohanad Ali,FWD,Dibba FC,73,2000-06-20,183,26,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+895,35,Ihab Ahmed Ahmed,FWD,Nashville SC,4,2003-07-12,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+896,35,Hasan Hachim Jalal Hassan,GK,Al Zawra'a SC,105,1991-05-18,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+897,35,Yousif Hashim Ali Yousif,FWD,Al Talaba SC,7,1996-01-19,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+898,35,Aamar Iqbal Zidane,MID,FC Utrecht,26,2003-04-27,183,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+899,35,Hasan Maknazi Ahmed Maknazi,DEF,Al Karma SC,7,2001-09-24,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+900,35,Fouad Aboud Amir Alammari,MID,KS Cracovia,52,1997-07-27,180,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+901,35,Jasim Elaibi Ali Jasim,FWD,Al Najmah SC,37,2004-01-20,178,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+902,35,Hussein Ghadhban Aymen,FWD,Al Karma SC,96,1996-03-22,190,34,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+903,35,Yakob William Kevin Yakob,MID,Aarhus GF,9,2000-10-10,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+904,35,Hazar Anwar Aimar,MID,Sarpsborg 08 FF,7,2002-12-20,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+905,35,Jabbar Hussein Marko Farji,FWD,Venezia FC,13,2004-03-16,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+906,35,Basil Fadhil Ahmed,GK,Al Shorta SC,16,1996-08-19,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+907,35,Ghazi Salih Merchas,DEF,FC Viktoria Plze ň,32,1999-12-07,173,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+908,35,Ismael Khaleel Zaid Ismael,MID,Al Talaba SC,7,2002-01-03,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+909,35,Saadoon Abbood Mustafa,DEF,Al Shorta SC,18,2001-05-25,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+910,35,Dhia Jirjis Frans,DEF,Persib Bandung,28,1993-07-14,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+911,36,Ørjan Haskjold Nyland,GK,Sevilla FC,72,1990-09-10,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+912,36,Morten Thorsby,MID,US Cremonese,31,1996-05-05,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+913,36,Kristoffer Vassbakk Köpp Ajer,DEF,Brentford FC,53,1998-04-17,198,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+914,36,Leo Skiri Ostigard,DEF,Genoa CFC,39,1999-11-28,183,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+915,36,David Møller Moller Wolfe,DEF,Wolverhampton Wanderers FC,23,2002-04-23,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+916,36,Patrick Berg,MID,FK Bodø/Glimt,44,1997-11-24,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+917,36,Alexander Sorloth,FWD,Atlético De Madrid,73,1995-12-05,196,26,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+918,36,Sander Gard Bolin Berge,MID,Fulham FC,67,1998-02-14,195,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+919,36,Erling Braut Haaland,FWD,Manchester City FC,51,2000-07-21,195,57,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+920,36,Martín Odegaard,MID,Arsenal FC,69,1998-12-17,178,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+921,36,Jørgen Strand Strand Larsen,FWD,Crystal Palace FC,28,2000-02-06,193,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+922,36,Sander Tangvik,GK,Hamburger SV,0,2002-11-29,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+923,36,Egil Selvik,GK,Watford FC,7,1997-07-30,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+924,36,Fredrik Aursnes,MID,SL Benfica,23,1995-12-10,181,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+925,36,Fredrik André Bjorkan,DEF,FK Bodø/Glimt,21,1998-08-21,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+926,36,Marcus Holmgren Holmgren Pedersen,DEF,Torino FC,32,2000-07-16,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+927,36,Torbjørn Lysaker Heggem,DEF,Bologna FC,16,1999-01-12,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+928,36,Kristian Thorstvedt,MID,US Sassuolo,38,1999-03-13,189,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+929,36,Thelonious Gerard Aasgaard,MID,Rangers FC,8,2002-05-02,188,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+930,36,Antonio Eromonsele Nordby Nusa,FWD,RB Leipzig,25,2005-04-17,183,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+931,36,Andreas Rædergård Schjelderup,MID,SL Benfica,13,2004-06-01,177,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+932,36,Oscar Bobb,MID,Fulham FC,21,2003-07-12,177,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+933,36,Jens Petter Hauge,MID,FK Bodø/Glimt,15,1999-10-12,184,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+934,36,Sondre Klingen Langas,DEF,Derby County FC,3,2001-02-02,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+935,36,Henrik Sælebakke Falchener,DEF,Viking Stavanger,1,2003-05-08,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+936,36,Julian Ryerson,FWD,Borussia Dortmund,44,1997-11-17,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+937,37,Juan Agustín Musso,GK,Atlético De Madrid,4,1994-05-06,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+938,37,Marcos Nicolás Senesi,DEF,AFC Bournemouth,3,1997-05-10,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+939,37,Nicolás Alejandro Tagliafico,DEF,Olympique Lyonnais,76,1992-08-31,172,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+940,37,Gonzalo Ariel Montiel,DEF,CA River Plate,40,1997-01-01,175,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+941,37,Leandro Daniel Paredes,MID,CA Boca Juniors,77,1994-06-29,182,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+942,37,Lisandro Martinez,DEF,Manchester United FC,29,1998-01-18,175,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+943,37,Rodrigo Javier De Paul,MID,Inter Miami CF,88,1994-05-24,178,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+944,37,Valentin Barco,MID,RC Strasbourg,4,2004-07-23,172,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+945,37,Julián Alvarez,FWD,Atlético De Madrid,52,2000-01-31,170,14,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+946,37,Lionel Andrés Messi,FWD,Inter Miami CF,200,1987-06-24,170,120,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+947,37,Giovani Lo Celso,MID,Real Betis,67,1996-04-09,177,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+948,37,Geronimo Rulli,GK,Olympique Marseille,8,1992-05-20,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+949,37,Cristian Gabriel Romero,DEF,Tottenham Hotspur FC,52,1998-04-27,185,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+950,37,Exequiel Alejandro Palacios,MID,Bayer 04 Leverkusen,40,1998-10-05,177,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+951,37,Nicolas Ivan Gonzalez,MID,Atlético De Madrid,52,1998-04-06,180,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+952,37,Thiago Ezequiel Almada,FWD,Atlético De Madrid,17,2001-04-26,171,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+953,37,Giuliano Simeone,FWD,Atlético De Madrid,13,2002-12-18,174,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+954,37,Nicolas Paz,FWD,Como,10,2004-09-08,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+955,37,Nicolas Hernan Gonzalo Otamendi,DEF,SL Benfica,133,1988-02-12,182,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+956,37,Alexis Mac Allister,MID,Liverpool FC,47,1998-12-24,176,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+957,37,Jose Manuel Alberto Lopez,FWD,SE Palmeiras,5,2000-12-06,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+958,37,Lautaro Javier Martinez,FWD,FC Internazionale Milano,78,1997-08-22,175,37,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+959,37,Damián Emiliano Martinez,GK,Aston Villa FC,60,1992-09-02,195,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+960,37,Enzo Jeremías Fernandez,MID,Chelsea FC,43,2001-01-17,178,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+961,37,Facundo Axel Medina,DEF,Olympique Marseille,10,1999-05-28,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+962,37,Nahuel Molina,DEF,Atlético De Madrid,59,1998-04-06,179,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+963,38,Melvin Feycal Mastil,GK,FC Stade Nyonnais,2,2000-02-19,194,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+964,38,Aissa Mandi,DEF,Lille OSC,120,1991-10-22,184,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+965,38,Achref Abada,DEF,USM Alger,10,1999-06-15,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+966,38,Mohamed Amine Tougai,DEF,Espérance De Tunisie,30,2000-01-22,186,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+967,38,Zineddine Belaid,DEF,JS Kabylie,18,1999-03-20,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+968,38,Ramiz Larbi Zerrouki,MID,FC Twente,54,1998-05-26,183,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+969,38,Riyad Karim Mahrez,FWD,Al Ahli FC,117,1991-02-21,179,38,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+970,38,Houssem-Eddine Chaabane Aouar,MID,Al Ittihad,24,1998-06-30,175,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+971,38,Amine Ferid Gouiri,FWD,Olympique Marseille,24,2000-02-16,180,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+972,38,Fares Chaibi,MID,Eintracht Frankfurt,32,2002-11-28,183,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+973,38,Anis Hadj Moussa,FWD,Feyenoord Rotterdam,16,2002-02-11,176,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+974,38,Ahmed Nadhir Benbouali,FWD,Györi ETO FC,4,2000-04-17,190,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+975,38,Jaouen Djimmy Hadjam,DEF,BSC Young Boys,18,2003-03-26,185,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+976,38,Hicham Boudaoui,MID,OGC Nice,35,1999-09-23,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+977,38,Rayan Ait-Nouri,DEF,Manchester City FC,31,2001-06-06,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+978,38,Oussama Benbot,GK,USM Alger,3,1994-10-11,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+979,38,Rafik Belghali,DEF,Hellas Verona FC,14,2002-06-07,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+980,38,Mohammed Elamine Amoura,FWD,VfL Wolfsburg,48,2000-05-09,170,19,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+981,38,Nabil Bentaleb,MID,Lille OSC,61,1994-11-24,189,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+982,38,Adil Boulbina,FWD,Al Duhail SC,12,2003-05-02,183,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+983,38,Selmane Rami Bensebaini,DEF,Borussia Dortmund,83,1995-04-16,187,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+984,38,Ibrahim Maza,MID,Bayer 04 Leverkusen,18,2005-11-24,180,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+985,38,Luca Zinedine Zidane,GK,Granada CF,8,1998-05-13,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+986,38,Yassine Titraoui,MID,Sporting Charleroi,5,2003-07-26,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+987,38,Fares Ghedjemis,FWD,Frosinone,1,2002-09-06,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+988,38,Samir Sophian Chergui,DEF,Paris FC,5,1999-02-06,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+989,39,Alexander Schlager,GK,FC Red Bull Salzburg,27,1996-02-01,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+990,39,David Leopold Affengruber,DEF,Elche CF,1,2001-03-19,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+991,39,Kevin Danso,DEF,Tottenham Hotspur FC,33,1998-09-19,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+992,39,Xaver Schlager,MID,RB Leipzig,52,1997-09-28,174,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+993,39,Stefan Posch,DEF,1. FSV Mainz 05,53,1997-05-14,188,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+994,39,Nicolas Seiwald,MID,RB Leipzig,48,2001-05-04,179,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+995,39,Marko Arnautovic,FWD,FK Crvena Zvezda,134,1989-04-19,192,48,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+996,39,David Alaba,DEF,Real Madrid C. F.,114,1992-06-24,180,15,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+997,39,Marcel Sabitzer,MID,Borussia Dortmund,99,1994-03-17,178,26,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+998,39,Florian Grillitsch,MID,SC Braga,59,1995-08-07,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+999,39,Michael Gregoritsch,FWD,FC Augsburg,75,1994-04-18,193,24,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1000,39,Florian Wiegele,GK,FC Viktoria Plze ň,1,2001-03-21,205,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1001,39,Patrick Pentz,GK,Brøndby IF,18,1997-01-02,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1002,39,Saša Kalajdzic,FWD,LASK Linz,23,1997-07-07,200,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1003,39,Philipp Lienhart,DEF,SC Freiburg,42,1996-07-11,189,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1004,39,Phillip Mwene,DEF,1. FSV Mainz 05,31,1994-01-29,170,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1005,39,Carney Chibueze Chukwuemeka,MID,Borussia Dortmund,4,2003-10-20,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1006,39,Romano Schmid,MID,SV Werder Bremen,35,2000-01-27,168,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1007,39,Dejan Ljubicic,MID,FC Schalke 04,9,1997-10-08,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1008,39,Konrad Laimer,MID,FC Bayern München,58,1997-05-27,180,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1009,39,Patrick Wimmer,FWD,VfL Wolfsburg,31,2001-05-30,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1010,39,Alexander Prass,MID,TSG Hoffenheim,19,2001-05-26,180,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1011,39,Marco Friedl,DEF,SV Werder Bremen,11,1998-03-16,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1012,39,Paul Wanner,MID,PSV Eindhoven,4,2005-12-23,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1013,39,Michael Svoboda,DEF,Venezia FC,4,1998-10-15,195,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1014,39,Alessandro Andre Schoepf,MID,Wolfsberger AC,35,1994-02-07,178,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1015,40,Mo'ien Hasan Yazeed Abulaila,GK,Al Hussein SC,77,1993-01-08,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1016,40,Ali Hasan Mohammad,DEF,Al Karma SC,56,1995-05-09,179,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1017,40,Mousa Musallam Abdallah Nasib,DEF,Al Zawra'a SC,66,1994-02-25,184,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1018,40,Ali Mohammad Husam Abudahab,DEF,Al Faisaly SC,17,2000-05-13,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1019,40,Mousa Mahmoud Yazan Alarab,DEF,FC Seoul,81,1996-01-31,185,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1020,40,Rasem Adel Amer Jamous,MID,Al Zawra'a SC,19,2002-07-03,177,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1021,40,Faisal Yousef Mohammad,FWD,Raja Casablanca,40,1997-12-30,170,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1022,40,Mahmoud Ali Noor Alrawabdeh,MID,Selangor FC,69,1997-02-24,182,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1023,40,Iyad Ali Ali Olwan,FWD,Al Sailiya SC,67,2000-03-26,182,30,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1024,40,Mohammad Mousa Mousa Altamari,FWD,Stade Rennais FC,93,1997-06-10,176,24,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1025,40,Burhan Shehadeh Odeh Fakhoury,FWD,Pyramids FC,11,2005-11-22,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1026,40,Zaid Khaleel Nour Baniateyah,GK,Al Faisaly SC,5,1993-01-25,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1027,40,Nayef Ahmad Mahmoud Almardi,FWD,Al Hussein SC,88,1993-10-06,173,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1028,40,Ayed Fadel Rajaei Ayed,MID,Al Hussein SC,73,1993-07-25,175,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1029,40,Mohammad Sami Ibrahim,MID,Al Karma SC,57,2000-04-27,175,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1030,40,Majed Jamil Mohammad Abualnadi,DEF,Selangor FC,19,2001-02-08,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1031,40,Amer Saleem Saleem,DEF,Al Hussein SC,13,1992-01-17,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1032,40,Ahmed Mohammad Mohammad,MID,Al Hussein SC,0,2005-07-13,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1033,40,Ahmad Salameh Saed,DEF,Al Hussein SC,22,1997-02-01,186,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1034,40,Mahmoud Saleh Mohannad Abutaha,MID,Al-Quwa Al-Jawiya,31,2003-02-02,173,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1035,40,Mahmoud Ahmed Nizar Alrashdan,MID,Qatar SC,48,1999-03-23,183,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1036,40,Ra'ed Mahmoud Abdallah Alfakhori,GK,Al Wahdat SC,16,2000-01-22,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1037,40,Manel Farhan Ehsan Haddad,DEF,Al Hussein SC,91,1994-02-05,174,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1038,40,Ahmad Ali Ali Azaizeh,FWD,Al Shabab FC,5,2004-04-13,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1039,40,Ratib Mohammad Mohammad Aldaoud,MID,Al Wahdat SC,14,1992-04-12,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1040,40,Said Ghazi Anas Badawi,DEF,Al Faisaly SC,1,1997-09-13,174,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1041,41,Diogo Diogo Costa,GK,FC Porto,44,1999-09-19,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1042,41,SEMEDONélson Nelson,DEF,Fenerbahçe SK,51,1993-11-16,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1043,41,Rúben Ruben Dias,DEF,Manchester City FC,76,1997-05-14,187,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1044,41,Tomás Tomas Araujo,DEF,SL Benfica,6,2002-05-16,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1045,41,Diogo Diogo Dalot,DEF,Manchester United FC,35,1999-03-18,184,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1046,41,Luiz Matheus,MID,Manchester City FC,20,1998-08-27,183,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1047,41,Ronaldo Cristiano Ronaldo,FWD,Al Nassr FC,229,1985-02-05,185,143,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1048,41,Miguel Bruno,MID,Manchester United FC,90,1994-09-08,183,29,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1049,41,RAMOSGonçalo Goncalo,FWD,Paris Saint-Germain,26,2001-06-20,185,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1050,41,Bernardo Bernardo Silva,MID,Manchester City FC,110,1994-08-10,173,14,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1051,41,João Joao Felix,FWD,Al Nassr FC,54,1999-11-10,179,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1052,41,Pedro Jose Sa,GK,Wolverhampton Wanderers FC,5,1993-01-17,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1053,41,Renato Renato Veiga,DEF,Villarreal CF,14,2003-07-29,188,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1054,41,Gonçalo Goncalo Inacio,DEF,Sporting CP,22,2001-08-25,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1055,41,Pedro Joao Neves,MID,Paris Saint-Germain,23,2004-09-27,171,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1056,41,António Francisco Trincao,FWD,Sporting CP,18,1999-12-29,184,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1057,41,Alexandre Rafael Leao,FWD,AC Milan,45,1999-06-10,188,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1058,41,Pedro Pedro Neto,FWD,Chelsea FC,26,2000-03-09,174,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1059,41,Manuel Goncalo,FWD,Real Sociedad,35,1996-11-29,179,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1060,41,Pedro Joao Cancelo,DEF,FC Barcelona,69,1994-05-27,173,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1061,41,Diogo Ruben,MID,Al Hilal SC,67,1997-03-13,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1062,41,Tiago Rui Silva,GK,Sporting CP,3,1994-02-07,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1063,41,Vitor Vitinha,MID,Paris Saint-Germain,39,2000-02-13,170,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1064,41,Samuel Samu Costa,DEF,RCD Mallorca,6,2000-11-27,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1065,41,Alexandre Nuno,DEF,Paris Saint-Germain,45,2002-06-19,177,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1066,41,Francisco Francisco Conceicao,FWD,Juventus FC,18,2002-12-14,166,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1067,42,Lionel Nzau Mpasi,GK,Le Havre AC,29,1994-08-01,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1068,42,Wan Wan-Bissaka,DEF,West Ham United FC,13,1997-11-26,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1069,42,Steve Nkanu Kapuadi,DEF,Widzew Ł ód ź,4,1998-04-30,196,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1070,42,Axel Tuanzebe,DEF,Burnley FC,14,1997-11-14,188,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1071,42,Dylan Buduka Batubinsika,DEF,AEL FC,15,1996-02-15,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1072,42,Ngal’ayel Mukau,MID,Lille OSC,15,2004-11-03,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1073,42,Nathanaël Mbuku,MID,Montpellier HSC,19,2002-03-16,170,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1074,42,Samuel Alain Moutoussamy,MID,Atromitos FC,59,1996-08-12,176,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1075,42,Kibambe Brian Cipenga,FWD,CD Castellón,8,1998-03-11,172,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1076,42,Theo Mbulofeko Batombo Bongonda,MID,FC Spartak Moscow,38,1995-11-20,176,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1077,42,Gaël Roméo Kakuta,FWD,AEL FC,31,1991-06-21,174,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1078,42,Joris Kayembe,DEF,KRC Genk,27,1994-08-08,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1079,42,Meschack Lina Elia,FWD,Alanyaspor,68,1997-08-06,173,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1080,42,Noah Junior Sadiki,MID,Sunderland AFC,21,2004-12-17,165,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1081,42,Tshibola Tshibola,MID,Kilmarnock FC,17,1995-01-02,184,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1082,42,Timothy Bruce Munzoko Fayulu,GK,FC Noah,3,1999-07-24,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1083,42,Cedric Bakambu,FWD,Real Betis,71,1991-04-11,182,21,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1084,42,Charles Monginda Pickel,MID,RCD Espanyol,35,1997-05-15,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1085,42,Mayele Fiston Mayele,FWD,Pyramids FC,36,1994-06-24,185,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1086,42,Yoane Wissa,FWD,Newcastle United FC,39,1996-09-03,176,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1087,42,Matthieu Luka Epolo,GK,Standard Liège,1,2005-01-15,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1088,42,Mangulu Chancel Mbemba,DEF,Lille OSC,110,1994-08-08,182,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1089,42,Simon Bokote Banza,FWD,Al Jazira,16,1996-08-13,189,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1090,42,Gédéon Tchingoma Kyatengwa Kalulu,DEF,Aris Limassol FC,29,1997-08-29,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1091,42,Edo Kayembe Kayembe,MID,Watford FC,43,1998-06-03,183,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1092,42,Arthur Fuka Masuaku,DEF,RC Lens,45,1993-11-07,179,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1093,43,Utkir Yusupov,GK,PFC Navbahor Namangan,46,1991-01-04,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1094,43,Abdukodir Khusanov,DEF,Manchester City FC,28,2004-02-29,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1095,43,Khojiakbar Alijonov,DEF,Pakhtakor Tashkent FK,52,1997-04-19,180,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1096,43,Farrukh Sayfiev,DEF,FK Neftchi Farg'ona,72,1991-01-17,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1097,43,Rustamjon Ashurmatov,DEF,Esteghlal Tehran FC,52,1996-07-07,186,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1098,43,Akmal Mozgovoy,MID,Pakhtakor Tashkent FK,26,1999-04-02,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1099,43,Otabek Shukurov,MID,Baniyas Club,91,1996-06-22,183,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1100,43,Jamshid Iskanderov,MID,FK Neftchi Farg'ona,46,1993-10-16,171,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1101,43,Odiljon Xamrobekov,MID,Tractor Sazi Tabriz FC,76,1996-02-13,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1102,43,Ruslanbek Jiyanov,MID,PFC Navbahor Namangan,8,2001-06-05,176,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1103,43,Oston Urunov,MID,Persepolis FC,46,2000-12-19,181,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1104,43,Abduvakhid Nematov,GK,Nasaf Qarshi FC,15,2001-03-20,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1105,43,Sherzod Nasrullaev,DEF,Pakhtakor Tashkent FK,41,1998-07-23,183,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1106,43,Eldor Shomurodov,FWD,Ba ş ak ş ehir FK,94,1995-06-29,190,44,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1107,43,Umarbek Eshmurodov,DEF,Nasaf Qarshi FC,40,1992-11-30,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1108,43,Botirali Ergashev,GK,FK Neftchi Farg'ona,5,1995-06-23,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1109,43,Dostonbek Khamdamov,MID,Pakhtakor Tashkent FK,38,1996-07-24,178,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1110,43,Abdulla Abdullaev,DEF,Dibba FC,30,1997-09-01,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1111,43,Azizjon Ganiev,MID,Al Bataeh Club,24,1998-02-22,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1112,43,Azizbek Amonov,FWD,FK Dinamo Samarkand,14,1997-10-30,181,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1113,43,Igor Sergeev,FWD,Persepolis FC,86,1993-04-30,185,25,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1114,43,Abbosbek Fayzullaev,MID,Ba ş ak ş ehir FK,33,2003-10-03,167,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1115,43,Sherzod Esanov,MID,FK Buxoro,1,2003-02-01,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1116,43,Behruzjon Karimov,DEF,Surkhon FK,3,2007-08-07,172,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1117,43,Avazbek Ulmasaliyev,DEF,OKMK FK,0,2000-03-27,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1118,43,Jakhongir Urozov,DEF,FK Dinamo Samarkand,5,2004-01-18,190,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1119,44,David Ospina,GK,Atlético Nacional,130,1988-08-31,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1120,44,Daniel Munoz,DEF,Crystal Palace FC,47,1996-05-26,180,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1121,44,Jhon Janer Lucumi,DEF,Bologna FC,38,1998-06-26,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1122,44,Santiago Arias,DEF,CA Independiente,68,1992-01-13,177,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1123,44,Kevin Duvan Castano,MID,CA River Plate,26,2000-09-29,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1124,44,Richard Rios,MID,SL Benfica,33,2000-06-02,185,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1125,44,Luis Fernando Diaz,FWD,FC Bayern München,75,1997-01-13,179,23,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1126,44,Jorge Andres Carrascal,MID,CR Flamengo,25,1998-05-25,180,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1127,44,Jhon Andrés Cordoba,FWD,FC Krasnodar,21,1993-05-11,186,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1128,44,James David Rodriguez,MID,Minnesota United FC,127,1991-07-12,181,31,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1129,44,Jhon Adolfo Arias,MID,SE Palmeiras,39,1997-09-21,168,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1130,44,Camilo Andres Vargas,GK,Atlas FC,43,1989-03-09,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1131,44,Yerry Fernando Mina,DEF,Cagliari,54,1994-09-23,195,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1132,44,Gustavo Adolfo Puerta,DEF,Racing Santander,7,2003-07-23,173,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1133,44,Juan Camilo Portilla,MID,Athletico Paranaense,10,1998-09-12,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1134,44,Jefferson Andrés Lerma,MID,Crystal Palace FC,66,1994-10-25,180,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1135,44,Johan Andrés Mojica,DEF,RCD Mallorca,46,1992-08-21,184,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1136,44,Willer Emilio Ditta,DEF,CF Cruz Azul,5,1998-01-23,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1137,44,Juan Camilo Hernandez,FWD,Real Betis,10,1999-04-20,176,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1138,44,Juan Fernando Quintero,MID,CA River Plate,49,1993-01-18,167,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1139,44,Jaminton Leandro Campaz,FWD,CA Rosario Central,11,2000-05-24,166,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1140,44,Deiver Machado,DEF,FC Nantes,15,1993-09-02,173,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1141,44,Davinson Sanchez,DEF,Galatasaray SK,80,1996-06-12,188,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1142,44,Álvaro David Montero,GK,CA Vélez Sarsfield,12,1995-03-29,201,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1143,44,Luis Javier Suarez,FWD,Sporting CP,13,1997-12-02,179,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1144,44,Carlos Andrés Gomez,FWD,CR Vasco Da Gama,9,2002-09-12,170,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1145,45,Jordan Lee Pickford,GK,Everton FC,85,1994-03-07,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1146,45,Ezri Ngoyo Konsa,DEF,Aston Villa FC,21,1997-10-23,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1147,45,Nico Oreilly,DEF,Manchester City FC,6,2005-03-21,177,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1148,45,Declan Rice,MID,Arsenal FC,74,1999-01-14,185,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1149,45,John Stones,DEF,Manchester City FC,90,1994-05-28,188,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1150,45,Keaninkin Marc-Isreal Guehi,DEF,Manchester City FC,30,2000-07-13,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1151,45,Bukayo Ayoyinka Saka,FWD,Arsenal FC,50,2001-09-05,178,14,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1152,45,Elliot Junior Anderson,MID,Nottingham Forest FC,10,2002-11-06,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1153,45,Harry Edward Kane,FWD,FC Bayern München,115,1993-07-28,190,81,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1154,45,Jude Victor William Bellingham,MID,Real Madrid C. F.,49,2003-06-29,183,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1155,45,Marcus Rashford,FWD,FC Barcelona,73,1997-10-31,180,19,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1156,45,Trevoh Tom Chalobah,DEF,Chelsea FC,1,1999-07-05,192,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1157,45,Dean Bradley Henderson,GK,Crystal Palace FC,5,1997-03-12,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1158,45,Jordan Brian Henderson,MID,Brentford FC,90,1990-06-17,183,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1159,45,Daniel Johnson Burn,DEF,Newcastle United FC,8,1992-05-09,201,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1160,45,Kobbie Boateng Mainoo,MID,Manchester United FC,14,2005-04-19,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1161,45,Morgan Elliot Rogers,MID,Aston Villa FC,16,2002-07-26,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1162,45,Anthony Michael Gordon,FWD,Newcastle United FC,20,2001-02-24,182,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1163,45,George Arthur Watkins,FWD,Aston Villa FC,22,1995-12-30,180,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1164,45,Azuka Tristan Madueke,FWD,Arsenal FC,12,2002-03-10,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1165,45,Eberechi Oluchi Eze,MID,Arsenal FC,17,1998-06-29,178,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1166,45,Ivan Benjamin Elijah Toney,FWD,Al Ahli FC,8,1996-03-16,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1167,45,James Harrington Trafford,GK,Manchester City FC,2,2002-10-10,197,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1168,45,Reece Lewis James,DEF,Chelsea FC,25,1999-12-08,180,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1169,45,Tehuti Djed-Hotep Spence,DEF,Tottenham Hotspur FC,7,2000-08-09,184,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1170,45,Jarell Amorin Quansah,DEF,Bayer 04 Leverkusen,3,2003-01-29,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1171,46,Dominik Livakovic,GK,GNK Dinamo Zagreb,76,1995-01-09,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1172,46,Josip Stanisic,DEF,FC Bayern München,32,2000-04-02,186,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1173,46,Marin Pongracic,DEF,ACF Fiorentina,20,1997-09-11,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1174,46,Joško Gvardiol,DEF,Manchester City FC,49,2002-01-23,185,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1175,46,Duje Caleta-Car,DEF,Real Sociedad,38,1996-09-17,193,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1176,46,Josip Sutalo,DEF,AFC Ajax,34,2000-02-28,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1177,46,Nikola Moro,MID,Bologna FC,10,1998-03-12,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1178,46,Mateo Kovacic,MID,Manchester City FC,114,1994-05-06,178,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1179,46,Andrej Kramaric,FWD,TSG Hoffenheim,117,1991-06-19,177,36,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1180,46,Luka Modric,MID,AC Milan,199,1985-09-09,172,29,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1181,46,Ante Budimir,FWD,CA Osasuna,38,1991-07-22,190,6,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1182,46,Ivor Pandur,GK,Hull City FC,0,2000-03-25,187,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1183,46,Nikola Vlasic,MID,Torino FC,64,1997-10-04,179,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1184,46,Ivan Perisic,FWD,PSV Eindhoven,155,1989-02-02,186,38,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1185,46,Mario Pasalic,MID,Atalanta Bergamo,86,1995-02-09,188,12,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1186,46,Martin Baturina,MID,Como,20,2003-02-16,172,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1187,46,Petar Sucic,MID,FC Internazionale Milano,18,2003-10-25,183,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1188,46,Kristijan Jakic,DEF,FC Augsburg,17,1997-05-14,181,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1189,46,Toni Fruk,MID,HNK Rijeka,7,2001-03-09,177,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1190,46,Igor Matanovic,FWD,SC Freiburg,10,2003-03-31,194,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1191,46,Luka Sucic,MID,Real Sociedad,21,2002-09-08,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1192,46,Luka Vuskovic,DEF,Hamburger SV,6,2007-02-24,193,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1193,46,Dominik Kotarski,GK,FC København,4,2000-02-10,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1194,46,Marco Pasalic,FWD,Orlando City SC,16,2000-09-14,177,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1195,46,Martin Erlic,DEF,FC Midtjylland,13,1998-01-24,192,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1196,46,Petar Musa,FWD,FC Dallas,12,1998-03-04,190,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1197,47,Lawrence Ati Zigi,GK,FC St. Gallen,31,1996-11-29,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1198,47,Alidu Seidu,DEF,Stade Rennais FC,24,2000-06-04,173,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1199,47,Caleb Marfo Yirenkyi,MID,FC Nordsjælland,12,2006-01-15,182,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1200,47,Jonas Adjei Adjetey,DEF,VfL Wolfsburg,11,2003-12-13,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1201,47,Thomas Teye Partey,MID,Villarreal CF,59,1993-06-13,185,16,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1202,47,Abdul Mumin Mumin,DEF,Rayo Vallecano,5,1998-06-06,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1203,47,Abdul Fatawu Fatawu,FWD,Leicester City FC,29,2004-03-08,177,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1204,47,Kwasi Sibo,MID,Real Oviedo,9,1998-06-24,183,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1205,47,Jordan Pierre Ayew,FWD,Leicester City FC,121,1991-09-11,182,34,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1206,47,Brandon Michael Clarke Thomas-Asante,FWD,Coventry City FC,9,1998-12-29,182,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1207,47,Antoine Serlom Semenyo,MID,Manchester City FC,35,2000-01-07,185,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1208,47,Joseph Tetteh Anang,GK,St Patrick's Athletic FC,1,2000-06-08,190,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1209,47,Christopher Bonsu Bonsu Baah,FWD,Al Qadsiah FC,9,2004-12-14,172,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1210,47,Gideon Mensah,DEF,AJ Auxerre,41,1998-07-18,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1211,47,Elisha Owusu,MID,AJ Auxerre,21,1997-11-07,182,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1212,47,Benjamin Asare,GK,Hearts Of Oak SC,14,1992-07-13,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1213,47,Abdul Rahman Rahman,DEF,PAOK Saloniki,53,1994-07-02,179,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1214,47,Jerome Opoku,DEF,Ba ş ak ş ehir FK,12,1998-10-14,197,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1215,47,Inaki Williams,FWD,Athletic Club,26,1994-06-15,186,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1216,47,Augustine Boakye,MID,AS Saint-Etienne,0,2000-11-03,178,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1217,47,Kojo Peprah Oppong,DEF,OGC Nice,4,2004-06-04,185,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1218,47,Kamal Deen Sulemana,FWD,Atalanta Bergamo,29,2002-02-15,174,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1219,47,Derrick Luckassen,DEF,Pafos FC,1,1995-07-03,188,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1220,47,Ernest Nuamah Nuamah,FWD,Olympique Lyonnais,20,2003-11-01,178,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1221,47,Prince Kwabena Adu,FWD,FC Viktoria Plze ň,6,2003-09-23,179,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1222,47,Marvin Elom Senaya,DEF,AJ Auxerre,3,2001-01-28,181,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1223,48,Luis Ricardo Mejia,GK,Club Nacional,56,1991-03-16,193,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1224,48,Cesar Rodolfo Blackman,DEF,Š K Slovan Bratislava,41,1998-04-02,174,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1225,48,Jose Angel Cordoba,DEF,Norwich City FC,33,2001-06-03,189,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1226,48,Fidel Escobar,DEF,Deportivo Saprissa,99,1995-01-09,184,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1227,48,Edgardo Issac Farina,DEF,FC Pari Nizhny Novgorod,18,2001-10-19,195,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1228,48,Cristian Jesus Martinez,MID,Hapoel Kiryat Shmona FC,68,1997-02-06,170,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1229,48,Jose Luis Rodriguez,MID,FC Juárez,71,1998-06-19,180,8,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1230,48,Adalberto Eliecer Carrasquilla,MID,Pumas UNAM,73,1998-11-28,171,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1231,48,Tomas Abdiel Rodriguez,FWD,Deportivo Saprissa,13,1999-03-09,183,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1232,48,Ismael Diaz,MID,Club León,57,1997-05-12,184,17,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1233,48,Edgar Yoel Barcenas,MID,Mazatlán FC,105,1993-10-23,175,10,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1234,48,Cesar Jair Samudio,GK,CD Marathón,5,1994-02-23,189,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1235,48,Jiovany Javier Ramos,DEF,Puerto Cabello CF,24,1997-01-26,188,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1236,48,Carlos Miguel Harvey,DEF,Minnesota United FC,29,2000-02-03,184,3,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1237,48,Eric Javier Davis,DEF,CD Plaza Amador,107,1991-03-31,180,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1238,48,Andres Alberto Andrade,DEF,LASK Linz,51,1998-10-16,187,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1239,48,Jose Fajardo,FWD,CD Universidad Católica,70,1993-08-18,184,17,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1240,48,Cecilio Alfonso Waterman,FWD,CD Universidad De Concepción,56,1991-04-13,180,15,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1241,48,Alberto Abdiel Quintero,MID,CD Plaza Amador,141,1987-12-18,165,7,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1242,48,Anibal Casis Godoy,MID,San Diego FC,160,1990-02-10,184,4,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1243,48,Cesar Augusto Yanis,MID,CD Cobresal,55,1996-01-28,160,5,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1244,48,Orlando Mosquera,GK,Al Fayha FC,50,1994-12-25,191,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1245,48,Michael Amir Murillo,DEF,Be ş ikta ş  JK,94,1996-02-11,185,9,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1246,48,Azarías Emmanuel Londono,FWD,CD Universidad Católica,13,2001-06-21,185,1,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1247,48,Roderick Alonso Miller,DEF,Turan Tovuz,49,1992-04-03,190,2,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset
+1248,48,Jorge Abdiel Gutierrez,DEF,Deportivo La Guaira,18,1998-09-01,171,0,REQUIRES_RECONCILIATION,https://github.com/mominullptr/FIFA-World-Cup-2026-Dataset

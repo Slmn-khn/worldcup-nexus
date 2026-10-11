@@ -66,6 +66,7 @@ export default function MatchHero({ match }: { match: MatchDetailDto }) {
             {match.tournamentName}
             <Box component="span" sx={{ color: atlas.gold, mx: 1.25 }}>
               {formatStage(match.stage)}
+              {match.groupName !== null ? ` · ${match.groupName}` : ""}
             </Box>
             {date}
           </Typography>
@@ -149,10 +150,27 @@ export default function MatchHero({ match }: { match: MatchDetailDto }) {
             }}
           >
             <Typography sx={{ ...eyebrowSx, fontSize: "0.7rem", color: atlas.textSecondary }}>
-              {match.winnerName !== null
-                ? `Winner · ${match.winnerName}`
-                : "Draw"}
+              {match.outcomeIncomplete
+                ? "Outcome not recorded"
+                : match.winnerName !== null
+                  ? `Winner · ${match.winnerName}`
+                  : "Draw"}
             </Typography>
+            {match.extraTime === true && !match.decidedByPenalties ? (
+              <Typography
+                sx={{ ...eyebrowSx, fontSize: "0.7rem", color: atlas.textMuted }}
+              >
+                After extra time
+              </Typography>
+            ) : null}
+            {match.outcomeIncomplete ? (
+              <Typography
+                sx={{ fontSize: "0.75rem", color: atlas.textMuted, flexBasis: "100%", textAlign: "center" }}
+              >
+                This knockout draw has no extra-time or shootout result in the
+                source data; it is not inferred from later rounds.
+              </Typography>
+            ) : null}
             {match.decidedByPenalties ? (
               <Typography
                 sx={{ ...eyebrowSx, fontSize: "0.7rem", color: atlas.textMuted }}

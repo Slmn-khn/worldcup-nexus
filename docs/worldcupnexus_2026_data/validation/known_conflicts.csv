@@ -1,0 +1,6 @@
+severity,area,record,candidate_value,official_value,action
+BLOCKER_FOR_PLAYER_STATS,player_minutes,Kylian Mbappé,711,769,Use FIFA official award value for Golden Boot presentation; reconcile match-level minutes before publishing cumulative stats.
+BLOCKER_FOR_PLAYER_STATS,player_minutes,Jude Bellingham,596,698,Reconcile match-level minutes against official reports before publishing cumulative stats.
+BLOCKER_FOR_SUBSTITUTIONS,match_events,All matches,No Substitution events,Required by WorldCup Nexus schema,Acquire substitution events from FIFA reports or a licensed provider before populating Substitution.
+REVIEW_REQUIRED,lineups,All matches,26 rows per team per match,Matchday participation varies,Treat rows with zero minutes and not starting as unused squad entries; verify substitute appearances.
+REVIEW_REQUIRED,advanced_stats,xG and team/player statistics,Mixed FIFA/Sofascore provenance,No single official row-level source supplied,Retain provenance and publish only fields permitted by source terms and verified per match.

@@ -22,6 +22,7 @@ import {
 import { getPlayerIndex } from "@/server/queries/players";
 import type { PlayerSort } from "@/server/queries/types";
 import { atlas } from "@/theme/tokens";
+import { coverageSuffix, getCanonicalCoverage } from "@/server/queries/coverage";
 
 export const dynamic = "force-dynamic";
 
@@ -65,7 +66,7 @@ export default async function PlayersPage({ searchParams }: Props) {
     page,
     pageSize,
   };
-  const index = await getPlayerIndex(filters);
+  const [index, coverage] = await Promise.all([getPlayerIndex(filters), getCanonicalCoverage()]);
 
   const countryName =
     index.options.countries.find(
@@ -98,7 +99,7 @@ export default async function PlayersPage({ searchParams }: Props) {
       <VaultPageHeader
         title="World Cup Players"
         lede="Explore players recorded across World Cup squads, goals, cards, penalties, and awards."
-        meta={`${formatNumber(index.total)} players in the historical archive (1930–2022) · 2026 squads live in the 2026 archive hub`}
+        meta={`${formatNumber(index.total)} players in the archive${coverageSuffix(coverage)}${coverage.includes2026 ? "" : " · 2026 squads live in the 2026 archive hub"}`}
       />
 
       <PageContainer sx={{ py: { xs: 5, md: 7 } }}>
